@@ -21,3 +21,4 @@ def initialize_logger(filename = os.path.join(LOG_PATH, f"{datetime.now().strfti
 
 def get_logger():
     return logger
+
