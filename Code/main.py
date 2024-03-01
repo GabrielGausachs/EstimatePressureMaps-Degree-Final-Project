@@ -1,1 +1,7 @@
-# Here I add import Utils and it runs the init file that imports all the objects of the Utils folder
+from Utils import logger
+
+
+if __name__ == "__main__":
+    # Initialize logger
+    logger.initialize_logger()
+    logger = logger.get_logger()

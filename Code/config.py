@@ -3,9 +3,10 @@ import os
 import torch
 
 # -----------------------------------------
-# Main parameters
+# Paths
 # -----------------------------------------
 
+LOG_PATH = os.path.join(os.path.dirname(__file__), "Logs")
 EXECUTION_NAME = "ConvAE_All_Imatges"
 MODEL_NAME = "ConvAE"
 OPTIMIZER = "Adam"
@@ -27,7 +28,6 @@ LOCAL_CROPPED_DATASET_PATH = os.path.join(os.path.dirname(__file__), "../1. Data
 LOCAL_ANNOTATED_DATASET_PATH = os.path.join(os.path.dirname(__file__), "../1. Dataset/AnnotatedPatches")
 MODELS_PATH = os.path.join(os.path.dirname(__file__), "models")
 OUTPUTS_PATH = os.path.join(os.path.dirname(__file__), "outputs")
-LOGS_PATH = os.path.join(os.path.dirname(__file__), "logs")
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128
