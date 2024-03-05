@@ -12,7 +12,8 @@ MODEL_NAME = "ConvAE"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
 DATASET = "Server-Cropped"  # "Server-Cropped", "Server-Annotated", "Local-Cropped", "Local-Annotated"
-WANDB = False
+WANDB = True
+THRESHOLD_MSE = 0.5
 
 # -----------------------------------------
 
