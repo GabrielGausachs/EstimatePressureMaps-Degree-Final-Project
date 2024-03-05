@@ -7,8 +7,8 @@ import torch
 # -----------------------------------------
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "Logs")
-EXECUTION_NAME = "ConvAE_All_Imatges"
-MODEL_NAME = "ConvAE"
+EXECUTION_NAME = "Prova"
+MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
 DATASET = "Server-Cropped"  # "Server-Cropped", "Server-Annotated", "Local-Cropped", "Local-Annotated"

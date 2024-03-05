@@ -8,7 +8,7 @@ from config import LOG_PATH
 
 logger = logging.getLogger()
 
-def initialize_logger(filename = os.path.join(LOG_PATH, f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.log")):
+def initialize_logger(filename = os.path.join(LOG_PATH, f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt")):
 
     logging.basicConfig(
         level=logging.INFO,

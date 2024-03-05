@@ -35,6 +35,7 @@ if __name__ == "__main__":
                     "epochs": EPOCHS,
                     "threshold_mse": THRESHOLD_MSE,
             },
+            save_code=False
         )
 
     if WANDB:
