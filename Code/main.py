@@ -36,3 +36,6 @@ if __name__ == "__main__":
                     "threshold_mse": THRESHOLD_MSE,
             },
         )
+
+    if WANDB:
+        wandb.finish()
