@@ -1,4 +1,5 @@
 # Object file
 *.o
 *.log
+*.pyc
 
