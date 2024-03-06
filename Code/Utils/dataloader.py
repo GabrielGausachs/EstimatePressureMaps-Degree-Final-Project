@@ -3,6 +3,7 @@ import random
 
 import numpy as np
 import pandas as pd
+from PIL import Image
 import torch
 import torchvision.transforms as transforms
 from torch.utils.data import (
@@ -20,10 +21,12 @@ from config import (
     LOCAL_SLP_DATASET_PATH,
     SERVER_SLP_DATASET_PATH,
     NUM_WORKERS,
+    SHOW_IMAGES
 )
 
 class CustomDataloader:
     def __init__(self):
+
         self.test_batch_size = BATCH_SIZE_TEST
         self.train_batch_size = BATCH_SIZE_TRAIN
         self.num_workers = NUM_WORKERS
@@ -42,6 +45,7 @@ class CustomDataloader:
         # Each one has a diccionary for each patient
         # Each patient diccionary has 3 diccionaries that correspon to each category (uncover,cover1,cover2)
         # Each category has the respective paths
+
         dic_ir_img = {}
         dic_ir_numpy = {}
         dic_pm_img = {}
@@ -81,13 +85,35 @@ class CustomDataloader:
         print(len(dic_ir_numpy))
         print(len(dic_pm_img))
         print(len(dic_ir_img['00001']))
+
+        if SHOW_IMAGES: # Show the IR, PM image and IR array of a uncover random patient
+
+            random_patient = random.choice(list(dic_ir_img.keys()))
+
+            patient_ir_img = dic_ir_img[random_patient]['uncover'][0]
+            img = Image.open(patient_ir_img)
+            img.show()
+            print(img.size)
+
+            patient_pm_img = dic_pm_img[random_patient]['uncover'][0]
+            img = Image.open(patient_pm_img)
+            #img.show()
+            print(img.size)
+
+            patient_ir_np = dic_ir_numpy[random_patient]['uncover'][0]
+            img = Image.fromarray(np.load(patient_ir_np).astype('uint8'))
+            img.show()
+
+
+
+
+
+
+
+
                 
 
         
 
-print(os.listdir(LOCAL_SLP_DATASET_PATH))
+#print(os.listdir(LOCAL_SLP_DATASET_PATH))
 f = CustomDataloader().prepare_dataloaders()
-# Per cada pacient, vaig a la carpeta IR, vaig a cada carpeta (cover,...) i extrec les imatges
-# i guardo els paths en una llista. -- IRImages
-# Per cada pacient, vaig a la carpeta IRRAW, vaig a cada carpeta, llegeixo cada arxiu .npy i
-# ho guardo en una llista. -- IRNumpys
