@@ -1,0 +1,14 @@
+2024-03-06 16:31:26,035 - root - INFO -> Logger initialized in filename 2024-03-06-16-31-26
+2024-03-06 16:31:26,036 - root - INFO -> --------------------------------------------------
+2024-03-06 16:31:26,037 - root - INFO -> Read the data
+2024-03-06 16:31:26,606 - root - INFO -> Len of the diccionary: 102
+2024-03-06 16:31:26,606 - root - INFO -> Number of categories in a patient: 3
+2024-03-06 16:31:26,615 - root - INFO -> Size of the physical dataset: 1224
+2024-03-06 16:31:26,616 - root - INFO -> --------------------------------------------------
+2024-03-06 16:31:26,616 - root - INFO -> Create dataset with random = False
+2024-03-06 16:31:26,714 - root - INFO -> Train size: 11016
+2024-03-06 16:31:26,714 - root - INFO -> Val size: 2754
+2024-03-06 16:31:26,714 - root - INFO -> --------------------------------------------------
+2024-03-06 16:31:26,715 - root - INFO -> Creating dataloaders
+2024-03-06 16:31:26,715 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
+2024-03-06 16:31:26,715 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 128, 'Number of batches': 21}

@@ -27,7 +27,7 @@ from config import (
     USE_PHYSICAL_DATA,
 )
 
-#initialize_logger()
+initialize_logger()
 
 logger = get_logger()
 
@@ -198,6 +198,21 @@ class CustomDataloader:
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
 
+        train_dataset_info = {
+        'Number of samples': len(train_loader.dataset),
+        'Batch size': train_loader.batch_size,
+        'Number of batches': len(train_loader)
+        }
+
+        val_dataset_info = {
+        'Number of samples': len(val_loader.dataset),
+        'Batch size': val_loader.batch_size,
+        'Number of batches': len(val_loader)
+        }
+
+
+        logger.info(f"Train loader info: {train_dataset_info}")
+        logger.info(f"Val loader info: {val_dataset_info}")
 
 
         return train_loader, val_loader
