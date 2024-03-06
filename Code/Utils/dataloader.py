@@ -11,6 +11,7 @@ from torch.utils.data import (
     random_split,
 )
 
+from sklearn.preprocessing import OneHotEncoder
 from logger import initialize_logger,get_logger
 from dataset import CustomDataset, CustomDataset2
 
@@ -22,7 +23,8 @@ from config import (
     LOCAL_SLP_DATASET_PATH,
     SERVER_SLP_DATASET_PATH,
     NUM_WORKERS,
-    SHOW_IMAGES
+    SHOW_IMAGES,
+    USE_PHYSICAL_DATA,
 )
 
 #initialize_logger()
@@ -116,6 +118,19 @@ class CustomDataloader:
             patient_pm_np = dic_pm_numpy[random_patient]['cover1'][0]
             img = Image.fromarray(np.load(patient_pm_np).astype('uint8'))
             img.show()
+
+        # Read the phyisical data
+            
+        p_data = None
+
+        if USE_PHYSICAL_DATA:
+
+            p_data = pd.read_csv(os.path.join(self.local_slp, 'physiqueData.csv'))
+            p_data['gender'] = p_data['gender'].str.strip()
+
+            p_data = pd.get_dummies(p_data, columns=['gender'])
+
+            logger.info(f'Size of the physical dataset: {p_data.size}')
         
         # Create dataset
         logger.info("-" * 50)
@@ -132,7 +147,7 @@ class CustomDataloader:
                     all_ir_img.extend(images_ir)
                     all_pm_img.extend(images_pm)
 
-            dataset = CustomDataset(all_ir_img, all_pm_img, transform=transform)
+            dataset = CustomDataset(all_ir_img, all_pm_img, p_data, transform=transform)
 
             train_size = int(0.8 * len(dataset))
             val_size = len(dataset) - train_size
@@ -158,14 +173,16 @@ class CustomDataloader:
                     for i in indexs[:int(len(indexs) * 0.8)]:
                         train_images['ir'].append(images_ir[i])
                         train_images['pm'].append(images_pm[i])
+                    train_dt = p_data.iloc[indexs[:int(len(indexs) * 0.8)]]
 
                     for i in indexs[int(len(indexs)*0.8):]:
                         val_images['ir'].append(images_ir[i])
                         val_images['pm'].append(images_pm[i])
+                    val_dt = p_data.iloc[indexs[int(len(indexs) * 0.8):]]
 
-            train_dataset = CustomDataset2(train_images['ir'], train_images['pm'], transform=transform)
+            train_dataset = CustomDataset2(train_images['ir'], train_images['pm'], train_dt, transform=transform)
 
-            val_dataset = CustomDataset2(val_images['ir'], val_images['pm'], transform=transform)
+            val_dataset = CustomDataset2(val_images['ir'], val_images['pm'], val_dt, transform=transform)
         
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
@@ -181,11 +198,6 @@ class CustomDataloader:
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
 
-        # Read the physical data
-
-        p_data = pd.read_csv(os.path.join(self.local_slp, 'physiqueData.csv'))
-
-        print(p_data.head())
 
 
         return train_loader, val_loader

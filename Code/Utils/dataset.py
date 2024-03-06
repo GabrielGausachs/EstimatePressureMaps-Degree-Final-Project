@@ -6,10 +6,16 @@ logger = get_logger()
 
 
 class CustomDataset(Dataset):
-    def __init__(self, ir_paths, pm_paths, transform=None):
+    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
+        
+        if p_data is not None:
+            self.p_data = p_data.iloc[:, 1:]
+        else:
+            self.p_data = None
+    
         self.transform = transform
 
     def __len__(self):
@@ -27,7 +33,11 @@ class CustomDataset(Dataset):
             input_image = self.transform(input_image)
             output_image = self.transform(output_image)
 
-        return input_image, output_image
+        if self.p_data != None:
+            p_vector = self.p_data[index]
+            return input_image, p_vector, output_image
+        else:
+            return input_image, output_image
 
     def load_image(self, path):
         # Load the image
@@ -36,10 +46,16 @@ class CustomDataset(Dataset):
     
 
 class CustomDataset2(Dataset):
-    def __init__(self, ir_paths, pm_paths, transform=None):
+    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
+
+        if p_data is not None:
+            self.p_data = p_data.iloc[:, 1:]
+        else:
+            self.p_data = None
+
         self.transform = transform
 
     def __len__(self):
@@ -57,7 +73,11 @@ class CustomDataset2(Dataset):
             input_image = self.transform(input_image)
             output_image = self.transform(output_image)
 
-        return input_image, output_image
+        if self.p_data != None:
+            p_vector = self.p_data[index]
+            return input_image, p_vector, output_image
+        else:
+            return input_image, output_image
 
     def load_image(self, path):
         # Load the image
