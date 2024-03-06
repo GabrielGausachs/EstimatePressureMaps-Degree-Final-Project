@@ -6,10 +6,10 @@ logger = get_logger()
 
 
 class CustomDataset(Dataset):
-    def __init__(self, dic_ir, dic_pm, transform=None):
+    def __init__(self, ir_paths, pm_paths, transform=None):
 
-        self.ir_paths = dic_ir.values()
-        self.pm_paths = dic_pm.values()
+        self.ir_paths = ir_paths
+        self.pm_paths = pm_paths
         self.transform = transform
 
     def __len__(self):

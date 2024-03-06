@@ -26,7 +26,7 @@ SHOW_IMAGES = False
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = ""
 MODELS_PATH = os.path.join(os.path.dirname(__file__), "Models")
-LOG_PATH = os.path.join(os.path.dirname(__file__), "Logs")
+LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128

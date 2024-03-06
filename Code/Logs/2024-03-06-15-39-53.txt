@@ -1,0 +1,11 @@
+2024-03-06 15:39:53,984 - root - INFO -> Logger initialized in filename 2024-03-06-15-39-53
+2024-03-06 15:39:53,985 - root - INFO -> --------------------------------------------------
+2024-03-06 15:39:53,985 - root - INFO -> Read the data
+2024-03-06 15:39:54,473 - root - INFO -> Len of the diccionary: 102
+2024-03-06 15:39:54,473 - root - INFO -> Number of categories in a patient: 3
+2024-03-06 15:39:54,473 - root - INFO -> --------------------------------------------------
+2024-03-06 15:39:54,473 - root - INFO -> Create dataset with random = False
+2024-03-06 15:39:54,482 - root - INFO -> Train size: 11016
+2024-03-06 15:39:54,487 - root - INFO -> Val size: 2754
+2024-03-06 15:39:54,487 - root - INFO -> --------------------------------------------------
+2024-03-06 15:39:54,487 - root - INFO -> Creating dataloaders

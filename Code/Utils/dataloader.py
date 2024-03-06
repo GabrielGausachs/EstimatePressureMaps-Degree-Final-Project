@@ -25,6 +25,8 @@ from config import (
     SHOW_IMAGES
 )
 
+initialize_logger()
+
 logger = get_logger()
 
 class CustomDataloader:
@@ -41,6 +43,9 @@ class CustomDataloader:
 
         # Data transformation if needed
         transform = transforms.Compose([transforms.ToTensor()])
+
+        logger.info("-" * 50)
+        logger.info('Read the data')
 
         # Get the data
 
@@ -88,43 +93,49 @@ class CustomDataloader:
                     else:
                         raise FileNotFoundError ('Path not found')
                     
-        print(len(dic_ir_numpy))
-        print(len(dic_pm_img))
-        print(len(dic_ir_img['00001']))
+        logger.info(f'Len of the diccionary: {len(dic_ir_numpy)}')
+        logger.info(f'Number of categories in a patient: {len(dic_ir_img["00001"])}')
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
 
             random_patient = random.choice(list(dic_ir_img.keys()))
 
             # IR IMAGE
-            patient_ir_img = dic_ir_img[random_patient][0]
+            patient_ir_img = dic_ir_img[random_patient]['cover1'][0]
             img = Image.open(patient_ir_img)
             #img.show()
             print(img.size)
 
             # PM IMAGE
-            patient_pm_img = dic_pm_img[random_patient][0]
+            patient_pm_img = dic_pm_img[random_patient]['cover1'][0]
             img = Image.open(patient_pm_img)
             img.show()
             print(img.size)
 
             # PM NUMPY to Image
-            patient_pm_np = dic_pm_numpy[random_patient][0]
+            patient_pm_np = dic_pm_numpy[random_patient]['cover1'][0]
             img = Image.fromarray(np.load(patient_pm_np).astype('uint8'))
             img.show()
         
         # Create dataset
+        logger.info("-" * 50)
+        logger.info(f'Create dataset with random = {is_random}')
         
         if is_random:
 
             # Create Dataset (we pass IR images and PM images)
-            dataset = CustomDataset(dic_ir_img, dic_pm_img, transform=transform)
+            all_ir_img = []
+            all_pm_img = []
+
+            for (patient_ir, category_ir), (patient_pm, category_pm) in zip(dic_ir_img.items(), dic_pm_img.items()):
+                for (category_name_ir, images_ir), (category_name_pm, images_pm) in zip(category_ir.items(), category_pm.items()):
+                    all_ir_img.extend(images_ir)
+                    all_pm_img.extend(images_pm)
+
+            dataset = CustomDataset(all_ir_img, all_pm_img, transform=transform)
 
             train_size = int(0.8 * len(dataset))
             val_size = len(dataset) - train_size
-
-            logger.info(f"Train size: {train_size}")
-            logger.info(f"Val size: {val_size}")
 
             # Split data into train and validation
             train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
@@ -152,14 +163,15 @@ class CustomDataloader:
                         val_images['ir'].append(images_ir[i])
                         val_images['pm'].append(images_pm[i])
 
-            print('Len train ir:',len(train_images['ir']),'Len train pm:',len(train_images['pm']))
-            print('--------------------')
-            print('Len val ir:',len(val_images['ir']),'Len val pm:',len(val_images['pm']))
-
             train_dataset = CustomDataset2(train_images['ir'], train_images['pm'], transform=transform)
 
             val_dataset = CustomDataset2(val_images['ir'], val_images['pm'], transform=transform)
-
+        
+        logger.info(f"Train size: {len(train_dataset)}")
+        logger.info(f"Val size: {len(val_dataset)}")
+        logger.info("-" * 50)
+        logger.info('Creating dataloaders')
+        
         # Create  dataloaders
         
         train_loader = DataLoader(
@@ -168,6 +180,7 @@ class CustomDataloader:
         val_loader = DataLoader(
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
+
 
         return train_loader, val_loader
 
