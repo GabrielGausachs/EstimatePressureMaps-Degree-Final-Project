@@ -7,6 +7,7 @@ from config import LOG_PATH
 
 
 logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def initialize_logger(filename = os.path.join(LOG_PATH, f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt")):
 
