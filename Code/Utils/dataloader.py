@@ -25,7 +25,7 @@ from config import (
     SHOW_IMAGES
 )
 
-initialize_logger()
+#initialize_logger()
 
 logger = get_logger()
 
@@ -180,6 +180,12 @@ class CustomDataloader:
         val_loader = DataLoader(
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
+
+        # Read the physical data
+
+        p_data = pd.read_csv(os.path.join(self.local_slp, 'physiqueData.csv'))
+
+        print(p_data.head())
 
 
         return train_loader, val_loader
