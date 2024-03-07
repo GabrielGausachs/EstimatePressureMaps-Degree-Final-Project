@@ -2,6 +2,7 @@ import os
 import random
 
 import numpy as np
+import cv2
 import pandas as pd
 from PIL import Image
 import torch
@@ -27,7 +28,7 @@ from Utils.config import (
     USE_PHYSICAL_DATA,
 )
 
-initialize_logger()
+#initialize_logger()
 
 logger = get_logger()
 
@@ -102,22 +103,25 @@ class CustomDataloader:
 
             random_patient = random.choice(list(dic_ir_img.keys()))
 
-            # IR IMAGE
             patient_ir_img = dic_ir_img[random_patient]['cover1'][0]
-            img = Image.open(patient_ir_img)
-            #img.show()
-            print(img.size)
+            ir_img = cv2.imread(patient_ir_img)
+            cv2.imshow("IR Image", ir_img)
+            cv2.waitKey(0)  # Wait for a key press to close the window
+            cv2.destroyAllWindows()
+            logger.info(f'Shape of the IR Image: {ir_img.shape}')
 
             # PM IMAGE
             patient_pm_img = dic_pm_img[random_patient]['cover1'][0]
-            img = Image.open(patient_pm_img)
-            img.show()
-            print(img.size)
+            pm_img = cv2.imread(patient_pm_img)
+            cv2.imshow("PM Image", pm_img)
+            cv2.waitKey(0)  # Wait for a key press to close the window
+            cv2.destroyAllWindows()
+            logger.info(f'Shape of the PM Image: {pm_img.shape}')
 
             # PM NUMPY to Image
-            patient_pm_np = dic_pm_numpy[random_patient]['cover1'][0]
-            img = Image.fromarray(np.load(patient_pm_np).astype('uint8'))
-            img.show()
+            #patient_pm_np = dic_pm_numpy[random_patient]['cover1'][0]
+            #img = Image.fromarray(np.load(patient_pm_np).astype('uint8'))
+            #img.show()
 
         # Read the phyisical data
             

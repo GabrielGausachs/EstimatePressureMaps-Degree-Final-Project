@@ -19,7 +19,7 @@ THRESHOLD_MSE = 0.5
 # Main steps
 DO_TRAIN = False
 DO_TEST = True
-SHOW_IMAGES = False
+SHOW_IMAGES = True
 USE_PHYSICAL_DATA = False
 
 # Paths -----------------------------------

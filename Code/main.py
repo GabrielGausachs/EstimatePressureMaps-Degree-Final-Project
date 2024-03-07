@@ -25,7 +25,7 @@ from Models import (
 )
 
 # Models
-models = {"UNet": UNet}
+models = {"UNet": UNet.UNet}
 
 # Optimizers
 optimizers = {
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(False)
 
     # Create a model
-    model = models[MODEL_NAME]().to(DEVICE)
+    model = models[MODEL_NAME](3,3).to(DEVICE)
 
     # Create an optimizer object
     optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
