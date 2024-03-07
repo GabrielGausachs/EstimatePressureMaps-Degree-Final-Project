@@ -97,7 +97,7 @@ class CustomDataloader:
                     else:
                         raise FileNotFoundError ('Path not found')
                     
-        logger.info(f'Len of the diccionary: {len(dic_ir_numpy)}')
+        logger.info(f'Number of pacients: {len(dic_ir_numpy)}')
         logger.info(f'Number of categories in a patient: {len(dic_ir_img["00001"])}')
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
@@ -223,9 +223,9 @@ class CustomDataloader:
 
 
         logger.info(f"Train loader info: {train_dataset_info}")
-        logger.info(f"Image size of the train loader: {next(iter(train_loader))[0].size()}")
+        logger.info(f"Image size of the train loader: {next(iter(train_loader))[0].shape}")
         logger.info(f"Val loader info: {val_dataset_info}")
-        logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].size()}")
+        logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].shape}")
 
 
         return train_loader, val_loader

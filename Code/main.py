@@ -22,10 +22,11 @@ from Utils.config import (
 
 from Models import (
     UNet,
+    SimpleUNet
 )
 
 # Models
-models = {"UNet": UNet.UNet}
+models = {"UNet": UNet.UNet, "SimpleUNet": SimpleUNet.UNet}
 
 # Optimizers
 optimizers = {
@@ -61,10 +62,10 @@ if __name__ == "__main__":
             save_code=False
         )
 
-    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(False)
+    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(True)
 
     # Create a model
-    model = models[MODEL_NAME](3,3).to(DEVICE)
+    model = models[MODEL_NAME](1,1).to(DEVICE)
 
     # Create an optimizer object
     optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
@@ -83,8 +84,6 @@ if __name__ == "__main__":
             epoch=epoch,
             epochs=EPOCHS,
         )
-
-
 
     if WANDB:
         wandb.finish()

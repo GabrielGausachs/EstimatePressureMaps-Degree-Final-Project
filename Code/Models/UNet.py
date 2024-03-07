@@ -56,25 +56,3 @@ class UNet(nn.Module):
         # Output
         x = self.out_conv(x)
         return x
-
-
-# Example usage:
-# Define the model
-model = UNet(in_channels=1, out_channels=1)  # Assuming grayscale images (1 channel) and predicting 1 channel output
-# Define loss function
-criterion = nn.MSELoss()
-# Define optimizer
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-
-# Forward pass
-input_image = torch.randn(1, 1, 256, 256)  # Example input image shape: (batch_size, channels, height, width)
-output_map = model(input_image)
-
-# Calculate loss
-target_map = torch.randn(1, 1, 256, 256)  # Example target output shape: (batch_size, channels, height, width)
-loss = criterion(output_map, target_map)
-
-# Backward pass and optimization step
-optimizer.zero_grad()
-loss.backward()
-optimizer.step()

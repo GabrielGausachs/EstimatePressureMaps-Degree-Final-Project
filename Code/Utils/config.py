@@ -7,7 +7,7 @@ import torch
 # -----------------------------------------
 
 EXECUTION_NAME = "Prova"
-MODEL_NAME = "UNet"
+MODEL_NAME = "SimpleUNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
 DATASET = "Local-SLP"  # "Server-Cropped", "Server-Annotated", "Local-Cropped", "Local-Annotated"

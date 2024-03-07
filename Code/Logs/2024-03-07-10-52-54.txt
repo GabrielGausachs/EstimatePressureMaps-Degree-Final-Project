@@ -1,0 +1,25 @@
+2024-03-07 10:52:58,228 - root - INFO -> Logger initialized in filename 2024-03-07-10-52-58
+2024-03-07 10:52:58,229 - root - INFO -> --------------------------------------------------
+2024-03-07 10:52:58,229 - root - INFO -> Read the data
+2024-03-07 10:52:58,754 - root - INFO -> Number of pacients: 102
+2024-03-07 10:52:58,754 - root - INFO -> Number of categories in a patient: 3
+2024-03-07 10:53:03,121 - root - INFO -> Shape of the IR Image: (160, 120, 3)
+2024-03-07 10:53:04,114 - root - INFO -> Shape of the PM Image: (192, 84, 3)
+2024-03-07 10:53:04,114 - root - INFO -> --------------------------------------------------
+2024-03-07 10:53:04,122 - root - INFO -> Create dataset with random = True
+2024-03-07 10:53:04,124 - root - INFO -> Train size: 11016
+2024-03-07 10:53:04,124 - root - INFO -> Val size: 2754
+2024-03-07 10:53:04,124 - root - INFO -> --------------------------------------------------
+2024-03-07 10:53:04,125 - root - INFO -> Creating dataloaders
+2024-03-07 10:53:04,127 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
+2024-03-07 10:53:04,568 - root - INFO -> Image size of the train loader: torch.Size([128, 1, 120, 160])
+2024-03-07 10:53:04,569 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 128, 'Number of batches': 21}
+2024-03-07 10:53:04,887 - root - INFO -> Image size of the val loader: torch.Size([128, 1, 120, 160])
+2024-03-07 10:53:04,952 - root - INFO -> --- Epoch: 0 ---
+2024-03-07 10:53:04,952 - root - INFO -> Epoch: 0/2, Starting training...
+2024-03-07 10:53:04,952 - root - INFO -> Loader length: 86
+2024-03-07 10:53:04,952 - root - INFO -> Loader batch size: 128
+2024-03-07 10:53:04,952 - root - INFO -> Loader drop last: True
+2024-03-07 10:53:04,952 - root - INFO -> Loader num workers: 0
+2024-03-07 10:53:05,154 - root - INFO -> Memory cleaned!
+2024-03-07 10:53:05,591 - root - INFO -> Epoch: 0/2, Processing batch 1/86...
