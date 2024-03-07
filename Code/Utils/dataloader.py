@@ -45,7 +45,8 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
-        transform = transforms.Compose([transforms.ToTensor()])
+        transform = transforms.Compose([transforms.Resize((120,160)),
+                                        transforms.ToTensor()])
 
         logger.info("-" * 50)
         logger.info('Read the data')
@@ -222,7 +223,9 @@ class CustomDataloader:
 
 
         logger.info(f"Train loader info: {train_dataset_info}")
+        logger.info(f"Image size of the train loader: {next(iter(train_loader))[0].size()}")
         logger.info(f"Val loader info: {val_dataset_info}")
+        logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].size()}")
 
 
         return train_loader, val_loader

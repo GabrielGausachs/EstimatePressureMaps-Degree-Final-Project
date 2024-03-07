@@ -39,7 +39,6 @@ criterion = {
 
 
 if __name__ == "__main__":
-    print('helloworld')
     # Initialize logger
     logger.initialize_logger()
     logger = logger.get_logger()
@@ -76,7 +75,7 @@ if __name__ == "__main__":
     # Iterate over training and test
     for epoch in range(EPOCHS):
         logger.info(f"--- Epoch: {epoch} ---")
-        train(
+        train.train(
             model=model,
             loader=train_loader,
             optimizer=optimizer,
