@@ -96,11 +96,14 @@ if __name__ == "__main__":
             wandb.finish()
 
         # Save the model pth and the arquitecture
+        logger.info("Saving the model and its architecture")
         model.to("cpu")
         torch.save(
             model.state_dict(), f"{MODELS_PATH}/{MODEL_NAME}_{datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
         )
 
-        file_path = f"{MODELS_PATH}/{MODEL_NAME}_{datetime.now().strftime('%Y%m%d%H%M%S')}_arch.txt"
+        file_path = f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_arch.txt"
         with open(file_path, "w") as f:
             f.write(str(model))
+        logger.info(f"Model saved in {MODELS_PATH}")
+        logger.info("-" * 50)
