@@ -11,7 +11,7 @@ MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
 DATASET = "Local-SLP"  # "Server-Cropped", "Server-Annotated", "Local-Cropped", "Local-Annotated"
-WANDB = True
+WANDB = False
 THRESHOLD_MSE = 0.5
 
 # -----------------------------------------
@@ -37,5 +37,6 @@ EPOCHS = 40
 LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
-# DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-DEVICE = torch.device("cpu")
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#DEVICE = torch.device("cpu")

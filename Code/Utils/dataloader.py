@@ -12,10 +12,10 @@ from torch.utils.data import (
 )
 
 from sklearn.preprocessing import OneHotEncoder
-from logger import initialize_logger,get_logger
-from dataset import CustomDataset, CustomDataset2
+from Utils.logger import initialize_logger,get_logger
+from Utils.dataset import CustomDataset, CustomDataset2
 
-from config import (
+from Utils.config import (
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
     DATASET,

@@ -1,11 +1,16 @@
 from PIL import Image
 from torch.utils.data import Dataset
-from logger import initialize_logger,get_logger
+from Utils.logger import initialize_logger,get_logger
 
 logger = get_logger()
 
 
-class CustomDataset(Dataset):
+class CustomDataset(Dataset): 
+    # Dataset for the random option
+    # Includes:
+    # - IR images
+    # - PR images
+    # Physical data (if provided)
     def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths
@@ -46,6 +51,11 @@ class CustomDataset(Dataset):
     
 
 class CustomDataset2(Dataset):
+    # Dataset for the no-random option
+    # Includes:
+    # - IR images
+    # - PR images
+    # Physical data (if provided)
     def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths

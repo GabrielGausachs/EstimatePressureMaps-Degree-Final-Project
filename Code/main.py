@@ -1,9 +1,14 @@
-from Utils import logger
+from Utils import (
+    logger, 
+    dataloader,
+    train
+)
 
 import wandb
 import datetime
+import torch
 
-from config import (
+from Utils.config import (
     WANDB,
     EXECUTION_NAME,
     MODEL_NAME,
@@ -11,11 +16,31 @@ from config import (
     CRITERION,
     LEARNING_RATE,
     EPOCHS,
-    THRESHOLD_MSE
+    THRESHOLD_MSE,
+    DEVICE
     )
+
+from Models import (
+    UNet,
+    UNetImageReconstruction,
+)
+
+# Models
+models = {"UnetStandard": UNet, "UNetIR": UNetImageReconstruction}
+
+# Optimizers
+optimizers = {
+    "Adam": torch.optim.Adam,
+}
+
+# Criterion
+criterion = {
+    "MSELoss": torch.nn.MSELoss,
+}
 
 
 if __name__ == "__main__":
+    print('helloworld')
     # Initialize logger
     logger.initialize_logger()
     logger = logger.get_logger()
@@ -38,5 +63,30 @@ if __name__ == "__main__":
             save_code=False
         )
 
+    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(False)
+    """
+    model = models[MODEL_NAME]().to(DEVICE)
+
+    # Create an optimizer object
+    optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
+
+    # Create a criterion object
+    criterion = criterion[CRITERION]()
+
+    # Iterate over training and test
+    for epoch in range(EPOCHS):
+        logger.info(f"--- Epoch: {epoch} ---")
+        train(
+            model=model,
+            loader=train_loader,
+            optimizer=optimizer,
+            criterion=criterion,
+            epoch=epoch,
+            epochs=EPOCHS,
+        )
+
+
+
     if WANDB:
         wandb.finish()
+    """
