@@ -173,12 +173,18 @@ class CustomDataloader:
                     for i in indexs[:int(len(indexs) * 0.8)]:
                         train_images['ir'].append(images_ir[i])
                         train_images['pm'].append(images_pm[i])
-                    train_dt = p_data.iloc[indexs[:int(len(indexs) * 0.8)]]
+                    if p_data is not None:
+                        train_dt = p_data.iloc[indexs[:int(len(indexs) * 0.8)]]
+                    else:
+                        train_dt = None
 
                     for i in indexs[int(len(indexs)*0.8):]:
                         val_images['ir'].append(images_ir[i])
                         val_images['pm'].append(images_pm[i])
-                    val_dt = p_data.iloc[indexs[int(len(indexs) * 0.8):]]
+                    if p_data is not None:
+                        val_dt = p_data.iloc[indexs[int(len(indexs) * 0.8):]]
+                    else:
+                        val_dt = None
 
             train_dataset = CustomDataset2(train_images['ir'], train_images['pm'], train_dt, transform=transform)
 
@@ -229,4 +235,4 @@ class CustomDataloader:
         
 
 #print(os.listdir(LOCAL_SLP_DATASET_PATH))
-f = CustomDataloader().prepare_dataloaders(False)
+#f = CustomDataloader().prepare_dataloaders(False)

@@ -20,7 +20,7 @@ THRESHOLD_MSE = 0.5
 DO_TRAIN = False
 DO_TEST = True
 SHOW_IMAGES = False
-USE_PHYSICAL_DATA = True
+USE_PHYSICAL_DATA = False
 
 # Paths -----------------------------------
 
@@ -33,7 +33,7 @@ LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 40
+EPOCHS = 2
 LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9

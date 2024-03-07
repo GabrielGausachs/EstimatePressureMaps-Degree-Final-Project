@@ -22,11 +22,10 @@ from Utils.config import (
 
 from Models import (
     UNet,
-    UNetImageReconstruction,
 )
 
 # Models
-models = {"UnetStandard": UNet, "UNetIR": UNetImageReconstruction}
+models = {"UNet": UNet}
 
 # Optimizers
 optimizers = {
@@ -64,7 +63,8 @@ if __name__ == "__main__":
         )
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(False)
-    """
+
+    # Create a model
     model = models[MODEL_NAME]().to(DEVICE)
 
     # Create an optimizer object
@@ -89,4 +89,3 @@ if __name__ == "__main__":
 
     if WANDB:
         wandb.finish()
-    """

@@ -17,37 +17,36 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
 
     logger.info(f"Epoch: {epoch}/{epochs}, Starting training...")
 
-    # logger.info loader info
+    # Logger info
     logger.info(f"Loader length: {len(loader)}")
     logger.info(f"Loader batch size: {loader.batch_size}")
     logger.info(f"Loader drop last: {loader.drop_last}")
     logger.info(f"Loader num workers: {loader.num_workers}")
 
-    torch.cuda.empty_cache()  # Limpiar la caché de CUDA si se utiliza GPU
-    gc.collect()  # Recolectar la basura para liberar memoria no utilizada
+    torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
+    gc.collect()  # Collect trash to free memory not used
     logger.info("Memory cleaned!")
 
-    for batch_idx, batch_features in enumerate(loader, 1):
+    for batch_idx, (input_images, target_images) in enumerate(loader, 1):
         logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
 
-        batch_features = batch_features.to(DEVICE)
-
-        assert tuple(batch_features.shape[1:]) == model.input_size, "Input size mismatch"
+        input_images = input_images.to(DEVICE)
+        target_images = target_images.to(DEVICE)
 
         optimizer.zero_grad()
-        outputs = model(batch_features.to(DEVICE))
-        train_loss = criterion(outputs, batch_features.to(DEVICE))
+        outputs = model(input_images)
+        train_loss = criterion(outputs, target_images)
         train_loss.backward()
         optimizer.step()
 
         total_loss += train_loss.item()
 
-        # Liberar memoria en cada iteración
-        del batch_features
-        del outputs
+        # Free memory in each iteration
+        del input_images
+        del target_images
         del train_loss
-        torch.cuda.empty_cache()  # Limpiar la caché de CUDA si se utiliza GPU
-        gc.collect()  # Recolectar la basura para liberar memoria no utilizada
+        torch.cuda.empty_cache() # Clean CUDA Cache if used GPU
+        gc.collect()  # Collect trash to free memory not used
 
     epoch_loss = total_loss / len(loader)
     #result.add_loss("train", epoch_loss)
@@ -56,6 +55,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
     if WANDB:
         wandb.log({"epoch": epoch, "train_loss": epoch_loss})
 
-    torch.cuda.empty_cache()  # Limpiar la caché de CUDA si se utiliza GPU
-    gc.collect()  # Recolectar la basura para liberar memoria no utilizada
+    torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
+    gc.collect()  # Collect trash to free memory not used
     logger.info("Train finished! Memory cleaned!")
+    logger.info("-" * 50)
