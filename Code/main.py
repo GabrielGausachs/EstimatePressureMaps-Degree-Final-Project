@@ -73,6 +73,10 @@ if __name__ == "__main__":
     # Create a criterion object
     criterion = criterion[CRITERION]()
 
+    logger.info("-" * 50)
+    num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    logger.info(f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
+    
     # Iterate over training and test
     for epoch in range(EPOCHS):
         logger.info(f"--- Epoch: {epoch} ---")
