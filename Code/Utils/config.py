@@ -10,14 +10,14 @@ EXECUTION_NAME = "Prova"
 MODEL_NAME = "SimpleUNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
-DATASET = "Local-SLP"  # "Server-Cropped", "Server-Annotated", "Local-Cropped", "Local-Annotated"
+DATASET = "Local-SLP"
 WANDB = False
 THRESHOLD_MSE = 0.5
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = True
 SHOW_IMAGES = True
 USE_PHYSICAL_DATA = False
@@ -26,7 +26,7 @@ USE_PHYSICAL_DATA = False
 
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = ""
-MODELS_PATH = os.path.join(os.path.dirname(__file__), "Models")
+MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 
 # Parameters ------------------------------
