@@ -29,6 +29,7 @@ from Utils.config import (
     USE_PHYSICAL_DATA,
     SHOW_HISTOGRAM,
     IMG_PATH,
+    IS_RANDOM,
 )
 
 #initialize_logger()
@@ -44,7 +45,7 @@ class CustomDataloader:
         self.local_slp = LOCAL_SLP_DATASET_PATH
         self.server_slp = SERVER_SLP_DATASET_PATH
 
-    def prepare_dataloaders(self, is_random):
+    def prepare_dataloaders(self):
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
@@ -120,11 +121,28 @@ class CustomDataloader:
 
             logger.info(f'Size of the physical dataset: {p_data.size}')
         
+        # Check how many channels have the images
+        num_single_channel_images = 0
+        total_images=0
+        
+        for patient in dic_ir_img.values():
+            for category, images_path in patient.items():
+                for path in images_path:
+                    input_image = cv2.imread(path)
+                    num_channels = input_image.shape[2]  # Assuming input_image is in (H, W, C) format
+
+                    if num_channels == 1:
+                        num_single_channel_images += 1
+                    total_images+=1
+
+        logger.info(f"Number of images with only 1 channel: {num_single_channel_images} / {total_images}")
+        
+        
         # Create dataset
         logger.info("-" * 50)
-        logger.info(f'Create dataset with random = {is_random}')
+        logger.info(f'Create dataset with random = {IS_RANDOM}')
         
-        if is_random:
+        if IS_RANDOM:
 
             # Create Dataset (we pass IR images and PM images)
             all_ir_img = []
@@ -180,6 +198,19 @@ class CustomDataloader:
         
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
+
+        num_single_channel_images = 0
+
+        for i in range(len(train_dataset)):
+            input_image, _ = train_dataset[i]
+
+            num_channels = input_image.shape[0]  # Assuming input_image is in (C, H, W) format
+            
+            if num_channels == 1:
+                num_single_channel_images += 1
+        
+        logger.info(f"Number of images with only 1 channel: {num_single_channel_images} / {len(train_dataset)}")
+
         logger.info("-" * 50)
         logger.info('Creating dataloaders')
         
@@ -213,7 +244,7 @@ class CustomDataloader:
 
         return train_loader, val_loader
 
-
+# ----------------------------------- EXTRA FUNCTIONS -----------------------------------
 
 def show_image(dic,module,is_np):
     random_patient = random.choice(list(dic.keys()))
@@ -274,4 +305,4 @@ def show_histogram(dic_ir,dic_pm,modules):
         
 
 #print(os.listdir(LOCAL_SLP_DATASET_PATH))
-#f = CustomDataloader().prepare_dataloaders(False)
+#f = CustomDataloader().prepare_dataloaders()

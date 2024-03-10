@@ -1,6 +1,7 @@
 from PIL import Image
 from torch.utils.data import Dataset
 from Utils.logger import initialize_logger,get_logger
+import cv2
 
 logger = get_logger()
 
@@ -34,6 +35,12 @@ class CustomDataset(Dataset):
         input_image = self.load_image(input_path)
         output_image = self.load_image(output_path)
 
+        input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)
+        output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
+
+        input_image = Image.fromarray(input_image)
+        output_image = Image.fromarray(output_image)
+
         if self.transform:
             input_image = self.transform(input_image)
             output_image = self.transform(output_image)
@@ -46,7 +53,7 @@ class CustomDataset(Dataset):
 
     def load_image(self, path):
         # Load the image
-        image = Image.open(path)
+        image = cv2.imread(path)
         return image
     
 
@@ -91,5 +98,5 @@ class CustomDataset2(Dataset):
 
     def load_image(self, path):
         # Load the image
-        image = Image.open(path)
+        image = cv2.imread(path)
         return image

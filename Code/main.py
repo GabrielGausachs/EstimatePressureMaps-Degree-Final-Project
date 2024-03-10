@@ -46,7 +46,7 @@ if __name__ == "__main__":
     logger.initialize_logger()
     logger = logger.get_logger()
 
-    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(True)
+    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
 
     if DO_TRAIN:
         # Initialize wandb
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 
         # Create a model
-        model = models[MODEL_NAME](1,1).to(DEVICE)
+        model = models[MODEL_NAME](3,3).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
         logger.info("Saving the model and its architecture")
         model.to("cpu")
         torch.save(
-            model.state_dict(), f"{MODELS_PATH}/{MODEL_NAME}_{datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
+            model.state_dict(), f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
         )
 
         file_path = f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_arch.txt"

@@ -1,0 +1,17 @@
+2024-03-10 10:45:57,728 - root - INFO -> Logger initialized in filename 2024-03-10-10-45-57
+2024-03-10 10:45:57,729 - root - INFO -> --------------------------------------------------
+2024-03-10 10:45:57,729 - root - INFO -> Read the data
+2024-03-10 10:45:58,217 - root - INFO -> Number of pacients: 102
+2024-03-10 10:45:58,217 - root - INFO -> Number of categories in a patient: 3
+2024-03-10 10:46:03,934 - root - INFO -> Number of images with only 1 channel: 0 / 13770
+2024-03-10 10:46:03,934 - root - INFO -> --------------------------------------------------
+2024-03-10 10:46:03,934 - root - INFO -> Create dataset with random = True
+2024-03-10 10:46:03,944 - root - INFO -> Train size: 11016
+2024-03-10 10:46:03,944 - root - INFO -> Val size: 2754
+2024-03-10 10:46:25,288 - root - INFO -> Number of images with only 1 channel: 0 / 11016
+2024-03-10 10:46:25,289 - root - INFO -> --------------------------------------------------
+2024-03-10 10:46:25,289 - root - INFO -> Creating dataloaders
+2024-03-10 10:46:25,289 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
+2024-03-10 10:46:25,613 - root - INFO -> Image size of the train loader: torch.Size([128, 3, 120, 160])
+2024-03-10 10:46:25,613 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 128, 'Number of batches': 21}
+2024-03-10 10:46:25,927 - root - INFO -> Image size of the val loader: torch.Size([128, 3, 120, 160])
