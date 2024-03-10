@@ -101,31 +101,8 @@ class CustomDataloader:
         logger.info(f'Number of categories in a patient: {len(dic_ir_img["00001"])}')
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
+            show_image(dic_ir_img,'IR',False)
 
-            random_patient = random.choice(list(dic_ir_img.keys()))
-
-            patient_ir_img = dic_ir_img[random_patient]['cover1'][0]
-            ir_img = cv2.imread(patient_ir_img)
-            cv2.imshow("IR Image", ir_img)
-            cv2.waitKey(0)  # Wait for a key press to close the window
-            cv2.destroyAllWindows()
-            logger.info(f'Shape of the IR Image: {ir_img.shape}')
-
-            # PM IMAGE
-            patient_pm_img = dic_pm_img[random_patient]['cover1'][0]
-            pm_img = cv2.imread(patient_pm_img)
-            cv2.imshow("PM Image", pm_img)
-            cv2.waitKey(0)  # Wait for a key press to close the window
-            cv2.destroyAllWindows()
-            logger.info(f'Shape of the PM Image: {pm_img.shape}')
-
-            # PM NUMPY to Image
-            #patient_pm_np = dic_pm_numpy[random_patient]['cover1'][0]
-            #img = Image.fromarray(np.load(patient_pm_np).astype('uint8'))
-            #img.show()
-
-        # Read the phyisical data
-            
         p_data = None
 
         if USE_PHYSICAL_DATA:
@@ -232,9 +209,19 @@ class CustomDataloader:
 
 
 
+def show_image(dic,module,is_np):
+    random_patient = random.choice(list(dic.keys()))
 
-
-
+    patient_img = dic[random_patient]['cover1'][0]
+    if not is_np:
+        img = cv2.imread(patient_img)
+    else:
+        img_array = np.load(patient_img)
+        img = np.array(img_array, dtype=np.uint8)
+    cv2.imshow(f"{module} Image", img)
+    cv2.waitKey(0)  # Wait for a key press to close the window
+    cv2.destroyAllWindows()
+    logger.info(f'Shape of the {module} Image: {img.shape}')
 
 
                 

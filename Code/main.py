@@ -46,6 +46,8 @@ if __name__ == "__main__":
     logger.initialize_logger()
     logger = logger.get_logger()
 
+    train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(True)
+
     if DO_TRAIN:
         # Initialize wandb
         if WANDB:
@@ -65,7 +67,6 @@ if __name__ == "__main__":
                 save_code=False
             )
 
-        train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders(True)
 
         # Create a model
         model = models[MODEL_NAME](1,1).to(DEVICE)
