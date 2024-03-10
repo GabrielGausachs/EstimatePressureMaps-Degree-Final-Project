@@ -5,6 +5,7 @@ import numpy as np
 import cv2
 import pandas as pd
 from PIL import Image
+from matplotlib import pyplot as plt 
 import torch
 import torchvision.transforms as transforms
 from torch.utils.data import (
@@ -26,6 +27,8 @@ from Utils.config import (
     NUM_WORKERS,
     SHOW_IMAGES,
     USE_PHYSICAL_DATA,
+    SHOW_HISTOGRAM,
+    IMG_PATH,
 )
 
 #initialize_logger()
@@ -102,6 +105,9 @@ class CustomDataloader:
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
             show_image(dic_ir_img,'IR',False)
+
+        if SHOW_HISTOGRAM:
+            show_histogram(dic_ir_img,dic_pm_img,['IR','PM'])
 
         p_data = None
 
@@ -223,8 +229,47 @@ def show_image(dic,module,is_np):
     cv2.destroyAllWindows()
     logger.info(f'Shape of the {module} Image: {img.shape}')
 
+def show_histogram(dic_ir,dic_pm,modules):
+    random_patient = random.choice(list(dic_ir.keys()))
+    if 'IR' in modules:
+        patient_ir_img = dic_ir[random_patient]['cover1'][0]
+        img = cv2.imread(patient_ir_img) 
+        b, g, r = cv2.split(img)
 
-                
+        fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+        axes[0].hist(b.flatten(), 256, [0, 256], color='blue', alpha=0.5)
+        axes[0].set_title('Blue Channel')
+
+        axes[1].hist(g.flatten(), 256, [0, 256], color='green', alpha=0.5)
+        axes[1].set_title('Green Channel')
+
+        axes[2].hist(r.flatten(), 256, [0, 256], color='red', alpha=0.5)
+        axes[2].set_title('Red Channel')
+
+        plt.savefig(os.path.join(IMG_PATH,'IR_histogram.png'))
+        plt.show()
+    
+    if 'PM' in modules:
+        patient_pm_img = dic_pm[random_patient]['cover1'][0]
+        img = cv2.imread(patient_pm_img) 
+        b, g, r = cv2.split(img)
+
+        fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+        axes[0].hist(b.flatten(), 256, [0, 256], color='blue', alpha=0.5)
+        axes[0].set_title('Blue Channel')
+
+        axes[1].hist(g.flatten(), 256, [0, 256], color='green', alpha=0.5)
+        axes[1].set_title('Green Channel')
+
+        axes[2].hist(r.flatten(), 256, [0, 256], color='red', alpha=0.5)
+        axes[2].set_title('Red Channel')
+
+        plt.savefig(os.path.join(IMG_PATH,'PM_histogram.png'))
+        plt.show()
+
+                        
 
         
 

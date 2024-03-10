@@ -19,7 +19,8 @@ THRESHOLD_MSE = 0.5
 # Main steps
 DO_TRAIN = False
 DO_TEST = True
-SHOW_IMAGES = True
+SHOW_IMAGES = False
+SHOW_HISTOGRAM = True
 USE_PHYSICAL_DATA = False
 
 # Paths -----------------------------------
@@ -28,6 +29,7 @@ LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.di
 SERVER_SLP_DATASET_PATH = ""
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
+IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128
