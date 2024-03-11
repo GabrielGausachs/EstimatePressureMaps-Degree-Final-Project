@@ -1,12 +1,15 @@
 from Utils import (
     logger, 
     dataloader,
-    train
+    train,
+    savemodel,
+    evaluation
 )
 
 import wandb
 import datetime
 import torch
+from matplotlib import pyplot as plt 
 
 from Utils.config import (
     WANDB,
@@ -19,7 +22,7 @@ from Utils.config import (
     THRESHOLD_MSE,
     DEVICE,
     DO_TRAIN,
-    MODELS_PATH
+    EVALUATION,
     )
 
 from Models import (
@@ -66,6 +69,7 @@ if __name__ == "__main__":
                 },
                 save_code=False
             )
+            logger.info("Wandb correctly initialized")
 
 
         # Create a model
@@ -97,14 +101,15 @@ if __name__ == "__main__":
             wandb.finish()
 
         # Save the model pth and the arquitecture
-        logger.info("Saving the model and its architecture")
-        model.to("cpu")
-        torch.save(
-            model.state_dict(), f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
-        )
+        savemodel.save_model(model)
 
-        file_path = f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_arch.txt"
-        with open(file_path, "w") as f:
-            f.write(str(model))
-        logger.info(f"Model saved in {MODELS_PATH}")
-        logger.info("-" * 50)
+    if EVALUATION:
+        if DO_TRAIN:
+            # The train has just been done and we want to evaluate
+            logger.info("The train is done and is starting the evaluation")
+            evaluation.evaluation(model,val_loader)
+        else:
+            # The train is not done and we want to evaluate another model
+            logger.info("Starting evaluation of a past model")
+            model = models[MODEL_NAME](3,3).to(DEVICE)
+            evaluation.evaluation(model,val_loader)

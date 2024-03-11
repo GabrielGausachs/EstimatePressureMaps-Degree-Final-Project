@@ -17,20 +17,22 @@ THRESHOLD_MSE = 0.5
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 DO_TEST = True
 IS_RANDOM = True
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
+EVALUATION = True
 
 # Paths -----------------------------------
 
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = ""
-MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models")
+MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
+LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/SimpleUNet_20240311095844.pth")
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128

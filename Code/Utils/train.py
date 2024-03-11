@@ -15,7 +15,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
     total_loss = 0
     model.train()
 
-    logger.info(f"Epoch: {epoch}/{epochs}, Starting training...")
+    logger.info(f"Epoch: {epoch}/{epochs-1}, Starting training...")
 
     # Logger info
     logger.info(f"Loader length: {len(loader)}")
