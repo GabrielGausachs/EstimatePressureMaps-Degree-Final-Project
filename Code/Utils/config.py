@@ -32,7 +32,7 @@ SERVER_SLP_DATASET_PATH = ""
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
-LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/SimpleUNet_20240311095844.pth")
+LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/SimpleUNet_20240311105904.pth")
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128
