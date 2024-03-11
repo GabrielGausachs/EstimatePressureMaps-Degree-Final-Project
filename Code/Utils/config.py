@@ -6,13 +6,12 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Prova"
+EXECUTION_NAME = "SimpleUnet-random-first"
 MODEL_NAME = "SimpleUNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss"
 DATASET = "Local-SLP"
-WANDB = False
-THRESHOLD_MSE = 0.5
+WANDB = True
 
 # -----------------------------------------
 

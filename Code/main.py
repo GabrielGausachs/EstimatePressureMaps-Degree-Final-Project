@@ -19,7 +19,6 @@ from Utils.config import (
     CRITERION,
     LEARNING_RATE,
     EPOCHS,
-    THRESHOLD_MSE,
     DEVICE,
     DO_TRAIN,
     EVALUATION,
@@ -65,10 +64,10 @@ if __name__ == "__main__":
                         "criterion": CRITERION,
                         "learning_rate": LEARNING_RATE,
                         "epochs": EPOCHS,
-                        "threshold_mse": THRESHOLD_MSE,
                 },
                 save_code=False
             )
+            logger.info("-" * 50)
             logger.info("Wandb correctly initialized")
 
 
@@ -102,14 +101,17 @@ if __name__ == "__main__":
 
         # Save the model pth and the arquitecture
         savemodel.save_model(model)
+        logger.info("-" * 50)
 
     if EVALUATION:
         if DO_TRAIN:
             # The train has just been done and we want to evaluate
             logger.info("The train is done and is starting the evaluation")
-            evaluation.evaluation(model,val_loader)
+            evaluation.evaluation(model,criterion,val_loader)
         else:
             # The train is not done and we want to evaluate another model
             logger.info("Starting evaluation of a past model")
             model = models[MODEL_NAME](3,3).to(DEVICE)
-            evaluation.evaluation(model,val_loader)
+            evaluation.evaluation(model,criterion,val_loader)
+        logger.info("Evaluation Completed!")
+        logger.info("-" * 50)

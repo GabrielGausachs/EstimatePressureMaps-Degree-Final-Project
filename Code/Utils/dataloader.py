@@ -20,8 +20,6 @@ from Utils.dataset import CustomDataset, CustomDataset2
 from Utils.config import (
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
-    DATASET,
-    DEVICE,
     LOCAL_SLP_DATASET_PATH,
     SERVER_SLP_DATASET_PATH,
     NUM_WORKERS,

@@ -22,4 +22,4 @@ def save_model(model):
     with open(file_path, "w") as f:
         f.write(str(model))
     logger.info(f"Model saved in {MODELS_PATH}")
-    logger.info("-" * 50)
+    

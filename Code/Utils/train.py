@@ -15,7 +15,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
     total_loss = 0
     model.train()
 
-    logger.info(f"Epoch: {epoch}/{epochs-1}, Starting training...")
+    logger.info(f"Epoch: {epoch}/{epochs}, Starting training...")
 
     # Logger info
     logger.info(f"Loader length: {len(loader)}")
@@ -53,7 +53,8 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
 
     logger.info(f"Epoch: {epoch}/{epochs}, Train loss = {epoch_loss:.6f}")
     if WANDB:
-        wandb.log({"epoch": epoch, "train_loss": epoch_loss})
+        #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
+        wandb.log({'train_loss': epoch_loss}, step=epoch)
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
