@@ -101,7 +101,8 @@ if __name__ == "__main__":
 
         # Save the model pth and the arquitecture
         savemodel.save_model(model)
-        logger.info("-" * 50)
+
+    logger.info("-" * 50)
 
     if EVALUATION:
         if DO_TRAIN:
@@ -112,6 +113,6 @@ if __name__ == "__main__":
             # The train is not done and we want to evaluate another model
             logger.info("Starting evaluation of a past model")
             model = models[MODEL_NAME](3,3).to(DEVICE)
-            evaluation.evaluation(model,criterion,val_loader)
+            evaluation.evaluation(model,criterion[CRITERION](),val_loader)
         logger.info("Evaluation Completed!")
         logger.info("-" * 50)
