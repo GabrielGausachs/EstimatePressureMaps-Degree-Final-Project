@@ -31,7 +31,7 @@ def evaluation(model,val_loader):
         print(input_img.shape) 
 
         output_img = model(input_img)
-        print(output_img)
+        print(output_img.shape)
 
         fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 

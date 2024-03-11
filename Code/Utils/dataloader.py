@@ -49,7 +49,7 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
-        transform = transforms.Compose([transforms.Resize((120,160)),
+        transform = transforms.Compose([transforms.Resize((160,120)),
                                         transforms.ToTensor()])
 
         logger.info("-" * 50)

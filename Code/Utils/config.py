@@ -17,7 +17,7 @@ THRESHOLD_MSE = 0.5
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = True
 IS_RANDOM = True
 SHOW_IMAGES = False
