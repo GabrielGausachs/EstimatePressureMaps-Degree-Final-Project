@@ -19,10 +19,10 @@ WANDB = True
 DO_TRAIN = False
 DO_TEST = True
 IS_RANDOM = True
-SHOW_IMAGES = False
+SHOW_IMAGES = True
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
-EVALUATION = True
+EVALUATION = False
 
 # Paths -----------------------------------
 

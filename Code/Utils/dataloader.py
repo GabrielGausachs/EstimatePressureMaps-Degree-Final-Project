@@ -103,7 +103,8 @@ class CustomDataloader:
         logger.info(f'Number of categories in a patient: {len(dic_ir_img["00001"])}')
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
-            show_image(dic_ir_img,'IR',False)
+            show_image(dic_ir_img,'IR',dic_ir_numpy)
+            show_image(dic_pm_img,'PM',dic_pm_numpy)
 
         if SHOW_HISTOGRAM:
             show_histogram(dic_ir_img,dic_pm_img,['IR','PM'])
@@ -244,16 +245,36 @@ class CustomDataloader:
 
 # ----------------------------------- EXTRA FUNCTIONS -----------------------------------
 
-def show_image(dic,module,is_np):
+def show_image(dic,module,dic_np):
     random_patient = random.choice(list(dic.keys()))
 
     patient_img = dic[random_patient]['cover1'][0]
-    if not is_np:
-        img = cv2.imread(patient_img)
-    else:
-        img_array = np.load(patient_img)
-        img = np.array(img_array, dtype=np.uint8)
+    patient_img_np = dic_np[random_patient]['cover1'][0]
+    img = cv2.imread(patient_img)
     cv2.imshow(f"{module} Image", img)
+    original_height, original_width = img.shape[:2]
+    new_height, new_width = 84, 192
+
+    start_x = (original_width - new_width) // 2
+    start_y = (original_height - new_height) // 2
+    end_x = start_x + new_width
+    end_y = start_y + new_height
+
+    # Recortar la imagen
+    cropped_image = img[start_y:end_y, start_x:end_x]
+
+    # Mostrar y guardar la imagen recortada
+    cv2.imshow('Imagen Recortada', cropped_image)
+    #cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}.jpg"), img)
+    cv2.waitKey(0)  # Wait for a key press to close the window
+    cv2.destroyAllWindows()
+    logger.info(f'Shape of the {module} Image: {img.shape}')
+
+
+    img_array = np.load(patient_img_np)
+    img = np.array(img_array, dtype=np.uint8)
+    cv2.imshow(f"{module} Image", img)
+    cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}_np.jpg"), img)
     cv2.waitKey(0)  # Wait for a key press to close the window
     cv2.destroyAllWindows()
     logger.info(f'Shape of the {module} Image: {img.shape}')
@@ -304,3 +325,34 @@ def show_histogram(dic_ir,dic_pm,modules):
 
 #print(os.listdir(LOCAL_SLP_DATASET_PATH))
 #f = CustomDataloader().prepare_dataloaders()
+def crop_image():
+    img = cv2.imread("C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00006/IR/cover1/image_000005.png")
+    cv2.imshow(img)
+    """original_height, original_width = img.shape[:2]
+    new_height, new_width = 84, 192
+
+    start_x = (original_width - new_width) // 2
+    start_y = (original_height - new_height) // 2
+    end_x = start_x + new_width
+    end_y = start_y + new_height
+
+    # Recortar la imagen
+    cropped_image = img[start_y:end_y, start_x:end_x]
+
+    # Mostrar y guardar la imagen recortada
+    cv2.imshow('Imagen Recortada', cropped_image)
+    #cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}.jpg"), img)
+    cv2.waitKey(0)  # Wait for a key press to close the window
+    cv2.destroyAllWindows()
+    logger.info(f'Shape of the {module} Image: {img.shape}')
+
+
+    img_array = np.load(patient_img_np)
+    img = np.array(img_array, dtype=np.uint8)
+    cv2.imshow(f"{module} Image", img)
+    cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}_np.jpg"), img)
+    cv2.waitKey(0)  # Wait for a key press to close the window
+    cv2.destroyAllWindows()
+    logger.info(f'Shape of the {module} Image: {img.shape}')"""
+
+crop_image()
