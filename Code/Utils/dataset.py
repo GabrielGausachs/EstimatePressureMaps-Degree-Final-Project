@@ -2,6 +2,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from Utils.logger import initialize_logger,get_logger
 import cv2
+import torchvision.transforms as transforms
 
 logger = get_logger()
 
@@ -43,7 +44,9 @@ class CustomDataset(Dataset):
 
         if self.transform:
             input_image = self.transform(input_image)
-            output_image = self.transform(output_image)
+            transform_output_image = transforms.Compose([
+            transforms.ToTensor()])
+            output_image = transform_output_image(output_image)
 
         if self.p_data != None:
             p_vector = self.p_data[index]
@@ -88,7 +91,9 @@ class CustomDataset2(Dataset):
 
         if self.transform:
             input_image = self.transform(input_image)
-            output_image = self.transform(output_image)
+            transform_output_image = transforms.Compose([
+            transforms.ToTensor()])
+            output_image = transform_output_image(output_image)
 
         if self.p_data != None:
             p_vector = self.p_data[index]
