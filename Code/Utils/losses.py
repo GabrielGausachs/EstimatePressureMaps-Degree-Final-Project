@@ -1,3 +1,4 @@
+import torch
 class pwrsWtL(torch.nn.Module):
     def __init__(self, type_L='L2'):
         super(pwrsWtL, self).__init__()
