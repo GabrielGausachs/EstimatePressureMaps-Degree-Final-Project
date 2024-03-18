@@ -146,7 +146,21 @@ class CustomDataloader:
 
         logger.info(f"Number of images with only 1 channel: {num_single_channel_images} / {total_images}")
         
-        
+        random_patient = random.choice(list(dic_ir_numpy.keys()))
+        patient_img = dic_ir_numpy[random_patient]['cover1'][0]
+        arreglo = np.load(patient_img)
+
+        # Imprimir la forma del arreglo
+        print("Forma del arreglo:", arreglo.shape)
+
+        random_patient = random.choice(list(dic_pm_numpy.keys()))
+        patient_img = dic_pm_numpy[random_patient]['cover1'][0]
+        arreglo = np.load(patient_img)
+
+        # Imprimir la forma del arreglo
+        print("Forma del arreglo 2:", arreglo.shape)
+
+
         # Create dataset
         logger.info("-" * 50)
         logger.info(f'Create dataset with random = {IS_RANDOM}')
@@ -250,6 +264,7 @@ class CustomDataloader:
         logger.info(f"Val loader info: {val_dataset_info}")
         logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].shape}")
 
+        """
         for i in range(5):
             batch = next(iter(train_loader))
             
@@ -275,7 +290,7 @@ class CustomDataloader:
             plt.axis('off')
 
             plt.show()
-
+        """
 
         return train_loader, val_loader
 
