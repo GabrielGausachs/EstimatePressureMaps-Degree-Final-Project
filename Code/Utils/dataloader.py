@@ -51,6 +51,12 @@ class CustomDataloader:
                                               transforms.CenterCrop((192,84)),
                                         transforms.ToTensor()])
         
+        #transform = transforms.Compose([transforms.CenterCrop((160,84)),
+        #                                transforms.Resize((192,84)),
+        #                                transforms.ToTensor()])
+        
+        
+        
         #transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])
 
 
@@ -244,6 +250,32 @@ class CustomDataloader:
         logger.info(f"Val loader info: {val_dataset_info}")
         logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].shape}")
 
+        for i in range(5):
+            batch = next(iter(train_loader))
+            
+            # Extrae una imagen de entrada y su correspondiente imagen objetivo del lote
+            imagen_entrada = batch[0][0]  # Primera imagen del lote
+            imagen_objetivo = batch[1][0]  # Primera imagen objetivo del lote
+
+            # Convierte las imágenes a NumPy y transpónlas para que sean compatibles con matplotlib
+            imagen_entrada_numpy = imagen_entrada.permute(1, 2, 0).numpy()
+            imagen_objetivo_numpy = imagen_objetivo.permute(1, 2, 0).numpy()
+
+            # Muestra las imágenes
+            plt.figure(figsize=(10, 5))
+            
+            plt.subplot(1, 2, 1)
+            plt.imshow(imagen_entrada_numpy)
+            plt.title('Imagen de entrada')
+            plt.axis('off')
+
+            plt.subplot(1, 2, 2)
+            plt.imshow(imagen_objetivo_numpy)
+            plt.title('Imagen objetivo')
+            plt.axis('off')
+
+            plt.show()
+
 
         return train_loader, val_loader
 
@@ -256,24 +288,6 @@ def show_image(dic,module,dic_np):
     patient_img_np = dic_np[random_patient]['cover1'][0]
     img = cv2.imread(patient_img)
     cv2.imshow(f"{module} Image", img)
-    original_height, original_width = img.shape[:2]
-    new_height, new_width = 84, 192
-
-    start_x = (original_width - new_width) // 2
-    start_y = (original_height - new_height) // 2
-    end_x = start_x + new_width
-    end_y = start_y + new_height
-
-    # Recortar la imagen
-    cropped_image = img[start_y:end_y, start_x:end_x]
-
-    # Mostrar y guardar la imagen recortada
-    cv2.imshow('Imagen Recortada', cropped_image)
-    #cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}.jpg"), img)
-    cv2.waitKey(0)  # Wait for a key press to close the window
-    cv2.destroyAllWindows()
-    logger.info(f'Shape of the {module} Image: {img.shape}')
-
 
     img_array = np.load(patient_img_np)
     img = np.array(img_array, dtype=np.uint8)
@@ -322,10 +336,3 @@ def show_histogram(dic_ir,dic_pm,modules):
 
         plt.savefig(os.path.join(IMG_PATH,'PM_histogram.png'))
         plt.show()
-
-                        
-
-        
-
-#print(os.listdir(LOCAL_SLP_DATASET_PATH))
-#f = CustomDataloader().prepare_dataloaders()
