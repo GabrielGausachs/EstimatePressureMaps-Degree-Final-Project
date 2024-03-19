@@ -41,7 +41,7 @@ def affineImg(img, scale=1,deg=0,  shf=(0,0)):
     return img_new
 
 
-imagen = cv2.imread('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00003/PMarray/uncover/000001.npy')
+imagen = cv2.imread('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PM/uncover/image_000001.png')
 img = affineImg(imagen)
 cv2.imshow('new',img)
 cv2.waitKey(0)  # Wait for a key press to close the window
