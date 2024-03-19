@@ -20,13 +20,15 @@ pixel_height_m =  col_spacing_cm/ 100
 
 # Calcular el área de cada píxel en metros cuadrados
 pixel_area_m2 = (pixel_width_m * pixel_height_m)  # Área de cada píxel en metros cuadrados
+print(pixel_area_m2)
 
-print(np.sum(imagen) * pixel_area_m2/9.81)
+print(np.sum(imagen)*pixel_area_m2/9.81)
 
 
-array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00015/PMarray/uncover/000018.npy')
+array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/uncover/000001.npy')
 
 sumatori = np.sum(array)
 print(sumatori)
 
-print(80/np.sum(array))
+# Pressio = F / area --> Area = m * g / Pressio  --> m = Area * Pressio / g
+print((80*9.81)/np.sum(array))
