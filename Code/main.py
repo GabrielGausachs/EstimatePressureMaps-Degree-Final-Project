@@ -3,7 +3,8 @@ from Utils import (
     dataloader,
     train,
     savemodel,
-    evaluation
+    evaluation,
+    losses,
 )
 
 import wandb
@@ -29,11 +30,11 @@ from Utils.config import (
 
 from Models import (
     UNet,
-    SimpleUNet
+    Simple_net
 )
 
 # Models
-models = {"UNet": UNet.UNet, "SimpleUNet": SimpleUNet.UNet}
+models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net}
 
 # Optimizers
 optimizers = {
@@ -43,6 +44,7 @@ optimizers = {
 # Criterion
 criterion = {
     "MSELoss": torch.nn.MSELoss,
+    "PWRSWtL": losses.PWRSWtL
 }
 
 
@@ -81,7 +83,8 @@ if __name__ == "__main__":
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
 
         # Create a criterion object
-        criterion = criterion[CRITERION]()
+        lambda_L2 = 1.0
+        criterion = criterion[CRITERION](lambda_L2)
 
         logger.info("-" * 50)
         num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)

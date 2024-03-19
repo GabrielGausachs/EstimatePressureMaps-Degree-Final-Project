@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
@@ -44,15 +45,22 @@ class UNet(nn.Module):
         
         # Decoder
         x = self.up_transpose1(x7)
-        x = torch.cat([x, x5], dim=1)
-        x = self.up_conv1(x)
+        x5 = self.upsample_and_concat(x5, x)
+        x = self.up_conv1(x5)
         x = self.up_transpose2(x)
-        x = torch.cat([x, x3], dim=1)
+        x = self.upsample_and_concat(x3, x)
         x = self.up_conv2(x)
         x = self.up_transpose3(x)
-        x = torch.cat([x, x1], dim=1)
+        x = self.upsample_and_concat(x1, x)
         x = self.up_conv3(x)
         
         # Output
         x = self.out_conv(x)
         return x
+
+    def upsample_and_concat(self, x1, x2):
+        # Upsample x1 to match the dimensions of x2
+        _, _, H, W = x2.size()
+        x1 = F.interpolate(x1, size=(H, W), mode='bilinear', align_corners=True)
+        # Concatenate along the channel dimension
+        return torch.cat([x1, x2], dim=1)

@@ -148,6 +148,8 @@ class CustomDataloader:
         
         random_patient = random.choice(list(dic_ir_numpy.keys()))
         patient_img = dic_ir_numpy[random_patient]['cover1'][0]
+
+        """
         arreglo = np.load(patient_img)
 
         # Imprimir la forma del arreglo
@@ -159,7 +161,7 @@ class CustomDataloader:
 
         # Imprimir la forma del arreglo
         print("Forma del arreglo 2:", arreglo.shape)
-
+        """
 
         # Create dataset
         logger.info("-" * 50)
@@ -260,9 +262,11 @@ class CustomDataloader:
 
 
         logger.info(f"Train loader info: {train_dataset_info}")
-        logger.info(f"Image size of the train loader: {next(iter(train_loader))[0].shape}")
+        logger.info(f"Image input size of the train loader: {next(iter(train_loader))[0].shape}")
+        logger.info(f"Image output size of the train loader: {next(iter(train_loader))[1].shape}")
         logger.info(f"Val loader info: {val_dataset_info}")
-        logger.info(f"Image size of the val loader: {next(iter(val_loader))[0].shape}")
+        logger.info(f"Image input size of the val loader: {next(iter(val_loader))[0].shape}")
+        logger.info(f"Image output size of the val loader: {next(iter(val_loader))[1].shape}")
 
         """
         for i in range(5):

@@ -1,0 +1,45 @@
+{
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.4",
+    "heartbeatAt": "2024-03-19T08:55:05.244789",
+    "startedAt": "2024-03-19T08:55:04.272438",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "c:\\Users\\Gabriel\\OneDrive\\Escritorio\\4t any uni\\tfg\\TFG\\Code\\main.py",
+    "codePathLocal": "Code\\main.py",
+    "codePath": "Code\\main.py",
+    "git": {
+        "remote": "https://github.com/GabrielGausachs/TFG.git",
+        "commit": "fd2f650b3616adc7408b5dc688df77d8537d7949"
+    },
+    "email": "g4a4b4r4i@gmail.com",
+    "root": "C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/TFG",
+    "host": "DESKTOP-R5UBLAB",
+    "username": "Gabriel",
+    "executable": "C:\\Users\\Gabriel\\anaconda3\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 991.0,
+        "min": 0.0,
+        "max": 1190.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 991.0,
+            "min": 0.0,
+            "max": 1190.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 470.43666076660156,
+            "used": 453.54632568359375
+        }
+    },
+    "memory": {
+        "total": 7.6950531005859375
+    }
+}
