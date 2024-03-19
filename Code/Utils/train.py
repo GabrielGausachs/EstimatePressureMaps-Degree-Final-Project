@@ -35,6 +35,8 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
 
         optimizer.zero_grad()
         outputs = model(input_images)
+        print(outputs.shape)
+        print(target_images.shape)
         train_loss = criterion(outputs, target_images)
         train_loss.backward()
         optimizer.step()

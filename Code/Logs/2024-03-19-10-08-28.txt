@@ -1,0 +1,31 @@
+2024-03-19 10:08:31,883 - root - INFO -> Logger initialized in filename 2024-03-19-10-08-31
+2024-03-19 10:08:31,884 - root - INFO -> --------------------------------------------------
+2024-03-19 10:08:31,884 - root - INFO -> Read the data
+2024-03-19 10:08:32,426 - root - INFO -> Number of pacients: 102
+2024-03-19 10:08:32,426 - root - INFO -> Number of categories in a patient: 3
+2024-03-19 10:08:37,580 - root - INFO -> Number of images with only 1 channel: 0 / 13770
+2024-03-19 10:08:37,580 - root - INFO -> --------------------------------------------------
+2024-03-19 10:08:37,580 - root - INFO -> Create dataset with random = True
+2024-03-19 10:08:37,587 - root - INFO -> Train size: 11016
+2024-03-19 10:08:37,587 - root - INFO -> Val size: 2754
+2024-03-19 10:08:58,491 - root - INFO -> Number of images with only 1 channel: 0 / 11016
+2024-03-19 10:08:58,491 - root - INFO -> --------------------------------------------------
+2024-03-19 10:08:58,491 - root - INFO -> Creating dataloaders
+2024-03-19 10:08:58,492 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
+2024-03-19 10:08:59,013 - root - INFO -> Image input size of the train loader: torch.Size([128, 3, 192, 84])
+2024-03-19 10:08:59,700 - root - INFO -> Image output size of the train loader: torch.Size([128, 3, 192, 84])
+2024-03-19 10:08:59,700 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 128, 'Number of batches': 21}
+2024-03-19 10:09:00,352 - root - INFO -> Image input size of the val loader: torch.Size([128, 3, 192, 84])
+2024-03-19 10:09:00,839 - root - INFO -> Image output size of the val loader: torch.Size([128, 3, 192, 84])
+2024-03-19 10:09:19,740 - root - INFO -> --------------------------------------------------
+2024-03-19 10:09:19,740 - root - INFO -> Wandb correctly initialized
+2024-03-19 10:09:19,742 - root - INFO -> --------------------------------------------------
+2024-03-19 10:09:19,742 - root - INFO -> Starting training with model Simple_net that has 2563 parameters
+2024-03-19 10:09:19,742 - root - INFO -> --- Epoch: 0 ---
+2024-03-19 10:09:19,742 - root - INFO -> Epoch: 0/2, Starting training...
+2024-03-19 10:09:19,742 - root - INFO -> Loader length: 86
+2024-03-19 10:09:19,742 - root - INFO -> Loader batch size: 128
+2024-03-19 10:09:19,742 - root - INFO -> Loader drop last: True
+2024-03-19 10:09:19,742 - root - INFO -> Loader num workers: 0
+2024-03-19 10:09:19,843 - root - INFO -> Memory cleaned!
+2024-03-19 10:09:20,121 - root - INFO -> Epoch: 0/2, Processing batch 1/86...
