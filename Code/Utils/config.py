@@ -11,12 +11,12 @@ MODEL_NAME = "Simple_net"
 OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
-WANDB = True
+WANDB = False
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 DO_TEST = False
 IS_RANDOM = True
 SHOW_IMAGES = False

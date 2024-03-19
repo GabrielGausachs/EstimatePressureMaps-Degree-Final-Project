@@ -268,7 +268,7 @@ class CustomDataloader:
         logger.info(f"Image input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Image output size of the val loader: {next(iter(val_loader))[1].shape}")
 
-        """
+        
         for i in range(5):
             batch = next(iter(train_loader))
             
@@ -294,7 +294,7 @@ class CustomDataloader:
             plt.axis('off')
 
             plt.show()
-        """
+        
 
         return train_loader, val_loader
 
