@@ -25,7 +25,6 @@ from Utils.config import (
     DEVICE,
     DO_TRAIN,
     EVALUATION,
-    IMG_PATH,
     )
 
 from Models import (

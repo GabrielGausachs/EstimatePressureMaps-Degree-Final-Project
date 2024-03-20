@@ -1,37 +1,22 @@
-
-
 import cv2
 import numpy as np
 
+# 1. uncover primera fila, cover 1 segona fila, cover 2 tercera fila.
 # Lee la imagen
-imagen = cv2.imread('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PM/uncover/image_000001.png',cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PM/cover1/image_000010.png')
 
-# Espaciado entre filas y columnas del sensor en centímetros
-row_spacing_cm = 1.016  
-col_spacing_cm = 1.016  
-
-image_width_pixels = 84
-image_height_pixels = 192
-
+array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/cover1/000010.npy')
+cal_indiv = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMcali.npy')
+print(cal_indiv.shape)
+print(array.shape)
+values = cal_indiv[:, 9]
 
 
-pixel_width_m = row_spacing_cm / 100
-pixel_height_m =  col_spacing_cm/ 100
+pressure1 = img * values[0]
+pressure2 = img * values[1]
+pressure3 = array * values[2]
 
-# Calcular el área de cada píxel en metros cuadrados
-pixel_area_m2 = (pixel_width_m * pixel_height_m)  # Área de cada píxel en metros cuadrados
-print(pixel_area_m2*10000)
-
-print(np.sum(imagen)*pixel_area_m2/9.81)
-print('max imagen',np.max(imagen))
-
-
-array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/uncover/000001.npy')
-
-sumatori = np.sum(array)
-print(sumatori)
-
-# Pressio = F / area --> Area = m * g / Pressio  --> m = Area * Pressio / g
-print(np.sum(array)*pixel_area_m2/9.81)
-print('max array',np.max(array))
-
+area_cm = 1.03226
+area_m = 1.03226 / 10000
+massa = area_m * (np.sum(pressure3)*1000) / 9.81
+print('massa:', massa)

@@ -18,7 +18,6 @@ WANDB = False
 # Main steps
 DO_TRAIN = False
 DO_TEST = False
-IS_RANDOM = True
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
@@ -26,6 +25,7 @@ EVALUATION = False
 
 # Paths -----------------------------------
 
+PATH_DATASET = 'Local'
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = ""
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
