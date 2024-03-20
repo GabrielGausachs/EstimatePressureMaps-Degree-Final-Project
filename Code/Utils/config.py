@@ -6,17 +6,17 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Simple_net-random-first"
+EXECUTION_NAME = "Simple_net-first"
 MODEL_NAME = "Simple_net"
 OPTIMIZER = "Adam"
-CRITERION = "PWRSWtL"
+CRITERION = "MSELoss"
 DATASET = "Local-SLP"
 WANDB = False
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = False
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False

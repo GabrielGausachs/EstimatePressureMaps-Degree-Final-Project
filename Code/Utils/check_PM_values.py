@@ -47,7 +47,7 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                         massa_total=massa_total+massa
                         sumatori = sumatori+dif
                         n+=1
-    dic[patient] = sumatori / n
-    m = massa_total / n
-    print('meaan diference:',dic[patient])
-    print('mean weight:',m)
+        dic[patient] = sumatori / n
+        m = massa_total / n
+        print('meaan diference:',dic[patient])
+        print('mean weight:',m)

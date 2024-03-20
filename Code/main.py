@@ -76,14 +76,17 @@ if __name__ == "__main__":
 
 
         # Create a model
-        model = models[MODEL_NAME](3,3).to(DEVICE)
+        model = models[MODEL_NAME](1,1).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
 
         # Create a criterion object
         lambda_L2 = 1.0
-        criterion = criterion[CRITERION](lambda_L2)
+        if CRITERION == "MSELoss":
+            criterion = criterion[CRITERION]
+        else:
+            criterion = criterion[CRITERION](lambda_L2)
 
         logger.info("-" * 50)
         num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)

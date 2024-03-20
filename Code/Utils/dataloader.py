@@ -4,18 +4,13 @@ import random
 import numpy as np
 import cv2
 import pandas as pd
-from PIL import Image
 from matplotlib import pyplot as plt 
 import torch
+from PIL import Image
 import torchvision.transforms as transforms
-from torch.utils.data import (
-    DataLoader,
-    random_split,
-)
-
-from sklearn.preprocessing import OneHotEncoder
+from torch.utils.data import DataLoader
 from Utils.logger import initialize_logger,get_logger
-from Utils.dataset import CustomDataset, CustomDataset2
+from Utils.dataset import CustomDataset
 
 from Utils.config import (
     BATCH_SIZE_TEST,
@@ -46,7 +41,7 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
-        transform = transforms.Compose([transforms.ToTensor()])
+        transform = transforms.Compose([transforms.Resize((192,84)),transforms.ToTensor()])
 
 
         logger.info("-" * 50)
