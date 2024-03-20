@@ -5,8 +5,6 @@ import numpy as np
 import cv2
 import pandas as pd
 from matplotlib import pyplot as plt 
-import torch
-from PIL import Image
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from Utils.logger import initialize_logger,get_logger
