@@ -195,38 +195,32 @@ class CustomDataloader:
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
-        check_transform(train_loader)
+        #check_transform(train_loader)
         
-
         return train_loader, val_loader
 
 # ----------------------------------- EXTRA FUNCTIONS -----------------------------------
 
 def check_transform(train_loader):
     for i in range(5):
-            batch = next(iter(train_loader))
-            
-            
-            imagen_entrada = batch[0][0]  
-            imagen_objetivo = batch[1][0]  
+        batch = next(iter(train_loader))
+    
+        input_img = batch[0][0].squeeze().numpy() 
+        target_img = batch[1][0].squeeze().numpy()
 
-           
-            imagen_entrada_numpy = imagen_entrada.permute(1, 2, 0).numpy()
-            imagen_objetivo_numpy = imagen_objetivo.permute(1, 2, 0).numpy()
+        plt.figure(figsize=(10, 5))
             
-            plt.figure(figsize=(10, 5))
-            
-            plt.subplot(1, 2, 1)
-            plt.imshow(imagen_entrada_numpy)
-            plt.title('Imagen de entrada')
-            plt.axis('off')
+        plt.subplot(1, 2, 1)
+        plt.imshow(input_img)
+        plt.title('Imagen de entrada')
+        plt.axis('off')
 
-            plt.subplot(1, 2, 2)
-            plt.imshow(imagen_objetivo_numpy)
-            plt.title('Imagen objetivo')
-            plt.axis('off')
+        plt.subplot(1, 2, 2)
+        plt.imshow(target_img)
+        plt.title('Imagen objetivo')
+        plt.axis('off')
 
-            plt.show()
+        plt.show()
 
 
 def show_image(dic,module):

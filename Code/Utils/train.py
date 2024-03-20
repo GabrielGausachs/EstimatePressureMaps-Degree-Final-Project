@@ -22,6 +22,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
     logger.info(f"Loader batch size: {loader.batch_size}")
     logger.info(f"Loader drop last: {loader.drop_last}")
     logger.info(f"Loader num workers: {loader.num_workers}")
+    logger.info(f"Criterion: {criterion}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
@@ -35,8 +36,6 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
 
         optimizer.zero_grad()
         outputs = model(input_images)
-        print(outputs.shape)
-        print(target_images.shape)
         train_loss = criterion(outputs, target_images)
         train_loss.backward()
         optimizer.step()

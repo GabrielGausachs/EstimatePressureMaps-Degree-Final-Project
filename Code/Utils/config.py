@@ -9,7 +9,7 @@ import torch
 EXECUTION_NAME = "Simple_net-first"
 MODEL_NAME = "Simple_net"
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss"
+CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
 WANDB = False
 

@@ -7,13 +7,22 @@ class PWRSWtL(nn.Module):
         self.lambda_L2 = lambda_L2
 
     def forward(self, src, tar):
-        # Calculate the density function of the pixel value y
-        p_y = torch.histc(tar, bins=256, min=0, max=255) / tar.numel()
+        batch_size = tar.size(0)  # Obtener el tamaño del lote
 
-        # Calculate the weight function
-        weight = self.lambda_L2 / (p_y + 1e-12)  # Adding a small epsilon to avoid division by zero
+        # Calcular la densidad de píxeles para todo el lote tar
+        p_y = torch.histc(tar.view(-1), bins=256, min=0, max=255) / (tar.numel() * batch_size)
 
-        # Compute the weighted L2 loss
-        loss = (weight * (src - tar) ** 2).mean()
+        # Invertir la densidad de píxeles y normalizarla
+        weight = 1 / (p_y + 1e-12)
+        weight = weight / weight.sum()
+
+        # Expandir las dimensiones del tensor de pesos para que coincida con las dimensiones de src y tar
+        weight = weight.view(1, 1, 1, 256).to(tar.device)
+
+        # Calcular la diferencia al cuadrado entre src y tar
+        diff_sq = (src - tar) ** 2
+
+        # Calcular la pérdida ponderada para todo el lote
+        loss = (self.lambda_L2 * weight * diff_sq).mean()
 
         return loss

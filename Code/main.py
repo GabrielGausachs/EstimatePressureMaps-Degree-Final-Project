@@ -42,8 +42,8 @@ optimizers = {
 
 # Criterion
 criterion = {
-    "MSELoss": torch.nn.MSELoss,
-    "PWRSWtL": losses.PWRSWtL
+    "MSELoss": torch.nn.MSELoss(reduction = 'mean'),
+    "PWRSWtL": losses.PWRSWtL(1.0)
 }
 
 
@@ -82,11 +82,7 @@ if __name__ == "__main__":
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
 
         # Create a criterion object
-        lambda_L2 = 1.0
-        if CRITERION == "MSELoss":
-            criterion = criterion[CRITERION]
-        else:
-            criterion = criterion[CRITERION](lambda_L2)
+        criterion = criterion[CRITERION]
 
         logger.info("-" * 50)
         num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
