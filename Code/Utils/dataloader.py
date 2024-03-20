@@ -48,14 +48,6 @@ class CustomDataloader:
 
         # Data transformation if needed
         transform = transforms.Compose([transforms.ToTensor()])
-        
-        #transform = transforms.Compose([transforms.CenterCrop((160,84)),
-        #                                transforms.Resize((192,84)),
-        #                                transforms.ToTensor()])
-        
-        
-        
-        #transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])
 
 
         logger.info("-" * 50)
@@ -127,7 +119,7 @@ class CustomDataloader:
             p_data = pd.get_dummies(p_data, columns=['gender'])
 
             logger.info(f'Size of the physical dataset: {p_data.size}')
-        
+        """
         # Check how many channels have the images
         num_single_channel_images = 0
         total_images=0
@@ -143,7 +135,7 @@ class CustomDataloader:
                     total_images+=1
 
         logger.info(f"Number of images with only 1 channel: {num_single_channel_images} / {total_images}")
-        
+        """
         random_patient = random.choice(list(dic_ir_numpy.keys()))
         patient_img = dic_ir_numpy[random_patient]['cover1'][0]
 
@@ -266,8 +258,15 @@ class CustomDataloader:
         logger.info(f"Image input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Image output size of the val loader: {next(iter(val_loader))[1].shape}")
 
+        check_transform(train_loader)
         
-        for i in range(5):
+
+        return train_loader, val_loader
+
+# ----------------------------------- EXTRA FUNCTIONS -----------------------------------
+
+def check_transform(train_loader):
+    for i in range(5):
             batch = next(iter(train_loader))
             
             # Extrae una imagen de entrada y su correspondiente imagen objetivo del lote
@@ -277,9 +276,7 @@ class CustomDataloader:
             # Convierte las imágenes a NumPy y transpónlas para que sean compatibles con matplotlib
             imagen_entrada_numpy = imagen_entrada.permute(1, 2, 0).numpy()
             imagen_objetivo_numpy = imagen_objetivo.permute(1, 2, 0).numpy()
-
-            print(input_image.shape)
-
+            
             # Muestra las imágenes
             plt.figure(figsize=(10, 5))
             
@@ -294,11 +291,7 @@ class CustomDataloader:
             plt.axis('off')
 
             plt.show()
-        
 
-        return train_loader, val_loader
-
-# ----------------------------------- EXTRA FUNCTIONS -----------------------------------
 
 def show_image(dic,module,dic_np):
     random_patient = random.choice(list(dic.keys()))
