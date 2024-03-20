@@ -47,9 +47,7 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
-        transform = transforms.Compose([transforms.Resize((192, 144)),
-                                              transforms.CenterCrop((192,84)),
-                                        transforms.ToTensor()])
+        transform = transforms.Compose([transforms.ToTensor()])
         
         #transform = transforms.Compose([transforms.CenterCrop((160,84)),
         #                                transforms.Resize((192,84)),
@@ -279,6 +277,8 @@ class CustomDataloader:
             # Convierte las imágenes a NumPy y transpónlas para que sean compatibles con matplotlib
             imagen_entrada_numpy = imagen_entrada.permute(1, 2, 0).numpy()
             imagen_objetivo_numpy = imagen_objetivo.permute(1, 2, 0).numpy()
+
+            print(input_image.shape)
 
             # Muestra las imágenes
             plt.figure(figsize=(10, 5))

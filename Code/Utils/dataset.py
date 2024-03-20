@@ -36,23 +36,23 @@ class CustomDataset(Dataset):
         input_image = self.load_image(input_path)
         output_image = self.load_image(output_path)
 
-        input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)
-        output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
-
-        input_image = Image.fromarray(input_image)
-        output_image = Image.fromarray(output_image)
-
         if self.transform:
-            input_image = self.transform(input_image)
+            x = 28
+            y = 7
+            ancho = 71
+            altura = 142
+            imagen_recortada = input_image[y:y+altura, x:x+ancho]
+            imagen_escala = cv2.resize(imagen_recortada, (84, 192))
+            input_img = self.transform(imagen_escala)
             transform_output_image = transforms.Compose([
             transforms.ToTensor()])
             output_image = transform_output_image(output_image)
 
         if self.p_data != None:
             p_vector = self.p_data[index]
-            return input_image, p_vector, output_image
+            return input_img, p_vector, output_image
         else:
-            return input_image, output_image
+            return input_img, output_image
 
     def load_image(self, path):
         # Load the image
@@ -90,16 +90,24 @@ class CustomDataset2(Dataset):
         output_image = self.load_image(output_path)
 
         if self.transform:
-            input_image = self.transform(input_image)
+            x = 28
+            y = 7
+            ancho = 71
+            altura = 142
+
+            # Recortar la región de interés (ROI)
+            imagen_recortada = input_image[y:y+altura, x:x+ancho]
+            imagen_escala = cv2.resize(imagen_recortada, (84, 192))
+            input_img = self.transform(imagen_escala)
             transform_output_image = transforms.Compose([
             transforms.ToTensor()])
             output_image = transform_output_image(output_image)
 
         if self.p_data != None:
             p_vector = self.p_data[index]
-            return input_image, p_vector, output_image
+            return input_img, p_vector, output_image
         else:
-            return input_image, output_image
+            return input_img, output_image
 
     def load_image(self, path):
         # Load the image
