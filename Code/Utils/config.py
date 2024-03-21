@@ -16,7 +16,7 @@ WANDB = False
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 DO_TEST = False
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False

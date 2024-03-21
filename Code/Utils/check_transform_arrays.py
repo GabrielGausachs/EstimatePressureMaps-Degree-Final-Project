@@ -1,7 +1,4 @@
-from skimage import transform
 import numpy as np
-import math
-from math import cos, sin
 from matplotlib import pyplot as plt 
 import os
 import cv2

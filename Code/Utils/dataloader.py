@@ -9,6 +9,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from Utils.logger import initialize_logger,get_logger
 from Utils.dataset import CustomDataset
+from torchvision.transforms.functional import crop
 
 from Utils.config import (
     BATCH_SIZE_TEST,
@@ -39,7 +40,14 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
-        transform = transforms.Compose([transforms.Resize((192,84)),transforms.ToTensor()])
+        transform = {
+            'input': transforms.Compose([
+                    transforms.ToPILImage(),
+                    transforms.Lambda(crop_array),  
+                    transforms.Resize((192, 84)),  
+                    transforms.ToTensor()]),
+            'output': transforms.Compose([transforms.ToPILImage(),
+                    transforms.ToTensor()])}
 
 
         logger.info("-" * 50)
@@ -118,7 +126,7 @@ class CustomDataloader:
         logger.info(f'Shape of the IR numpy array: {arr.shape}')
 
         patient_np = dic_pm_numpy[random_patient]['cover1'][0]
-        arry = np.load(patient_np)
+        arr = np.load(patient_np)
         logger.info(f'Shape of the PM numpy array: {arr.shape}')
 
         # Create dataset
@@ -199,7 +207,11 @@ class CustomDataloader:
         
         return train_loader, val_loader
 
+
 # ----------------------------------- EXTRA FUNCTIONS -----------------------------------
+
+def crop_array(array):
+        return crop(array,7, 29, 140, 66)
 
 def check_transform(train_loader):
     for i in range(5):

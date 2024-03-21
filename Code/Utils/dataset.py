@@ -1,10 +1,8 @@
-from PIL import Image
+
 from torch.utils.data import Dataset
 from Utils.logger import initialize_logger,get_logger
-import cv2
-import torchvision.transforms as transforms
 import numpy as np
-from PIL import Image
+
 
 logger = get_logger()
 class CustomDataset(Dataset): 
@@ -37,24 +35,16 @@ class CustomDataset(Dataset):
         output_array = self.load_array(output_path)
         input_array = input_array.astype(np.float32)
         output_array = output_array.astype(np.float32)
-        input_image = Image.fromarray(input_array)
-        output_image = Image.fromarray(output_array)
 
         if self.transform:
-            #x = 28
-            #y = 7
-            #ancho = 71
-            #altura = 142
-            #imagen_recortada = input_image[y:y+altura, x:x+ancho]
-            #imagen_escala = cv2.resize(imagen_recortada, (84, 192))
-            input_image = self.transform(input_image)
-            output_image = self.transform(output_image)
+            input_array = self.transform['input'](input_array)
+            output_array = self.transform['output'](output_array)
 
         if self.p_data != None:
             p_vector = self.p_data[index]
             return input_array, p_vector, output_array
         else:
-            return input_image, output_image
+            return input_array, output_array
 
     def load_array(self, path):
         # Load the array
