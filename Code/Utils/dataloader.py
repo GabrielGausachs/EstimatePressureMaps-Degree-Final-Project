@@ -204,20 +204,15 @@ class CustomDataloader:
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
         #check_transform(train_loader)
-        for batch in train_loader:
-            
-            input_data = batch[0][0]
-            target_data = batch[1][0]
-            
-            
-            image = transforms.ToPILImage()(input_data)
-            target = transforms.ToPILImage()(target_data)
+        batch = next(iter(train_loader))
+        input_img = batch[0][0].numpy()
 
+        
+        plt.imshow(input_img.squeeze(), cmap='gray')
+        plt.title('Imagen de entrada')
+        plt.axis('off')
+        plt.show()
             
-            plt.imshow(image)
-            plt.axis('off')
-            plt.show()
-            break
         
         return train_loader, val_loader
 
