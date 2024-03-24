@@ -7,22 +7,35 @@ class PWRSWtL(nn.Module):
         self.lambda_L2 = lambda_L2
 
     def forward(self, src, tar):
-        batch_size = tar.size(0)  # Obtener el tamaño del lote
+        batch_size = tar.size(0)
 
-        # Calcular la densidad de píxeles para todo el lote tar
+        # Pixel density for all the batch
         p_y = torch.histc(tar.view(-1), bins=256, min=0, max=255) / (tar.numel() * batch_size)
 
-        # Invertir la densidad de píxeles y normalizarla
+        # Reverse pixel density and normalize
         weight = 1 / (p_y + 1e-12)
         weight = weight / weight.sum()
 
-        # Expandir las dimensiones del tensor de pesos para que coincida con las dimensiones de src y tar
-        weight = weight.view(1, 1, 1, 256).to(tar.device)
+        pixel_probabilities = {}
+        for pixel_value, probability in enumerate(weight):
+            pixel_probabilities[pixel_value] = probability.item()
 
-        # Calcular la diferencia al cuadrado entre src y tar
+        tensor_size = (128,1,192,84)
+
+        # Create mask tensor with zeros
+        mask_tensor = torch.zeros(tensor_size)
+
+        # Fill mask tensor with pixel-wise probabilities
+        for pixel_value, probability in pixel_probabilities.items():
+            mask_tensor[tar == pixel_value] = probability
+
+        # Get the diff between output and target
         diff_sq = (src - tar) ** 2
 
-        # Calcular la pérdida ponderada para todo el lote
-        loss = (self.lambda_L2 * weight * diff_sq).mean()
+        # Get the loss with mean
+        #loss = (self.lambda_L2 * mask_tensor * diff_sq).mean()
+
+        # Get the loss with sum
+        loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
 
         return loss

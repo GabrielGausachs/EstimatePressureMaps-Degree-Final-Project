@@ -32,6 +32,8 @@ from Models import (
     Simple_net
 )
 
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+
 # Models
 models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net}
 
@@ -116,7 +118,7 @@ if __name__ == "__main__":
         else:
             # The train is not done and we want to evaluate another model
             logger.info("Starting evaluation of a past model")
-            model = models[MODEL_NAME](3,3).to(DEVICE)
+            model = models[MODEL_NAME](1,1).to(DEVICE)
             evaluation.evaluation(model,criterion[CRITERION](),val_loader)
         logger.info("Evaluation Completed!")
         logger.info("-" * 50)

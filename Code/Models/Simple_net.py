@@ -18,9 +18,9 @@ class Simple_net(nn.Module):
 
     def forward(self, x):
         # Encoder
-        x = self.encoder(x)
+        encoded = self.encoder(x)
         
         # Decoder
-        x = self.decoder(x)
+        decoded = self.decoder(encoded)
         
-        return x
+        return decoded

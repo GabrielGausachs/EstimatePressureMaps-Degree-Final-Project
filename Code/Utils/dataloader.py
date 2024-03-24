@@ -204,14 +204,6 @@ class CustomDataloader:
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
         #check_transform(train_loader)
-        batch = next(iter(train_loader))
-        input_img = batch[0][0].numpy()
-
-        
-        plt.imshow(input_img.squeeze(), cmap='gray')
-        plt.title('Imagen de entrada')
-        plt.axis('off')
-        plt.show()
             
         
         return train_loader, val_loader
