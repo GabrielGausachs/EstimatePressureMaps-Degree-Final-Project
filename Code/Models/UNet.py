@@ -2,65 +2,84 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class DoubleConv(nn.Module):
-    def __init__(self, in_channels, out_channels):
-        super(DoubleConv, self).__init__()
-        self.double_conv = nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True)
-        )
-
-    def forward(self, x):
-        return self.double_conv(x)
+def double_convolution(in_channels, out_channels):
+    """
+    In the original paper implementation, the convolution operations were
+    not padded but we are padding them here. This is because, we need the 
+    output result size to be same as input size.
+    """
+    conv_op = nn.Sequential(
+        nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
+        nn.ReLU(inplace=True),
+        nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
+        nn.ReLU(inplace=True)
+    )
+    return conv_op
 
 class UNet(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(UNet, self).__init__()
-        self.down_conv1 = DoubleConv(in_channels, 64)
-        self.down_conv2 = DoubleConv(64, 128)
-        self.down_conv3 = DoubleConv(128, 256)
-        self.down_conv4 = DoubleConv(256, 512)
-        self.maxpool = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.up_transpose1 = nn.ConvTranspose2d(512, 256, kernel_size=2, stride=2)
-        self.up_conv1 = DoubleConv(512, 256)
-        self.up_transpose2 = nn.ConvTranspose2d(256, 128, kernel_size=2, stride=2)
-        self.up_conv2 = DoubleConv(256, 128)
-        self.up_transpose3 = nn.ConvTranspose2d(128, 64, kernel_size=2, stride=2)
-        self.up_conv3 = DoubleConv(128, 64)
-        self.out_conv = nn.Conv2d(64, out_channels, kernel_size=1)
+        self.max_pool2d = nn.MaxPool2d(kernel_size=2, stride=2)
+        # Contracting path.
+        # Each convolution is applied twice.
+        self.down_convolution_1 = double_convolution(in_channels, 64)
+        self.down_convolution_2 = double_convolution(64, 128)
+        self.down_convolution_3 = double_convolution(128, 256)
 
+        #self.down_convolution_4 = double_convolution(256, 512)
+        #self.down_convolution_5 = double_convolution(512, 1024)
+
+        # Expanding path.
+        
+        #self.up_transpose_1 = nn.ConvTranspose2d(
+        #    in_channels=1024, out_channels=512,
+        #    kernel_size=2, 
+        #    stride=2)
+
+        # Below, `in_channels` again becomes 1024 as we are concatinating.
+        #self.up_convolution_1 = double_convolution(1024, 512)
+        #self.up_transpose_2 = nn.ConvTranspose2d(
+        #    in_channels=512, out_channels=256,
+        #    kernel_size=2, 
+        #    stride=2)
+        #self.up_convolution_2 = double_convolution(512, 256)
+        
+        self.up_transpose_3 = nn.ConvTranspose2d(
+            in_channels=256, out_channels=128,
+            kernel_size=2, 
+            stride=2)
+        self.up_convolution_3 = double_convolution(256, 128)
+        self.up_transpose_4 = nn.ConvTranspose2d(
+            in_channels=128, out_channels=64,
+            kernel_size=2, 
+            stride=2)
+        self.up_convolution_4 = double_convolution(128, 64)
+        # output => `out_channels` as per the number of classes.
+        self.out = nn.Conv2d(
+            in_channels=64, out_channels=out_channels, 
+            kernel_size=1
+        ) 
     def forward(self, x):
-        # Encoder
-        x1 = self.down_conv1(x)
-        x2 = self.maxpool(x1)
-        x3 = self.down_conv2(x2)
-        x4 = self.maxpool(x3)
-        x5 = self.down_conv3(x4)
-        x6 = self.maxpool(x5)
-        x7 = self.down_conv4(x6)
-        
-        # Decoder
-        x = self.up_transpose1(x7)
-        x5 = self.upsample_and_concat(x5, x)
-        x = self.up_conv1(x5)
-        x = self.up_transpose2(x)
-        x = self.upsample_and_concat(x3, x)
-        x = self.up_conv2(x)
-        x = self.up_transpose3(x)
-        x = self.upsample_and_concat(x1, x)
-        x = self.up_conv3(x)
-        
-        # Output
-        x = self.out_conv(x)
-        return x
+        down_1 = self.down_convolution_1(x)
+        down_2 = self.max_pool2d(down_1)
+        down_3 = self.down_convolution_2(down_2)
+        down_4 = self.max_pool2d(down_3)
+        down_5 = self.down_convolution_3(down_4)
 
-    def upsample_and_concat(self, x1, x2):
-        # Upsample x1 to match the dimensions of x2
-        _, _, H, W = x2.size()
-        x1 = F.interpolate(x1, size=(H, W), mode='bilinear', align_corners=True)
-        # Concatenate along the channel dimension
-        return torch.cat([x1, x2], dim=1)
+
+        #down_6 = self.max_pool2d(down_5)
+        #down_7 = self.down_convolution_4(down_6)
+        #down_8 = self.max_pool2d(down_7)
+        #down_9 = self.down_convolution_5(down_8)        
+        
+        
+        #up_1 = self.up_transpose_1(down_9)
+        #x = self.up_convolution_1(torch.cat([down_7, up_1], 1))
+        #up_2 = self.up_transpose_2(x)
+        #x = self.up_convolution_2(torch.cat([down_5, up_2], 1))
+        up_3 = self.up_transpose_3(down_5)
+        x = self.up_convolution_3(torch.cat([down_3, up_3], 1))
+        up_4 = self.up_transpose_4(x)
+        x = self.up_convolution_4(torch.cat([down_1, up_4], 1))
+        out = self.out(x)
+        return out

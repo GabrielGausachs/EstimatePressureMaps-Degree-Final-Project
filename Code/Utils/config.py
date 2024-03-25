@@ -6,8 +6,8 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Simple_net-first"
-MODEL_NAME = "Simple_net"
+EXECUTION_NAME = "UNet-first"
+MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
