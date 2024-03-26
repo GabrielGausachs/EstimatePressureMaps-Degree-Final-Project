@@ -11,7 +11,7 @@ MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
-WANDB = False
+WANDB = True
 
 # -----------------------------------------
 
@@ -37,7 +37,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 2
+EPOCHS = 10
 LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
