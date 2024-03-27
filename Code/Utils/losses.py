@@ -1,6 +1,10 @@
 import torch
 import torch.nn as nn
 
+from Utils.config import (
+    EVALUATION,
+)
+
 class PWRSWtL(nn.Module):
     def __init__(self, lambda_L2):
         super(PWRSWtL, self).__init__()
@@ -20,7 +24,11 @@ class PWRSWtL(nn.Module):
         for pixel_value, probability in enumerate(weight):
             pixel_probabilities[pixel_value] = probability.item()
 
+
         tensor_size = (128,1,192,84)
+        
+        if EVALUATION:
+            tensor_size = (1,192,84)
 
         # Create mask tensor with zeros
         mask_tensor = torch.zeros(tensor_size)

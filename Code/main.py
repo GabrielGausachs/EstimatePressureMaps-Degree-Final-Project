@@ -131,6 +131,6 @@ if __name__ == "__main__":
             # The train is not done and we want to evaluate another model
             logger.info("Starting evaluation of a past model")
             model = models[MODEL_NAME](1,1).to(DEVICE)
-            evaluation.evaluation(model,criterion[CRITERION](),val_loader)
+            evaluation.evaluation(model,criterion[CRITERION],val_loader)
         logger.info("Evaluation Completed!")
         logger.info("-" * 50)

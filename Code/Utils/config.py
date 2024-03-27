@@ -7,9 +7,9 @@ import torch
 # -----------------------------------------
 
 EXECUTION_NAME = "SimpleNet-first"
-MODEL_NAME = "Simple_net"
+MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss"
+CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
 EXPERTYPE = 'only-np-no-normalization'
 WANDB = True
@@ -18,12 +18,12 @@ LAST_RUN_WANDB = ""
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 DO_TEST = True
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
-EVALUATION = False
+EVALUATION = True
 
 # Paths -----------------------------------
 
@@ -33,7 +33,7 @@ SERVER_SLP_DATASET_PATH = ""
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
-LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/SimpleUNet_20240311113332.pth")
+LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/UNet_20240325185958.pth")
 
 
 # Parameters ------------------------------
