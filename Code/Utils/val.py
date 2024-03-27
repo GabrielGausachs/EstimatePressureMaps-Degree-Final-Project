@@ -13,7 +13,7 @@ from Utils.config import (
 
 logger = get_logger()
 
-def test(model, loader, criterion, epoch=0, epochs=0):
+def val(model, loader, criterion, epoch=0, epochs=0):
     if not DO_TRAIN:
         model.load_state_dict(torch.load(LAST_MODEL_PATH, map_location=torch.device('cpu')))
         model.to(DEVICE)
@@ -21,7 +21,7 @@ def test(model, loader, criterion, epoch=0, epochs=0):
     total_loss = 0
     model.eval()
 
-    logger.info(f"Epoch: {epoch}/{epochs}, Starting testing...")
+    logger.info(f"Epoch: {epoch}/{epochs}, Starting validation...")
 
     # Logger info
     logger.info(f"Loader length: {len(loader)}")
@@ -60,7 +60,7 @@ def test(model, loader, criterion, epoch=0, epochs=0):
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
-    logger.info("Test finished! Memory cleaned!")
+    logger.info("Validation finished! Memory cleaned!")
     logger.info("-" * 50)
 
     return epoch_loss

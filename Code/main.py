@@ -5,7 +5,7 @@ from Utils import (
     savemodel,
     evaluation,
     losses,
-    test,
+    val,
 )
 
 import wandb
@@ -25,9 +25,7 @@ from Utils.config import (
     EPOCHS,
     DEVICE,
     DO_TRAIN,
-    DO_TEST,
     EVALUATION,
-    LAST_RUN_WANDB,
     EXPERTYPE,
     )
 
@@ -98,7 +96,7 @@ if __name__ == "__main__":
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")
-            epoch_loss = train.train(
+            epoch_loss_train = train.train(
                 model=model,
                 loader=train_loader,
                 optimizer=optimizer,
@@ -106,65 +104,23 @@ if __name__ == "__main__":
                 epoch=epoch,
                 epochs=EPOCHS,
             )
+            epoch_loss_val = val.val(
+                    model=model,
+                    loader=val_loader,
+                    criterion=criterion,
+                    epoch=epoch,
+                    epochs=EPOCHS,
+                )
 
             if WANDB:
                 #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
-                wandb.log({'train_loss': epoch_loss}, step=epoch)
+                wandb.log({'train_loss': epoch_loss_train}, step=epoch)
+                wandb.log({'val_loss': epoch_loss_val}, step=epoch)
 
         # Save the model pth and the arquitecture
         savemodel.save_model(model)
 
     logger.info("-" * 50)
-
-    if DO_TEST:
-        if DO_TRAIN:
-
-            logger.info("Starting testing")
-
-            for epoch in range(EPOCHS):
-                logger.info(f"--- Epoch: {epoch} ---")
-                epoch_loss = test.test(
-                    model=model,
-                    loader=val_loader,
-                    criterion=criterion,
-                    epoch=epoch,
-                    epochs=EPOCHS,
-                )
-
-                if WANDB:
-                    #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
-                    wandb.log({'test_loss': epoch_loss}, step=epoch)
-                
-        else:
-
-            logger.info("Starting testing of a past model")
-            model = models[MODEL_NAME](1,1).to(DEVICE)
-
-            if WANDB:
-                wandb.login()
-                run = wandb.init(
-                    project="TFG",
-                    entity='1604373',
-                    name=LAST_RUN_WANDB,
-                    save_code=False,
-                    resume='allow'  # Resume existing run if found
-                )
-
-            for epoch in range(EPOCHS):
-                logger.info(f"--- Epoch: {epoch} ---")
-                test.test(
-                    model=model,
-                    loader=val_loader,
-                    criterion=criterion,
-                    epoch=epoch,
-                    epochs=EPOCHS,
-                )
-            
-                if WANDB:
-                    wandb.log({'test_loss': epoch_loss}, step=epoch)
-
-        logger.info("Testing Completed!")
-        logger.info("-" * 50)
 
     if EVALUATION:
         if DO_TRAIN:
