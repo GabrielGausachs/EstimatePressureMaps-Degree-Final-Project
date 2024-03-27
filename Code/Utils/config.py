@@ -12,6 +12,7 @@ OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
 DATASET = "Local-SLP"
 WANDB = True
+LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
@@ -32,6 +33,7 @@ MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/S
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
 LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/SimpleUNet_20240311113332.pth")
+
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128
