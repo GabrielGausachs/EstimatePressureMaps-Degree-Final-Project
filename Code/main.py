@@ -28,6 +28,7 @@ from Utils.config import (
     DO_TEST,
     EVALUATION,
     LAST_RUN_WANDB,
+    EXPERTYPE,
     )
 
 from Models import (
@@ -73,6 +74,7 @@ if __name__ == "__main__":
                         "criterion": CRITERION,
                         "learning_rate": LEARNING_RATE,
                         "epochs": EPOCHS,
+                        "experiment_type": EXPERTYPE,
                 },
                 save_code=False
             )
