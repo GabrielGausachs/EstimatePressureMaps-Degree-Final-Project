@@ -40,6 +40,7 @@ class CustomDataloader:
         """Prepare dataloaders for training and testing"""
 
         # Data transformation if needed
+        # Do I normalize?
         transform = {
             'input': transforms.Compose([
                     transforms.ToPILImage(),
