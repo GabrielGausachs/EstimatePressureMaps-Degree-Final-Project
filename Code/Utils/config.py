@@ -6,27 +6,27 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNet-first_mv"
+EXECUTION_NAME = "Prova-pwrswtl-error"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss"
+CRITERION = "PWRSWtL"
 EXPERTYPE = 'only-np-no-normalization'
-WANDB = True
+WANDB = False
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = False
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
-EVALUATION = True
+EVALUATION = False
 
 # Paths -----------------------------------
 
-PATH_DATASET = 'Server'
+PATH_DATASET = 'Local'
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))),'mnt/DADES2/SLP/SLP/danaLab')
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")

@@ -40,6 +40,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
         optimizer.step()
 
         total_loss += train_loss.item()
+        print('loss:',train_loss.item())
 
         # Free memory in each iteration
         del input_images
