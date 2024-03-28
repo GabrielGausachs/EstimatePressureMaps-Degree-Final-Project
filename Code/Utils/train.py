@@ -6,7 +6,6 @@ import gc
 
 from Utils.config import (
     DEVICE,
-    WANDB,
 )
 
 logger = get_logger()

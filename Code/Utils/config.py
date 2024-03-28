@@ -6,19 +6,18 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "SimpleNet-first"
+EXECUTION_NAME = "UNet-first_mv"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
-DATASET = "Local-SLP"
-EXPERTYPE = 'only-np-no-normalization'
+EXPERTYPE = 'only-np-no-normalization-lambda-10'
 WANDB = True
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = False
 SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
@@ -40,8 +39,8 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 2
-LEARNING_RATE = 1e-3
+EPOCHS = 15
+LEARNING_RATE = 0.0003
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
 
