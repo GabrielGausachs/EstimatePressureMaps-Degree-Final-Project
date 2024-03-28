@@ -1,0 +1,252 @@
+{
+    "os": "Linux-5.4.0-174-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2024-03-28T09:46:55.567537",
+    "startedAt": "2024-03-28T09:46:54.128663",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "main.py",
+    "codePathLocal": "main.py",
+    "codePath": "Code/main.py",
+    "git": {
+        "remote": "https://github.com/GabrielGausachs/TFG.git",
+        "commit": "25c59e368bfe4393d4ea6fc78197be0a0cda55f8"
+    },
+    "email": "g4a4b4r4i@gmail.com",
+    "root": "/home/ggausachs/TFG",
+    "host": "compu2",
+    "username": "ggausachs",
+    "executable": "/mnt/DADES/ggausachs/ggausachs_env_tfg/bin/python3",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1006.3676999999998,
+        "min": 1000.0,
+        "max": 3200.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1000.155,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1004.433,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.139,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.217,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.307,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.192,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.575,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.307,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.052,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.214,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.826,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.186,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.272,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.504,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.484,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.326,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.821,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.111,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.072,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.125,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.676,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1046.775,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.108,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.652,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.114,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.443,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.057,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.031,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1002.448,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.075,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.468,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.101,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.177,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.136,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.095,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.25,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.631,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.257,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.266,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.728,
+            "min": 1000.0,
+            "max": 3200.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 456.8854446411133,
+            "used": 294.11766052246094
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 93.05094528198242
+    }
+}
