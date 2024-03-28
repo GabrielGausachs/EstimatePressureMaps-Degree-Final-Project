@@ -9,8 +9,8 @@ import torch
 EXECUTION_NAME = "UNet-first_mv"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
-CRITERION = "PWRSWtL"
-EXPERTYPE = 'only-np-no-normalization-lambda-10'
+CRITERION = "MSELoss"
+EXPERTYPE = 'only-np-no-normalization'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -39,7 +39,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 15
+EPOCHS = 2
 LEARNING_RATE = 0.0003
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
