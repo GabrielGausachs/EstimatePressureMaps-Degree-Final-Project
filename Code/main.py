@@ -74,7 +74,8 @@ if __name__ == "__main__":
                         "epochs": EPOCHS,
                         "experiment_type": EXPERTYPE,
                 },
-                save_code=False
+                save_code=False,
+                dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),"wandb")
             )
             logger.info("-" * 50)
             logger.info("Wandb correctly initialized")
