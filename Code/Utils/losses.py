@@ -3,6 +3,7 @@ import torch.nn as nn
 
 from Utils.config import (
     EVALUATION,
+    DEVICE,
 )
 
 class PWRSWtL(nn.Module):
@@ -31,7 +32,7 @@ class PWRSWtL(nn.Module):
             tensor_size = (1,192,84)
 
         # Create mask tensor with zeros
-        mask_tensor = torch.zeros(tensor_size)
+        mask_tensor = torch.zeros(tensor_size,device = DEVICE)
 
         # Fill mask tensor with pixel-wise probabilities
         for pixel_value, probability in pixel_probabilities.items():
