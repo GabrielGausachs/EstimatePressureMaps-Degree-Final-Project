@@ -26,15 +26,18 @@ def evaluation(model,criterion,val_loader):
         for input_img, target_img in val_loader:
             break
 
+        input_img = input_img.to(DEVICE)
+        target_img = target_img.to(DEVICE)
+
         output_img = model(input_img)
         loss = criterion(output_img[0], target_img[0])
 
         fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 
-        axes[0].imshow(target_img[0].squeeze().numpy())
+        axes[0].imshow(target_img[0].squeeze().cpu().numpy())
         axes[0].set_title('Target Image')
 
-        axes[1].imshow(output_img[0].squeeze().numpy())
+        axes[1].imshow(output_img[0].squeeze().cpu().numpy())
         axes[1].set_title('Output Image')
 
         fig.suptitle('Comparison of Target and Output Images', fontsize=12)
