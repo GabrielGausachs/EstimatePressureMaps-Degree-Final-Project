@@ -204,7 +204,7 @@ class CustomDataloader:
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
-        #check_transform(train_loader)
+        check_transform(train_loader)
             
         
         return train_loader, val_loader
@@ -219,8 +219,8 @@ def check_transform(train_loader):
     for i in range(5):
         batch = next(iter(train_loader))
     
-        input_img = batch[0][0].squeeze().numpy() 
-        target_img = batch[1][0].squeeze().numpy()
+        input_img = batch[0][0].squeeze().cpu().numpy() 
+        target_img = batch[1][0].squeeze().cpu().numpy()
 
         plt.figure(figsize=(10, 5))
             

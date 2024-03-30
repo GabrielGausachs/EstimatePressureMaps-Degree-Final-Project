@@ -47,7 +47,7 @@ optimizers = {
 # Criterion
 criterion = {
     "MSELoss": torch.nn.MSELoss(reduction = 'mean'),
-    "PWRSWtL": losses.PWRSWtL(10)
+    "PWRSWtL": losses.PWRSWtL(1)
 }
 
 
