@@ -52,7 +52,7 @@ class CustomDataloader:
 
 
         logger.info("-" * 50)
-        logger.info('Reading the data...')
+        logger.info(f'Reading the data from {self.path_arrays}...')
 
         # Get the data
 
@@ -216,11 +216,11 @@ def crop_array(array):
         return crop(array,7, 29, 140, 66)
 
 def check_transform(train_loader):
-    for i in range(5):
+    for i in range(1):
         batch = next(iter(train_loader))
     
-        input_img = batch[0][0].squeeze().cpu().numpy() 
-        target_img = batch[1][0].squeeze().cpu().numpy()
+        input_img = batch[0][0].squeeze().numpy() 
+        target_img = batch[1][0].squeeze().numpy()
 
         plt.figure(figsize=(10, 5))
             
@@ -234,6 +234,8 @@ def check_transform(train_loader):
         plt.title('Imagen objetivo')
         plt.axis('off')
 
+        plt.savefig(os.path.join(IMG_PATH, 'compare_transforms_Local.png'))
+            
         plt.show()
 
 
