@@ -219,8 +219,8 @@ def check_transform(train_loader):
     for i in range(1):
         batch = next(iter(train_loader))
     
-        input_img = batch[0][0].squeeze().numpy() 
-        target_img = batch[1][0].squeeze().numpy()
+        input_img = batch[0][0].squeeze().cpu().numpy() 
+        target_img = batch[1][0].squeeze().cpu().numpy()
 
         plt.figure(figsize=(10, 5))
             
@@ -234,7 +234,7 @@ def check_transform(train_loader):
         plt.title('Imagen objetivo')
         plt.axis('off')
 
-        plt.savefig(os.path.join(IMG_PATH, 'compare_transforms_Local.png'))
+        plt.savefig(os.path.join(IMG_PATH, 'compare_transforms_Server.png'))
             
         plt.show()
 
