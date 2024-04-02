@@ -20,6 +20,8 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
         patient_path = os.path.join(
             'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)
         cal_indiv = np.load(os.path.join(patient_path, 'PMcali.npy'))
+        if i==0:
+            print(cal_indiv.shape)
         if os.path.isdir(patient_path):
             pm_np_path = os.path.join(patient_path, 'PMarray')
             n = 0
@@ -59,3 +61,4 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
         m = massa_total / n
         print('meaan diference:', dic[patient])
         print('mean weight:', m)
+        print('difference between real weight and mean weight:',abs(mass[i]-m))
