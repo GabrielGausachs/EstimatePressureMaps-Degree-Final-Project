@@ -2,6 +2,7 @@ import numpy as np
 import os
 import pandas as pd
 from matplotlib import pyplot as plt 
+import matplotlib; print(matplotlib.__version__)
 
 """
 for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab'))[:3]:
@@ -24,60 +25,15 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
 import numpy as np
 from scipy.signal import convolve2d
-"""
-class ImageROISelector:
-    def __init__(self, image):
-        self.image = image
-        self.fig, self.ax = plt.subplots()
-        self.ax.imshow(self.image, cmap='gray')
-        self.roi = None
-        self.rect = None
-        self.selected = False
 
-        self.fig.canvas.mpl_connect('button_press_event', self.on_press)
-        self.fig.canvas.mpl_connect('button_release_event', self.on_release)
-
-    def on_press(self, event):
-        if event.button == 1:
-            self.selected = False
-            self.roi = None
-            if self.rect:
-                self.rect.remove()
-            self.rect = plt.Rectangle((event.xdata, event.ydata), 1, 1, edgecolor='r', facecolor='none')
-            self.ax.add_patch(self.rect)
-            self.fig.canvas.draw()
-
-    def on_release(self, event):
-        if event.button == 1:
-            self.selected = True
-            x0, y0 = self.rect.xy
-            x1 = event.xdata
-            y1 = event.ydata
-            self.roi = (int(y0), int(y1), int(x0), int(x1))
-            print("Selected ROI:", self.roi)
-            self.rect.remove()
-            self.fig.canvas.draw()
-
-    def get_roi(self):
-        return self.roi
-"""
-array = np.load('/mnt/DADES2/SLP/SLP/danaLab/00001/PMarray/uncover/000017.npy')
-
+#array = np.load('/mnt/DADES2/SLP/SLP/danaLab/00001/PMarray/uncover/000017.npy')
+pm = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/uncover/000017.npy')
 row_start, row_end = 25, 51
 col_start, col_end = 50, 72
 
 # Crop the array
-array = array[row_start:row_end, col_start:col_end]
+array = pm[row_start:row_end, col_start:col_end]
 print(array.shape)
-
-# Display the image and select a region of interest
-#roi_selector = ImageROISelector(array)
-#plt.show()
-
-# Once you've selected the ROI, you can retrieve it using:
-#selected_roi = roi_selector.get_roi()
-#print("Selected ROI:", selected_roi)
-
 kernel = [[1,1,1],  # define points to pick around the target
           [1,0,1],
           [1,1,1]]
@@ -117,5 +73,8 @@ indices = np.argwhere(mask)
 for indice in indices:
     print(f"Índice: {tuple(indice)}, Valor: {array[tuple(indice)]}")
 
-plt.imshow(array, cmap='gray')
+plt.imshow(pm, cmap='gray')
+#plt.plot(p[0][1], p[0][0], 'ro')  # Mark the point with maximum difference
+#for indice in indices:
+#    plt.plot(indice[1], indice[0], 'bo')  # Mark the neighborhood
 plt.show()
