@@ -125,10 +125,12 @@ class CustomDataloader:
 
         arr = np.load(patient_np)
         logger.info(f'Shape of the IR numpy array: {arr.shape}')
+        logger.info(f'Max value of IR array: {arr.max()}')
 
         patient_np = dic_pm_numpy[random_patient]['cover1'][0]
         arr = np.load(patient_np)
         logger.info(f'Shape of the PM numpy array: {arr.shape}')
+        logger.info(f'Max value of PM array: {arr.max()}')
 
         # Create dataset
         logger.info("-" * 50)
@@ -204,7 +206,7 @@ class CustomDataloader:
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
-        check_transform(train_loader)
+        check_transform(train_loader,self.path_arrays)
             
         
         return train_loader, val_loader
@@ -215,7 +217,7 @@ class CustomDataloader:
 def crop_array(array):
         return crop(array,7, 29, 140, 66)
 
-def check_transform(train_loader):
+def check_transform(train_loader,path_arrays):
     for i in range(1):
         batch = next(iter(train_loader))
     
@@ -234,7 +236,7 @@ def check_transform(train_loader):
         plt.title('Imagen objetivo')
         plt.axis('off')
 
-        plt.savefig(os.path.join(IMG_PATH, 'compare_transforms_Server.png'))
+        plt.savefig(os.path.join(IMG_PATH, f'compare_transforms_{path_arrays}.png'))
             
         plt.show()
 

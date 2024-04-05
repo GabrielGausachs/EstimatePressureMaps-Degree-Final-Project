@@ -34,7 +34,7 @@ from Models import (
     Simple_net
 )
 
-#os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
 models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net}
