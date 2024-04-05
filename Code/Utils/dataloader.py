@@ -148,7 +148,7 @@ class CustomDataloader:
                 assert category_name_ir == category_name_pm 
 
                 indexs = list(range(len(arrays_ir)))
-                random.shuffle(indexs)
+                #random.shuffle(indexs)
 
 
                 for i in indexs[:int(len(indexs) * 0.8)]:
@@ -206,7 +206,7 @@ class CustomDataloader:
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
 
-        check_transform(train_loader,self.path_arrays)
+        check_transform(val_loader,self.path_arrays)
             
         
         return train_loader, val_loader
