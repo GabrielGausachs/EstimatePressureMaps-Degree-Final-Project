@@ -147,7 +147,7 @@ class CustomDataloader:
                 assert category_name_ir == category_name_pm 
 
                 indexs = list(range(len(arrays_ir)))
-                #random.shuffle(indexs)
+                random.shuffle(indexs)
 
 
                 for i in indexs[:int(len(indexs) * 0.8)]:
@@ -216,9 +216,9 @@ class CustomDataloader:
 def crop_array(array):
         return crop(array,7, 29, 140, 66)
 
-def check_transform(train_loader,path_arrays):
+def check_transform(val_loader,path_arrays):
     for i in range(1):
-        batch = next(iter(train_loader))
+        batch = next(iter(val_loader))
     
         input_img = batch[0][0].squeeze().cpu().numpy() 
         target_img = batch[1][0].squeeze().cpu().numpy()
@@ -227,12 +227,12 @@ def check_transform(train_loader,path_arrays):
             
         plt.subplot(1, 2, 1)
         plt.imshow(input_img)
-        plt.title('Imagen de entrada')
+        plt.title('Input image')
         plt.axis('off')
 
         plt.subplot(1, 2, 2)
         plt.imshow(target_img)
-        plt.title('Imagen objetivo')
+        plt.title('Target image')
         plt.axis('off')
 
         plt.savefig(os.path.join(IMG_PATH, f'compare_transforms_{path_arrays}.png'))
