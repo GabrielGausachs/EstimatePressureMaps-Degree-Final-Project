@@ -43,12 +43,11 @@ class CustomDataloader:
         # Do I normalize?
         transform = {
             'input': transforms.Compose([
-                    transforms.ToPILImage(),
+                    transforms.ToTensor(),
                     transforms.Lambda(crop_array),  
-                    transforms.Resize((192, 84)),  
-                    transforms.ToTensor()]),
-            'output': transforms.Compose([transforms.ToPILImage(),
-                    transforms.ToTensor()])}
+                    transforms.Resize((192, 84))
+                    ]),
+            'output': transforms.Compose([transforms.ToTensor()])}
 
 
         logger.info("-" * 50)
