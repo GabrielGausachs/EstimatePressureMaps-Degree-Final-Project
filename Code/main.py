@@ -31,13 +31,14 @@ from Utils.config import (
 
 from Models import (
     UNet,
-    Simple_net
+    Simple_net,
+    UNet_2
 )
 
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
-models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net}
+models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net, "UNet2": UNet_2.UNET_2}
 
 # Optimizers
 optimizers = {
