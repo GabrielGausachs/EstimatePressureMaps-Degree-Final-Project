@@ -6,6 +6,9 @@ import numpy as np
 from scipy.signal import convolve2d
 import random
 
+kernel = [[1,1,1],
+        [1,0,1],
+        [1,1,1]]
 #array = np.load('/mnt/DADES2/SLP/SLP/danaLab/00001/PMarray/uncover/000017.npy')
 for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')[:5])):
     if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)):
@@ -26,9 +29,6 @@ for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t
                     print('shape:',pm.shape)
                     print('max value:',pm.max())
                     print('min value:',pm.min())
-                    kernel = [[1,1,1],
-                            [1,0,1],
-                            [1,1,1]]
 
                     diff_global = {}
 
@@ -54,17 +54,15 @@ for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t
                     plt.plot(most_diff[0][1], most_diff[0][0], 'ro', markersize = 5)  # Mark the point with maximum difference
                     plt.show()
                     print('-------------------------------------------')
+
 """
-row_start, row_end = 25, 51
-col_start, col_end = 50, 72
-
-# Crop the array
-array = pm[row_start:row_end, col_start:col_end]
-
-
-
+#array = np.load('/mnt/DADES2/SLP/SLP/danaLab/00001/PMarray/uncover/000017.npy')
+array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/cover1/000039.npy')
 diff_global = {}
 
+kernel = [[1,1,1],
+          [1,0,1],
+          [1,1,1]]
 for index in np.ndindex(array.shape):
     x = index[0]
     y = index[1]
@@ -83,24 +81,8 @@ for index in np.ndindex(array.shape):
 p=max(diff_global.items(), key=lambda x: x[1])
 print(p)
 
-# Definimos el tamaño de la vecindad alrededor del índice central
-tamano_vecindad = 1
+plt.imshow(array, cmap='gray')
+plt.plot(p[0][1], p[0][0], 'ro', markersize = 5)  # Mark the point with maximum difference
 
-# Creamos una máscara booleana para la vecindad
-mask = np.zeros_like(array, dtype=bool)
-mask[max(0, p[0][0] - tamano_vecindad):min(array.shape[0], p[0][0]+ tamano_vecindad + 1),
-     max(0, p[0][1] - tamano_vecindad):min(array.shape[1], p[0][1] + tamano_vecindad + 1)] = True
-
-# Obtenemos los índices de los elementos verdaderos en la máscara
-indices = np.argwhere(mask)
-
-# Iteramos sobre los índices y mostramos los valores correspondientes
-for indice in indices:
-    print(f"Índice: {tuple(indice)}, Valor: {array[tuple(indice)]}")
-
-plt.imshow(pm, cmap='gray')
-#plt.plot(p[0][1], p[0][0], 'ro')  # Mark the point with maximum difference
-#for indice in indices:
-#    plt.plot(indice[1], indice[0], 'bo')  # Mark the neighborhood
 plt.show()
 """
