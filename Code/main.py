@@ -95,7 +95,7 @@ if __name__ == "__main__":
         num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         logger.info(f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
-	logger.info(f"Lambda value: {lambda_value}")
+        logger.info(f"Lambda value: {lambda_value}")
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")
