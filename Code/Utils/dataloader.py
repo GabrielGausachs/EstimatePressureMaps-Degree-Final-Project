@@ -48,8 +48,7 @@ class CustomDataloader:
                     transforms.Resize((192, 84)),
 		    transforms.Normalize(mean=[0.5], std=[0.5]),
                     ]),
-            'output': transforms.Compose([transforms.ToTensor(),
-		    transforms.Normalize(mean=[0.5], std=[0.5])])}
+            'output': transforms.Compose([transforms.ToTensor()])}
 
 
         logger.info("-" * 50)
