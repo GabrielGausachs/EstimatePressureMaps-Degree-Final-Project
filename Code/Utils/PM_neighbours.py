@@ -15,6 +15,7 @@ for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t
         print(f'patient: {i}')
         patient_path = os.path.join(
             'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)
+        cal_indiv = np.load(os.path.join(patient_path, 'PMcali.npy'))
         if os.path.isdir(patient_path):
             pm_np_path = os.path.join(patient_path, 'PMarray')
             for category in os.listdir(pm_np_path):
@@ -22,11 +23,29 @@ for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t
                 if os.path.isdir(category_path):
                     num_files = len(os.listdir(category_path))
                     random_index = random.randint(0, num_files - 1)
+                    print(random_index)
                     random_file = os.listdir(category_path)[random_index]
                     print('path of the file:', os.path.join(category_path,random_file))
                     pm = np.load(os.path.join(category_path, random_file))
 
+                    values = cal_indiv[:, random_index]
+                    if category == 'cover1':
+                        pressure = pm * values[1]
+
+                    elif category == 'cover2':
+                        pressure = pm * values[2]
+
+                    elif category == 'uncover':
+                        pressure = pm * values[0]
+
+                    else:
+                        print(category, 'is not a category')
+                    
+                    #pm = pressure
                     print('shape:',pm.shape)
+                    area_m = 1.03226 / 10000
+                    massa = area_m * (np.sum(pressure)*1000) / 9.81
+                    print('mass:',massa)
                     print('max value:',pm.max())
                     print('min value:',pm.min())
 
