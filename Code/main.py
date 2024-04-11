@@ -14,7 +14,6 @@ import torch
 from matplotlib import pyplot as plt 
 import cv2
 import os
-import pynvml
 
 from Utils.config import (
     WANDB,

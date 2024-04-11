@@ -19,7 +19,7 @@ class CustomDataset(Dataset):
         self.cali_values = cali_values
         
         if p_data is not None:
-            self.p_data = p_data.iloc[:, 1:]
+            self.p_data = p_data
         else:
             self.p_data = None
     
@@ -43,7 +43,7 @@ class CustomDataset(Dataset):
             input_array = self.transform['input'](input_array)
             output_array = self.transform['output'](output_array)
 
-        if self.p_data != None:
+        if not self.p_data.empty:
             p_vector = self.p_data[index]
             return input_array, p_vector, output_array
         else:

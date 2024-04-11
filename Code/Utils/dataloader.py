@@ -139,10 +139,12 @@ class CustomDataloader:
 
             p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
             p_data['gender'] = p_data['gender'].str.strip()
-
             p_data = pd.get_dummies(p_data, columns=['gender'])
+            p_data = p_data.drop('sub_idx',axis=1)
+            p_data['gender_male'] = p_data['gender_male'].astype(int)
+            p_data['gender_female'] = p_data['gender_female'].astype(int)
 
-            logger.info(f'Size of the physical dataset: {p_data.size}')
+            logger.info(f'Size of the physical dataset: {p_data.shape}')
         
         random_patient = random.choice(list(dic_ir_numpy.keys()))
         patient_np = dic_ir_numpy[random_patient]['cover1'][0]
@@ -165,7 +167,10 @@ class CustomDataloader:
         train_arrays = {'ir': [], 'pm': [], 'cali': []}
         val_arrays = {'ir': [], 'pm': [], 'cali': []}
 
-        for ((patient_ir, category_ir), (patient_pm, category_pm), (patient_cali, category_cali)) in zip(dic_ir_numpy.items(), dic_pm_numpy.items(), dic_cali.items()):
+        train_dt = pd.DataFrame(columns = p_data.columns)
+        val_dt = pd.DataFrame(columns = p_data.columns)
+
+        for p, ((patient_ir, category_ir), (patient_pm, category_pm), (patient_cali, category_cali)) in enumerate(zip(dic_ir_numpy.items(), dic_pm_numpy.items(), dic_cali.items())):
             assert patient_ir == patient_pm == patient_cali
 
             for ((category_name_ir, arrays_ir), (category_name_pm, arrays_pm), (category_name_cali, arrays_cali)) in zip(category_ir.items(), category_pm.items(), category_cali.items()):
@@ -174,24 +179,26 @@ class CustomDataloader:
                 indexs = list(range(len(arrays_ir)))
                 random.shuffle(indexs)
 
-
+                # haig d'agafar la fila del pacient. Ara estic agafant files aleatories per cada pcient.
                 for i in indexs[:int(len(indexs) * 0.8)]:
                     train_arrays['ir'].append(arrays_ir[i])
                     train_arrays['pm'].append(arrays_pm[i])
                     train_arrays['cali'].append(arrays_cali[i])
-                if p_data is not None:
-                    train_dt = p_data.iloc[indexs[:int(len(indexs) * 0.8)]]
-                else:
-                    train_dt = None
+                    if p_data is not None:
+                        patient_row = p_data.iloc[[p]]
+                        train_dt = pd.concat([train_dt,patient_row], ignore_index=True)
+                    else:
+                        train_dt = None
 
                 for i in indexs[int(len(indexs)*0.8):]:
                     val_arrays['ir'].append(arrays_ir[i])
                     val_arrays['pm'].append(arrays_pm[i])
                     val_arrays['cali'].append(arrays_cali[i])
-                if p_data is not None:
-                    val_dt = p_data.iloc[indexs[int(len(indexs) * 0.8):]]
-                else:
-                    val_dt = None
+                    if p_data is not None:
+                        patient_row = p_data.iloc[[p]]
+                        val_dt = pd.concat([val_dt,patient_row],ignore_index=True)
+                    else:
+                        val_dt = None
 
         train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], train_dt, transform=transform)
 
@@ -227,10 +234,12 @@ class CustomDataloader:
 
         logger.info(f"Train loader info: {train_dataset_info}")
         logger.info(f"Array input size of the train loader: {next(iter(train_loader))[0].shape}")
-        logger.info(f"Array output size of the train loader: {next(iter(train_loader))[1].shape}")
+        logger.info(f"Row size of the train loader:{next(iter(train_loader))[1].shape}")
+        logger.info(f"Array output size of the train loader: {next(iter(train_loader))[2].shape}")
         logger.info(f"Val loader info: {val_dataset_info}")
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
-        logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
+        logger.info(f"Row size of the val loader:{next(iter(val_loader))[1].shape}")
+        logger.info(f"Array output size of the val loader: {next(iter(val_loader))[2].shape}")
 
         check_transform(val_loader,self.path_arrays)
             
