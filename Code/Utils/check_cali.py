@@ -6,7 +6,6 @@ from matplotlib import pyplot as plt
 
 for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')):
     if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)):
-        print(f'patient: {i}')
 
         patient_path = os.path.join(
             'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)
@@ -20,7 +19,7 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 if os.path.isdir(category_path):
                     for p, file in enumerate(os.listdir(category_path)):
                         array = np.load(os.path.join(category_path, file))
-                        if patient== '00001' and category=='cover1' and file=='000002.npy':
+                        if patient== '00005' and category=='cover1' and file=='000011.npy':
                             print(cal_indiv[:,p][1])
                         #if n == 1:
                         #    img = np.array(array, dtype=np.uint8)

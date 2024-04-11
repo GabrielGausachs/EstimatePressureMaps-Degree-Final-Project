@@ -171,8 +171,6 @@ class CustomDataloader:
             for ((category_name_ir, arrays_ir), (category_name_pm, arrays_pm), (category_name_cali, arrays_cali)) in zip(category_ir.items(), category_pm.items(), category_cali.items()):
                 assert category_name_ir == category_name_pm == category_name_cali
 
-                #jugar per aqui per confirmar q tot es faci bé
-
                 indexs = list(range(len(arrays_ir)))
                 random.shuffle(indexs)
 
