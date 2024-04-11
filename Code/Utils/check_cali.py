@@ -20,6 +20,8 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 if os.path.isdir(category_path):
                     for p, file in enumerate(os.listdir(category_path)):
                         array = np.load(os.path.join(category_path, file))
+                        if patient== '00001' and category=='cover1' and file=='000002.npy':
+                            print(cal_indiv[:,p][1])
                         #if n == 1:
                         #    img = np.array(array, dtype=np.uint8)
                         #    cv2.imshow(f"Image", img)
@@ -35,7 +37,7 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                         elif category == 'uncover':
                             pressure = array * values[0]
-                        
+                        """
                         fig, axs = plt.subplots(1, 2)
 
                         # Plot the array from file_ir
@@ -48,7 +50,7 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                         # Show the plot
                         plt.show()
-
-                        break
-                break
-    break
+                        """
+                        #break
+                #break
+    #break

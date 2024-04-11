@@ -11,10 +11,11 @@ class CustomDataset(Dataset):
     # - IR arrays
     # - PR arrays
     # Physical data (if provided)
-    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
+    def __init__(self, ir_paths, pm_paths, cali_values, p_data, transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
+        self.cali_values = cali_values
         
         if p_data is not None:
             self.p_data = p_data.iloc[:, 1:]
@@ -35,6 +36,7 @@ class CustomDataset(Dataset):
         output_array = self.load_array(output_path)
         input_array = input_array.astype(np.float32)
         output_array = output_array.astype(np.float32)
+        output_array = output_array * self.cali_values[index]
 
         if self.transform:
             input_array = self.transform['input'](input_array)
