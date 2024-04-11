@@ -2,6 +2,7 @@
 from torch.utils.data import Dataset
 from Utils.logger import initialize_logger,get_logger
 import numpy as np
+import torch
 
 
 logger = get_logger()
@@ -43,9 +44,12 @@ class CustomDataset(Dataset):
             input_array = self.transform['input'](input_array)
             output_array = self.transform['output'](output_array)
 
-        if not self.p_data.empty:
-            p_vector = self.p_data[index]
-            return input_array, p_vector, output_array
+        if self.p_data is not None:
+            parts = str(output_path.split("\\")[-4])
+            number = int(parts)
+            p_vector = self.p_data.iloc[number-1]
+            tensor_data = torch.tensor(p_vector.values)
+            return input_array, output_array, tensor_data
         else:
             return input_array, output_array
 

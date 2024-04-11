@@ -161,8 +161,6 @@ class CustomDataloader:
         # Create dataset
         logger.info("-" * 50)
         logger.info('Creating dataset...')
-
-        # We try to get train and val images of each category of each patient.
             
         train_arrays = {'ir': [], 'pm': [], 'cali': []}
         val_arrays = {'ir': [], 'pm': [], 'cali': []}
@@ -170,39 +168,37 @@ class CustomDataloader:
         train_dt = pd.DataFrame(columns = p_data.columns)
         val_dt = pd.DataFrame(columns = p_data.columns)
 
-        for p, ((patient_ir, category_ir), (patient_pm, category_pm), (patient_cali, category_cali)) in enumerate(zip(dic_ir_numpy.items(), dic_pm_numpy.items(), dic_cali.items())):
-            assert patient_ir == patient_pm == patient_cali
+        # Partition by patients
 
-            for ((category_name_ir, arrays_ir), (category_name_pm, arrays_pm), (category_name_cali, arrays_cali)) in zip(category_ir.items(), category_pm.items(), category_cali.items()):
-                assert category_name_ir == category_name_pm == category_name_cali
+        keys = list(dic_pm_numpy.keys())
+        random.shuffle(keys)
 
-                indexs = list(range(len(arrays_ir)))
-                random.shuffle(indexs)
+        split_index = int(0.8 * len(keys))
 
-                # haig d'agafar la fila del pacient. Ara estic agafant files aleatories per cada pcient.
-                for i in indexs[:int(len(indexs) * 0.8)]:
-                    train_arrays['ir'].append(arrays_ir[i])
-                    train_arrays['pm'].append(arrays_pm[i])
-                    train_arrays['cali'].append(arrays_cali[i])
-                    if p_data is not None:
-                        patient_row = p_data.iloc[[p]]
-                        train_dt = pd.concat([train_dt,patient_row], ignore_index=True)
-                    else:
-                        train_dt = None
+        train_keys = keys[:split_index]
+        val_keys = keys[split_index:]
 
-                for i in indexs[int(len(indexs)*0.8):]:
-                    val_arrays['ir'].append(arrays_ir[i])
-                    val_arrays['pm'].append(arrays_pm[i])
-                    val_arrays['cali'].append(arrays_cali[i])
-                    if p_data is not None:
-                        patient_row = p_data.iloc[[p]]
-                        val_dt = pd.concat([val_dt,patient_row],ignore_index=True)
-                    else:
-                        val_dt = None
+        for t_key in train_keys:
+            pm_dic = dic_pm_numpy[t_key]
+            ir_dic = dic_ir_numpy[t_key]
+            cali_dic = dic_cali[t_key]
+            for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
+                train_arrays['cali'].extend(cali_value)
+                train_arrays['pm'].extend(pm_value)
+                train_arrays['ir'].extend(ir_value)
+    
+        for v_key in val_keys:
+            pm_dic = dic_pm_numpy[v_key]
+            ir_dic = dic_ir_numpy[v_key]
+            cali_dic = dic_cali[v_key]
+            for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
+                val_arrays['cali'].extend(cali_value)
+                val_arrays['pm'].extend(pm_value)
+                val_arrays['ir'].extend(ir_value)
 
-        train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], train_dt, transform=transform)
+        train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], p_data, transform=transform)
 
-        val_dataset = CustomDataset(val_arrays['ir'], val_arrays['pm'], val_arrays['cali'], val_dt, transform=transform)
+        val_dataset = CustomDataset(val_arrays['ir'], val_arrays['pm'], val_arrays['cali'], p_data, transform=transform)
         
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
@@ -234,12 +230,14 @@ class CustomDataloader:
 
         logger.info(f"Train loader info: {train_dataset_info}")
         logger.info(f"Array input size of the train loader: {next(iter(train_loader))[0].shape}")
-        logger.info(f"Row size of the train loader:{next(iter(train_loader))[1].shape}")
-        logger.info(f"Array output size of the train loader: {next(iter(train_loader))[2].shape}")
+        logger.info(f"Array output size of the train loader: {next(iter(train_loader))[1].shape}")
+        if USE_PHYSICAL_DATA:
+            logger.info(f"Size of the data of train loader:{next(iter(train_loader))[2].shape}")
         logger.info(f"Val loader info: {val_dataset_info}")
         logger.info(f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
-        logger.info(f"Row size of the val loader:{next(iter(val_loader))[1].shape}")
-        logger.info(f"Array output size of the val loader: {next(iter(val_loader))[2].shape}")
+        logger.info(f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
+        if USE_PHYSICAL_DATA:
+            logger.info(f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
         check_transform(val_loader,self.path_arrays)
             

@@ -19,8 +19,8 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 if os.path.isdir(category_path):
                     for p, file in enumerate(os.listdir(category_path)):
                         array = np.load(os.path.join(category_path, file))
-                        if patient== '00005' and category=='cover1' and file=='000011.npy':
-                            print(cal_indiv[:,p][1])
+                        if patient== '00070' and category=='cover2' and file=='000043.npy':
+                            print(cal_indiv[:,p][2])
                         #if n == 1:
                         #    img = np.array(array, dtype=np.uint8)
                         #    cv2.imshow(f"Image", img)
