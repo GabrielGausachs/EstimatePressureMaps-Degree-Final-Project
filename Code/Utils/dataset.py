@@ -10,6 +10,7 @@ class CustomDataset(Dataset):
     # Includes:
     # - IR arrays
     # - PR arrays
+    # - Calibration values
     # Physical data (if provided)
     def __init__(self, ir_paths, pm_paths, cali_values, p_data, transform=None):
 

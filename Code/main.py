@@ -14,6 +14,7 @@ import torch
 from matplotlib import pyplot as plt 
 import cv2
 import os
+import pynvml
 
 from Utils.config import (
     WANDB,
@@ -35,7 +36,7 @@ from Models import (
     UNet_2
 )
 
-os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+#os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
 models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net, "UNet2": UNet_2.UNET_2}
@@ -45,7 +46,7 @@ optimizers = {
     "Adam": torch.optim.Adam,
 }
 
-lambda_value = 100
+lambda_value = 10
 # Criterion
 criterion = {
     "MSELoss": torch.nn.MSELoss(reduction = 'mean'),
@@ -54,6 +55,15 @@ criterion = {
 
 
 if __name__ == "__main__":
+
+    #pynvml.nvmlInit()
+    #device_count = pynvml.nvmlDeviceGetCount()
+
+    #for i in range(device_count):
+    #	handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+    #	info = pynvml.nvmlDeviceGetUtilizationRates(handle)
+    #	print(f"GPU {i}: Utilization = {info.gpu}%")
+
     # Initialize logger
     logger.initialize_logger()
     logger = logger.get_logger()
