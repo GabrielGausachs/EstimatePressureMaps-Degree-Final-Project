@@ -1,0 +1,24 @@
+2024-04-11 10:49:40,741 - root - INFO -> Logger initialized in filename 2024-04-11-10-49-40
+2024-04-11 10:49:40,741 - root - INFO -> --------------------------------------------------
+2024-04-11 10:49:40,742 - root - INFO -> Reading the data from Local...
+2024-04-11 10:49:41,026 - root - INFO -> Number of pacients: 102
+2024-04-11 10:49:41,026 - root - INFO -> Number of categories in a patient: 3
+2024-04-11 10:49:41,026 - root - INFO -> Calibration diccionary num of pacients: 102
+2024-04-11 10:49:41,026 - root - INFO -> Number of values in a category for a patient: 45
+2024-04-11 10:49:41,037 - root - INFO -> Shape of the IR numpy array: (160, 120)
+2024-04-11 10:49:41,038 - root - INFO -> Max value of IR array: 30757
+2024-04-11 10:49:41,038 - root - INFO -> Shape of the PM numpy array: (192, 84)
+2024-04-11 10:49:41,038 - root - INFO -> Max value of PM array: 99.0
+2024-04-11 10:49:41,038 - root - INFO -> --------------------------------------------------
+2024-04-11 10:49:41,038 - root - INFO -> Creating dataset...
+2024-04-11 10:49:41,050 - root - INFO -> Train size: 11016
+2024-04-11 10:49:41,051 - root - INFO -> Val size: 2754
+2024-04-11 10:49:41,051 - root - INFO -> --------------------------------------------------
+2024-04-11 10:49:41,051 - root - INFO -> Creating dataloaders...
+2024-04-11 10:49:41,051 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
+2024-04-11 10:49:41,516 - root - INFO -> Array input size of the train loader: torch.Size([128, 1, 192, 84])
+2024-04-11 10:49:41,891 - root - INFO -> Array output size of the train loader: torch.Size([128, 1, 192, 84])
+2024-04-11 10:49:41,891 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 128, 'Number of batches': 21}
+2024-04-11 10:49:42,274 - root - INFO -> Array input size of the val loader: torch.Size([128, 1, 192, 84])
+2024-04-11 10:49:42,510 - root - INFO -> Array output size of the val loader: torch.Size([128, 1, 192, 84])
+2024-04-11 10:49:52,631 - root - INFO -> --------------------------------------------------
