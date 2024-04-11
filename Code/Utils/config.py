@@ -23,6 +23,7 @@ SHOW_IMAGES = False
 SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = True
 EVALUATION = False
+PARTITION = 1 # (0 - Random, 1- Patients)
 
 # Paths -----------------------------------
 

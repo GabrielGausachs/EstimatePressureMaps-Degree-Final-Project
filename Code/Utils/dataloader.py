@@ -22,6 +22,7 @@ from Utils.config import (
     SHOW_HISTOGRAM,
     IMG_PATH,
     PATH_DATASET,
+    PARTITION,
 )
 
 #initialize_logger()
@@ -165,36 +166,48 @@ class CustomDataloader:
         train_arrays = {'ir': [], 'pm': [], 'cali': []}
         val_arrays = {'ir': [], 'pm': [], 'cali': []}
 
-        train_dt = pd.DataFrame(columns = p_data.columns)
-        val_dt = pd.DataFrame(columns = p_data.columns)
-
         # Partition by patients
+        if PARTITION == 1:
+            logger.info('Partition --> Patients')
+            keys = list(dic_pm_numpy.keys())
+            random.shuffle(keys)
 
-        keys = list(dic_pm_numpy.keys())
-        random.shuffle(keys)
+            split_index = int(0.8 * len(keys))
 
-        split_index = int(0.8 * len(keys))
+            train_keys = keys[:split_index]
+            val_keys = keys[split_index:]
 
-        train_keys = keys[:split_index]
-        val_keys = keys[split_index:]
+            for t_key in train_keys:
+                pm_dic = dic_pm_numpy[t_key]
+                ir_dic = dic_ir_numpy[t_key]
+                cali_dic = dic_cali[t_key]
+                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
+                    train_arrays['cali'].extend(cali_value)
+                    train_arrays['pm'].extend(pm_value)
+                    train_arrays['ir'].extend(ir_value)
+        
+            for v_key in val_keys:
+                pm_dic = dic_pm_numpy[v_key]
+                ir_dic = dic_ir_numpy[v_key]
+                cali_dic = dic_cali[v_key]
+                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
+                    val_arrays['cali'].extend(cali_value)
+                    val_arrays['pm'].extend(pm_value)
+                    val_arrays['ir'].extend(ir_value)
+        elif PARTITION == 0:
 
-        for t_key in train_keys:
-            pm_dic = dic_pm_numpy[t_key]
-            ir_dic = dic_ir_numpy[t_key]
-            cali_dic = dic_cali[t_key]
-            for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
-                train_arrays['cali'].extend(cali_value)
-                train_arrays['pm'].extend(pm_value)
-                train_arrays['ir'].extend(ir_value)
-    
-        for v_key in val_keys:
-            pm_dic = dic_pm_numpy[v_key]
-            ir_dic = dic_ir_numpy[v_key]
-            cali_dic = dic_cali[v_key]
-            for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
-                val_arrays['cali'].extend(cali_value)
-                val_arrays['pm'].extend(pm_value)
-                val_arrays['ir'].extend(ir_value)
+            logger.info('Partition --> Random')
+            for key in dic_pm_numpy.keys():
+                for category in dic_pm_numpy[key].keys():
+                    indexes = list(range(len(dic_pm_numpy[key][category])))
+                    random.shuffle(indexes)
+                    split_index = int(0.8 * len(indexes))
+                    train_arrays['pm'].extend(dic_pm_numpy[key][category][:split_index])
+                    train_arrays['ir'].extend(dic_ir_numpy[key][category][:split_index])
+                    train_arrays['cali'].extend(dic_cali[key][category][:split_index])
+                    val_arrays['pm'].extend(dic_pm_numpy[key][category][split_index:])
+                    val_arrays['ir'].extend(dic_ir_numpy[key][category][split_index:])
+                    val_arrays['cali'].extend(dic_cali[key][category][split_index:])
 
         train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], p_data, transform=transform)
 

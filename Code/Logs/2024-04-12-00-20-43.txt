@@ -1,0 +1,20 @@
+2024-04-12 00:20:46,792 - root - INFO -> Logger initialized in filename 2024-04-12-00-20-46
+2024-04-12 00:20:46,793 - root - INFO -> --------------------------------------------------
+2024-04-12 00:20:46,793 - root - INFO -> Reading the data from Local...
+2024-04-12 00:20:47,250 - root - INFO -> Number of pacients: 102
+2024-04-12 00:20:47,250 - root - INFO -> Number of categories in a patient: 3
+2024-04-12 00:20:47,250 - root - INFO -> Calibration diccionary num of pacients: 102
+2024-04-12 00:20:47,250 - root - INFO -> Number of values in a category for a patient: 45
+2024-04-12 00:20:47,268 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-04-12 00:20:47,278 - root - INFO -> Shape of the IR numpy array: (160, 120)
+2024-04-12 00:20:47,279 - root - INFO -> Max value of IR array: 30688
+2024-04-12 00:20:47,280 - root - INFO -> Shape of the PM numpy array: (192, 84)
+2024-04-12 00:20:47,280 - root - INFO -> Max value of PM array: 92.0
+2024-04-12 00:20:47,281 - root - INFO -> --------------------------------------------------
+2024-04-12 00:20:47,281 - root - INFO -> Creating dataset...
+2024-04-12 00:20:47,281 - root - INFO -> Partition --> Random
+2024-04-12 00:20:47,306 - root - INFO -> Train size: 11016
+2024-04-12 00:20:47,306 - root - INFO -> Val size: 2754
+2024-04-12 00:20:47,306 - root - INFO -> --------------------------------------------------
+2024-04-12 00:20:47,306 - root - INFO -> Creating dataloaders...
+2024-04-12 00:20:47,307 - root - INFO -> Train loader info: {'Number of samples': 11016, 'Batch size': 128, 'Number of batches': 86}
