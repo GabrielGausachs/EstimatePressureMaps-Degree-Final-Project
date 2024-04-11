@@ -73,35 +73,3 @@ for i, patient in enumerate((os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t
                     plt.plot(most_diff[0][1], most_diff[0][0], 'ro', markersize = 5)  # Mark the point with maximum difference
                     plt.show()
                     print('-------------------------------------------')
-
-"""
-#array = np.load('/mnt/DADES2/SLP/SLP/danaLab/00001/PMarray/uncover/000017.npy')
-array = np.load('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab/00001/PMarray/cover1/000039.npy')
-diff_global = {}
-
-kernel = [[1,1,1],
-          [1,0,1],
-          [1,1,1]]
-for index in np.ndindex(array.shape):
-    x = index[0]
-    y = index[1]
-
-    mask = np.zeros_like(array, dtype=bool)   
-    mask[x,y] = True               # set target(s)
-    # boolean indexing
-    neighbours = array[convolve2d(mask, kernel, mode='same').astype(bool)]
-
-    value = array[index]
-    diff_t = 0
-    for n in neighbours:
-        diff_t += abs(value-n)
-    diff_global[(x,y)]=diff_t/len(neighbours)
-
-p=max(diff_global.items(), key=lambda x: x[1])
-print(p)
-
-plt.imshow(array, cmap='gray')
-plt.plot(p[0][1], p[0][0], 'ro', markersize = 5)  # Mark the point with maximum difference
-
-plt.show()
-"""
