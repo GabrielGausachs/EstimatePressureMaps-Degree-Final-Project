@@ -17,20 +17,34 @@ class DoubleConv(nn.Module):
 
     def forward(self, x):
         return self.conv(x)
+    
 
-class UNET_2(nn.Module):
+
+class UNET_phy(nn.Module):
     def __init__(
-            self, in_channels=3, out_channels=1, features=[64, 128, 256, 512],
+            self, in_channels=3, in_channels_phy=11, out_channels=1, features=[64, 128, 256, 512],
     ):
-        super(UNET_2, self).__init__()
+        super(UNET_phy, self).__init__()
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
 
-        # Down part of UNET
+        # Down part of UNET array
         for feature in features:
             self.downs.append(DoubleConv(in_channels, feature))
             in_channels = feature
+        
+        # Down part of UNET physical vector
+        phy_fc = nn.ModuleList()
+        phy_fc.append(nn.Linear(in_channels_phy, 10))
+        phy_fc.append(nn.ReLU(True))
+        phy_fc.append(nn.Dropout(0.5))
+        phy_fc.append(nn.Linear(in_channels_phy, 10))
+        phy_fc.append(nn.ReLU(True))
+        phy_fc.append(nn.Dropout(0.5))
+        phy_fc.append(nn.Linear(10, 1))     # quants features de sortida?
+        self.phyNet = nn.Sequential(*phy_fc)
+
 
         # Up part of UNET
         for feature in reversed(features):
@@ -44,13 +58,18 @@ class UNET_2(nn.Module):
         self.bottleneck = DoubleConv(features[-1], features[-1]*2)
         self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
 
-    def forward(self, x):
+    def forward(self, x,x_phy):
         skip_connections = []
 
+        # Down part of the Array
         for down in self.downs:
             x = down(x)
             skip_connections.append(x)
             x = self.pool(x)
+        
+        # Down part of the Physical vector
+        x_phy = self.phyNet(x_phy)
+        x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
 
         x = self.bottleneck(x)
         skip_connections = skip_connections[::-1]

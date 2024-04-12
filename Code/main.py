@@ -1,3 +1,4 @@
+from Code.Models import UNet
 from Utils import (
     logger, 
     dataloader,
@@ -31,14 +32,13 @@ from Utils.config import (
 
 from Models import (
     UNet,
-    Simple_net,
-    UNet_2
+    Simple_net
 )
 
 #os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
-models = {"UNet": UNet.UNet, "Simple_net": Simple_net.Simple_net, "UNet2": UNet_2.UNET_2}
+models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNET}
 
 # Optimizers
 optimizers = {

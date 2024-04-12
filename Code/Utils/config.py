@@ -7,7 +7,7 @@ import torch
 # -----------------------------------------
 
 EXECUTION_NAME = "Prova-pwrswtl-error"
-MODEL_NAME = "UNet2"
+MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "PWRSWtL"
 EXPERTYPE = 'only-np-normalization'
