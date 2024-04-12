@@ -132,7 +132,7 @@ class CustomDataloader:
             show_image(dic_pm_numpy,'PM')
 
         if SHOW_HISTOGRAM:
-            show_histogram(dic_ir_numpy,dic_pm_numpy,['IR','PM'])
+            show_histogram(dic_ir_numpy,dic_pm_numpy,dic_cali)
 
         p_data = None
 
@@ -300,30 +300,20 @@ def show_image(dic,module):
     logger.info(f'Shape of the {module} Image np: {img.shape}')
 
 
-def show_histogram(dic_ir, dic_pm, modules):
+def show_histogram(dic_ir, dic_pm, dic_cali):
     random_patient = random.choice(list(dic_ir.keys()))
-    if 'IR' in modules:
-        patient_ir_np = dic_ir[random_patient]['cover1'][0]
-        
-        array = np.array(patient_ir_np)
+    patient_ir_np = dic_ir[random_patient]['cover1'][0]
+    array_ir = np.load(patient_ir_np)
+    patient_pm_np = dic_pm[random_patient]['cover1'][0]
+    array_pm = np.load(patient_pm_np)
+    cali_value = dic_cali[random_patient]['cover1'][0]
+    array_pm = array_pm.astype(np.float32)
+    array_pm = array_pm*cali_value
 
-        fig, axes = plt.subplots(1, 1, figsize=(8, 6))
-
-        axes.hist(array.flatten(), 64, [0, 256], color='gray', alpha=0.5)
-        axes.set_title('Grayscale Array Histogram')
-
-        plt.savefig(os.path.join(IMG_PATH, 'IR_histogram.png'))
-        plt.show()
-
-    if 'PM' in modules:
-        patient_pm_np = dic_pm[random_patient]['cover1'][0]
-        
-        array = np.array(patient_pm_np)
-
-        fig, axes = plt.subplots(1, 1, figsize=(8, 6))
-
-        axes.hist(array.flatten(), 64, [0, 256], color='gray', alpha=0.5)
-        axes.set_title('Grayscale Array Histogram')
-
-        plt.savefig(os.path.join(IMG_PATH, 'PM_histogram.png'))
-        plt.show()
+    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
+    axes[0].hist(array_ir.flatten(), bins=100, color='royalblue')
+    axes[0].set_title("Histogram of LWIR array")
+    axes[1].hist(array_pm.flatten(), bins=100, color='royalblue')
+    axes[1].set_title("Histogram of Pressure Map Array")
+    plt.savefig(os.path.join(IMG_PATH, 'Histograms.png'))
+    plt.show()
