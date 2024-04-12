@@ -1,4 +1,3 @@
-from Code.Models import UNet
 from Utils import (
     logger, 
     dataloader,
@@ -28,6 +27,7 @@ from Utils.config import (
     DO_TRAIN,
     EVALUATION,
     EXPERTYPE,
+    LAMBDA_VALUE,
     )
 
 from Models import (
@@ -45,11 +45,10 @@ optimizers = {
     "Adam": torch.optim.Adam,
 }
 
-lambda_value = 10
 # Criterion
 criterion = {
     "MSELoss": torch.nn.MSELoss(reduction = 'mean'),
-    "PWRSWtL": losses.PWRSWtL(lambda_value)
+    "PWRSWtL": losses.PWRSWtL(LAMBDA_VALUE)
 }
 
 
@@ -104,7 +103,7 @@ if __name__ == "__main__":
         num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         logger.info(f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
-        logger.info(f"Lambda value: {lambda_value}")
+        logger.info(f"Lambda value: {LAMBDA_VALUE}")
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")
