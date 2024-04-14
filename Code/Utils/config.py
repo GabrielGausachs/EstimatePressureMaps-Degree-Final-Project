@@ -17,10 +17,10 @@ LAST_RUN_WANDB = ""
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 DO_TEST = False
 SHOW_IMAGES = False
-SHOW_HISTOGRAM = True
+SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
@@ -40,7 +40,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 5
+EPOCHS = 1
 LEARNING_RATE = 0.0002
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
