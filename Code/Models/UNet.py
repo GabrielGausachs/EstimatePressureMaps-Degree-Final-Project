@@ -18,11 +18,11 @@ class DoubleConv(nn.Module):
     def forward(self, x):
         return self.conv(x)
 
-class UNET(nn.Module):
+class UNet(nn.Module):
     def __init__(
             self, in_channels=3, out_channels=1, features=[64, 128, 256, 512],
     ):
-        super(UNET, self).__init__()
+        super(UNet, self).__init__()
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)

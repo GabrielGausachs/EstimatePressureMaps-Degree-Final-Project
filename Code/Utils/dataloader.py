@@ -194,6 +194,7 @@ class CustomDataloader:
                     val_arrays['cali'].extend(cali_value)
                     val_arrays['pm'].extend(pm_value)
                     val_arrays['ir'].extend(ir_value)
+        
         elif PARTITION == 0:
 
             logger.info('Partition --> Random')
@@ -252,7 +253,7 @@ class CustomDataloader:
         if USE_PHYSICAL_DATA:
             logger.info(f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
-        check_transform(val_loader,self.path_arrays)
+        #check_transform(val_loader,self.path_arrays)
             
         
         return train_loader, val_loader

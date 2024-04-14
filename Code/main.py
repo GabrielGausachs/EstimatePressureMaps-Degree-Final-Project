@@ -38,7 +38,7 @@ from Models import (
 #os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
-models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNET}
+models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNet}
 
 # Optimizers
 optimizers = {
@@ -53,14 +53,6 @@ criterion = {
 
 
 if __name__ == "__main__":
-
-    #pynvml.nvmlInit()
-    #device_count = pynvml.nvmlDeviceGetCount()
-
-    #for i in range(device_count):
-    #	handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    #	info = pynvml.nvmlDeviceGetUtilizationRates(handle)
-    #	print(f"GPU {i}: Utilization = {info.gpu}%")
 
     # Initialize logger
     logger.initialize_logger()
