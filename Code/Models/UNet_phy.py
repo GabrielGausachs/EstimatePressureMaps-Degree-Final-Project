@@ -71,6 +71,8 @@ class UNET_phy(nn.Module):
         x_phy = self.phyNet(x_phy)
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
 
+        # A partir d'aqui no se com fer un concat
+
         x = self.bottleneck(x)
         skip_connections = skip_connections[::-1]
 
