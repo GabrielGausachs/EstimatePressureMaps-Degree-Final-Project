@@ -7,6 +7,7 @@ from Utils.config import (
     DEVICE,
 )
 
+# Pixel Wise Resampling Loss
 class PWRSWtL(nn.Module):
     def __init__(self, lambda_L2):
         super(PWRSWtL, self).__init__()
@@ -50,7 +51,6 @@ class PWRSWtL(nn.Module):
         for pixel_value, probability in pixel_weights.items():
             mask_tensor[(pixel_value<=tar) & (tar<pixel_value+1)] = probability
 
-
         # Get the diff between output and target
         diff_sq = (src - tar) ** 2
 
@@ -61,3 +61,32 @@ class PWRSWtL(nn.Module):
         loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
 
         return loss
+    
+
+# Higher Values Loss
+class HVLoss(nn.Module):
+    def __init__(self, lambda_L2):
+        super(HVLoss, self).__init__()
+        self.lambda_L2 = lambda_L2
+
+    def forward(self, src, tar):
+
+        # Higher values, higher weights
+
+        min_value = 0.1
+
+        # Compute the range of pixel values
+        value_range = self.lambda_L2 - min_value
+
+        # Compute weights for each pixel value
+        weights = (tar - tar.min()) / (tar.max() - tar.min()) * value_range + min_value
+
+        # Create a mask tensor with the computed weights
+        mask_tensor = weights.clone()
+
+        diff_sq = (src - tar) ** 2
+
+        loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
+
+        return loss
+
