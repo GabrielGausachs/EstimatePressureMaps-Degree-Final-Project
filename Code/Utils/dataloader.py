@@ -311,10 +311,15 @@ def show_histogram(dic_ir, dic_pm, dic_cali):
     array_pm = array_pm.astype(np.float32)
     array_pm = array_pm*cali_value
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 7))
-    axes[0].hist(array_ir.flatten(), bins=100, color='royalblue')
-    axes[0].set_title("Histogram of LWIR array")
-    axes[1].hist(array_pm.flatten(), bins=100, color='royalblue')
-    axes[1].set_title("Histogram of Pressure Map Array")
-    plt.savefig(os.path.join(IMG_PATH, 'Histograms.png'))
+    # Plot the histogram for LWIR array
+    plt.figure(figsize=(7, 7))
+    plt.hist(array_ir.flatten(), bins=100, color='royalblue')
+    plt.title("Histogram of LWIR array")
+    plt.savefig(os.path.join(IMG_PATH, 'Histogram_IR.png'))
+    plt.show()
+
+    plt.figure(figsize=(7, 7))
+    plt.hist(array_pm.flatten(), bins=100, color='royalblue')
+    plt.title("Histogram of PM array")
+    plt.savefig(os.path.join(IMG_PATH, 'Histogram_PM.png'))
     plt.show()
