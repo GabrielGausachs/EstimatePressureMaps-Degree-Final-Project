@@ -90,6 +90,6 @@ class HVLoss(nn.Module):
 
         diff_sq = (src - tar) ** 2
 
-        loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
+        loss = (mask_tensor * diff_sq).sum()
 
         return loss

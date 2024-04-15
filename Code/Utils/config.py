@@ -6,10 +6,10 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNet_no_phy_pwrs"
+EXECUTION_NAME = "UNet_no_phy_hvloss"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
-CRITERION = "PWRSWtL"
+CRITERION = "HVLoss"
 EXPERTYPE = 'np-input-norm-patients'
 WANDB = False
 LAST_RUN_WANDB = ""
@@ -33,18 +33,18 @@ SERVER_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.d
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
-LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/UNet_20240330163241.pth")
+LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels/UNet_20240415170229.pth")
 
 
 # Parameters ------------------------------
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 5
+EPOCHS = 2
 LEARNING_RATE = 0.0002
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.9
-LAMBDA_VALUE = 100
+LAMBDA_VALUE = 10
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #DEVICE = torch.device("cpu")

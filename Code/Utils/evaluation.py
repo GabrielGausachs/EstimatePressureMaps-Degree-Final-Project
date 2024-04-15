@@ -42,5 +42,5 @@ def evaluation(model,criterion,val_loader):
 
         fig.suptitle('Comparison of Target and Output Images', fontsize=12)
         fig.text(0.5, 0.01, f'Loss: {loss.item():.4f}', ha='center')
-        plt.savefig(os.path.join(IMG_PATH,'Comparing_output_PWE.png'))
+        plt.savefig(os.path.join(IMG_PATH,'Comparing_output_PWE_2.png'))
         plt.show()

@@ -1,0 +1,28 @@
+2024-04-15 17:03:36,335 - root - INFO -> Logger initialized in filename 2024-04-15-17-03-36
+2024-04-15 17:03:36,335 - root - INFO -> --------------------------------------------------
+2024-04-15 17:03:36,335 - root - INFO -> Reading the data from Server...
+2024-04-15 17:03:36,423 - root - INFO -> Number of pacients: 102
+2024-04-15 17:03:36,423 - root - INFO -> Number of categories in a patient: 3
+2024-04-15 17:03:36,423 - root - INFO -> Calibration diccionary num of pacients: 102
+2024-04-15 17:03:36,423 - root - INFO -> Number of values in a category for a patient: 45
+2024-04-15 17:03:36,423 - root - INFO -> Shape of the IR numpy array: (160, 120)
+2024-04-15 17:03:36,423 - root - INFO -> Max value of IR array: 30872
+2024-04-15 17:03:36,423 - root - INFO -> Shape of the PM numpy array: (192, 84)
+2024-04-15 17:03:36,424 - root - INFO -> Max value of PM array: 85.0
+2024-04-15 17:03:36,424 - root - INFO -> --------------------------------------------------
+2024-04-15 17:03:36,424 - root - INFO -> Creating dataset...
+2024-04-15 17:03:36,424 - root - INFO -> Partition --> Patients
+2024-04-15 17:03:36,424 - root - INFO -> Train size: 10935
+2024-04-15 17:03:36,424 - root - INFO -> Val size: 2835
+2024-04-15 17:03:36,424 - root - INFO -> --------------------------------------------------
+2024-04-15 17:03:36,424 - root - INFO -> Creating dataloaders...
+2024-04-15 17:03:36,425 - root - INFO -> Train loader info: {'Number of samples': 10935, 'Batch size': 128, 'Number of batches': 85}
+2024-04-15 17:03:36,588 - root - INFO -> Array input size of the train loader: torch.Size([128, 1, 192, 84])
+2024-04-15 17:03:36,715 - root - INFO -> Array output size of the train loader: torch.Size([128, 1, 192, 84])
+2024-04-15 17:03:36,716 - root - INFO -> Val loader info: {'Number of samples': 2835, 'Batch size': 128, 'Number of batches': 22}
+2024-04-15 17:03:36,838 - root - INFO -> Array input size of the val loader: torch.Size([128, 1, 192, 84])
+2024-04-15 17:03:36,961 - root - INFO -> Array output size of the val loader: torch.Size([128, 1, 192, 84])
+2024-04-15 17:03:36,961 - root - INFO -> --------------------------------------------------
+2024-04-15 17:03:36,962 - root - INFO -> Starting evaluation of a past model
+2024-04-15 17:04:10,302 - root - INFO -> Evaluation Completed!
+2024-04-15 17:04:10,303 - root - INFO -> --------------------------------------------------
