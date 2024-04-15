@@ -39,7 +39,7 @@ class UNET_phy(nn.Module):
         phy_fc.append(nn.Linear(in_channels_phy, 10))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(in_channels_phy, 10))
+        phy_fc.append(nn.Linear(10, 10))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
         phy_fc.append(nn.Linear(10, 1))     # quants features de sortida?
