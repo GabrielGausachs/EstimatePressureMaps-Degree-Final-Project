@@ -39,7 +39,7 @@ class UNET_phy(nn.Module):
         phy_fc.append(nn.Linear(in_channels_phy, 10))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(in_channels_phy, 10))
+        phy_fc.append(nn.Linear(10, 10))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
         phy_fc.append(nn.Linear(10, 1))     # quants features de sortida?
@@ -70,6 +70,8 @@ class UNET_phy(nn.Module):
         # Down part of the Physical vector
         x_phy = self.phyNet(x_phy)
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
+
+        # A partir d'aqui no se com fer un concat
 
         x = self.bottleneck(x)
         skip_connections = skip_connections[::-1]
