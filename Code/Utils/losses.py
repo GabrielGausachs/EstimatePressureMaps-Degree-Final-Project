@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import math
 
 from Utils.config import (
     EVALUATION,
@@ -15,16 +16,27 @@ class PWRSWtL(nn.Module):
         batch_size = tar.size(0)
 
         # Pixel density for all the batch
-        p_y = torch.histc(tar.view(-1), bins=256, min=0, max=255) / (tar.numel() * batch_size)
+        # Defineixo els edges de l'histograma entre 0 i el valor maxim del batch d'1 en 1
+        # El primer edge serà de 0-1, el segon de 0-2,...
+        bin_edges = torch.arange(0, math.ceil(tar.max())+1, 1,dtype=torch.float32)
+        
+        # Fem l'histograma
+        hist = torch.histogram(tar.view(-1), bins=bin_edges)
 
-        # Reverse pixel density and normalize
-        weight = 1 / (p_y + 1e-12)
-        weight = weight / weight.sum()
+        # Funció de densitat
+        f_dems = hist[0]/tar.numel()
 
-        pixel_probabilities = {}
-        for pixel_value, probability in enumerate(weight):
-            pixel_probabilities[pixel_value] = probability.item()
+        # Reverse pixel density i normalitzem
+        weights = 1 / (f_dems+1e-2)
+        print('weight',weights)
+        weights = weights / weights.sum()
 
+
+        # Per cada interval de valors, tenim el seu weight en la loss.
+        # Valors no comuns, weights més grans.
+        pixel_weights = {}
+        for pixel_value, weight_value in enumerate(weights):
+                pixel_weights[pixel_value] = weight_value.item()
 
         tensor_size = (128,1,192,84)
         
@@ -35,8 +47,9 @@ class PWRSWtL(nn.Module):
         mask_tensor = torch.zeros(tensor_size,device = DEVICE)
 
         # Fill mask tensor with pixel-wise probabilities
-        for pixel_value, probability in pixel_probabilities.items():
-            mask_tensor[tar == pixel_value] = probability
+        for pixel_value, probability in pixel_weights.items():
+            mask_tensor[(pixel_value<=tar) & (tar<pixel_value+1)] = probability
+
 
         # Get the diff between output and target
         diff_sq = (src - tar) ** 2
