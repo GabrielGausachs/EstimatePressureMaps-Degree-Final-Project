@@ -32,7 +32,7 @@ class PWRSWtL(nn.Module):
         f_dems = hist[0]/tar.numel()
 
         # Reverse pixel density i normalitzem
-        weights = 1 / (f_dems+1e-2)
+        weights = self.lambda_L2 / (f_dems+1e-2)
         weights = weights / weights.sum()
 
         # Per cada interval de valors, tenim el seu weight en la loss.
@@ -58,7 +58,7 @@ class PWRSWtL(nn.Module):
         diff_sq = (src - tar) ** 2
 
         # Get the loss with mean
-        loss = (self.lambda_L2 * mask_tensor * diff_sq).mean()
+        loss = (mask_tensor * diff_sq).mean()
 
         # Get the loss with sum
         #loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
@@ -90,6 +90,6 @@ class HVLoss(nn.Module):
 
         diff_sq = (src - tar) ** 2
 
-        loss = (mask_tensor * diff_sq).sum()
+        loss = (mask_tensor * diff_sq).mean()
 
         return loss
