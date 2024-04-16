@@ -20,12 +20,16 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
             ir_np_path = os.path.join(patient_path,'IRraw')
             for category_pm,category_ir in zip(os.listdir(pm_np_path),os.listdir(ir_np_path)):
                 category_pm_path = os.path.join(pm_np_path,category_pm)
+                category_ir_path = os.path.join(ir_np_path,category_ir)
+                filenames_ir = os.listdir(category_ir_path)
                 filenames_pm = os.listdir(category_pm_path)
 
                 random_index = random.randint(0, len(filenames_pm) - 1)
+                file_ir = os.path.join(category_ir_path,filenames_ir[random_index])
                 file_pm = os.path.join(category_pm_path,filenames_pm[random_index])
                 print('pm array:',file_pm)
                 array_pm = np.load(file_pm)
+                array_ir = np.load(file_ir)
 
                 median = signal.medfilt2d(array_pm)
 
@@ -37,6 +41,17 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                 output_array = (maximum / np.sum(maximum)) * ideal_pressure
 
+                fig, axs = plt.subplots(1, 2, figsize=(14, 7))
+
+                axs[0].hist(array_ir.flatten(), bins=100, color='royalblue')
+                axs[0].set_title("Histogram of LWIR array")
+                axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
+                axs[1].set_title("Histogram of PM array")
+                plt.tight_layout()
+                plt.savefig(os.path.join('Histogram_LWIR_PM.png'))
+                plt.show()
+
+                """
                 fig, axs = plt.subplots(1, 3)
 
                 # Plot the array from file_ir
@@ -51,3 +66,4 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                 # Show the plot
                 plt.show()
+                """

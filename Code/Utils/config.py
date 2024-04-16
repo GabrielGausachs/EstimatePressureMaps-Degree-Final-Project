@@ -19,8 +19,6 @@ LAST_RUN_WANDB = ""
 # Main steps
 DO_TRAIN = False
 DO_TEST = False
-SHOW_IMAGES = False
-SHOW_HISTOGRAM = False
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)

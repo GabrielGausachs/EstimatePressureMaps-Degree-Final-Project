@@ -92,10 +92,6 @@ class CustomDataloader:
                         
         logger.info(f'Number of pacients: {len(dic_ir_numpy)}')
         logger.info(f'Number of categories in a patient: {len(dic_ir_numpy["00001"])}')
-        
-        if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
-            show_image(dic_ir_numpy,'IR')
-            show_image(dic_pm_numpy,'PM')
 
         p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
         p_data['gender'] = p_data['gender'].str.strip()
@@ -253,26 +249,3 @@ def show_image(dic,module):
     cv2.destroyAllWindows()
     logger.info(f'Shape of the {module} Image np: {img.shape}')
 
-
-def show_histogram(dic_ir, dic_pm, dic_cali):
-    random_patient = random.choice(list(dic_ir.keys()))
-    patient_ir_np = dic_ir[random_patient]['cover1'][0]
-    array_ir = np.load(patient_ir_np)
-    patient_pm_np = dic_pm[random_patient]['cover1'][0]
-    array_pm = np.load(patient_pm_np)
-    cali_value = dic_cali[random_patient]['cover1'][0]
-    array_pm = array_pm.astype(np.float32)
-    array_pm = array_pm*cali_value
-
-    # Plot the histogram for LWIR array
-    plt.figure(figsize=(7, 7))
-    plt.hist(array_ir.flatten(), bins=100, color='royalblue')
-    plt.title("Histogram of LWIR array")
-    plt.savefig(os.path.join(IMG_PATH, 'Histogram_IR.png'))
-    plt.show()
-
-    plt.figure(figsize=(7, 7))
-    plt.hist(array_pm.flatten(), bins=100, color='royalblue')
-    plt.title("Histogram of PM array")
-    plt.savefig(os.path.join(IMG_PATH, 'Histogram_PM.png'))
-    plt.show()
