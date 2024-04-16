@@ -41,7 +41,7 @@ class PWRSWtL(nn.Module):
         for pixel_value, weight_value in enumerate(weights):
             pixel_weights[pixel_value] = weight_value.item()
 
-        tensor_size = (128, 1, 192, 84)
+        tensor_size = (batch_size, 1, 192, 84)
 
         if EVALUATION:
             tensor_size = (1, 192, 84)
