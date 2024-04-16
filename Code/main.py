@@ -28,17 +28,19 @@ from Utils.config import (
     EVALUATION,
     EXPERTYPE,
     LAMBDA_VALUE,
+    USE_PHYSICAL_DATA,
 )
 
 from Models import (
     UNet,
-    Simple_net
+    Simple_net,
+    UNet_phy
 )
 
 # os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
-models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNet}
+models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNet, "UNet_phy":UNet_phy.UNET_phy}
 
 # Optimizers
 optimizers = {
@@ -83,7 +85,10 @@ if __name__ == "__main__":
             logger.info("Wandb correctly initialized")
 
         # Create a model
-        model = models[MODEL_NAME](1, 1).to(DEVICE)
+        if USE_PHYSICAL_DATA:
+            model=models[MODEL_NAME](1,11,1).to(DEVICE)
+        else:
+            model = models[MODEL_NAME](1, 1).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)

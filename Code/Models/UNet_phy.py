@@ -68,6 +68,7 @@ class UNET_phy(nn.Module):
             x = self.pool(x)
         
         # Down part of the Physical vector
+        x_phy = x_phy.to(torch.float32)
         x_phy = self.phyNet(x_phy)
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
 
