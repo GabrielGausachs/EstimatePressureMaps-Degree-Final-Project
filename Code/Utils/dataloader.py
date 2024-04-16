@@ -1,6 +1,5 @@
 import os
 import random
-
 import numpy as np
 import cv2
 import pandas as pd
@@ -90,71 +89,29 @@ class CustomDataloader:
                                         print(category)
                     else:
                         raise FileNotFoundError ('Path not found')
-        dic_cali = {}         
-        for patient in os.listdir(path_arrays):
-            patient_path = os.path.join(path_arrays,patient)
-            if os.path.isdir(patient_path):
-                dic_cali[patient]={}
-                cal_indiv = np.load(os.path.join(patient_path, 'PMcali.npy'))
-                pm_np_path = os.path.join(patient_path, 'PMarray')
-                for category in os.listdir(pm_np_path):
-                    category_path = os.path.join(pm_np_path, category)
-                    if os.path.isdir(category_path):
-                        dic_cali[patient][category]=[]
-                        for p, file in enumerate(os.listdir(category_path)):
-                            values = cal_indiv[:, p]
-                            if category == 'cover1':
-                                dic_cali[patient][category].append(values[1])
-
-                            elif category == 'cover2':
-                                dic_cali[patient][category].append(values[2])
-
-                            elif category == 'uncover':
-                                dic_cali[patient][category].append(values[0])
                         
         logger.info(f'Number of pacients: {len(dic_ir_numpy)}')
         logger.info(f'Number of categories in a patient: {len(dic_ir_numpy["00001"])}')
-        logger.info(f'Calibration diccionary num of pacients: {len(dic_cali)}')
-        logger.info(f'Number of values in a category for a patient: {len(dic_cali["00002"]["cover1"])}')
         
         if SHOW_IMAGES: # Show the IR, PM image and PM array of a uncover random patient
             show_image(dic_ir_numpy,'IR')
             show_image(dic_pm_numpy,'PM')
 
-        if SHOW_HISTOGRAM:
-            show_histogram(dic_ir_numpy,dic_pm_numpy,dic_cali)
+        p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
+        p_data['gender'] = p_data['gender'].str.strip()
+        p_data = pd.get_dummies(p_data, columns=['gender'])
+        p_data = p_data.drop('sub_idx',axis=1)
+        p_data['gender_male'] = p_data['gender_male'].astype(int)
+        p_data['gender_female'] = p_data['gender_female'].astype(int)
 
-        p_data = None
-
-        if USE_PHYSICAL_DATA:
-
-            p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
-            p_data['gender'] = p_data['gender'].str.strip()
-            p_data = pd.get_dummies(p_data, columns=['gender'])
-            p_data = p_data.drop('sub_idx',axis=1)
-            p_data['gender_male'] = p_data['gender_male'].astype(int)
-            p_data['gender_female'] = p_data['gender_female'].astype(int)
-
-            logger.info(f'Size of the physical dataset: {p_data.shape}')
-        
-        random_patient = random.choice(list(dic_ir_numpy.keys()))
-        patient_np = dic_ir_numpy[random_patient]['cover1'][0]
-
-        arr = np.load(patient_np)
-        logger.info(f'Shape of the IR numpy array: {arr.shape}')
-        logger.info(f'Max value of IR array: {arr.max()}')
-
-        patient_np = dic_pm_numpy[random_patient]['cover1'][0]
-        arr = np.load(patient_np)
-        logger.info(f'Shape of the PM numpy array: {arr.shape}')
-        logger.info(f'Max value of PM array: {arr.max()}')
+        logger.info(f'Size of the physical dataset: {p_data.shape}')
 
         # Create dataset
         logger.info("-" * 50)
         logger.info('Creating dataset...')
             
-        train_arrays = {'ir': [], 'pm': [], 'cali': []}
-        val_arrays = {'ir': [], 'pm': [], 'cali': []}
+        train_arrays = {'ir': [], 'pm': []}
+        val_arrays = {'ir': [], 'pm': []}
 
         # Partition by patients
         if PARTITION == 1:
@@ -170,18 +127,15 @@ class CustomDataloader:
             for t_key in train_keys:
                 pm_dic = dic_pm_numpy[t_key]
                 ir_dic = dic_ir_numpy[t_key]
-                cali_dic = dic_cali[t_key]
-                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
-                    train_arrays['cali'].extend(cali_value)
+                
+                for pm_value,ir_value in zip(pm_dic.values(),ir_dic.values()):
                     train_arrays['pm'].extend(pm_value)
                     train_arrays['ir'].extend(ir_value)
         
             for v_key in val_keys:
                 pm_dic = dic_pm_numpy[v_key]
                 ir_dic = dic_ir_numpy[v_key]
-                cali_dic = dic_cali[v_key]
-                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values(),cali_dic.values()):
-                    val_arrays['cali'].extend(cali_value)
+                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values()):
                     val_arrays['pm'].extend(pm_value)
                     val_arrays['ir'].extend(ir_value)
         
@@ -195,10 +149,8 @@ class CustomDataloader:
                     split_index = int(0.8 * len(indexes))
                     train_arrays['pm'].extend(dic_pm_numpy[key][category][:split_index])
                     train_arrays['ir'].extend(dic_ir_numpy[key][category][:split_index])
-                    train_arrays['cali'].extend(dic_cali[key][category][:split_index])
                     val_arrays['pm'].extend(dic_pm_numpy[key][category][split_index:])
                     val_arrays['ir'].extend(dic_ir_numpy[key][category][split_index:])
-                    val_arrays['cali'].extend(dic_cali[key][category][split_index:])
 
         # Data transformation if needed
         transform = {
@@ -210,9 +162,9 @@ class CustomDataloader:
                     ]),
             'output': transforms.Compose([transforms.ToTensor()])}
 
-        train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], p_data, transform=transform)
+        train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'], p_data, transform=transform)
 
-        val_dataset = CustomDataset(val_arrays['ir'], val_arrays['pm'], val_arrays['cali'], p_data, transform=transform)
+        val_dataset = CustomDataset(val_arrays['ir'], val_arrays['pm'], p_data, transform=transform)
         
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
@@ -263,13 +215,6 @@ class CustomDataloader:
 
 def crop_array(array):
         return crop(array,7, 29, 140, 66)
-
-def max_median_filter(array,weight):
-    median = signal.medfilt2d(array)
-    maximum = np.maximum(array,median)
-    sum_maximum = np.sum(maximum)
-    final_array = (maximum / sum_maximum) * weight
-    return final_array
 
 
 def check_transform(val_loader,path_arrays):

@@ -1,9 +1,11 @@
-
 from torch.utils.data import Dataset
 from Utils.logger import initialize_logger,get_logger
 import numpy as np
 import torch
-
+from scipy import signal
+from Utils.config import (
+    USE_PHYSICAL_DATA,
+)
 
 logger = get_logger()
 class CustomDataset(Dataset): 
@@ -11,18 +13,12 @@ class CustomDataset(Dataset):
     # Includes:
     # - IR arrays
     # - PR arrays
-    # - Calibration values
-    # Physical data (if provided)
-    def __init__(self, ir_paths, pm_paths, cali_values, p_data, transform=None):
+    # Physical data
+    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
-        self.cali_values = cali_values
-        
-        if p_data is not None:
-            self.p_data = p_data
-        else:
-            self.p_data = None
+        self.p_data = p_data
     
         self.transform = transform
 
@@ -38,20 +34,27 @@ class CustomDataset(Dataset):
         output_array = self.load_array(output_path)
         input_array = input_array.astype(np.float32)
         output_array = output_array.astype(np.float32)
-        output_array = output_array * self.cali_values[index]
 
         if self.transform:
             input_array = self.transform['input'](input_array)
-            output_array = self.transform['output'](output_array)
 
-        if self.p_data is not None:
             parts = str(output_path.split("\\")[-4])
             number = int(parts)
             p_vector = self.p_data.iloc[number-1]
+            weight = p_vector[1]
             tensor_data = torch.tensor(p_vector.values)
-            return input_array, output_array, tensor_data
-        else:
-            return input_array, output_array
+
+            # Applying median filter
+            median_array = signal.medfilt2d(output_array)
+            max_array = np.maximum(output_array,median_array)
+
+            output_array = (max_array / np.sum(max_array)) * weight
+            output_array = self.transform['output'](output_array)
+
+            if USE_PHYSICAL_DATA:
+                return input_array, output_array, tensor_data
+            else:
+                return input_array,output_array
 
     def load_array(self, path):
         # Load the array
