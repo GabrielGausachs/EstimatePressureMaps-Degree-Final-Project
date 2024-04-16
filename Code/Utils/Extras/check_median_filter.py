@@ -4,6 +4,12 @@ import os
 import cv2
 import random
 from scipy import signal
+import pandas as pd
+
+p_data = pd.read_csv(os.path.join(
+    'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', 'physiqueData.csv'))
+
+mass = p_data['weight (kg)']
 
 for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')):
     if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab',patient)):
@@ -25,18 +31,23 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                 maximum = np.maximum(array_pm,median)
 
+                print(mass[i])
+                area_m = 1.03226 / 10000
+                ideal_pressure = mass[i] * 9.81 / (area_m * 1000)
+
+                output_array = (maximum / np.sum(maximum)) * ideal_pressure
+
                 fig, axs = plt.subplots(1, 3)
 
                 # Plot the array from file_ir
                 axs[0].imshow(array_pm)
                 axs[0].set_title('Array from PM')
 
-                # Plot the array from file_pm
-                axs[1].imshow(median)
-                axs[1].set_title('Median filter')
+                axs[1].imshow(maximum)
+                axs[1].set_title('Maximum')
 
-                axs[2].imshow(maximum)
-                axs[2].set_title('Maximum')
+                axs[2].imshow(output_array)
+                axs[2].set_title('arrayfinal')
 
                 # Show the plot
                 plt.show()

@@ -135,7 +135,7 @@ class CustomDataloader:
             for v_key in val_keys:
                 pm_dic = dic_pm_numpy[v_key]
                 ir_dic = dic_ir_numpy[v_key]
-                for pm_value,ir_value,cali_value in zip(pm_dic.values(),ir_dic.values()):
+                for pm_value,ir_value in zip(pm_dic.values(),ir_dic.values()):
                     val_arrays['pm'].extend(pm_value)
                     val_arrays['ir'].extend(ir_value)
         
@@ -156,7 +156,7 @@ class CustomDataloader:
         transform = {
             'input': transforms.Compose([
                     transforms.ToTensor(),
-                    transforms.Lambda(crop_array()),  
+                    transforms.Lambda(crop_array),  
                     transforms.Resize((192, 84)),
 		    transforms.Normalize(mean=[0.5], std=[0.5]),
                     ]),
@@ -205,7 +205,7 @@ class CustomDataloader:
         if USE_PHYSICAL_DATA:
             logger.info(f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
-        #check_transform(val_loader,self.path_arrays)
+        check_transform(val_loader,self.path_arrays)
             
         
         return train_loader, val_loader

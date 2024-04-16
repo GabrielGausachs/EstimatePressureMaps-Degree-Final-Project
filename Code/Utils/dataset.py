@@ -48,7 +48,10 @@ class CustomDataset(Dataset):
             median_array = signal.medfilt2d(output_array)
             max_array = np.maximum(output_array,median_array)
 
-            output_array = (max_array / np.sum(max_array)) * weight
+            area_m = 1.03226 / 10000
+            ideal_pressure = weight * 9.81 / (area_m * 1000)
+
+            output_array = (max_array / np.sum(max_array)) * ideal_pressure
             output_array = self.transform['output'](output_array)
 
             if USE_PHYSICAL_DATA:
