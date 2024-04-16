@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 from Utils.logger import initialize_logger,get_logger
 from Utils.dataset import CustomDataset
 from torchvision.transforms.functional import crop
+from scipy import signal
 
 from Utils.config import (
     BATCH_SIZE_TEST,
@@ -39,17 +40,6 @@ class CustomDataloader:
 
     def prepare_dataloaders(self):
         """Prepare dataloaders for training and testing"""
-
-        # Data transformation if needed
-        # Do I normalize?
-        transform = {
-            'input': transforms.Compose([
-                    transforms.ToTensor(),
-                    transforms.Lambda(crop_array),  
-                    transforms.Resize((192, 84)),
-		    transforms.Normalize(mean=[0.5], std=[0.5]),
-                    ]),
-            'output': transforms.Compose([transforms.ToTensor()])}
 
 
         logger.info("-" * 50)
@@ -210,6 +200,16 @@ class CustomDataloader:
                     val_arrays['ir'].extend(dic_ir_numpy[key][category][split_index:])
                     val_arrays['cali'].extend(dic_cali[key][category][split_index:])
 
+        # Data transformation if needed
+        transform = {
+            'input': transforms.Compose([
+                    transforms.ToTensor(),
+                    transforms.Lambda(crop_array()),  
+                    transforms.Resize((192, 84)),
+		    transforms.Normalize(mean=[0.5], std=[0.5]),
+                    ]),
+            'output': transforms.Compose([transforms.ToTensor()])}
+
         train_dataset = CustomDataset(train_arrays['ir'], train_arrays['pm'],train_arrays['cali'], p_data, transform=transform)
 
         val_dataset = CustomDataset(val_arrays['ir'], val_arrays['pm'], val_arrays['cali'], p_data, transform=transform)
@@ -263,6 +263,14 @@ class CustomDataloader:
 
 def crop_array(array):
         return crop(array,7, 29, 140, 66)
+
+def max_median_filter(array,weight):
+    median = signal.medfilt2d(array)
+    maximum = np.maximum(array,median)
+    sum_maximum = np.sum(maximum)
+    final_array = (maximum / sum_maximum) * weight
+    return final_array
+
 
 def check_transform(val_loader,path_arrays):
     for i in range(1):
