@@ -236,16 +236,3 @@ def check_transform(val_loader,path_arrays):
             
         plt.show()
 
-
-def show_image(dic,module):
-    random_patient = random.choice(list(dic.keys()))
-    patient_img_np = dic[random_patient]['cover1'][0]
-
-    img_array = np.load(patient_img_np)
-    img = np.array(img_array, dtype=np.uint8)
-    cv2.imshow(f"{module} Image", img)
-    #cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}_np.jpg"), img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    logger.info(f'Shape of the {module} Image np: {img.shape}')
-
