@@ -52,11 +52,15 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                             print(category, 'is not a category')
 
                         area_m = 1.03226 / 10000
-                        massa = area_m * (np.sum(pressure)*1000) / 9.81
-                        dif = abs(mass[i]-massa)
-                        massa_total = massa_total+massa
+                        massa_cali = area_m * (np.sum(pressure)*1000) / 9.81
+                        massa_array = area_m * (np.sum(array)*1000) / 9.81
+                        #print('array weight:',massa_array)
+                        dif = abs(mass[i]-massa_cali)
+                        massa_total = massa_total+massa_cali
                         sumatori = sumatori+dif
                         n += 1
+                
+    
         dic[patient] = sumatori / n
         m = massa_total / n
         print('meaan diference:', dic[patient])

@@ -41,29 +41,27 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                 output_array = (maximum / np.sum(maximum)) * ideal_pressure
 
+                maximum_value_output = np.max(output_array)
+                maximum_value_array = np.max(array_pm)
+                min_value_output = np.min(output_array)
+                min_value_array = np.min(array_pm)
+
+
                 fig, axs = plt.subplots(1, 2, figsize=(14, 7))
 
-                axs[0].hist(array_ir.flatten(), bins=100, color='royalblue')
-                axs[0].set_title("Histogram of LWIR array")
-                axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
-                axs[1].set_title("Histogram of PM array")
-                plt.tight_layout()
-                plt.savefig(os.path.join('Histogram_LWIR_PM.png'))
-                plt.show()
-
-                """
-                fig, axs = plt.subplots(1, 3)
-
                 # Plot the array from file_ir
+                
                 axs[0].imshow(array_pm)
-                axs[0].set_title('Array from PM')
+                axs[0].set_title(f'PM inicial\n\nMin and Max value: ({round(min_value_array,2)},{round(maximum_value_array,2)})')
+                
 
-                axs[1].imshow(maximum)
-                axs[1].set_title('Maximum')
+                axs[1].imshow(output_array)
+                axs[1].set_title(f'PM corrected\n\nMin and Max value: ({round(min_value_output,2)},{round(maximum_value_output,2)})')
 
-                axs[2].imshow(output_array)
-                axs[2].set_title('arrayfinal')
-
+                plt.savefig('Median_filter_applied.png')
                 # Show the plot
                 plt.show()
-                """
+
+                break
+    break
+                
