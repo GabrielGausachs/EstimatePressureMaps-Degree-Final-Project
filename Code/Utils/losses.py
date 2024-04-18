@@ -10,9 +10,9 @@ from Utils.config import (
 
 # Pixel Wise Resampling Loss
 
-class PWRSWtL(nn.Module):
+class UVLoss(nn.Module):
     def __init__(self, lambda_L2):
-        super(PWRSWtL, self).__init__()
+        super(UVLoss, self).__init__()
         self.lambda_L2 = lambda_L2
 
     def forward(self, src, tar):

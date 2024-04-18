@@ -9,7 +9,7 @@ import torch
 EXECUTION_NAME = "UNet_no_phy_PWRS"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
-CRITERION = "HVLoss" #PWRSWtL #HVLoss #MSELoss
+CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'np-input-norm-patients'
 WANDB = False
