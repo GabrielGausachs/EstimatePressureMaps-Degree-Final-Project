@@ -17,9 +17,7 @@ from Utils.config import (
     LOCAL_SLP_DATASET_PATH,
     SERVER_SLP_DATASET_PATH,
     NUM_WORKERS,
-    SHOW_IMAGES,
     USE_PHYSICAL_DATA,
-    SHOW_HISTOGRAM,
     IMG_PATH,
     PATH_DATASET,
     PARTITION,
@@ -135,6 +133,7 @@ class CustomDataloader:
                     val_arrays['pm'].extend(pm_value)
                     val_arrays['ir'].extend(ir_value)
         
+        # Random partition
         elif PARTITION == 0:
 
             logger.info('Partition --> Random')
@@ -169,7 +168,6 @@ class CustomDataloader:
         logger.info('Creating dataloaders...')
         
         # Create  dataloaders
-        
         train_loader = DataLoader(
             train_dataset, batch_size=BATCH_SIZE_TRAIN, shuffle=True, num_workers=0, drop_last=True
         )
@@ -201,7 +199,8 @@ class CustomDataloader:
         if USE_PHYSICAL_DATA:
             logger.info(f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
-        check_transform(val_loader,self.path_arrays)
+        # Function to check how are the arrays that we pass to the model
+        #check_transform(val_loader,self.path_arrays)
             
         
         return train_loader, val_loader

@@ -5,10 +5,6 @@ import gc
 
 from Utils.config import (
     DEVICE,
-    WANDB,
-    LAST_MODEL_PATH,
-    IMG_PATH,
-    DO_TRAIN,
 )
 
 logger = get_logger()

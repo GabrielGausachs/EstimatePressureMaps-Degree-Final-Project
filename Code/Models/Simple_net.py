@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+# A simple Autoencoder with one Convolution Layer
 class Simple_net(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(Simple_net, self).__init__()

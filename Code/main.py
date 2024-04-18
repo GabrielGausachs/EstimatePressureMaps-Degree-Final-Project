@@ -12,8 +12,6 @@ import wandb
 import datetime
 import torch
 from matplotlib import pyplot as plt
-import cv2
-import os
 
 from Utils.config import (
     WANDB,
@@ -103,6 +101,7 @@ if __name__ == "__main__":
             f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
         logger.info(f"Lambda value: {LAMBDA_VALUE}")
+
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")

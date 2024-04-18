@@ -3,6 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 
+# A U-Net with 4 blocks of 2 convolutional layers each block and with skip connections.
+# With A physical vector added that does the encoder separately, then concats with
+# The output of the encoder of the the convolutional blocks and does the decoder jointly
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
