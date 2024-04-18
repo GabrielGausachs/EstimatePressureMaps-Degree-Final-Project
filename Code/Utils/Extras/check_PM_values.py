@@ -4,10 +4,15 @@ import os
 import pandas as pd
 
 
-# 1. uncover primera fila, cover 1 segona fila, cover 2 tercera fila.
+# File to check the obtained weight after applying the respected 
+# calibration value in each of the PM arrays
 
-p_data = pd.read_csv(os.path.join(
-    'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', 'physiqueData.csv'))
+# Uncover first row, cover1 second row, cover2 third row.
+
+path_data = os.path.join(
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))), 'SLP/danaLab/physiqueData.csv')
+
+p_data = pd.read_csv(path_data)
 
 mass = p_data['weight (kg)']
 
@@ -32,12 +37,6 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 if os.path.isdir(category_path):
                     for p, file in enumerate(os.listdir(category_path)):
                         array = np.load(os.path.join(category_path, file))
-                        #if n == 1:
-                        #    img = np.array(array, dtype=np.uint8)
-                        #    cv2.imshow(f"Image", img)
-                            #cv2.imwrite(os.path.join(IMG_PATH,f"{module}_image_{random_patient}_np.jpg"), img)
-                        #    cv2.waitKey(0)
-                        #    cv2.destroyAllWindows()
                         values = cal_indiv[:, p]
                         if category == 'cover1':
                             pressure = array * values[1]

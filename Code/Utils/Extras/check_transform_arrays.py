@@ -4,6 +4,7 @@ import os
 import cv2
 import random
 
+# File to check the transforms applied in the LWIR images (Crop and resize)
 
 for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')):
     if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab',patient)):
@@ -39,11 +40,11 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
 
                     fig, axs = plt.subplots(1, 2)
 
-                    # Plot the array from file_ir
+                    # Plot before transform
                     axs[0].imshow(array_ir)
                     axs[0].set_title('Inicial LWIR')
 
-                    # Plot the array from file_pm
+                    # Plot after transform
                     axs[1].imshow(new_array)
                     axs[1].set_title('LWIR corrected')
 
