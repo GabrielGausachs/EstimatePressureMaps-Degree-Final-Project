@@ -9,8 +9,8 @@ from Utils.config import (
 
 logger = get_logger()
 
-def val(model, loader, criterion, epoch=0, epochs=0):
-    total_loss = 0
+def val(model, loader, metrics, epoch=0, epochs=0):
+    total_metric = [0,0]
     model.eval()
 
     logger.info(f"Epoch: {epoch}/{epochs}, Starting validation...")
@@ -20,7 +20,7 @@ def val(model, loader, criterion, epoch=0, epochs=0):
     logger.info(f"Loader batch size: {loader.batch_size}")
     logger.info(f"Loader drop last: {loader.drop_last}")
     logger.info(f"Loader num workers: {loader.num_workers}")
-    logger.info(f"Criterion: {criterion}")
+    logger.info(f"Metrics: {metrics}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
@@ -34,9 +34,11 @@ def val(model, loader, criterion, epoch=0, epochs=0):
             target_images = target_images.to(DEVICE)
 
             outputs = model(input_images)
-            train_loss = criterion(outputs, target_images)
+            for i,metric in enumerate(metrics):
 
-            total_loss += train_loss.item()
+                val_loss = metric(outputs, target_images)
+
+                total_metric[i] += val_loss.item()
 
             # Free memory in each iteration
             del input_images
@@ -45,17 +47,17 @@ def val(model, loader, criterion, epoch=0, epochs=0):
             torch.cuda.empty_cache() # Clean CUDA Cache if used GPU
             gc.collect()  # Collect trash to free memory not used
 
-    epoch_loss = total_loss / len(loader)
-    #result.add_loss("train", epoch_loss)
+    epoch_metric = [total_metric[0] / len(loader), total_metric[1] / len(loader)]
 
-    logger.info(f"Epoch: {epoch}/{epochs}, Test loss = {epoch_loss:.6f}")
+    for i,metric in enumerate(metrics):
+        logger.info(f"Epoch: {epoch}/{epochs}, Val {metric} = {epoch_metric[i]:.6f}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
     logger.info("Validation finished! Memory cleaned!")
     logger.info("-" * 50)
 
-    return epoch_loss
+    return epoch_metric
 """
 
 

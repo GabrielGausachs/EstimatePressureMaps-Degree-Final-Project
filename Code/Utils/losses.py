@@ -68,7 +68,7 @@ class PWRSWtL(nn.Module):
 
 # Higher Values Loss
 class HVLoss(nn.Module):
-    def __init__(self, lambda_L2):
+    def __init__(self):
         super(HVLoss, self).__init__()
 
     def forward(self, src, tar):
