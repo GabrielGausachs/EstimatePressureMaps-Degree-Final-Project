@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import math
+import numpy as np
 
 from Utils.config import (
     EVALUATION,
@@ -18,24 +19,24 @@ class PWRSWtL(nn.Module):
         batch_size = tar.size(0)
 
         # Pixel density for all the batch
-        # Defineixo els edges de l'histograma entre 0 i el valor maxim del batch d'1 en 1
-        # El primer edge serà de 0-1, el segon de 0-2,...
+        # I define the edges of the histogram between 0 and the max value of the batch
         bin_edges = torch.arange(0, math.ceil(
             tar.max())+1, 1, dtype=torch.float32)
 
         tar_cpu = tar.view(-1).cpu()
-        # Fem l'histograma
+
+        # Do the histogram
         hist = torch.histogram(tar_cpu, bins=bin_edges)
 
-        # Funció de densitat
+        # Desnity function
         f_dems = hist[0]/tar.numel()
 
-        # Reverse pixel density i normalitzem
+        # Reverse pixel density and normalize
         weights = self.lambda_L2 / (f_dems+1e-2)
         weights = weights / weights.sum()
 
-        # Per cada interval de valors, tenim el seu weight en la loss.
-        # Valors no comuns, weights més grans.
+        # For every interval of values, we have the weight in the loss function
+        # No common values, higher weight
         pixel_weights = {}
         for pixel_value, weight_value in enumerate(weights):
             pixel_weights[pixel_value] = weight_value.item()
@@ -90,5 +91,20 @@ class HVLoss(nn.Module):
         diff_sq = (src - tar) ** 2
 
         loss = (mask_tensor * diff_sq).mean()
+
+        return loss
+    
+
+class PhyLoss(nn.Module):
+    def __init__(self):
+        super(PhyLoss,self).__init__()
+    
+    def forward(self,src,tar):
+        
+        area_m = 1.03226 / 10000
+        desire_weight = area_m * (torch.sum(tar)*1000) / 9.81
+        output_weight = area_m * (torch.sum(src)*1000) / 9.81
+
+        loss = (desire_weight - output_weight)**2
 
         return loss
