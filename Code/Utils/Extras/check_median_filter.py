@@ -47,17 +47,15 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 min_value_array = np.min(array_pm)
 
 
-                fig, axs = plt.subplots(1, 2, figsize=(14, 7))
-
-                # Plot the array from file_ir
                 
-                axs[0].imshow(array_pm)
-                axs[0].set_title(f'PM inicial\n\nMin and Max value: ({round(min_value_array,2)},{round(maximum_value_array,2)})')
                 
+                plt.imshow(array_pm)
+                plt.title(f'\nPM inicial\nMin and Max value: ({round(min_value_array,2)},{round(maximum_value_array,2)})')
+                plt.savefig('PM_inicial.png')
+                plt.show()
 
-                axs[1].imshow(output_array)
-                axs[1].set_title(f'PM corrected\n\nMin and Max value: ({round(min_value_output,2)},{round(maximum_value_output,2)})')
-
+                plt.imshow(output_array)
+                plt.title(f'\nPM corrected\nMin and Max value: ({round(min_value_output,2)},{round(maximum_value_output,2)})')
                 plt.savefig('Median_filter_applied.png')
                 # Show the plot
                 plt.show()
