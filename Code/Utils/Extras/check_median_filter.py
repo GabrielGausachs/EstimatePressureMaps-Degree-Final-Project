@@ -60,6 +60,16 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 # Show the plot
                 plt.show()
 
+                fig, axs = plt.subplots(1, 2, figsize=(14, 7))
+
+                axs[0].hist(array_ir.flatten(), bins=100, color='royalblue')
+                axs[0].set_title("Histogram of LWIR array")
+                axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
+                axs[1].set_title("Histogram of PM array")
+                plt.tight_layout()
+                plt.savefig('Histogram_LWIR_PM.png')
+                plt.show()
+
                 break
     break
                 
