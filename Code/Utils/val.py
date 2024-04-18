@@ -28,7 +28,7 @@ def val(model, loader, criterion, epoch=0, epochs=0):
 
     with torch.no_grad():
         for batch_idx, (input_images, target_images) in enumerate(loader, 1):
-            logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
+            #logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
 
             input_images = input_images.to(DEVICE)
             target_images = target_images.to(DEVICE)

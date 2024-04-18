@@ -61,7 +61,7 @@ class PWRSWtL(nn.Module):
         loss = (mask_tensor * diff_sq).mean()
 
         # Get the loss with sum
-        #loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
+        # loss = (self.lambda_L2 * mask_tensor * diff_sq).sum()
 
         return loss
 
@@ -70,16 +70,16 @@ class PWRSWtL(nn.Module):
 class HVLoss(nn.Module):
     def __init__(self, lambda_L2):
         super(HVLoss, self).__init__()
-        self.lambda_L2 = lambda_L2
 
     def forward(self, src, tar):
 
         # Higher values, higher weights
 
         min_value = 0.1
+        max_value = 1
 
         # Compute the range of pixel values
-        value_range = self.lambda_L2 - min_value
+        value_range = max_value - min_value
 
         # Compute weights for each pixel value
         weights = (tar - tar.min()) / (tar.max() -

@@ -29,7 +29,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
     logger.info("Memory cleaned!")
 
     for batch_idx, (input_images, target_images) in enumerate(loader, 1):
-        logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
+        #logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
 
         input_images = input_images.to(DEVICE)
         target_images = target_images.to(DEVICE)
@@ -41,7 +41,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
         optimizer.step()
 
         total_loss += train_loss.item()
-        print('loss:',train_loss.item())
+        #print('loss:',train_loss.item())
 
         # Free memory in each iteration
         del input_images
