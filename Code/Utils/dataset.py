@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset
-from Utils.logger import initialize_logger,get_logger
+from Utils.logger import initialize_logger, get_logger
 import numpy as np
 import torch
 from scipy import signal
@@ -8,7 +8,9 @@ from Utils.config import (
 )
 
 logger = get_logger()
-class CustomDataset(Dataset): 
+
+
+class CustomDataset(Dataset):
     # Dataset for the random option
     # Includes:
     # - IR arrays
@@ -19,7 +21,7 @@ class CustomDataset(Dataset):
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
         self.p_data = p_data
-    
+
         self.transform = transform
 
     def __len__(self):
@@ -38,7 +40,7 @@ class CustomDataset(Dataset):
         if self.transform:
             input_array = self.transform['input'](input_array)
 
-            parts = str(output_path.split("\\")[-4])
+            parts = str(output_path.split("/")[-4])
             number = int(parts)
             p_vector = self.p_data.iloc[number-1]
             weight = p_vector[1]
@@ -46,7 +48,7 @@ class CustomDataset(Dataset):
 
             # Applying median filter
             median_array = signal.medfilt2d(output_array)
-            max_array = np.maximum(output_array,median_array)
+            max_array = np.maximum(output_array, median_array)
 
             area_m = 1.03226 / 10000
             ideal_pressure = weight * 9.81 / (area_m * 1000)
@@ -57,7 +59,7 @@ class CustomDataset(Dataset):
             if USE_PHYSICAL_DATA:
                 return input_array, output_array, tensor_data
             else:
-                return input_array,output_array
+                return input_array, output_array
 
     def load_array(self, path):
         # Load the array
