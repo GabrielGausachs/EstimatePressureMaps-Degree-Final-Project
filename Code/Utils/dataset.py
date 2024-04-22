@@ -5,6 +5,7 @@ import torch
 from scipy import signal
 from Utils.config import (
     USE_PHYSICAL_DATA,
+    PATH_DATASET,
 )
 
 logger = get_logger()
@@ -40,7 +41,10 @@ class CustomDataset(Dataset):
         if self.transform:
             input_array = self.transform['input'](input_array)
 
-            parts = str(output_path.split("/")[-4])
+            if PATH_DATASET == 'Server':
+                parts = str(output_path.split("/")[-4])
+            else:
+                parts = str(output_path.split("\\")[-4])
             number = int(parts)
             p_vector = self.p_data.iloc[number-1]
             weight = p_vector[1]

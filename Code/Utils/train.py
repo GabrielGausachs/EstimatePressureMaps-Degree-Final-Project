@@ -51,6 +51,7 @@ def train(model, loader, optimizer, criterion, epoch=0, epochs=0):
         gc.collect()  # Collect trash to free memory not used
 
     epoch_loss = total_loss / len(loader)
+    print(epoch_loss)
     #result.add_loss("train", epoch_loss)
 
     logger.info(f"Epoch: {epoch}/{epochs}, Train loss = {epoch_loss:.6f}")
