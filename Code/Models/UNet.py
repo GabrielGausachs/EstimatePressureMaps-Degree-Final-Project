@@ -1,9 +1,7 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 
-# A U-Net with 4 blocks of 2 convolutional layers each block and with skip connections
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
@@ -19,11 +17,11 @@ class DoubleConv(nn.Module):
     def forward(self, x):
         return self.conv(x)
 
-class UNet(nn.Module):
+class UNET(nn.Module):
     def __init__(
             self, in_channels=3, out_channels=1, features=[64, 128, 256, 512],
     ):
-        super(UNet, self).__init__()
+        super(UNET, self).__init__()
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
@@ -48,7 +46,6 @@ class UNet(nn.Module):
     def forward(self, x):
         skip_connections = []
 
-        # Down part of the Array
         for down in self.downs:
             x = down(x)
             skip_connections.append(x)
@@ -68,3 +65,6 @@ class UNet(nn.Module):
             x = self.ups[idx+1](concat_skip)
 
         return self.final_conv(x)
+
+
+# A U-Net with 4 blocks of 2 convolutional layers each block and with skip connections

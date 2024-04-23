@@ -1,0 +1,14 @@
+2024-04-18 18:28:50,369 - root - INFO -> Logger initialized in filename 2024-04-18-18-28-50
+2024-04-18 18:28:50,369 - root - INFO -> --------------------------------------------------
+2024-04-18 18:28:50,369 - root - INFO -> Reading the data from Server...
+2024-04-18 18:28:50,416 - root - INFO -> Number of pacients: 102
+2024-04-18 18:28:50,416 - root - INFO -> Number of categories in a patient: 3
+2024-04-18 18:28:50,733 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-04-18 18:28:50,733 - root - INFO -> --------------------------------------------------
+2024-04-18 18:28:50,733 - root - INFO -> Creating dataset...
+2024-04-18 18:28:50,733 - root - INFO -> Partition --> Patients
+2024-04-18 18:28:50,735 - root - INFO -> Train size: 10935
+2024-04-18 18:28:50,735 - root - INFO -> Val size: 2835
+2024-04-18 18:28:50,735 - root - INFO -> --------------------------------------------------
+2024-04-18 18:28:50,735 - root - INFO -> Creating dataloaders...
+2024-04-18 18:28:50,735 - root - INFO -> Train loader info: {'Number of samples': 10935, 'Batch size': 128, 'Number of batches': 85}

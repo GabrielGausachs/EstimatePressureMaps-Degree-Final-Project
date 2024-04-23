@@ -13,6 +13,8 @@ import wandb
 import datetime
 import torch
 from matplotlib import pyplot as plt
+import os
+
 
 from Utils.config import (
     WANDB,
@@ -39,7 +41,8 @@ from Models import (
 # os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 # Models
-models = {"Simple_net": Simple_net.Simple_net, "UNet": UNet.UNet, "UNet_phy":UNet_phy.UNET_phy}
+models = {"Simple_net": Simple_net.Simple_net,
+          "UNet": UNet.UNET, "UNet_phy": UNet_phy.UNET_phy}
 
 # Optimizers
 optimizers = {
@@ -55,13 +58,21 @@ criterion = {
 
 # Metrics
 metrics = [
-    torch.nn.MSELoss(),
+    # torch.nn.MSELoss(),
     metrics.PerCS()
 ]
 
+def force_cudnn_initialization():
+    s = 32
+    dev = torch.device('cuda')
+    torch.nn.functional.conv2d(torch.zeros(s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
 
 
 if __name__ == "__main__":
+
+    force_cudnn_initialization()
+
+    # print(os.environ)
 
     # Initialize logger
     logger.initialize_logger()
@@ -92,7 +103,7 @@ if __name__ == "__main__":
 
         # Create a model
         if USE_PHYSICAL_DATA:
-            model=models[MODEL_NAME](1,11,1).to(DEVICE)
+            model = models[MODEL_NAME](1, 11, 1).to(DEVICE)
         else:
             model = models[MODEL_NAME](1, 1).to(DEVICE)
 
@@ -109,6 +120,10 @@ if __name__ == "__main__":
             f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
         logger.info(f"Lambda value: {LAMBDA_VALUE}")
+
+        print(model)
+        print(criterion)
+        print(optimizer)
 
         # Iterate over training and test
         for epoch in range(EPOCHS):
@@ -132,11 +147,12 @@ if __name__ == "__main__":
             if WANDB:
                 #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
                 wandb.log({'train_loss': epoch_loss_train}, step=epoch)
-                for i,metric in enumerate(metrics):
-                    wandb.log({f'Val {metric}': epoch_metric_val[i]}, step=epoch)
+                for i, metric in enumerate(metrics):
+                    wandb.log(
+                        {f'Val {metric}': epoch_metric_val[i]}, step=epoch)
 
         # Save the model pth and the arquitecture
-        #savemodel.save_model(model)
+        # savemodel.save_model(model)
 
     logger.info("-" * 50)
 

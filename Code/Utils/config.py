@@ -38,7 +38,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 3
+EPOCHS = 1
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 
