@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNet_no_phy_PWRS"
+EXECUTION_NAME = "UNet_no_phy_HVLoss"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss
