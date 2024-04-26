@@ -14,7 +14,7 @@ max_values_per_image, _ = torch.max(reshaped_tensor, dim=1)
 print(max_values_per_image)
 
 # Now you can proceed with the rest of your computation
-count = torch.sum(diff < max_values_per_image.unsqueeze(1).repeat(1, 10, 2) * 0.01).item()
+count = torch.sum(diff < max_values_per_image.unsqueeze(1).unsqueeze(2).expand(2,10,2) * 0.1).item()
 
 pcs = count / tar.numel()
 
