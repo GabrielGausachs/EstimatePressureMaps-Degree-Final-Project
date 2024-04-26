@@ -75,8 +75,8 @@ class HVLoss(nn.Module):
 
         # Higher values, higher weights
 
-        min_value = 0.1
-        max_value = 1
+        min_value = 1
+        max_value = 100
 
         # Compute the range of pixel values
         value_range = max_value - min_value

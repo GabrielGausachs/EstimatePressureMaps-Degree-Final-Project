@@ -58,14 +58,16 @@ criterion = {
 
 # Metrics
 metrics = [
-    # torch.nn.MSELoss(),
+    torch.nn.MSELoss(),
     metrics.PerCS()
 ]
+
 
 def force_cudnn_initialization():
     s = 32
     dev = torch.device('cuda')
-    torch.nn.functional.conv2d(torch.zeros(s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
+    torch.nn.functional.conv2d(torch.zeros(
+        s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
 
 
 if __name__ == "__main__":
@@ -121,10 +123,6 @@ if __name__ == "__main__":
         logger.info(f"Learning rate: {LEARNING_RATE}")
         logger.info(f"Lambda value: {LAMBDA_VALUE}")
 
-        print(model)
-        print(criterion)
-        print(optimizer)
-
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")
@@ -150,6 +148,7 @@ if __name__ == "__main__":
                 for i, metric in enumerate(metrics):
                     wandb.log(
                         {f'Val {metric}': epoch_metric_val[i]}, step=epoch)
+            print(f"--- Epoch: {epoch} finished ---")
 
         # Save the model pth and the arquitecture
         # savemodel.save_model(model)

@@ -38,8 +38,8 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 128
 BATCH_SIZE_TEST = 128
 NUM_WORKERS = 2
-EPOCHS = 1
-LEARNING_RATE = 0.002
+EPOCHS = 3
+LEARNING_RATE = 0.0002
 LAMBDA_VALUE = 10
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

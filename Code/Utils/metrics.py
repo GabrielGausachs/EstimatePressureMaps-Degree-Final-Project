@@ -10,10 +10,14 @@ class PerCS(nn.Module):
 
         diff = torch.abs(src-tar)
 
-        max_value = torch.max(tar)
-        print(max_value)
+        reshaped_tar = tar.view(tar.size(0), -1)
 
-        count = torch.sum(diff < (max_value*0.01)).item()
+        max_values, _ = torch.max(reshaped_tar, dim=1)
+
+        thres = max_values.unsqueeze(1).unsqueeze(2).unsqueeze(3).expand(
+            tar.size(0), tar.size(1), tar.size(2), tar.size(3))*0.025
+
+        count = torch.sum(diff < thres).item()
 
         pcs = count / tar.numel()
 
