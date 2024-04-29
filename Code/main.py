@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
     logger.info("-" * 50)
 
-    """
+    
 
     if EVALUATION:
         if DO_TRAIN:
@@ -176,5 +176,3 @@ if __name__ == "__main__":
             evaluation.evaluation(model, criterion[CRITERION], val_loader)
         logger.info("Evaluation Completed!")
         logger.info("-" * 50)
-
-    """
