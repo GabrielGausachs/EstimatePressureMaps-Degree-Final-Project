@@ -126,18 +126,20 @@ if __name__ == "__main__":
         # Iterate over training and test
         for epoch in range(EPOCHS):
             logger.info(f"--- Epoch: {epoch} ---")
-            epoch_loss_train = train.train(
+            epoch_loss_train, epoch_metric_train = train.train(
                 model=model,
                 loader=train_loader,
                 optimizer=optimizer,
                 criterion=criterion,
+                metrics=metrics,
                 epoch=epoch,
                 epochs=EPOCHS,
             )
-            epoch_metric_val = val.val(
+            epoch_loss_val, epoch_metric_val = val.val(
                 model=model,
                 loader=val_loader,
                 metrics=metrics,
+                criterion=criterion,
                 epoch=epoch,
                 epochs=EPOCHS,
             )
@@ -145,13 +147,18 @@ if __name__ == "__main__":
             if WANDB:
                 #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
                 wandb.log({'train_loss': epoch_loss_train}, step=epoch)
+                wandb.log({'val_loss': epoch_loss_val}, step=epoch)
+
                 for i, metric in enumerate(metrics):
                     wandb.log(
                         {f'Val {metric}': epoch_metric_val[i]}, step=epoch)
+                    wandb.log(
+                        {f'Train {metric}': epoch_metric_train[i]}, step=epoch)
+
             print(f"--- Epoch: {epoch} finished ---")
 
         # Save the model pth and the arquitecture
-        # savemodel.save_model(model)
+        savemodel.save_model(model)
 
     logger.info("-" * 50)
 

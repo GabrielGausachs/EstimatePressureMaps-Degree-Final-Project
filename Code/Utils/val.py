@@ -1,4 +1,4 @@
-from Utils.logger import initialize_logger,get_logger
+from Utils.logger import initialize_logger, get_logger
 import torch
 import wandb
 import gc
@@ -9,8 +9,10 @@ from Utils.config import (
 
 logger = get_logger()
 
-def val(model, loader, metrics, epoch=0, epochs=0):
-    total_metric = [0,0]
+
+def val(model, loader, metrics, criterion, epoch=0, epochs=0):
+    total_metric = [0, 0]
+    total_loss = 0
     model.eval()
 
     logger.info(f"Epoch: {epoch}/{epochs}, Starting validation...")
@@ -28,36 +30,48 @@ def val(model, loader, metrics, epoch=0, epochs=0):
 
     with torch.no_grad():
         for batch_idx, (input_images, target_images) in enumerate(loader, 1):
-            logger.info(f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
+            logger.info(
+                f"Epoch: {epoch}/{epochs}, Processing batch {batch_idx}/{len(loader)}...")
 
             input_images = input_images.to(DEVICE)
             target_images = target_images.to(DEVICE)
 
             outputs = model(input_images)
-            for i,metric in enumerate(metrics):
+            for i, metric in enumerate(metrics):
 
-                val_loss = metric(outputs, target_images)
+                val_metric = metric(outputs, target_images)
 
-                total_metric[i] += val_loss
+                total_metric[i] += val_metric
+
+            val_loss = criterion(outputs, target_images)
+            total_loss += val_loss.item()
 
             # Free memory in each iteration
             del input_images
             del target_images
             del val_loss
-            torch.cuda.empty_cache() # Clean CUDA Cache if used GPU
+            torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
             gc.collect()  # Collect trash to free memory not used
 
-    epoch_metric = [total_metric[0] / len(loader), total_metric[1] / len(loader)]
+    epoch_metric = [total_metric[0] /
+                    len(loader), total_metric[1] / len(loader)]
 
-    for i,metric in enumerate(metrics):
-        logger.info(f"Epoch: {epoch}/{epochs}, Val {metric} = {epoch_metric[i]:.6f}")
+    epoch_loss = total_loss / len(loader)
+
+    logger.info(f"Epoch: {epoch}/{epochs}, Val loss = {epoch_loss:.6f}")
+
+    for i, metric in enumerate(metrics):
+        logger.info(
+            f"Epoch: {epoch}/{epochs}, Val {metric} = {epoch_metric[i]:.6f}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
     logger.info("Validation finished! Memory cleaned!")
     logger.info("-" * 50)
 
-    return epoch_metric
+    return epoch_loss, epoch_metric
+
+
 """
 
 

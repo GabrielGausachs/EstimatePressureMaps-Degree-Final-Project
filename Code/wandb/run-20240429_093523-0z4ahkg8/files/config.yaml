@@ -1,0 +1,48 @@
+wandb_version: 1
+
+model_name:
+  desc: null
+  value: UNet
+optimizer:
+  desc: null
+  value: Adam
+criterion:
+  desc: null
+  value: HVLoss
+learning_rate:
+  desc: null
+  value: 0.002
+epochs:
+  desc: null
+  value: 3
+experiment_type:
+  desc: null
+  value: np-input-norm-patients
+_wandb:
+  desc: null
+  value:
+    python_version: 3.8.10
+    cli_version: 0.16.5
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1714376123.0
+    t:
+      1:
+      - 1
+      - 41
+      - 55
+      2:
+      - 1
+      - 41
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      - 61
+      4: 3.8.10
+      5: 0.16.5
+      8:
+      - 5
+      13: linux-x86_64
