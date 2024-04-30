@@ -30,6 +30,8 @@ from Utils.config import (
     EXPERTYPE,
     LAMBDA_VALUE,
     USE_PHYSICAL_DATA,
+    BATCH_SIZE_TEST,
+    BATCH_SIZE_TRAIN,
 )
 
 from Models import (
@@ -97,6 +99,8 @@ if __name__ == "__main__":
                         "learning_rate": LEARNING_RATE,
                         "epochs": EPOCHS,
                         "experiment_type": EXPERTYPE,
+                        "batch_train_size": BATCH_SIZE_TRAIN,
+                        "batch_test_size": BATCH_SIZE_TEST,
                 },
                 save_code=False,
             )
