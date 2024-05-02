@@ -58,15 +58,32 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 # Show PM inicial
                 plt.imshow(array_pm)
                 plt.title(f'\nPM inicial\nMin and Max value: ({round(min_value_array,2)},{round(maximum_value_array,2)})')
-                plt.savefig('PM_inicial.png')
+                #plt.savefig('PM_inicial.png')
                 plt.show()
 
                 # Show PM corrected
                 plt.imshow(output_array)
                 plt.title(f'\nPM corrected\nMin and Max value: ({round(min_value_output,2)},{round(maximum_value_output,2)})')
-                plt.savefig('Median_filter_applied.png')
+                #plt.savefig('Median_filter_applied.png')
                 plt.show()
 
+                fig, axs = plt.subplots(1, 3)
+
+                # Plot before transform
+                axs[0].imshow(array_pm)
+                axs[0].set_title('Inicial PM')
+
+                # Plot after transform
+                axs[1].imshow(median)
+                axs[1].set_title('median')
+
+                axs[2].imshow(maximum)
+                axs[2].set_title('maximum')
+
+                # Show the plot
+                plt.show()
+
+                """
                 # Show histogram of LWIR and PM values
                 fig, axs = plt.subplots(1, 2, figsize=(14, 7))
 
@@ -75,8 +92,9 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
                 axs[1].set_title("Histogram of PM array")
                 plt.tight_layout()
-                plt.savefig('Histogram_LWIR_PM.png')
+                #plt.savefig('Histogram_LWIR_PM.png')
                 plt.show()
+                """
 
                 break
     break
