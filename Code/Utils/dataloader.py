@@ -111,7 +111,6 @@ class CustomDataloader:
         if PARTITION == 1:
             logger.info('Partition --> Patients')
             keys = list(dic_pm_numpy.keys())
-            random.shuffle(keys)
 
             split_index = int(0.8 * len(keys))
 

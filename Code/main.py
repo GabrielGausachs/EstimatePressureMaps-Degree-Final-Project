@@ -74,9 +74,7 @@ def force_cudnn_initialization():
 
 if __name__ == "__main__":
 
-    force_cudnn_initialization()
-
-    # print(os.environ)
+    #force_cudnn_initialization()
 
     # Initialize logger
     logger.initialize_logger()
