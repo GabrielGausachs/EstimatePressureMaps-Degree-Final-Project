@@ -5,6 +5,7 @@ import datetime
 from Utils.config import (
     MODEL_NAME,
     MODELS_PATH,
+    EXECUTION_NAME,
 )
 
 
@@ -15,7 +16,7 @@ def save_model(model):
     logger.info("Saving the model")
     model.to("cpu")
     torch.save(
-        model.state_dict(), f"{MODELS_PATH}/{MODEL_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
+        model.state_dict(), f"{MODELS_PATH}/{EXECUTION_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.pth"
     )
     logger.info(f"Model saved in {MODELS_PATH}")
     

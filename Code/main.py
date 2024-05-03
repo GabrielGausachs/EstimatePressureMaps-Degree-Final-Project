@@ -74,7 +74,7 @@ def force_cudnn_initialization():
 
 if __name__ == "__main__":
 
-    #force_cudnn_initialization()
+    force_cudnn_initialization()
 
     # Initialize logger
     logger.initialize_logger()
@@ -89,7 +89,7 @@ if __name__ == "__main__":
             wandb.init(
                 project="TFG",
                 entity='1604373',
-                name=f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_{EXECUTION_NAME}",
+                name=f"{EXECUTION_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}",
                 config={
                         "model_name": MODEL_NAME,
                         "optimizer": OPTIMIZER,
@@ -99,6 +99,7 @@ if __name__ == "__main__":
                         "experiment_type": EXPERTYPE,
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
+			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S')
                 },
                 save_code=False,
             )

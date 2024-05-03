@@ -6,12 +6,12 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNet_no_phy_MSELoss"
+EXECUTION_NAME = "UNetNoPDataMSELoss"
 MODEL_NAME = "UNet"
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 METRIC = "PerCS" #PerCS #MSELoss
-EXPERTYPE = 'np-input-norm-patients'
+EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -35,10 +35,10 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 
 
 # Parameters ------------------------------
-BATCH_SIZE_TRAIN = 8
-BATCH_SIZE_TEST = 8
+BATCH_SIZE_TRAIN = 64
+BATCH_SIZE_TEST = 64
 NUM_WORKERS = 2
-EPOCHS = 25
+EPOCHS = 90
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

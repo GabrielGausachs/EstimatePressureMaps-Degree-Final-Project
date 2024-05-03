@@ -1,0 +1,156 @@
+{
+    "os": "Linux-5.4.0-174-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2024-05-02T22:51:51.699590",
+    "startedAt": "2024-05-02T22:51:49.727902",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "main.py",
+    "codePathLocal": "main.py",
+    "codePath": "Code/main.py",
+    "git": {
+        "remote": "https://github.com/GabrielGausachs/TFG.git",
+        "commit": "aa527630f672d1e57a3e13362426612f792067a8"
+    },
+    "email": "g4a4b4r4i@gmail.com",
+    "root": "/home/ggausachs/TFG",
+    "host": "compu2",
+    "username": "ggausachs",
+    "executable": "/mnt/DADES/ggausachs/ggausachs_env_tfg/bin/python3",
+    "cpu_count": 10,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 3846.725699999999,
+        "min": 1200.0,
+        "max": 4500.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3823.629,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3844.725,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3842.021,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3849.565,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3819.2,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3843.344,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3809.108,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3876.996,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3779.592,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3841.54,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3822.854,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3888.861,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3832.891,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3850.627,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3855.836,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3824.46,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3877.972,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3810.963,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3805.624,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3966.924,
+            "min": 1200.0,
+            "max": 4500.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 456.8854446411133,
+            "used": 345.10762786865234
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "gpu_count": 3,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 125.5001106262207
+    }
+}
