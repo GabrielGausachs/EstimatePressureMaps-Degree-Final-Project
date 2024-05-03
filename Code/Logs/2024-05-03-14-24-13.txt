@@ -1,0 +1,33 @@
+2024-05-03 14:24:53,607 - root - INFO -> Logger initialized in filename 2024-05-03-14-24-53
+2024-05-03 14:24:53,631 - root - INFO -> --------------------------------------------------
+2024-05-03 14:24:53,631 - root - INFO -> Reading the data from Server...
+2024-05-03 14:24:54,040 - root - INFO -> Number of pacients: 102
+2024-05-03 14:24:54,040 - root - INFO -> Number of categories in a patient: 3
+2024-05-03 14:24:54,062 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-05-03 14:24:54,062 - root - INFO -> --------------------------------------------------
+2024-05-03 14:24:54,062 - root - INFO -> Creating dataset...
+2024-05-03 14:24:54,062 - root - INFO -> Partition --> Patients
+2024-05-03 14:24:54,096 - root - INFO -> Train size: 10935
+2024-05-03 14:24:54,096 - root - INFO -> Val size: 2835
+2024-05-03 14:24:54,096 - root - INFO -> --------------------------------------------------
+2024-05-03 14:24:54,096 - root - INFO -> Creating dataloaders...
+2024-05-03 14:24:54,096 - root - INFO -> Train loader info: {'Number of samples': 10935, 'Batch size': 32, 'Number of batches': 341}
+2024-05-03 14:24:54,552 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-03 14:24:54,981 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-03 14:24:54,981 - root - INFO -> Val loader info: {'Number of samples': 2835, 'Batch size': 32, 'Number of batches': 88}
+2024-05-03 14:24:55,482 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-03 14:24:55,898 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-03 14:25:05,363 - root - INFO -> --------------------------------------------------
+2024-05-03 14:25:05,363 - root - INFO -> Wandb correctly initialized
+2024-05-03 14:25:23,335 - root - INFO -> --------------------------------------------------
+2024-05-03 14:25:23,360 - root - INFO -> Starting training with model UNet that has 7699009 parameters
+2024-05-03 14:25:23,360 - root - INFO -> Learning rate: 0.002
+2024-05-03 14:25:23,360 - root - INFO -> Lambda value: 10
+2024-05-03 14:25:23,360 - root - INFO -> --- Epoch: 0 ---
+2024-05-03 14:25:23,361 - root - INFO -> Epoch: 0/90, Starting training...
+2024-05-03 14:25:23,361 - root - INFO -> Loader length: 341
+2024-05-03 14:25:23,361 - root - INFO -> Loader batch size: 32
+2024-05-03 14:25:23,361 - root - INFO -> Loader drop last: True
+2024-05-03 14:25:23,361 - root - INFO -> Loader num workers: 0
+2024-05-03 14:25:23,361 - root - INFO -> Criterion: MSELoss()
+2024-05-03 14:25:24,255 - root - INFO -> Memory cleaned!

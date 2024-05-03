@@ -32,6 +32,7 @@ from Utils.config import (
     USE_PHYSICAL_DATA,
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
+    MAX_FEATURE,
 )
 
 from Models import (
@@ -99,7 +100,8 @@ if __name__ == "__main__":
                         "experiment_type": EXPERTYPE,
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
-			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
+			"Max feature in model": MAX_FEATURE
                 },
                 save_code=False,
             )

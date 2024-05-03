@@ -177,10 +177,10 @@ class CustomDataloader:
 
         # Create  dataloaders
         train_loader = DataLoader(
-            train_dataset, batch_size=BATCH_SIZE_TRAIN, shuffle=True, num_workers=NUM_WORKERS, drop_last=True
+            train_dataset, batch_size=BATCH_SIZE_TRAIN, shuffle=True, num_workers=0, drop_last=True
         )
         val_loader = DataLoader(
-            val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=NUM_WORKERS, drop_last=True
+            val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
 
         train_dataset_info = {

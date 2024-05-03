@@ -8,6 +8,7 @@ import torch
 
 EXECUTION_NAME = "UNetNoPDataMSELoss"
 MODEL_NAME = "UNet"
+MAX_FEATURE = 512
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 METRIC = "PerCS" #PerCS #MSELoss
@@ -35,12 +36,12 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 
 
 # Parameters ------------------------------
-BATCH_SIZE_TRAIN = 64
-BATCH_SIZE_TEST = 64
+BATCH_SIZE_TRAIN = 32
+BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
 EPOCHS = 90
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 #DEVICE = torch.device("cpu")
