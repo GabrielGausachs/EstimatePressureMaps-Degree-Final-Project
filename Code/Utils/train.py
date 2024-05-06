@@ -24,6 +24,7 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0,ploss=
     logger.info(f"Loader drop last: {loader.drop_last}")
     logger.info(f"Loader num workers: {loader.num_workers}")
     logger.info(f"Criterion: {criterion}")
+    logger.info(f"Physical loss: {ploss}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used

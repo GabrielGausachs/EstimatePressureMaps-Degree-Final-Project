@@ -10,6 +10,7 @@ from Utils.config import (
 
 # Pixel Wise Resampling Loss
 
+
 class UVLoss(nn.Module):
     def __init__(self, lambda_L2):
         super(UVLoss, self).__init__()
@@ -93,18 +94,20 @@ class HVLoss(nn.Module):
         loss = (mask_tensor * diff_sq).mean()
 
         return loss
-    
+
 
 class PhyLoss(nn.Module):
     def __init__(self):
-        super(PhyLoss,self).__init__()
-    
-    def forward(self,src,tar):
-        
+        super(PhyLoss, self).__init__()
+
+    def forward(self, src, tar):
+
         area_m = 1.03226 / 10000
-        desire_weight = area_m * (torch.sum(tar)*1000) / 9.81
-        output_weight = area_m * (torch.sum(src)*1000) / 9.81
+        desire_weight = area_m * (torch.sum(tar, dim=(1, 2))*1000) / 9.81
+        output_weight = area_m * (torch.sum(src, dim=(1, 2))*1000) / 9.81
 
         loss = (desire_weight - output_weight)**2
+
+        loss = loss.mean()
 
         return loss

@@ -23,6 +23,7 @@ def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsl
     logger.info(f"Loader drop last: {loader.drop_last}")
     logger.info(f"Loader num workers: {loader.num_workers}")
     logger.info(f"Metrics: {metrics}")
+    logger.info(f"Physical loss: {ploss}")
 
     torch.cuda.empty_cache()  # Clean CUDA Cache if used GPU
     gc.collect()  # Collect trash to free memory not used
