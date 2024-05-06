@@ -11,7 +11,7 @@ from Utils.config import (
 logger = get_logger()
 
 
-def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0):
+def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0,ploss=None,weightsloss=[0,0]):
     total_loss = 0
     total_metric = [0, 0]
     model.train()
@@ -36,6 +36,10 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0):
         optimizer.zero_grad()
         outputs = model(input_images)
         train_loss = criterion(outputs, target_images)
+
+        if ploss is not None:
+            loss_physical = ploss(outputs,target_images)
+            train_loss = train_loss * weightsloss[0] + loss_physical * weightsloss[1]
 
         for i, metric in enumerate(metrics):
 

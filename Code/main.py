@@ -33,6 +33,8 @@ from Utils.config import (
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
     MAX_FEATURE,
+    PLOSS,
+    WEIGHTSLOSSES,
 )
 
 from Models import (
@@ -58,6 +60,9 @@ criterion = {
     "UVLoss": losses.UVLoss(LAMBDA_VALUE),
     "HVLoss": losses.HVLoss()
 }
+
+ploss = {True: losses.PhyLoss(),
+         False: None}
 
 # Metrics
 metrics = [
@@ -139,6 +144,8 @@ if __name__ == "__main__":
                 metrics=metrics,
                 epoch=epoch,
                 epochs=EPOCHS,
+                ploss=ploss[PLOSS],
+                weightsloss=WEIGHTSLOSSES,
             )
             epoch_loss_val, epoch_metric_val = val.val(
                 model=model,
@@ -147,6 +154,8 @@ if __name__ == "__main__":
                 criterion=criterion,
                 epoch=epoch,
                 epochs=EPOCHS,
+                ploss=ploss[PLOSS],
+                weightsloss=WEIGHTSLOSSES,
             )
 
             if WANDB:
