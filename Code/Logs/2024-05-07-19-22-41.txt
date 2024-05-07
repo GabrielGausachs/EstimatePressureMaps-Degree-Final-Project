@@ -1,0 +1,870 @@
+2024-05-07 19:22:46,765 - root - INFO -> Logger initialized in filename 2024-05-07-19-22-46
+2024-05-07 19:22:46,765 - root - INFO -> --------------------------------------------------
+2024-05-07 19:22:46,765 - root - INFO -> Reading the data from Server...
+2024-05-07 19:22:46,803 - root - INFO -> Number of pacients: 102
+2024-05-07 19:22:46,803 - root - INFO -> Number of categories in a patient: 3
+2024-05-07 19:22:46,810 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-05-07 19:22:46,810 - root - INFO -> --------------------------------------------------
+2024-05-07 19:22:46,810 - root - INFO -> Creating dataset...
+2024-05-07 19:22:46,810 - root - INFO -> Partition --> Patients
+2024-05-07 19:22:46,816 - root - INFO -> Train size: 10098
+2024-05-07 19:22:46,816 - root - INFO -> Val size: 2754
+2024-05-07 19:22:46,816 - root - INFO -> --------------------------------------------------
+2024-05-07 19:22:46,816 - root - INFO -> Creating dataloaders...
+2024-05-07 19:22:46,816 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-07 19:22:46,896 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-07 19:22:46,947 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-07 19:22:46,947 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-07 19:22:46,997 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-07 19:22:47,046 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-07 19:22:50,000 - root - INFO -> --------------------------------------------------
+2024-05-07 19:22:50,000 - root - INFO -> Wandb correctly initialized
+2024-05-07 19:22:50,191 - root - INFO -> --------------------------------------------------
+2024-05-07 19:22:50,191 - root - INFO -> Starting training with model UNet that has 31036481 parameters
+2024-05-07 19:22:50,191 - root - INFO -> Learning rate: 0.002
+2024-05-07 19:22:50,191 - root - INFO -> --- Epoch: 0 ---
+2024-05-07 19:22:50,192 - root - INFO -> Epoch: 0/90, Starting training...
+2024-05-07 19:22:50,192 - root - INFO -> Loader length: 315
+2024-05-07 19:22:50,192 - root - INFO -> Loader batch size: 32
+2024-05-07 19:22:50,192 - root - INFO -> Loader drop last: True
+2024-05-07 19:22:50,192 - root - INFO -> Loader num workers: 0
+2024-05-07 19:22:50,192 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:22:50,192 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:22:50,307 - root - INFO -> Memory cleaned!
+2024-05-07 19:24:21,681 - root - INFO -> Epoch: 0/90, Train loss = 4.301671
+2024-05-07 19:24:21,681 - root - INFO -> Epoch: 0/90, Train MSELoss() = 2.159047
+2024-05-07 19:24:21,681 - root - INFO -> Epoch: 0/90, Train PerCS() = 0.834032
+2024-05-07 19:24:21,774 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:24:21,774 - root - INFO -> --------------------------------------------------
+2024-05-07 19:24:21,774 - root - INFO -> Epoch: 0/90, Starting validation...
+2024-05-07 19:24:21,774 - root - INFO -> Loader length: 86
+2024-05-07 19:24:21,775 - root - INFO -> Loader batch size: 32
+2024-05-07 19:24:21,775 - root - INFO -> Loader drop last: True
+2024-05-07 19:24:21,775 - root - INFO -> Loader num workers: 0
+2024-05-07 19:24:21,775 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:24:21,775 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:24:21,866 - root - INFO -> Memory cleaned!
+2024-05-07 19:24:38,914 - root - INFO -> Epoch: 0/90, Val loss = 4.111467
+2024-05-07 19:24:38,914 - root - INFO -> Epoch: 0/90, Val MSELoss() = 2.265089
+2024-05-07 19:24:38,914 - root - INFO -> Epoch: 0/90, Val PerCS() = 0.851139
+2024-05-07 19:24:39,005 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:24:39,005 - root - INFO -> --------------------------------------------------
+2024-05-07 19:24:39,013 - root - INFO -> --- Epoch: 1 ---
+2024-05-07 19:24:39,013 - root - INFO -> Epoch: 1/90, Starting training...
+2024-05-07 19:24:39,013 - root - INFO -> Loader length: 315
+2024-05-07 19:24:39,013 - root - INFO -> Loader batch size: 32
+2024-05-07 19:24:39,013 - root - INFO -> Loader drop last: True
+2024-05-07 19:24:39,013 - root - INFO -> Loader num workers: 0
+2024-05-07 19:24:39,013 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:24:39,013 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:24:39,108 - root - INFO -> Memory cleaned!
+2024-05-07 19:26:21,978 - root - INFO -> Epoch: 1/90, Train loss = 3.599540
+2024-05-07 19:26:21,978 - root - INFO -> Epoch: 1/90, Train MSELoss() = 2.050262
+2024-05-07 19:26:21,978 - root - INFO -> Epoch: 1/90, Train PerCS() = 0.846071
+2024-05-07 19:26:22,070 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:26:22,070 - root - INFO -> --------------------------------------------------
+2024-05-07 19:26:22,085 - root - INFO -> Epoch: 1/90, Starting validation...
+2024-05-07 19:26:22,086 - root - INFO -> Loader length: 86
+2024-05-07 19:26:22,086 - root - INFO -> Loader batch size: 32
+2024-05-07 19:26:22,086 - root - INFO -> Loader drop last: True
+2024-05-07 19:26:22,086 - root - INFO -> Loader num workers: 0
+2024-05-07 19:26:22,086 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:26:22,086 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:26:22,194 - root - INFO -> Memory cleaned!
+2024-05-07 19:26:39,287 - root - INFO -> Epoch: 1/90, Val loss = 4.835283
+2024-05-07 19:26:39,288 - root - INFO -> Epoch: 1/90, Val MSELoss() = 2.260357
+2024-05-07 19:26:39,288 - root - INFO -> Epoch: 1/90, Val PerCS() = 0.819529
+2024-05-07 19:26:39,381 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:26:39,382 - root - INFO -> --------------------------------------------------
+2024-05-07 19:26:39,382 - root - INFO -> --- Epoch: 2 ---
+2024-05-07 19:26:39,383 - root - INFO -> Epoch: 2/90, Starting training...
+2024-05-07 19:26:39,383 - root - INFO -> Loader length: 315
+2024-05-07 19:26:39,383 - root - INFO -> Loader batch size: 32
+2024-05-07 19:26:39,383 - root - INFO -> Loader drop last: True
+2024-05-07 19:26:39,383 - root - INFO -> Loader num workers: 0
+2024-05-07 19:26:39,383 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:26:39,383 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:26:39,477 - root - INFO -> Memory cleaned!
+2024-05-07 19:28:10,339 - root - INFO -> Epoch: 2/90, Train loss = 3.357150
+2024-05-07 19:28:10,339 - root - INFO -> Epoch: 2/90, Train MSELoss() = 1.992935
+2024-05-07 19:28:10,340 - root - INFO -> Epoch: 2/90, Train PerCS() = 0.853061
+2024-05-07 19:28:10,438 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:28:10,438 - root - INFO -> --------------------------------------------------
+2024-05-07 19:28:10,454 - root - INFO -> Epoch: 2/90, Starting validation...
+2024-05-07 19:28:10,454 - root - INFO -> Loader length: 86
+2024-05-07 19:28:10,454 - root - INFO -> Loader batch size: 32
+2024-05-07 19:28:10,454 - root - INFO -> Loader drop last: True
+2024-05-07 19:28:10,454 - root - INFO -> Loader num workers: 0
+2024-05-07 19:28:10,454 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:28:10,454 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:28:10,554 - root - INFO -> Memory cleaned!
+2024-05-07 19:28:27,901 - root - INFO -> Epoch: 2/90, Val loss = 3.888352
+2024-05-07 19:28:27,901 - root - INFO -> Epoch: 2/90, Val MSELoss() = 2.184186
+2024-05-07 19:28:27,901 - root - INFO -> Epoch: 2/90, Val PerCS() = 0.864620
+2024-05-07 19:28:27,995 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:28:27,995 - root - INFO -> --------------------------------------------------
+2024-05-07 19:28:28,002 - root - INFO -> --- Epoch: 3 ---
+2024-05-07 19:28:28,003 - root - INFO -> Epoch: 3/90, Starting training...
+2024-05-07 19:28:28,003 - root - INFO -> Loader length: 315
+2024-05-07 19:28:28,003 - root - INFO -> Loader batch size: 32
+2024-05-07 19:28:28,003 - root - INFO -> Loader drop last: True
+2024-05-07 19:28:28,003 - root - INFO -> Loader num workers: 0
+2024-05-07 19:28:28,003 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:28:28,003 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:28:28,095 - root - INFO -> Memory cleaned!
+2024-05-07 19:29:58,783 - root - INFO -> Epoch: 3/90, Train loss = 3.164836
+2024-05-07 19:29:58,783 - root - INFO -> Epoch: 3/90, Train MSELoss() = 1.937982
+2024-05-07 19:29:58,783 - root - INFO -> Epoch: 3/90, Train PerCS() = 0.857851
+2024-05-07 19:29:58,877 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:29:58,877 - root - INFO -> --------------------------------------------------
+2024-05-07 19:29:58,893 - root - INFO -> Epoch: 3/90, Starting validation...
+2024-05-07 19:29:58,893 - root - INFO -> Loader length: 86
+2024-05-07 19:29:58,894 - root - INFO -> Loader batch size: 32
+2024-05-07 19:29:58,894 - root - INFO -> Loader drop last: True
+2024-05-07 19:29:58,894 - root - INFO -> Loader num workers: 0
+2024-05-07 19:29:58,894 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:29:58,894 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:29:58,998 - root - INFO -> Memory cleaned!
+2024-05-07 19:30:19,618 - root - INFO -> Epoch: 3/90, Val loss = 4.039182
+2024-05-07 19:30:19,619 - root - INFO -> Epoch: 3/90, Val MSELoss() = 2.233256
+2024-05-07 19:30:19,619 - root - INFO -> Epoch: 3/90, Val PerCS() = 0.854878
+2024-05-07 19:30:19,710 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:30:19,710 - root - INFO -> --------------------------------------------------
+2024-05-07 19:30:19,711 - root - INFO -> --- Epoch: 4 ---
+2024-05-07 19:30:19,712 - root - INFO -> Epoch: 4/90, Starting training...
+2024-05-07 19:30:19,712 - root - INFO -> Loader length: 315
+2024-05-07 19:30:19,712 - root - INFO -> Loader batch size: 32
+2024-05-07 19:30:19,712 - root - INFO -> Loader drop last: True
+2024-05-07 19:30:19,712 - root - INFO -> Loader num workers: 0
+2024-05-07 19:30:19,712 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:30:19,712 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:30:19,806 - root - INFO -> Memory cleaned!
+2024-05-07 19:31:49,807 - root - INFO -> Epoch: 4/90, Train loss = 3.024384
+2024-05-07 19:31:49,807 - root - INFO -> Epoch: 4/90, Train MSELoss() = 1.892390
+2024-05-07 19:31:49,807 - root - INFO -> Epoch: 4/90, Train PerCS() = 0.862018
+2024-05-07 19:31:49,902 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:31:49,902 - root - INFO -> --------------------------------------------------
+2024-05-07 19:31:49,924 - root - INFO -> Epoch: 4/90, Starting validation...
+2024-05-07 19:31:49,925 - root - INFO -> Loader length: 86
+2024-05-07 19:31:49,925 - root - INFO -> Loader batch size: 32
+2024-05-07 19:31:49,925 - root - INFO -> Loader drop last: True
+2024-05-07 19:31:49,925 - root - INFO -> Loader num workers: 0
+2024-05-07 19:31:49,925 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:31:49,925 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:31:50,022 - root - INFO -> Memory cleaned!
+2024-05-07 19:32:07,597 - root - INFO -> Epoch: 4/90, Val loss = 3.790110
+2024-05-07 19:32:07,597 - root - INFO -> Epoch: 4/90, Val MSELoss() = 2.190618
+2024-05-07 19:32:07,597 - root - INFO -> Epoch: 4/90, Val PerCS() = 0.843068
+2024-05-07 19:32:07,728 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:32:07,728 - root - INFO -> --------------------------------------------------
+2024-05-07 19:32:07,738 - root - INFO -> --- Epoch: 5 ---
+2024-05-07 19:32:07,739 - root - INFO -> Epoch: 5/90, Starting training...
+2024-05-07 19:32:07,739 - root - INFO -> Loader length: 315
+2024-05-07 19:32:07,739 - root - INFO -> Loader batch size: 32
+2024-05-07 19:32:07,739 - root - INFO -> Loader drop last: True
+2024-05-07 19:32:07,739 - root - INFO -> Loader num workers: 0
+2024-05-07 19:32:07,739 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:32:07,739 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:32:07,871 - root - INFO -> Memory cleaned!
+2024-05-07 19:33:46,402 - root - INFO -> Epoch: 5/90, Train loss = 2.876051
+2024-05-07 19:33:46,402 - root - INFO -> Epoch: 5/90, Train MSELoss() = 1.849534
+2024-05-07 19:33:46,402 - root - INFO -> Epoch: 5/90, Train PerCS() = 0.865808
+2024-05-07 19:33:46,495 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:33:46,495 - root - INFO -> --------------------------------------------------
+2024-05-07 19:33:46,512 - root - INFO -> Epoch: 5/90, Starting validation...
+2024-05-07 19:33:46,512 - root - INFO -> Loader length: 86
+2024-05-07 19:33:46,512 - root - INFO -> Loader batch size: 32
+2024-05-07 19:33:46,512 - root - INFO -> Loader drop last: True
+2024-05-07 19:33:46,512 - root - INFO -> Loader num workers: 0
+2024-05-07 19:33:46,512 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:33:46,512 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:33:46,612 - root - INFO -> Memory cleaned!
+2024-05-07 19:34:03,951 - root - INFO -> Epoch: 5/90, Val loss = 3.463122
+2024-05-07 19:34:03,951 - root - INFO -> Epoch: 5/90, Val MSELoss() = 2.068957
+2024-05-07 19:34:03,951 - root - INFO -> Epoch: 5/90, Val PerCS() = 0.881074
+2024-05-07 19:34:04,045 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:34:04,045 - root - INFO -> --------------------------------------------------
+2024-05-07 19:34:04,052 - root - INFO -> --- Epoch: 6 ---
+2024-05-07 19:34:04,052 - root - INFO -> Epoch: 6/90, Starting training...
+2024-05-07 19:34:04,052 - root - INFO -> Loader length: 315
+2024-05-07 19:34:04,052 - root - INFO -> Loader batch size: 32
+2024-05-07 19:34:04,052 - root - INFO -> Loader drop last: True
+2024-05-07 19:34:04,052 - root - INFO -> Loader num workers: 0
+2024-05-07 19:34:04,052 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:34:04,053 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:34:04,145 - root - INFO -> Memory cleaned!
+2024-05-07 19:35:34,692 - root - INFO -> Epoch: 6/90, Train loss = 2.748223
+2024-05-07 19:35:34,692 - root - INFO -> Epoch: 6/90, Train MSELoss() = 1.808377
+2024-05-07 19:35:34,692 - root - INFO -> Epoch: 6/90, Train PerCS() = 0.869041
+2024-05-07 19:35:34,787 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:35:34,787 - root - INFO -> --------------------------------------------------
+2024-05-07 19:35:34,803 - root - INFO -> Epoch: 6/90, Starting validation...
+2024-05-07 19:35:34,803 - root - INFO -> Loader length: 86
+2024-05-07 19:35:34,803 - root - INFO -> Loader batch size: 32
+2024-05-07 19:35:34,803 - root - INFO -> Loader drop last: True
+2024-05-07 19:35:34,803 - root - INFO -> Loader num workers: 0
+2024-05-07 19:35:34,804 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:35:34,804 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:35:34,902 - root - INFO -> Memory cleaned!
+2024-05-07 19:35:52,443 - root - INFO -> Epoch: 6/90, Val loss = 3.237342
+2024-05-07 19:35:52,443 - root - INFO -> Epoch: 6/90, Val MSELoss() = 2.030461
+2024-05-07 19:35:52,443 - root - INFO -> Epoch: 6/90, Val PerCS() = 0.877885
+2024-05-07 19:35:52,537 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:35:52,537 - root - INFO -> --------------------------------------------------
+2024-05-07 19:35:52,544 - root - INFO -> --- Epoch: 7 ---
+2024-05-07 19:35:52,545 - root - INFO -> Epoch: 7/90, Starting training...
+2024-05-07 19:35:52,545 - root - INFO -> Loader length: 315
+2024-05-07 19:35:52,545 - root - INFO -> Loader batch size: 32
+2024-05-07 19:35:52,545 - root - INFO -> Loader drop last: True
+2024-05-07 19:35:52,545 - root - INFO -> Loader num workers: 0
+2024-05-07 19:35:52,545 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:35:52,545 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:35:52,637 - root - INFO -> Memory cleaned!
+2024-05-07 19:37:25,754 - root - INFO -> Epoch: 7/90, Train loss = 2.599107
+2024-05-07 19:37:25,754 - root - INFO -> Epoch: 7/90, Train MSELoss() = 1.763255
+2024-05-07 19:37:25,754 - root - INFO -> Epoch: 7/90, Train PerCS() = 0.872372
+2024-05-07 19:37:25,850 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:37:25,850 - root - INFO -> --------------------------------------------------
+2024-05-07 19:37:25,876 - root - INFO -> Epoch: 7/90, Starting validation...
+2024-05-07 19:37:25,876 - root - INFO -> Loader length: 86
+2024-05-07 19:37:25,876 - root - INFO -> Loader batch size: 32
+2024-05-07 19:37:25,876 - root - INFO -> Loader drop last: True
+2024-05-07 19:37:25,876 - root - INFO -> Loader num workers: 0
+2024-05-07 19:37:25,877 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:37:25,877 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:37:25,977 - root - INFO -> Memory cleaned!
+2024-05-07 19:37:43,259 - root - INFO -> Epoch: 7/90, Val loss = 3.957633
+2024-05-07 19:37:43,259 - root - INFO -> Epoch: 7/90, Val MSELoss() = 2.138187
+2024-05-07 19:37:43,259 - root - INFO -> Epoch: 7/90, Val PerCS() = 0.881858
+2024-05-07 19:37:43,350 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:37:43,351 - root - INFO -> --------------------------------------------------
+2024-05-07 19:37:43,351 - root - INFO -> --- Epoch: 8 ---
+2024-05-07 19:37:43,352 - root - INFO -> Epoch: 8/90, Starting training...
+2024-05-07 19:37:43,352 - root - INFO -> Loader length: 315
+2024-05-07 19:37:43,352 - root - INFO -> Loader batch size: 32
+2024-05-07 19:37:43,352 - root - INFO -> Loader drop last: True
+2024-05-07 19:37:43,352 - root - INFO -> Loader num workers: 0
+2024-05-07 19:37:43,352 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:37:43,352 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:37:43,446 - root - INFO -> Memory cleaned!
+2024-05-07 19:39:13,930 - root - INFO -> Epoch: 8/90, Train loss = 2.455074
+2024-05-07 19:39:13,930 - root - INFO -> Epoch: 8/90, Train MSELoss() = 1.715688
+2024-05-07 19:39:13,930 - root - INFO -> Epoch: 8/90, Train PerCS() = 0.875529
+2024-05-07 19:39:14,024 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:39:14,024 - root - INFO -> --------------------------------------------------
+2024-05-07 19:39:14,040 - root - INFO -> Epoch: 8/90, Starting validation...
+2024-05-07 19:39:14,041 - root - INFO -> Loader length: 86
+2024-05-07 19:39:14,041 - root - INFO -> Loader batch size: 32
+2024-05-07 19:39:14,041 - root - INFO -> Loader drop last: True
+2024-05-07 19:39:14,041 - root - INFO -> Loader num workers: 0
+2024-05-07 19:39:14,041 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:39:14,041 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:39:14,136 - root - INFO -> Memory cleaned!
+2024-05-07 19:39:31,086 - root - INFO -> Epoch: 8/90, Val loss = 3.753373
+2024-05-07 19:39:31,086 - root - INFO -> Epoch: 8/90, Val MSELoss() = 2.131797
+2024-05-07 19:39:31,086 - root - INFO -> Epoch: 8/90, Val PerCS() = 0.875608
+2024-05-07 19:39:31,180 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:39:31,180 - root - INFO -> --------------------------------------------------
+2024-05-07 19:39:31,181 - root - INFO -> --- Epoch: 9 ---
+2024-05-07 19:39:31,181 - root - INFO -> Epoch: 9/90, Starting training...
+2024-05-07 19:39:31,181 - root - INFO -> Loader length: 315
+2024-05-07 19:39:31,181 - root - INFO -> Loader batch size: 32
+2024-05-07 19:39:31,181 - root - INFO -> Loader drop last: True
+2024-05-07 19:39:31,181 - root - INFO -> Loader num workers: 0
+2024-05-07 19:39:31,181 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:39:31,182 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:39:31,273 - root - INFO -> Memory cleaned!
+2024-05-07 19:41:01,429 - root - INFO -> Epoch: 9/90, Train loss = 2.314980
+2024-05-07 19:41:01,429 - root - INFO -> Epoch: 9/90, Train MSELoss() = 1.666456
+2024-05-07 19:41:01,429 - root - INFO -> Epoch: 9/90, Train PerCS() = 0.878341
+2024-05-07 19:41:01,526 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:41:01,527 - root - INFO -> --------------------------------------------------
+2024-05-07 19:41:01,543 - root - INFO -> Epoch: 9/90, Starting validation...
+2024-05-07 19:41:01,544 - root - INFO -> Loader length: 86
+2024-05-07 19:41:01,544 - root - INFO -> Loader batch size: 32
+2024-05-07 19:41:01,544 - root - INFO -> Loader drop last: True
+2024-05-07 19:41:01,544 - root - INFO -> Loader num workers: 0
+2024-05-07 19:41:01,544 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:41:01,545 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:41:01,645 - root - INFO -> Memory cleaned!
+2024-05-07 19:41:28,769 - root - INFO -> Epoch: 9/90, Val loss = 3.442249
+2024-05-07 19:41:28,770 - root - INFO -> Epoch: 9/90, Val MSELoss() = 2.049757
+2024-05-07 19:41:28,770 - root - INFO -> Epoch: 9/90, Val PerCS() = 0.873377
+2024-05-07 19:41:28,907 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:41:28,907 - root - INFO -> --------------------------------------------------
+2024-05-07 19:41:28,913 - root - INFO -> --- Epoch: 10 ---
+2024-05-07 19:41:28,914 - root - INFO -> Epoch: 10/90, Starting training...
+2024-05-07 19:41:28,914 - root - INFO -> Loader length: 315
+2024-05-07 19:41:28,914 - root - INFO -> Loader batch size: 32
+2024-05-07 19:41:28,914 - root - INFO -> Loader drop last: True
+2024-05-07 19:41:28,914 - root - INFO -> Loader num workers: 0
+2024-05-07 19:41:28,914 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:41:28,915 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:41:29,052 - root - INFO -> Memory cleaned!
+2024-05-07 19:42:59,219 - root - INFO -> Epoch: 10/90, Train loss = 2.175325
+2024-05-07 19:42:59,219 - root - INFO -> Epoch: 10/90, Train MSELoss() = 1.609332
+2024-05-07 19:42:59,219 - root - INFO -> Epoch: 10/90, Train PerCS() = 0.881441
+2024-05-07 19:42:59,311 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:42:59,311 - root - INFO -> --------------------------------------------------
+2024-05-07 19:42:59,328 - root - INFO -> Epoch: 10/90, Starting validation...
+2024-05-07 19:42:59,328 - root - INFO -> Loader length: 86
+2024-05-07 19:42:59,328 - root - INFO -> Loader batch size: 32
+2024-05-07 19:42:59,329 - root - INFO -> Loader drop last: True
+2024-05-07 19:42:59,329 - root - INFO -> Loader num workers: 0
+2024-05-07 19:42:59,329 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:42:59,329 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:42:59,429 - root - INFO -> Memory cleaned!
+2024-05-07 19:43:17,281 - root - INFO -> Epoch: 10/90, Val loss = 2.967670
+2024-05-07 19:43:17,282 - root - INFO -> Epoch: 10/90, Val MSELoss() = 1.921562
+2024-05-07 19:43:17,282 - root - INFO -> Epoch: 10/90, Val PerCS() = 0.882734
+2024-05-07 19:43:17,378 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:43:17,379 - root - INFO -> --------------------------------------------------
+2024-05-07 19:43:17,385 - root - INFO -> --- Epoch: 11 ---
+2024-05-07 19:43:17,386 - root - INFO -> Epoch: 11/90, Starting training...
+2024-05-07 19:43:17,386 - root - INFO -> Loader length: 315
+2024-05-07 19:43:17,386 - root - INFO -> Loader batch size: 32
+2024-05-07 19:43:17,386 - root - INFO -> Loader drop last: True
+2024-05-07 19:43:17,386 - root - INFO -> Loader num workers: 0
+2024-05-07 19:43:17,386 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:43:17,386 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:43:17,483 - root - INFO -> Memory cleaned!
+2024-05-07 19:44:47,482 - root - INFO -> Epoch: 11/90, Train loss = 2.051218
+2024-05-07 19:44:47,482 - root - INFO -> Epoch: 11/90, Train MSELoss() = 1.553302
+2024-05-07 19:44:47,482 - root - INFO -> Epoch: 11/90, Train PerCS() = 0.884022
+2024-05-07 19:44:47,596 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:44:47,596 - root - INFO -> --------------------------------------------------
+2024-05-07 19:44:47,619 - root - INFO -> Epoch: 11/90, Starting validation...
+2024-05-07 19:44:47,619 - root - INFO -> Loader length: 86
+2024-05-07 19:44:47,619 - root - INFO -> Loader batch size: 32
+2024-05-07 19:44:47,619 - root - INFO -> Loader drop last: True
+2024-05-07 19:44:47,620 - root - INFO -> Loader num workers: 0
+2024-05-07 19:44:47,620 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:44:47,620 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:44:47,838 - root - INFO -> Memory cleaned!
+2024-05-07 19:45:04,584 - root - INFO -> Epoch: 11/90, Val loss = 3.660478
+2024-05-07 19:45:04,584 - root - INFO -> Epoch: 11/90, Val MSELoss() = 2.048345
+2024-05-07 19:45:04,584 - root - INFO -> Epoch: 11/90, Val PerCS() = 0.882343
+2024-05-07 19:45:04,676 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:45:04,676 - root - INFO -> --------------------------------------------------
+2024-05-07 19:45:04,677 - root - INFO -> --- Epoch: 12 ---
+2024-05-07 19:45:04,677 - root - INFO -> Epoch: 12/90, Starting training...
+2024-05-07 19:45:04,677 - root - INFO -> Loader length: 315
+2024-05-07 19:45:04,677 - root - INFO -> Loader batch size: 32
+2024-05-07 19:45:04,677 - root - INFO -> Loader drop last: True
+2024-05-07 19:45:04,677 - root - INFO -> Loader num workers: 0
+2024-05-07 19:45:04,677 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:45:04,677 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:45:04,770 - root - INFO -> Memory cleaned!
+2024-05-07 19:46:35,304 - root - INFO -> Epoch: 12/90, Train loss = 1.933649
+2024-05-07 19:46:35,304 - root - INFO -> Epoch: 12/90, Train MSELoss() = 1.494033
+2024-05-07 19:46:35,304 - root - INFO -> Epoch: 12/90, Train PerCS() = 0.886728
+2024-05-07 19:46:35,398 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:46:35,398 - root - INFO -> --------------------------------------------------
+2024-05-07 19:46:35,414 - root - INFO -> Epoch: 12/90, Starting validation...
+2024-05-07 19:46:35,414 - root - INFO -> Loader length: 86
+2024-05-07 19:46:35,415 - root - INFO -> Loader batch size: 32
+2024-05-07 19:46:35,415 - root - INFO -> Loader drop last: True
+2024-05-07 19:46:35,415 - root - INFO -> Loader num workers: 0
+2024-05-07 19:46:35,415 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:46:35,415 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:46:35,513 - root - INFO -> Memory cleaned!
+2024-05-07 19:46:53,057 - root - INFO -> Epoch: 12/90, Val loss = 3.275816
+2024-05-07 19:46:53,057 - root - INFO -> Epoch: 12/90, Val MSELoss() = 2.034529
+2024-05-07 19:46:53,057 - root - INFO -> Epoch: 12/90, Val PerCS() = 0.873662
+2024-05-07 19:46:53,150 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:46:53,150 - root - INFO -> --------------------------------------------------
+2024-05-07 19:46:53,151 - root - INFO -> --- Epoch: 13 ---
+2024-05-07 19:46:53,151 - root - INFO -> Epoch: 13/90, Starting training...
+2024-05-07 19:46:53,152 - root - INFO -> Loader length: 315
+2024-05-07 19:46:53,152 - root - INFO -> Loader batch size: 32
+2024-05-07 19:46:53,152 - root - INFO -> Loader drop last: True
+2024-05-07 19:46:53,152 - root - INFO -> Loader num workers: 0
+2024-05-07 19:46:53,152 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:46:53,152 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:46:53,242 - root - INFO -> Memory cleaned!
+2024-05-07 19:48:23,899 - root - INFO -> Epoch: 13/90, Train loss = 1.835734
+2024-05-07 19:48:23,899 - root - INFO -> Epoch: 13/90, Train MSELoss() = 1.438389
+2024-05-07 19:48:23,899 - root - INFO -> Epoch: 13/90, Train PerCS() = 0.888786
+2024-05-07 19:48:23,993 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:48:23,993 - root - INFO -> --------------------------------------------------
+2024-05-07 19:48:24,010 - root - INFO -> Epoch: 13/90, Starting validation...
+2024-05-07 19:48:24,010 - root - INFO -> Loader length: 86
+2024-05-07 19:48:24,010 - root - INFO -> Loader batch size: 32
+2024-05-07 19:48:24,010 - root - INFO -> Loader drop last: True
+2024-05-07 19:48:24,010 - root - INFO -> Loader num workers: 0
+2024-05-07 19:48:24,011 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:48:24,011 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:48:24,112 - root - INFO -> Memory cleaned!
+2024-05-07 19:48:41,152 - root - INFO -> Epoch: 13/90, Val loss = 2.882123
+2024-05-07 19:48:41,152 - root - INFO -> Epoch: 13/90, Val MSELoss() = 1.877065
+2024-05-07 19:48:41,152 - root - INFO -> Epoch: 13/90, Val PerCS() = 0.883323
+2024-05-07 19:48:41,246 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:48:41,246 - root - INFO -> --------------------------------------------------
+2024-05-07 19:48:41,253 - root - INFO -> --- Epoch: 14 ---
+2024-05-07 19:48:41,253 - root - INFO -> Epoch: 14/90, Starting training...
+2024-05-07 19:48:41,253 - root - INFO -> Loader length: 315
+2024-05-07 19:48:41,253 - root - INFO -> Loader batch size: 32
+2024-05-07 19:48:41,253 - root - INFO -> Loader drop last: True
+2024-05-07 19:48:41,253 - root - INFO -> Loader num workers: 0
+2024-05-07 19:48:41,253 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:48:41,253 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:48:41,348 - root - INFO -> Memory cleaned!
+2024-05-07 19:50:18,414 - root - INFO -> Epoch: 14/90, Train loss = 1.743099
+2024-05-07 19:50:18,414 - root - INFO -> Epoch: 14/90, Train MSELoss() = 1.384727
+2024-05-07 19:50:18,414 - root - INFO -> Epoch: 14/90, Train PerCS() = 0.891170
+2024-05-07 19:50:18,508 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:50:18,508 - root - INFO -> --------------------------------------------------
+2024-05-07 19:50:18,525 - root - INFO -> Epoch: 14/90, Starting validation...
+2024-05-07 19:50:18,526 - root - INFO -> Loader length: 86
+2024-05-07 19:50:18,526 - root - INFO -> Loader batch size: 32
+2024-05-07 19:50:18,527 - root - INFO -> Loader drop last: True
+2024-05-07 19:50:18,527 - root - INFO -> Loader num workers: 0
+2024-05-07 19:50:18,527 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:50:18,527 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:50:18,623 - root - INFO -> Memory cleaned!
+2024-05-07 19:50:35,621 - root - INFO -> Epoch: 14/90, Val loss = 3.489855
+2024-05-07 19:50:35,621 - root - INFO -> Epoch: 14/90, Val MSELoss() = 2.000688
+2024-05-07 19:50:35,621 - root - INFO -> Epoch: 14/90, Val PerCS() = 0.888019
+2024-05-07 19:50:35,711 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:50:35,711 - root - INFO -> --------------------------------------------------
+2024-05-07 19:50:35,712 - root - INFO -> --- Epoch: 15 ---
+2024-05-07 19:50:35,713 - root - INFO -> Epoch: 15/90, Starting training...
+2024-05-07 19:50:35,713 - root - INFO -> Loader length: 315
+2024-05-07 19:50:35,713 - root - INFO -> Loader batch size: 32
+2024-05-07 19:50:35,713 - root - INFO -> Loader drop last: True
+2024-05-07 19:50:35,713 - root - INFO -> Loader num workers: 0
+2024-05-07 19:50:35,713 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:50:35,713 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:50:35,807 - root - INFO -> Memory cleaned!
+2024-05-07 19:52:06,318 - root - INFO -> Epoch: 15/90, Train loss = 1.661297
+2024-05-07 19:52:06,318 - root - INFO -> Epoch: 15/90, Train MSELoss() = 1.331438
+2024-05-07 19:52:06,318 - root - INFO -> Epoch: 15/90, Train PerCS() = 0.893103
+2024-05-07 19:52:06,412 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:52:06,412 - root - INFO -> --------------------------------------------------
+2024-05-07 19:52:06,431 - root - INFO -> Epoch: 15/90, Starting validation...
+2024-05-07 19:52:06,432 - root - INFO -> Loader length: 86
+2024-05-07 19:52:06,432 - root - INFO -> Loader batch size: 32
+2024-05-07 19:52:06,432 - root - INFO -> Loader drop last: True
+2024-05-07 19:52:06,432 - root - INFO -> Loader num workers: 0
+2024-05-07 19:52:06,432 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:52:06,432 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:52:06,529 - root - INFO -> Memory cleaned!
+2024-05-07 19:52:23,245 - root - INFO -> Epoch: 15/90, Val loss = 3.408767
+2024-05-07 19:52:23,245 - root - INFO -> Epoch: 15/90, Val MSELoss() = 2.029974
+2024-05-07 19:52:23,245 - root - INFO -> Epoch: 15/90, Val PerCS() = 0.885171
+2024-05-07 19:52:23,370 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:52:23,371 - root - INFO -> --------------------------------------------------
+2024-05-07 19:52:23,372 - root - INFO -> --- Epoch: 16 ---
+2024-05-07 19:52:23,372 - root - INFO -> Epoch: 16/90, Starting training...
+2024-05-07 19:52:23,372 - root - INFO -> Loader length: 315
+2024-05-07 19:52:23,372 - root - INFO -> Loader batch size: 32
+2024-05-07 19:52:23,372 - root - INFO -> Loader drop last: True
+2024-05-07 19:52:23,373 - root - INFO -> Loader num workers: 0
+2024-05-07 19:52:23,373 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:52:23,373 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:52:23,528 - root - INFO -> Memory cleaned!
+2024-05-07 19:53:54,214 - root - INFO -> Epoch: 16/90, Train loss = 1.580908
+2024-05-07 19:53:54,214 - root - INFO -> Epoch: 16/90, Train MSELoss() = 1.280359
+2024-05-07 19:53:54,214 - root - INFO -> Epoch: 16/90, Train PerCS() = 0.895102
+2024-05-07 19:53:54,308 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:53:54,308 - root - INFO -> --------------------------------------------------
+2024-05-07 19:53:54,324 - root - INFO -> Epoch: 16/90, Starting validation...
+2024-05-07 19:53:54,325 - root - INFO -> Loader length: 86
+2024-05-07 19:53:54,325 - root - INFO -> Loader batch size: 32
+2024-05-07 19:53:54,325 - root - INFO -> Loader drop last: True
+2024-05-07 19:53:54,325 - root - INFO -> Loader num workers: 0
+2024-05-07 19:53:54,325 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:53:54,325 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:53:54,420 - root - INFO -> Memory cleaned!
+2024-05-07 19:54:11,456 - root - INFO -> Epoch: 16/90, Val loss = 3.501296
+2024-05-07 19:54:11,456 - root - INFO -> Epoch: 16/90, Val MSELoss() = 2.070580
+2024-05-07 19:54:11,456 - root - INFO -> Epoch: 16/90, Val PerCS() = 0.874155
+2024-05-07 19:54:11,550 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:54:11,550 - root - INFO -> --------------------------------------------------
+2024-05-07 19:54:11,551 - root - INFO -> --- Epoch: 17 ---
+2024-05-07 19:54:11,551 - root - INFO -> Epoch: 17/90, Starting training...
+2024-05-07 19:54:11,551 - root - INFO -> Loader length: 315
+2024-05-07 19:54:11,551 - root - INFO -> Loader batch size: 32
+2024-05-07 19:54:11,551 - root - INFO -> Loader drop last: True
+2024-05-07 19:54:11,551 - root - INFO -> Loader num workers: 0
+2024-05-07 19:54:11,551 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:54:11,551 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:54:11,641 - root - INFO -> Memory cleaned!
+2024-05-07 19:55:45,768 - root - INFO -> Epoch: 17/90, Train loss = 1.509977
+2024-05-07 19:55:45,768 - root - INFO -> Epoch: 17/90, Train MSELoss() = 1.230760
+2024-05-07 19:55:45,768 - root - INFO -> Epoch: 17/90, Train PerCS() = 0.896796
+2024-05-07 19:55:45,863 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:55:45,863 - root - INFO -> --------------------------------------------------
+2024-05-07 19:55:45,881 - root - INFO -> Epoch: 17/90, Starting validation...
+2024-05-07 19:55:45,881 - root - INFO -> Loader length: 86
+2024-05-07 19:55:45,881 - root - INFO -> Loader batch size: 32
+2024-05-07 19:55:45,881 - root - INFO -> Loader drop last: True
+2024-05-07 19:55:45,881 - root - INFO -> Loader num workers: 0
+2024-05-07 19:55:45,881 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:55:45,881 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:55:45,980 - root - INFO -> Memory cleaned!
+2024-05-07 19:56:03,174 - root - INFO -> Epoch: 17/90, Val loss = 2.766540
+2024-05-07 19:56:03,174 - root - INFO -> Epoch: 17/90, Val MSELoss() = 1.823035
+2024-05-07 19:56:03,174 - root - INFO -> Epoch: 17/90, Val PerCS() = 0.887945
+2024-05-07 19:56:03,268 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:56:03,268 - root - INFO -> --------------------------------------------------
+2024-05-07 19:56:03,275 - root - INFO -> --- Epoch: 18 ---
+2024-05-07 19:56:03,276 - root - INFO -> Epoch: 18/90, Starting training...
+2024-05-07 19:56:03,276 - root - INFO -> Loader length: 315
+2024-05-07 19:56:03,276 - root - INFO -> Loader batch size: 32
+2024-05-07 19:56:03,276 - root - INFO -> Loader drop last: True
+2024-05-07 19:56:03,276 - root - INFO -> Loader num workers: 0
+2024-05-07 19:56:03,276 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:56:03,276 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:56:03,374 - root - INFO -> Memory cleaned!
+2024-05-07 19:57:33,579 - root - INFO -> Epoch: 18/90, Train loss = 1.449372
+2024-05-07 19:57:33,579 - root - INFO -> Epoch: 18/90, Train MSELoss() = 1.189768
+2024-05-07 19:57:33,579 - root - INFO -> Epoch: 18/90, Train PerCS() = 0.898358
+2024-05-07 19:57:33,670 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:57:33,670 - root - INFO -> --------------------------------------------------
+2024-05-07 19:57:33,687 - root - INFO -> Epoch: 18/90, Starting validation...
+2024-05-07 19:57:33,687 - root - INFO -> Loader length: 86
+2024-05-07 19:57:33,687 - root - INFO -> Loader batch size: 32
+2024-05-07 19:57:33,687 - root - INFO -> Loader drop last: True
+2024-05-07 19:57:33,687 - root - INFO -> Loader num workers: 0
+2024-05-07 19:57:33,688 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:57:33,688 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:57:33,787 - root - INFO -> Memory cleaned!
+2024-05-07 19:57:51,303 - root - INFO -> Epoch: 18/90, Val loss = 2.877109
+2024-05-07 19:57:51,303 - root - INFO -> Epoch: 18/90, Val MSELoss() = 1.875633
+2024-05-07 19:57:51,303 - root - INFO -> Epoch: 18/90, Val PerCS() = 0.885762
+2024-05-07 19:57:51,433 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:57:51,433 - root - INFO -> --------------------------------------------------
+2024-05-07 19:57:51,436 - root - INFO -> --- Epoch: 19 ---
+2024-05-07 19:57:51,437 - root - INFO -> Epoch: 19/90, Starting training...
+2024-05-07 19:57:51,437 - root - INFO -> Loader length: 315
+2024-05-07 19:57:51,437 - root - INFO -> Loader batch size: 32
+2024-05-07 19:57:51,437 - root - INFO -> Loader drop last: True
+2024-05-07 19:57:51,437 - root - INFO -> Loader num workers: 0
+2024-05-07 19:57:51,437 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:57:51,437 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:57:51,567 - root - INFO -> Memory cleaned!
+2024-05-07 19:59:29,221 - root - INFO -> Epoch: 19/90, Train loss = 1.380656
+2024-05-07 19:59:29,221 - root - INFO -> Epoch: 19/90, Train MSELoss() = 1.144534
+2024-05-07 19:59:29,221 - root - INFO -> Epoch: 19/90, Train PerCS() = 0.900150
+2024-05-07 19:59:29,317 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 19:59:29,317 - root - INFO -> --------------------------------------------------
+2024-05-07 19:59:29,335 - root - INFO -> Epoch: 19/90, Starting validation...
+2024-05-07 19:59:29,335 - root - INFO -> Loader length: 86
+2024-05-07 19:59:29,335 - root - INFO -> Loader batch size: 32
+2024-05-07 19:59:29,335 - root - INFO -> Loader drop last: True
+2024-05-07 19:59:29,335 - root - INFO -> Loader num workers: 0
+2024-05-07 19:59:29,335 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 19:59:29,335 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:59:29,433 - root - INFO -> Memory cleaned!
+2024-05-07 19:59:47,214 - root - INFO -> Epoch: 19/90, Val loss = 3.195153
+2024-05-07 19:59:47,215 - root - INFO -> Epoch: 19/90, Val MSELoss() = 1.954645
+2024-05-07 19:59:47,215 - root - INFO -> Epoch: 19/90, Val PerCS() = 0.884237
+2024-05-07 19:59:47,310 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 19:59:47,310 - root - INFO -> --------------------------------------------------
+2024-05-07 19:59:47,311 - root - INFO -> --- Epoch: 20 ---
+2024-05-07 19:59:47,311 - root - INFO -> Epoch: 20/90, Starting training...
+2024-05-07 19:59:47,311 - root - INFO -> Loader length: 315
+2024-05-07 19:59:47,311 - root - INFO -> Loader batch size: 32
+2024-05-07 19:59:47,311 - root - INFO -> Loader drop last: True
+2024-05-07 19:59:47,311 - root - INFO -> Loader num workers: 0
+2024-05-07 19:59:47,311 - root - INFO -> Criterion: MSELoss()
+2024-05-07 19:59:47,311 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 19:59:47,403 - root - INFO -> Memory cleaned!
+2024-05-07 20:01:17,605 - root - INFO -> Epoch: 20/90, Train loss = 1.327654
+2024-05-07 20:01:17,605 - root - INFO -> Epoch: 20/90, Train MSELoss() = 1.106612
+2024-05-07 20:01:17,605 - root - INFO -> Epoch: 20/90, Train PerCS() = 0.901525
+2024-05-07 20:01:17,698 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:01:17,698 - root - INFO -> --------------------------------------------------
+2024-05-07 20:01:17,716 - root - INFO -> Epoch: 20/90, Starting validation...
+2024-05-07 20:01:17,716 - root - INFO -> Loader length: 86
+2024-05-07 20:01:17,717 - root - INFO -> Loader batch size: 32
+2024-05-07 20:01:17,717 - root - INFO -> Loader drop last: True
+2024-05-07 20:01:17,717 - root - INFO -> Loader num workers: 0
+2024-05-07 20:01:17,717 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:01:17,717 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:01:17,817 - root - INFO -> Memory cleaned!
+2024-05-07 20:01:34,759 - root - INFO -> Epoch: 20/90, Val loss = 2.803946
+2024-05-07 20:01:34,759 - root - INFO -> Epoch: 20/90, Val MSELoss() = 1.814973
+2024-05-07 20:01:34,759 - root - INFO -> Epoch: 20/90, Val PerCS() = 0.892525
+2024-05-07 20:01:34,852 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:01:34,852 - root - INFO -> --------------------------------------------------
+2024-05-07 20:01:34,853 - root - INFO -> --- Epoch: 21 ---
+2024-05-07 20:01:34,853 - root - INFO -> Epoch: 21/90, Starting training...
+2024-05-07 20:01:34,853 - root - INFO -> Loader length: 315
+2024-05-07 20:01:34,853 - root - INFO -> Loader batch size: 32
+2024-05-07 20:01:34,853 - root - INFO -> Loader drop last: True
+2024-05-07 20:01:34,853 - root - INFO -> Loader num workers: 0
+2024-05-07 20:01:34,853 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:01:34,853 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:01:34,950 - root - INFO -> Memory cleaned!
+2024-05-07 20:03:06,074 - root - INFO -> Epoch: 21/90, Train loss = 1.280176
+2024-05-07 20:03:06,074 - root - INFO -> Epoch: 21/90, Train MSELoss() = 1.071424
+2024-05-07 20:03:06,074 - root - INFO -> Epoch: 21/90, Train PerCS() = 0.902913
+2024-05-07 20:03:06,167 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:03:06,167 - root - INFO -> --------------------------------------------------
+2024-05-07 20:03:06,186 - root - INFO -> Epoch: 21/90, Starting validation...
+2024-05-07 20:03:06,186 - root - INFO -> Loader length: 86
+2024-05-07 20:03:06,186 - root - INFO -> Loader batch size: 32
+2024-05-07 20:03:06,186 - root - INFO -> Loader drop last: True
+2024-05-07 20:03:06,186 - root - INFO -> Loader num workers: 0
+2024-05-07 20:03:06,186 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:03:06,186 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:03:06,288 - root - INFO -> Memory cleaned!
+2024-05-07 20:03:23,871 - root - INFO -> Epoch: 21/90, Val loss = 3.050118
+2024-05-07 20:03:23,872 - root - INFO -> Epoch: 21/90, Val MSELoss() = 1.911089
+2024-05-07 20:03:23,872 - root - INFO -> Epoch: 21/90, Val PerCS() = 0.890813
+2024-05-07 20:03:23,963 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:03:23,963 - root - INFO -> --------------------------------------------------
+2024-05-07 20:03:23,964 - root - INFO -> --- Epoch: 22 ---
+2024-05-07 20:03:23,964 - root - INFO -> Epoch: 22/90, Starting training...
+2024-05-07 20:03:23,965 - root - INFO -> Loader length: 315
+2024-05-07 20:03:23,965 - root - INFO -> Loader batch size: 32
+2024-05-07 20:03:23,965 - root - INFO -> Loader drop last: True
+2024-05-07 20:03:23,965 - root - INFO -> Loader num workers: 0
+2024-05-07 20:03:23,965 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:03:23,965 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:03:24,057 - root - INFO -> Memory cleaned!
+2024-05-07 20:04:54,353 - root - INFO -> Epoch: 22/90, Train loss = 1.229511
+2024-05-07 20:04:54,354 - root - INFO -> Epoch: 22/90, Train MSELoss() = 1.035885
+2024-05-07 20:04:54,354 - root - INFO -> Epoch: 22/90, Train PerCS() = 0.904044
+2024-05-07 20:04:54,448 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:04:54,448 - root - INFO -> --------------------------------------------------
+2024-05-07 20:04:54,466 - root - INFO -> Epoch: 22/90, Starting validation...
+2024-05-07 20:04:54,466 - root - INFO -> Loader length: 86
+2024-05-07 20:04:54,466 - root - INFO -> Loader batch size: 32
+2024-05-07 20:04:54,466 - root - INFO -> Loader drop last: True
+2024-05-07 20:04:54,466 - root - INFO -> Loader num workers: 0
+2024-05-07 20:04:54,466 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:04:54,466 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:04:54,564 - root - INFO -> Memory cleaned!
+2024-05-07 20:05:11,658 - root - INFO -> Epoch: 22/90, Val loss = 2.661859
+2024-05-07 20:05:11,658 - root - INFO -> Epoch: 22/90, Val MSELoss() = 1.772311
+2024-05-07 20:05:11,658 - root - INFO -> Epoch: 22/90, Val PerCS() = 0.893492
+2024-05-07 20:05:11,753 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:05:11,753 - root - INFO -> --------------------------------------------------
+2024-05-07 20:05:11,761 - root - INFO -> --- Epoch: 23 ---
+2024-05-07 20:05:11,761 - root - INFO -> Epoch: 23/90, Starting training...
+2024-05-07 20:05:11,761 - root - INFO -> Loader length: 315
+2024-05-07 20:05:11,761 - root - INFO -> Loader batch size: 32
+2024-05-07 20:05:11,761 - root - INFO -> Loader drop last: True
+2024-05-07 20:05:11,761 - root - INFO -> Loader num workers: 0
+2024-05-07 20:05:11,761 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:05:11,761 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:05:11,855 - root - INFO -> Memory cleaned!
+2024-05-07 20:06:43,720 - root - INFO -> Epoch: 23/90, Train loss = 1.196174
+2024-05-07 20:06:43,720 - root - INFO -> Epoch: 23/90, Train MSELoss() = 1.007840
+2024-05-07 20:06:43,720 - root - INFO -> Epoch: 23/90, Train PerCS() = 0.905382
+2024-05-07 20:06:43,815 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:06:43,815 - root - INFO -> --------------------------------------------------
+2024-05-07 20:06:43,833 - root - INFO -> Epoch: 23/90, Starting validation...
+2024-05-07 20:06:43,834 - root - INFO -> Loader length: 86
+2024-05-07 20:06:43,834 - root - INFO -> Loader batch size: 32
+2024-05-07 20:06:43,834 - root - INFO -> Loader drop last: True
+2024-05-07 20:06:43,834 - root - INFO -> Loader num workers: 0
+2024-05-07 20:06:43,834 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:06:43,834 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:06:43,932 - root - INFO -> Memory cleaned!
+2024-05-07 20:07:01,289 - root - INFO -> Epoch: 23/90, Val loss = 2.582571
+2024-05-07 20:07:01,289 - root - INFO -> Epoch: 23/90, Val MSELoss() = 1.732869
+2024-05-07 20:07:01,289 - root - INFO -> Epoch: 23/90, Val PerCS() = 0.890643
+2024-05-07 20:07:01,382 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:07:01,382 - root - INFO -> --------------------------------------------------
+2024-05-07 20:07:01,389 - root - INFO -> --- Epoch: 24 ---
+2024-05-07 20:07:01,389 - root - INFO -> Epoch: 24/90, Starting training...
+2024-05-07 20:07:01,389 - root - INFO -> Loader length: 315
+2024-05-07 20:07:01,389 - root - INFO -> Loader batch size: 32
+2024-05-07 20:07:01,389 - root - INFO -> Loader drop last: True
+2024-05-07 20:07:01,389 - root - INFO -> Loader num workers: 0
+2024-05-07 20:07:01,390 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:07:01,390 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:07:01,484 - root - INFO -> Memory cleaned!
+2024-05-07 20:08:31,938 - root - INFO -> Epoch: 24/90, Train loss = 1.159833
+2024-05-07 20:08:31,938 - root - INFO -> Epoch: 24/90, Train MSELoss() = 0.981059
+2024-05-07 20:08:31,938 - root - INFO -> Epoch: 24/90, Train PerCS() = 0.906333
+2024-05-07 20:08:32,034 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:08:32,034 - root - INFO -> --------------------------------------------------
+2024-05-07 20:08:32,051 - root - INFO -> Epoch: 24/90, Starting validation...
+2024-05-07 20:08:32,052 - root - INFO -> Loader length: 86
+2024-05-07 20:08:32,052 - root - INFO -> Loader batch size: 32
+2024-05-07 20:08:32,052 - root - INFO -> Loader drop last: True
+2024-05-07 20:08:32,052 - root - INFO -> Loader num workers: 0
+2024-05-07 20:08:32,052 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:08:32,052 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:08:32,150 - root - INFO -> Memory cleaned!
+2024-05-07 20:08:49,591 - root - INFO -> Epoch: 24/90, Val loss = 2.558279
+2024-05-07 20:08:49,591 - root - INFO -> Epoch: 24/90, Val MSELoss() = 1.722966
+2024-05-07 20:08:49,591 - root - INFO -> Epoch: 24/90, Val PerCS() = 0.896282
+2024-05-07 20:08:49,686 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:08:49,686 - root - INFO -> --------------------------------------------------
+2024-05-07 20:08:49,692 - root - INFO -> --- Epoch: 25 ---
+2024-05-07 20:08:49,693 - root - INFO -> Epoch: 25/90, Starting training...
+2024-05-07 20:08:49,693 - root - INFO -> Loader length: 315
+2024-05-07 20:08:49,693 - root - INFO -> Loader batch size: 32
+2024-05-07 20:08:49,693 - root - INFO -> Loader drop last: True
+2024-05-07 20:08:49,693 - root - INFO -> Loader num workers: 0
+2024-05-07 20:08:49,693 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:08:49,693 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:08:49,786 - root - INFO -> Memory cleaned!
+2024-05-07 20:10:20,807 - root - INFO -> Epoch: 25/90, Train loss = 1.115136
+2024-05-07 20:10:20,807 - root - INFO -> Epoch: 25/90, Train MSELoss() = 0.948858
+2024-05-07 20:10:20,807 - root - INFO -> Epoch: 25/90, Train PerCS() = 0.907558
+2024-05-07 20:10:20,933 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:10:20,933 - root - INFO -> --------------------------------------------------
+2024-05-07 20:10:20,966 - root - INFO -> Epoch: 25/90, Starting validation...
+2024-05-07 20:10:20,966 - root - INFO -> Loader length: 86
+2024-05-07 20:10:20,966 - root - INFO -> Loader batch size: 32
+2024-05-07 20:10:20,966 - root - INFO -> Loader drop last: True
+2024-05-07 20:10:20,966 - root - INFO -> Loader num workers: 0
+2024-05-07 20:10:20,966 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:10:20,966 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:10:21,067 - root - INFO -> Memory cleaned!
+2024-05-07 20:10:37,847 - root - INFO -> Epoch: 25/90, Val loss = 2.677500
+2024-05-07 20:10:37,848 - root - INFO -> Epoch: 25/90, Val MSELoss() = 1.758579
+2024-05-07 20:10:37,848 - root - INFO -> Epoch: 25/90, Val PerCS() = 0.896710
+2024-05-07 20:10:37,941 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:10:37,941 - root - INFO -> --------------------------------------------------
+2024-05-07 20:10:37,942 - root - INFO -> --- Epoch: 26 ---
+2024-05-07 20:10:37,943 - root - INFO -> Epoch: 26/90, Starting training...
+2024-05-07 20:10:37,943 - root - INFO -> Loader length: 315
+2024-05-07 20:10:37,943 - root - INFO -> Loader batch size: 32
+2024-05-07 20:10:37,943 - root - INFO -> Loader drop last: True
+2024-05-07 20:10:37,943 - root - INFO -> Loader num workers: 0
+2024-05-07 20:10:37,943 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:10:37,943 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:10:38,036 - root - INFO -> Memory cleaned!
+2024-05-07 20:12:09,220 - root - INFO -> Epoch: 26/90, Train loss = 1.079580
+2024-05-07 20:12:09,220 - root - INFO -> Epoch: 26/90, Train MSELoss() = 0.923021
+2024-05-07 20:12:09,220 - root - INFO -> Epoch: 26/90, Train PerCS() = 0.908602
+2024-05-07 20:12:09,315 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:12:09,315 - root - INFO -> --------------------------------------------------
+2024-05-07 20:12:09,334 - root - INFO -> Epoch: 26/90, Starting validation...
+2024-05-07 20:12:09,334 - root - INFO -> Loader length: 86
+2024-05-07 20:12:09,334 - root - INFO -> Loader batch size: 32
+2024-05-07 20:12:09,334 - root - INFO -> Loader drop last: True
+2024-05-07 20:12:09,334 - root - INFO -> Loader num workers: 0
+2024-05-07 20:12:09,334 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:12:09,334 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:12:09,434 - root - INFO -> Memory cleaned!
+2024-05-07 20:12:26,266 - root - INFO -> Epoch: 26/90, Val loss = 2.624920
+2024-05-07 20:12:26,266 - root - INFO -> Epoch: 26/90, Val MSELoss() = 1.737337
+2024-05-07 20:12:26,266 - root - INFO -> Epoch: 26/90, Val PerCS() = 0.894987
+2024-05-07 20:12:26,360 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:12:26,360 - root - INFO -> --------------------------------------------------
+2024-05-07 20:12:26,361 - root - INFO -> --- Epoch: 27 ---
+2024-05-07 20:12:26,361 - root - INFO -> Epoch: 27/90, Starting training...
+2024-05-07 20:12:26,361 - root - INFO -> Loader length: 315
+2024-05-07 20:12:26,362 - root - INFO -> Loader batch size: 32
+2024-05-07 20:12:26,362 - root - INFO -> Loader drop last: True
+2024-05-07 20:12:26,362 - root - INFO -> Loader num workers: 0
+2024-05-07 20:12:26,362 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:12:26,362 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:12:26,455 - root - INFO -> Memory cleaned!
+2024-05-07 20:13:57,022 - root - INFO -> Epoch: 27/90, Train loss = 1.051698
+2024-05-07 20:13:57,022 - root - INFO -> Epoch: 27/90, Train MSELoss() = 0.899447
+2024-05-07 20:13:57,022 - root - INFO -> Epoch: 27/90, Train PerCS() = 0.909435
+2024-05-07 20:13:57,115 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:13:57,115 - root - INFO -> --------------------------------------------------
+2024-05-07 20:13:57,133 - root - INFO -> Epoch: 27/90, Starting validation...
+2024-05-07 20:13:57,134 - root - INFO -> Loader length: 86
+2024-05-07 20:13:57,134 - root - INFO -> Loader batch size: 32
+2024-05-07 20:13:57,134 - root - INFO -> Loader drop last: True
+2024-05-07 20:13:57,134 - root - INFO -> Loader num workers: 0
+2024-05-07 20:13:57,134 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:13:57,134 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:13:57,232 - root - INFO -> Memory cleaned!
+2024-05-07 20:14:14,332 - root - INFO -> Epoch: 27/90, Val loss = 2.569920
+2024-05-07 20:14:14,332 - root - INFO -> Epoch: 27/90, Val MSELoss() = 1.706969
+2024-05-07 20:14:14,332 - root - INFO -> Epoch: 27/90, Val PerCS() = 0.896982
+2024-05-07 20:14:14,425 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:14:14,425 - root - INFO -> --------------------------------------------------
+2024-05-07 20:14:14,426 - root - INFO -> --- Epoch: 28 ---
+2024-05-07 20:14:14,426 - root - INFO -> Epoch: 28/90, Starting training...
+2024-05-07 20:14:14,426 - root - INFO -> Loader length: 315
+2024-05-07 20:14:14,426 - root - INFO -> Loader batch size: 32
+2024-05-07 20:14:14,426 - root - INFO -> Loader drop last: True
+2024-05-07 20:14:14,426 - root - INFO -> Loader num workers: 0
+2024-05-07 20:14:14,426 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:14:14,426 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:14:14,519 - root - INFO -> Memory cleaned!
+2024-05-07 20:15:45,298 - root - INFO -> Epoch: 28/90, Train loss = 1.019503
+2024-05-07 20:15:45,298 - root - INFO -> Epoch: 28/90, Train MSELoss() = 0.876006
+2024-05-07 20:15:45,298 - root - INFO -> Epoch: 28/90, Train PerCS() = 0.910366
+2024-05-07 20:15:45,393 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:15:45,393 - root - INFO -> --------------------------------------------------
+2024-05-07 20:15:45,411 - root - INFO -> Epoch: 28/90, Starting validation...
+2024-05-07 20:15:45,411 - root - INFO -> Loader length: 86
+2024-05-07 20:15:45,411 - root - INFO -> Loader batch size: 32
+2024-05-07 20:15:45,411 - root - INFO -> Loader drop last: True
+2024-05-07 20:15:45,411 - root - INFO -> Loader num workers: 0
+2024-05-07 20:15:45,411 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:15:45,411 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:15:45,506 - root - INFO -> Memory cleaned!
+2024-05-07 20:16:02,455 - root - INFO -> Epoch: 28/90, Val loss = 3.133654
+2024-05-07 20:16:02,455 - root - INFO -> Epoch: 28/90, Val MSELoss() = 1.880121
+2024-05-07 20:16:02,455 - root - INFO -> Epoch: 28/90, Val PerCS() = 0.892748
+2024-05-07 20:16:02,548 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:16:02,548 - root - INFO -> --------------------------------------------------
+2024-05-07 20:16:02,549 - root - INFO -> --- Epoch: 29 ---
+2024-05-07 20:16:02,549 - root - INFO -> Epoch: 29/90, Starting training...
+2024-05-07 20:16:02,549 - root - INFO -> Loader length: 315
+2024-05-07 20:16:02,549 - root - INFO -> Loader batch size: 32
+2024-05-07 20:16:02,549 - root - INFO -> Loader drop last: True
+2024-05-07 20:16:02,549 - root - INFO -> Loader num workers: 0
+2024-05-07 20:16:02,549 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:16:02,549 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:16:02,641 - root - INFO -> Memory cleaned!
+2024-05-07 20:17:40,837 - root - INFO -> Epoch: 29/90, Train loss = 0.988937
+2024-05-07 20:17:40,838 - root - INFO -> Epoch: 29/90, Train MSELoss() = 0.852394
+2024-05-07 20:17:40,838 - root - INFO -> Epoch: 29/90, Train PerCS() = 0.911247
+2024-05-07 20:17:40,929 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:17:40,929 - root - INFO -> --------------------------------------------------
+2024-05-07 20:17:40,948 - root - INFO -> Epoch: 29/90, Starting validation...
+2024-05-07 20:17:40,949 - root - INFO -> Loader length: 86
+2024-05-07 20:17:40,949 - root - INFO -> Loader batch size: 32
+2024-05-07 20:17:40,949 - root - INFO -> Loader drop last: True
+2024-05-07 20:17:40,949 - root - INFO -> Loader num workers: 0
+2024-05-07 20:17:40,949 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:17:40,949 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:17:41,047 - root - INFO -> Memory cleaned!
+2024-05-07 20:17:58,141 - root - INFO -> Epoch: 29/90, Val loss = 5.048978
+2024-05-07 20:17:58,142 - root - INFO -> Epoch: 29/90, Val MSELoss() = 2.161308
+2024-05-07 20:17:58,142 - root - INFO -> Epoch: 29/90, Val PerCS() = 0.894571
+2024-05-07 20:17:58,235 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:17:58,235 - root - INFO -> --------------------------------------------------
+2024-05-07 20:17:58,236 - root - INFO -> --- Epoch: 30 ---
+2024-05-07 20:17:58,236 - root - INFO -> Epoch: 30/90, Starting training...
+2024-05-07 20:17:58,236 - root - INFO -> Loader length: 315
+2024-05-07 20:17:58,237 - root - INFO -> Loader batch size: 32
+2024-05-07 20:17:58,237 - root - INFO -> Loader drop last: True
+2024-05-07 20:17:58,237 - root - INFO -> Loader num workers: 0
+2024-05-07 20:17:58,237 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:17:58,237 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:17:58,330 - root - INFO -> Memory cleaned!
+2024-05-07 20:19:29,908 - root - INFO -> Epoch: 30/90, Train loss = 0.965004
+2024-05-07 20:19:29,908 - root - INFO -> Epoch: 30/90, Train MSELoss() = 0.830772
+2024-05-07 20:19:29,908 - root - INFO -> Epoch: 30/90, Train PerCS() = 0.911976
+2024-05-07 20:19:30,001 - root - INFO -> Train finished! Memory cleaned!
+2024-05-07 20:19:30,001 - root - INFO -> --------------------------------------------------
+2024-05-07 20:19:30,020 - root - INFO -> Epoch: 30/90, Starting validation...
+2024-05-07 20:19:30,020 - root - INFO -> Loader length: 86
+2024-05-07 20:19:30,020 - root - INFO -> Loader batch size: 32
+2024-05-07 20:19:30,020 - root - INFO -> Loader drop last: True
+2024-05-07 20:19:30,020 - root - INFO -> Loader num workers: 0
+2024-05-07 20:19:30,020 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-07 20:19:30,020 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:19:30,118 - root - INFO -> Memory cleaned!
+2024-05-07 20:19:47,002 - root - INFO -> Epoch: 30/90, Val loss = 2.995018
+2024-05-07 20:19:47,002 - root - INFO -> Epoch: 30/90, Val MSELoss() = 1.861461
+2024-05-07 20:19:47,002 - root - INFO -> Epoch: 30/90, Val PerCS() = 0.891863
+2024-05-07 20:19:47,093 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-07 20:19:47,094 - root - INFO -> --------------------------------------------------
+2024-05-07 20:19:47,094 - root - INFO -> --- Epoch: 31 ---
+2024-05-07 20:19:47,095 - root - INFO -> Epoch: 31/90, Starting training...
+2024-05-07 20:19:47,095 - root - INFO -> Loader length: 315
+2024-05-07 20:19:47,095 - root - INFO -> Loader batch size: 32
+2024-05-07 20:19:47,095 - root - INFO -> Loader drop last: True
+2024-05-07 20:19:47,095 - root - INFO -> Loader num workers: 0
+2024-05-07 20:19:47,095 - root - INFO -> Criterion: MSELoss()
+2024-05-07 20:19:47,095 - root - INFO -> Physical loss: PhyLoss()
+2024-05-07 20:19:47,189 - root - INFO -> Memory cleaned!

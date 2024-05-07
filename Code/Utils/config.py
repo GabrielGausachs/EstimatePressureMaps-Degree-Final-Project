@@ -6,13 +6,13 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetNoPDataMSELoss"
+EXECUTION_NAME = "UNetNoPDataHV&PLoss"
 MODEL_NAME = "UNet"
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
-PLOSS = False
-WEIGHTSLOSSES = [0.3,0.7]
+CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss
+PLOSS = True
+WEIGHTSLOSSES = [1,2]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
 WANDB = True
