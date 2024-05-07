@@ -14,6 +14,8 @@ import datetime
 import torch
 from matplotlib import pyplot as plt
 import os
+import math
+import copy
 
 
 from Utils.config import (
@@ -106,7 +108,8 @@ if __name__ == "__main__":
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-			"Max feature in model": MAX_FEATURE
+			"Max feature in model": MAX_FEATURE,
+			"weightslosses": WEIGHTSLOSSES,
                 },
                 save_code=False,
             )
@@ -131,7 +134,11 @@ if __name__ == "__main__":
         logger.info(
             f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
-        logger.info(f"Lambda value: {LAMBDA_VALUE}")
+
+	# Initialize Variables for EarlyStopping
+        best_loss = math.inf
+        best_model_weights = None
+        patience = 10
 
         # Iterate over training and test
         for epoch in range(EPOCHS):
@@ -159,7 +166,7 @@ if __name__ == "__main__":
             )
 
             if WANDB:
-                #wandb.log({"epoch": epoch, "train_loss": epoch_loss})
+                # wandb.log({"epoch": epoch, "train_loss": epoch_loss})
                 wandb.log({'train_loss': epoch_loss_train}, step=epoch)
                 wandb.log({'val_loss': epoch_loss_val}, step=epoch)
 
@@ -168,15 +175,27 @@ if __name__ == "__main__":
                         {f'Val {metric}': epoch_metric_val[i]}, step=epoch)
                     wandb.log(
                         {f'Train {metric}': epoch_metric_train[i]}, step=epoch)
-
             print(f"--- Epoch: {epoch} finished ---")
 
+            if epoch_loss_val < best_loss:
+                best_loss = epoch_loss_val
+                best_model_weights = copy.deepcopy(
+                    model.state_dict())  # Deep copy here
+                patience = 10  # Reset patience counter
+            else:
+                patience -= 1
+                if patience == 0:
+                     logger.info("--- Early stopping activated ---")
+                     logger.info(f"Best loss: {best_loss}")
+                     break
+
         # Save the model pth and the arquitecture
+	# Load the best model weights
+        model.load_state_dict(best_model_weights)
         savemodel.save_model(model)
 
     logger.info("-" * 50)
 
-    
 
     if EVALUATION:
         if DO_TRAIN:
@@ -186,7 +205,7 @@ if __name__ == "__main__":
         else:
             # The train is not done and we want to evaluate another model
             logger.info("Starting evaluation of a past model")
-            model = models[MODEL_NAME](1, 1).to(DEVICE)
+            model=models[MODEL_NAME](1, 1).to(DEVICE)
             evaluation.evaluation(model, criterion[CRITERION], val_loader)
         logger.info("Evaluation Completed!")
         logger.info("-" * 50)

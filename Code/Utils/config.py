@@ -6,13 +6,13 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetNoPDataMSE&PLoss"
+EXECUTION_NAME = "UNetNoPDataMSELoss"
 MODEL_NAME = "UNet"
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
-PLOSS = True
-WEIGHTSLOSSES = [0.5,0.5]
+PLOSS = False
+WEIGHTSLOSSES = [0.3,0.7]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
 WANDB = True
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 30
+EPOCHS = 90
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

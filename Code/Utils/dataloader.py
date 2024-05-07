@@ -2,6 +2,7 @@ import os
 import random
 import numpy as np
 import cv2
+import json
 import pandas as pd
 from matplotlib import pyplot as plt
 import torchvision.transforms as transforms
@@ -10,6 +11,7 @@ from Utils.logger import initialize_logger, get_logger
 from Utils.dataset import CustomDataset
 from torchvision.transforms.functional import crop
 from scipy import signal
+import datetime
 
 from Utils.config import (
     BATCH_SIZE_TEST,
@@ -107,51 +109,37 @@ class CustomDataloader:
 
         train_arrays = {'ir': [], 'pm': []}
         val_arrays = {'ir': [], 'pm': []}
+        test_arrays = {'pm': [], 'ir': []}
 
-        # Partition by patients
+        # Patient Partition
         if PARTITION == 1:
+
             logger.info('Partition --> Patients')
-            keys = list(dic_pm_numpy.keys())
 
-            split_index = int(0.8 * len(keys))
-
-            train_keys = keys[:split_index]
-            print(train_keys)
-            val_keys = keys[split_index:]
-            print(val_keys)
-
-            for t_key in train_keys:
-                pm_dic = dic_pm_numpy[t_key]
-                ir_dic = dic_ir_numpy[t_key]
-
-                for pm_value, ir_value in zip(pm_dic.values(), ir_dic.values()):
-                    train_arrays['pm'].extend(pm_value)
-                    train_arrays['ir'].extend(ir_value)
-
-            for v_key in val_keys:
-                pm_dic = dic_pm_numpy[v_key]
-                ir_dic = dic_ir_numpy[v_key]
-                for pm_value, ir_value in zip(pm_dic.values(), ir_dic.values()):
-                    val_arrays['pm'].extend(pm_value)
-                    val_arrays['ir'].extend(ir_value)
-
-        # Random partition
-        elif PARTITION == 0:
-
-            logger.info('Partition --> Random')
             for key in dic_pm_numpy.keys():
                 for category in dic_pm_numpy[key].keys():
                     indexes = list(range(len(dic_pm_numpy[key][category])))
                     random.shuffle(indexes)
-                    split_index = int(0.8 * len(indexes))
+                    train_split_index = int(0.75 * len(indexes))
+                    val_split_index = int(0.95 * len(indexes))
+
                     train_arrays['pm'].extend(
-                        dic_pm_numpy[key][category][:split_index])
+                        dic_pm_numpy[key][category][:train_split_index])
                     train_arrays['ir'].extend(
-                        dic_ir_numpy[key][category][:split_index])
+                        dic_ir_numpy[key][category][:train_split_index])
+
                     val_arrays['pm'].extend(
-                        dic_pm_numpy[key][category][split_index:])
+                        dic_pm_numpy[key][category][train_split_index:val_split_index])
                     val_arrays['ir'].extend(
-                        dic_ir_numpy[key][category][split_index:])
+                        dic_ir_numpy[key][category][train_split_index:val_split_index])
+
+                    test_arrays['pm'].extend(
+                        dic_pm_numpy[key][category][val_split_index:])
+                    test_arrays['ir'].extend(
+                        dic_ir_numpy[key][category][val_split_index:])
+
+        with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
+            json.dump(test_arrays, outfile)
 
         # Data transformation if needed
         transform = {
