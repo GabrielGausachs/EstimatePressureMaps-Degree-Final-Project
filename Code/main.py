@@ -82,7 +82,7 @@ def force_cudnn_initialization():
 
 if __name__ == "__main__":
 
-    force_cudnn_initialization()
+    #force_cudnn_initialization()
 
     # Initialize logger
     logger.initialize_logger()

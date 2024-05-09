@@ -39,13 +39,13 @@ class UNET_phy(nn.Module):
         
         # Down part of UNET physical vector
         phy_fc = nn.ModuleList()
-        phy_fc.append(nn.Linear(in_channels_phy, 10))
+        phy_fc.append(nn.Linear(in_channels_phy, 11))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(10, 10))
+        phy_fc.append(nn.Linear(11, 11))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(10, 1))     # quants features de sortida?
+        phy_fc.append(nn.Linear(11, 11))     # quants features de sortida?
         self.phyNet = nn.Sequential(*phy_fc)
 
 
@@ -61,7 +61,7 @@ class UNET_phy(nn.Module):
         self.bottleneck = DoubleConv(features[-1], features[-1]*2)
         self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
 
-    def forward(self, x,x_phy):
+    def forward(self, x, x_phy):
         skip_connections = []
 
         # Down part of the Array
@@ -74,8 +74,6 @@ class UNET_phy(nn.Module):
         x_phy = x_phy.to(torch.float32)
         x_phy = self.phyNet(x_phy)
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
-
-        # A partir d'aqui no se com fer un concat
 
         x = self.bottleneck(x)
         skip_connections = skip_connections[::-1]
@@ -91,3 +89,10 @@ class UNET_phy(nn.Module):
             x = self.ups[idx+1](concat_skip)
 
         return self.final_conv(x)
+    
+
+# afegir això: x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
+# Per tant tindrem x.shape = (32,1035,12,5)
+# Hauriem de canviar les primeres convolucions transposades (self.ups[idx](x) i self.ups[idx+1](x))
+# Perque rebin 1035 canals i treguin 512.
+# Sinó, podem anar fent 1035 - 518 - 259 - 130 - 65 - 1

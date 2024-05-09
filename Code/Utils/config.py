@@ -7,7 +7,7 @@ import torch
 # -----------------------------------------
 
 EXECUTION_NAME = "UNetNoPDataHV&PLoss"
-MODEL_NAME = "UNet"
+MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
 CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss
@@ -15,20 +15,20 @@ PLOSS = True
 WEIGHTSLOSSES = [1,2]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
-WANDB = True
+WANDB = False
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = False
+USE_PHYSICAL_DATA = True
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
 # Paths -----------------------------------
 
-PATH_DATASET = 'Server'
+PATH_DATASET = 'Local'
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))),'mnt/DADES2/SLP/SLP/danaLab')
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
