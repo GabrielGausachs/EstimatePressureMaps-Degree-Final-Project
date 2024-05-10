@@ -39,24 +39,35 @@ class UNET_phy(nn.Module):
         
         # Down part of UNET physical vector
         phy_fc = nn.ModuleList()
-        phy_fc.append(nn.Linear(in_channels_phy, 11))
+        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(11, 11))
+        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(11, 11))     # quants features de sortida?
+        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))     # quants features de sortida?
         self.phyNet = nn.Sequential(*phy_fc)
 
 
         # Up part of UNET
+        first_iteration = True
         for feature in reversed(features):
-            self.ups.append(
-                nn.ConvTranspose2d(
-                    feature*2, feature, kernel_size=2, stride=2,
+            if first_iteration:
+                self.ups.append(
+                    nn.ConvTranspose2d(
+                        1035, feature, kernel_size=2, stride=2,
+                    )
                 )
-            )
+                first_iteration = False
+            else:
+                self.ups.append(
+                    nn.ConvTranspose2d(
+                        feature*2, feature, kernel_size=2, stride=2,
+                    )
+                )
             self.ups.append(DoubleConv(feature*2, feature))
+            
+
 
         self.bottleneck = DoubleConv(features[-1], features[-1]*2)
         self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
@@ -76,6 +87,7 @@ class UNET_phy(nn.Module):
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
 
         x = self.bottleneck(x)
+        x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
         skip_connections = skip_connections[::-1]
 
         for idx in range(0, len(self.ups), 2):
@@ -93,6 +105,6 @@ class UNET_phy(nn.Module):
 
 # afegir això: x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
 # Per tant tindrem x.shape = (32,1035,12,5)
-# Hauriem de canviar les primeres convolucions transposades (self.ups[idx](x) i self.ups[idx+1](x))
+# Hauriem de canviar les primeres convolucions transposades (self.ups[idx](x))
 # Perque rebin 1035 canals i treguin 512.
 # Sinó, podem anar fent 1035 - 518 - 259 - 130 - 65 - 1
