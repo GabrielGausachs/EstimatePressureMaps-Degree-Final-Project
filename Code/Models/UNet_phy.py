@@ -40,13 +40,13 @@ class UNET_phy(nn.Module):
 
         # Down part of UNET physical vector
         phy_fc = nn.ModuleList()
-        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
+        phy_fc.append(nn.Linear(in_channels_phy, 64))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
+        phy_fc.append(nn.Linear(64, 64))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy)
+        phy_fc.append(nn.Linear(64, 64)
                       )     # quants features de sortida?
         self.phyNet = nn.Sequential(*phy_fc)
 
@@ -69,7 +69,7 @@ class UNET_phy(nn.Module):
             self.ups.append(DoubleConv(feature*2, feature))
 
         self.bottleneck = DoubleConv(features[-1], features[-1]*2)
-        self.final_conv = nn.Conv2d(75, out_channels, kernel_size=1)
+        self.final_conv = nn.Conv2d(128, out_channels, kernel_size=1)
 
     def forward(self, x, x_phy):
         skip_connections = []
@@ -98,7 +98,7 @@ class UNET_phy(nn.Module):
             concat_skip = torch.cat((skip_connection, x), dim=1)
             x = self.ups[idx+1](concat_skip)
 
-        x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
+        x = torch.cat((x, x_phy.expand(-1, -1, 192, 84)), dim=1)
 
         return self.final_conv(x)
 
