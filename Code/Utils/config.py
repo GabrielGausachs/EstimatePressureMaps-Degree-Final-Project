@@ -6,12 +6,12 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetNoPDataHV&PLoss"
+EXECUTION_NAME = "UNetPDataMSELoss"
 MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss
-PLOSS = True
+CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
+PLOSS = False
 WEIGHTSLOSSES = [1,2]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
@@ -28,7 +28,7 @@ PARTITION = 1 # (0 - Random, 1- Patients)
 
 # Paths -----------------------------------
 
-PATH_DATASET = 'Local'
+PATH_DATASET = 'Server'
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
 SERVER_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))),'mnt/DADES2/SLP/SLP/danaLab')
 MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/SavedModels")
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 90
+EPOCHS = 10
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

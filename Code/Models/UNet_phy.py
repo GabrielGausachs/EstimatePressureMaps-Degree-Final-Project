@@ -6,6 +6,8 @@ import torchvision.transforms.functional as TF
 # A U-Net with 4 blocks of 2 convolutional layers each block and with skip connections.
 # With A physical vector added that does the encoder separately, then concats with
 # The output of the encoder of the the convolutional blocks and does the decoder jointly
+
+
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
@@ -20,7 +22,6 @@ class DoubleConv(nn.Module):
 
     def forward(self, x):
         return self.conv(x)
-    
 
 
 class UNET_phy(nn.Module):
@@ -36,7 +37,7 @@ class UNET_phy(nn.Module):
         for feature in features:
             self.downs.append(DoubleConv(in_channels, feature))
             in_channels = feature
-        
+
         # Down part of UNET physical vector
         phy_fc = nn.ModuleList()
         phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
@@ -45,12 +46,12 @@ class UNET_phy(nn.Module):
         phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy))     # quants features de sortida?
+        phy_fc.append(nn.Linear(in_channels_phy, in_channels_phy)
+                      )     # quants features de sortida?
         self.phyNet = nn.Sequential(*phy_fc)
 
-
         # Up part of UNET
-        first_iteration = True
+        first_iteration = False
         for feature in reversed(features):
             if first_iteration:
                 self.ups.append(
@@ -66,11 +67,9 @@ class UNET_phy(nn.Module):
                     )
                 )
             self.ups.append(DoubleConv(feature*2, feature))
-            
-
 
         self.bottleneck = DoubleConv(features[-1], features[-1]*2)
-        self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
+        self.final_conv = nn.Conv2d(75, out_channels, kernel_size=1)
 
     def forward(self, x, x_phy):
         skip_connections = []
@@ -80,14 +79,13 @@ class UNET_phy(nn.Module):
             x = down(x)
             skip_connections.append(x)
             x = self.pool(x)
-        
+
         # Down part of the Physical vector
         x_phy = x_phy.to(torch.float32)
         x_phy = self.phyNet(x_phy)
         x_phy = x_phy.unsqueeze(-1).unsqueeze(-1)
 
         x = self.bottleneck(x)
-        x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
         skip_connections = skip_connections[::-1]
 
         for idx in range(0, len(self.ups), 2):
@@ -100,8 +98,10 @@ class UNET_phy(nn.Module):
             concat_skip = torch.cat((skip_connection, x), dim=1)
             x = self.ups[idx+1](concat_skip)
 
+        x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
+
         return self.final_conv(x)
-    
+
 
 # afegir això: x = torch.cat((x, x_phy.expand(-1, -1, 12, 5)), dim=1)
 # Per tant tindrem x.shape = (32,1035,12,5)

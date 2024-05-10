@@ -1,0 +1,33 @@
+2024-05-10 20:06:09,724 - root - INFO -> Logger initialized in filename 2024-05-10-20-06-09
+2024-05-10 20:06:09,724 - root - INFO -> --------------------------------------------------
+2024-05-10 20:06:09,725 - root - INFO -> Reading the data from Server...
+2024-05-10 20:06:09,762 - root - INFO -> Number of pacients: 102
+2024-05-10 20:06:09,762 - root - INFO -> Number of categories in a patient: 3
+2024-05-10 20:06:09,769 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-05-10 20:06:09,769 - root - INFO -> --------------------------------------------------
+2024-05-10 20:06:09,769 - root - INFO -> Creating dataset...
+2024-05-10 20:06:09,769 - root - INFO -> Partition --> Patients
+2024-05-10 20:06:09,773 - root - INFO -> Train size: 10098
+2024-05-10 20:06:09,773 - root - INFO -> Val size: 2754
+2024-05-10 20:06:09,773 - root - INFO -> --------------------------------------------------
+2024-05-10 20:06:09,773 - root - INFO -> Creating dataloaders...
+2024-05-10 20:06:09,774 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-10 20:06:09,854 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-10 20:06:09,903 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-10 20:06:09,952 - root - INFO -> Size of the data of train loader:torch.Size([32, 11])
+2024-05-10 20:06:09,952 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-10 20:06:10,001 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-10 20:06:10,049 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-10 20:06:10,097 - root - INFO -> Size of the data of the val loader:torch.Size([32, 11])
+2024-05-10 20:06:11,387 - root - INFO -> --------------------------------------------------
+2024-05-10 20:06:11,387 - root - INFO -> Starting training with model UNet_phy that has 31036888 parameters
+2024-05-10 20:06:11,388 - root - INFO -> Learning rate: 0.002
+2024-05-10 20:06:11,388 - root - INFO -> --- Epoch: 0 ---
+2024-05-10 20:06:11,389 - root - INFO -> Epoch: 0/10, Starting training...
+2024-05-10 20:06:11,389 - root - INFO -> Loader length: 315
+2024-05-10 20:06:11,389 - root - INFO -> Loader batch size: 32
+2024-05-10 20:06:11,389 - root - INFO -> Loader drop last: True
+2024-05-10 20:06:11,389 - root - INFO -> Loader num workers: 0
+2024-05-10 20:06:11,389 - root - INFO -> Criterion: MSELoss()
+2024-05-10 20:06:11,389 - root - INFO -> Physical loss: None
+2024-05-10 20:06:11,496 - root - INFO -> Memory cleaned!
