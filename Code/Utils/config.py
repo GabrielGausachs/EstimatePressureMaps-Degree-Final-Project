@@ -22,7 +22,7 @@ LAST_RUN_WANDB = ""
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = True
+USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
