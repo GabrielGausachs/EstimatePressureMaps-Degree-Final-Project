@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetPDataMSE%PLoss"
+EXECUTION_NAME = "UNetPDataMSE%PLoss_Type1"
 MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -15,14 +15,14 @@ PLOSS = True
 WEIGHTSLOSSES = [1,1]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
-WANDB = False
+WANDB = True
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = False
+USE_PHYSICAL_DATA = True
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 

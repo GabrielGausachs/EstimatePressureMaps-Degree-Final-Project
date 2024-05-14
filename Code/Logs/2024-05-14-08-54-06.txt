@@ -1,0 +1,81 @@
+2024-05-14 08:54:08,339 - root - INFO -> Logger initialized in filename 2024-05-14-08-54-08
+2024-05-14 08:54:08,339 - root - INFO -> --------------------------------------------------
+2024-05-14 08:54:08,339 - root - INFO -> Reading the data from Server...
+2024-05-14 08:54:08,397 - root - INFO -> Number of pacients: 102
+2024-05-14 08:54:08,397 - root - INFO -> Number of categories in a patient: 3
+2024-05-14 08:54:08,407 - root - INFO -> Size of the physical dataset: (102, 11)
+2024-05-14 08:54:08,407 - root - INFO -> --------------------------------------------------
+2024-05-14 08:54:08,407 - root - INFO -> Creating dataset...
+2024-05-14 08:54:08,407 - root - INFO -> Partition --> Patients
+2024-05-14 08:54:08,416 - root - INFO -> Train size: 10098
+2024-05-14 08:54:08,416 - root - INFO -> Val size: 2754
+2024-05-14 08:54:08,416 - root - INFO -> --------------------------------------------------
+2024-05-14 08:54:08,416 - root - INFO -> Creating dataloaders...
+2024-05-14 08:54:08,417 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-14 08:54:08,515 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-14 08:54:08,569 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-14 08:54:08,618 - root - INFO -> Size of the data of train loader:torch.Size([32, 11])
+2024-05-14 08:54:08,618 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-14 08:54:08,668 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-14 08:54:08,717 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-14 08:54:08,765 - root - INFO -> Size of the data of the val loader:torch.Size([32, 11])
+2024-05-14 08:54:10,057 - root - INFO -> --------------------------------------------------
+2024-05-14 08:54:10,058 - root - INFO -> Starting training with model UNet_phy that has 31045633 parameters
+2024-05-14 08:54:10,058 - root - INFO -> Learning rate: 0.002
+2024-05-14 08:54:10,058 - root - INFO -> --- Epoch: 0 ---
+2024-05-14 08:54:10,058 - root - INFO -> Epoch: 0/2, Starting training...
+2024-05-14 08:54:10,058 - root - INFO -> Loader length: 315
+2024-05-14 08:54:10,058 - root - INFO -> Loader batch size: 32
+2024-05-14 08:54:10,058 - root - INFO -> Loader drop last: True
+2024-05-14 08:54:10,058 - root - INFO -> Loader num workers: 0
+2024-05-14 08:54:10,058 - root - INFO -> Criterion: MSELoss()
+2024-05-14 08:54:10,058 - root - INFO -> Physical loss: PhyLoss()
+2024-05-14 08:54:10,168 - root - INFO -> Memory cleaned!
+2024-05-14 08:55:42,676 - root - INFO -> Epoch: 0/2, Train loss = 7.482393
+2024-05-14 08:55:42,676 - root - INFO -> Epoch: 0/2, Train MSELoss() = 3.116081
+2024-05-14 08:55:42,676 - root - INFO -> Epoch: 0/2, Train PerCS() = 0.796024
+2024-05-14 08:55:42,770 - root - INFO -> Train finished! Memory cleaned!
+2024-05-14 08:55:42,770 - root - INFO -> --------------------------------------------------
+2024-05-14 08:55:42,771 - root - INFO -> Epoch: 0/2, Starting validation...
+2024-05-14 08:55:42,771 - root - INFO -> Loader length: 86
+2024-05-14 08:55:42,771 - root - INFO -> Loader batch size: 32
+2024-05-14 08:55:42,771 - root - INFO -> Loader drop last: True
+2024-05-14 08:55:42,771 - root - INFO -> Loader num workers: 0
+2024-05-14 08:55:42,771 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-14 08:55:42,771 - root - INFO -> Physical loss: PhyLoss()
+2024-05-14 08:55:42,865 - root - INFO -> Memory cleaned!
+2024-05-14 08:55:59,339 - root - INFO -> Epoch: 0/2, Val loss = 2.637531
+2024-05-14 08:55:59,339 - root - INFO -> Epoch: 0/2, Val MSELoss() = 2.243902
+2024-05-14 08:55:59,339 - root - INFO -> Epoch: 0/2, Val PerCS() = 0.864156
+2024-05-14 08:55:59,432 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-14 08:55:59,432 - root - INFO -> --------------------------------------------------
+2024-05-14 08:55:59,439 - root - INFO -> --- Epoch: 1 ---
+2024-05-14 08:55:59,440 - root - INFO -> Epoch: 1/2, Starting training...
+2024-05-14 08:55:59,440 - root - INFO -> Loader length: 315
+2024-05-14 08:55:59,440 - root - INFO -> Loader batch size: 32
+2024-05-14 08:55:59,440 - root - INFO -> Loader drop last: True
+2024-05-14 08:55:59,440 - root - INFO -> Loader num workers: 0
+2024-05-14 08:55:59,440 - root - INFO -> Criterion: MSELoss()
+2024-05-14 08:55:59,440 - root - INFO -> Physical loss: PhyLoss()
+2024-05-14 08:55:59,532 - root - INFO -> Memory cleaned!
+2024-05-14 08:57:28,638 - root - INFO -> Epoch: 1/2, Train loss = 2.295100
+2024-05-14 08:57:28,638 - root - INFO -> Epoch: 1/2, Train MSELoss() = 1.985597
+2024-05-14 08:57:28,638 - root - INFO -> Epoch: 1/2, Train PerCS() = 0.853290
+2024-05-14 08:57:28,733 - root - INFO -> Train finished! Memory cleaned!
+2024-05-14 08:57:28,733 - root - INFO -> --------------------------------------------------
+2024-05-14 08:57:28,752 - root - INFO -> Epoch: 1/2, Starting validation...
+2024-05-14 08:57:28,752 - root - INFO -> Loader length: 86
+2024-05-14 08:57:28,752 - root - INFO -> Loader batch size: 32
+2024-05-14 08:57:28,752 - root - INFO -> Loader drop last: True
+2024-05-14 08:57:28,752 - root - INFO -> Loader num workers: 0
+2024-05-14 08:57:28,752 - root - INFO -> Metrics: [MSELoss(), PerCS()]
+2024-05-14 08:57:28,752 - root - INFO -> Physical loss: PhyLoss()
+2024-05-14 08:57:28,863 - root - INFO -> Memory cleaned!
+2024-05-14 08:57:45,445 - root - INFO -> Epoch: 1/2, Val loss = 2.478079
+2024-05-14 08:57:45,445 - root - INFO -> Epoch: 1/2, Val MSELoss() = 2.145183
+2024-05-14 08:57:45,445 - root - INFO -> Epoch: 1/2, Val PerCS() = 0.873207
+2024-05-14 08:57:45,539 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-14 08:57:45,539 - root - INFO -> --------------------------------------------------
+2024-05-14 08:57:45,548 - root - INFO -> Saving the model
+2024-05-14 08:57:45,673 - root - INFO -> Model saved in /home/ggausachs/TFG/Code/Models/SavedModels
+2024-05-14 08:57:45,673 - root - INFO -> --------------------------------------------------
