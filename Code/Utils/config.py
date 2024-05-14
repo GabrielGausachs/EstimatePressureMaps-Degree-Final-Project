@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetPDataMSE%PLoss_Type1"
+EXECUTION_NAME = "UNetPDataMSE%PLoss_Type2"
 MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
