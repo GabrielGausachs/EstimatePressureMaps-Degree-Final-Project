@@ -16,6 +16,7 @@ from matplotlib import pyplot as plt
 import os
 import math
 import copy
+import torch.optim.lr_scheduler as lr_scheduler
 
 
 from Utils.config import (
@@ -124,6 +125,7 @@ if __name__ == "__main__":
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
+        scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
 
         # Create a criterion object
         criterion = criterion[CRITERION]
@@ -164,6 +166,8 @@ if __name__ == "__main__":
                 ploss=ploss[PLOSS],
                 weightsloss=WEIGHTSLOSSES,
             )
+            logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
+            scheduler.step()
 
             if WANDB:
                 # wandb.log({"epoch": epoch, "train_loss": epoch_loss})
@@ -175,6 +179,7 @@ if __name__ == "__main__":
                         {f'Val {metric}': epoch_metric_val[i]}, step=epoch)
                     wandb.log(
                         {f'Train {metric}': epoch_metric_train[i]}, step=epoch)
+
             print(f"--- Epoch: {epoch} finished ---")
 
             if epoch_loss_val < best_loss:
@@ -190,7 +195,7 @@ if __name__ == "__main__":
                      break
 
         # Save the model pth and the arquitecture
-	# Load the best model weights
+	    # Load the best model weights
         model.load_state_dict(best_model_weights)
         savemodel.save_model(model)
 
