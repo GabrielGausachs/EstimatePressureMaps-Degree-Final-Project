@@ -40,13 +40,13 @@ class UNET_phy(nn.Module):
 
         # Down part of UNET physical vector
         phy_fc = nn.ModuleList()
-        phy_fc.append(nn.Linear(in_channels_phy, 11))
+        phy_fc.append(nn.Linear(in_channels_phy, 9))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(11, 11))
+        phy_fc.append(nn.Linear(9, 9))
         phy_fc.append(nn.ReLU(True))
         phy_fc.append(nn.Dropout(0.5))
-        phy_fc.append(nn.Linear(11, 11)
+        phy_fc.append(nn.Linear(9, 9)
                       )     # quants features de sortida?
         self.phyNet = nn.Sequential(*phy_fc)
 
@@ -56,7 +56,7 @@ class UNET_phy(nn.Module):
             if first_iteration:
                 self.ups.append(
                     nn.ConvTranspose2d(
-                        1035, feature, kernel_size=2, stride=2,
+                        1033, feature, kernel_size=2, stride=2,
                     )
                 )
                 first_iteration = False

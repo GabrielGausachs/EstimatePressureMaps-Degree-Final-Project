@@ -95,11 +95,12 @@ class CustomDataloader:
             f'Number of categories in a patient: {len(dic_ir_numpy["00001"])}')
 
         p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
-        p_data['gender'] = p_data['gender'].str.strip()
-        p_data = pd.get_dummies(p_data, columns=['gender'])
+        #p_data['gender'] = p_data['gender'].str.strip()
+        #p_data = pd.get_dummies(p_data, columns=['gender'])
         p_data = p_data.drop('sub_idx', axis=1)
-        p_data['gender_male'] = p_data['gender_male'].astype(int)
-        p_data['gender_female'] = p_data['gender_female'].astype(int)
+        p_data = p_data.drop('gender',axis = 1)
+        #p_data['gender_male'] = p_data['gender_male'].astype(int)
+        #p_data['gender_female'] = p_data['gender_female'].astype(int)
 
         logger.info(f'Size of the physical dataset: {p_data.shape}')
 

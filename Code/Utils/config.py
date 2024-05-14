@@ -14,7 +14,7 @@ CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = True
 WEIGHTSLOSSES = [1,1]
 METRIC = "PerCS" #PerCS #MSELoss
-EXPERTYPE = 'Arrays-NormalizationIr-PartitionPatients'
+EXPERTYPE = 'PdataWithOutGender-NoNormalization'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 10
+EPOCHS = 90
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 
