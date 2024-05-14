@@ -139,8 +139,8 @@ class CustomDataloader:
                     test_arrays['ir'].extend(
                         dic_ir_numpy[key][category][val_split_index:])
 
-        #with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
-        #    json.dump(test_arrays, outfile)
+        with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
+            json.dump(test_arrays, outfile)
 
         # Data transformation if needed
         transform = {

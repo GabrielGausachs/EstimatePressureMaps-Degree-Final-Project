@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
         # Create a model
         if USE_PHYSICAL_DATA:
-            model = models[MODEL_NAME](1, 11, 1).to(DEVICE)
+            model = models[MODEL_NAME](1, 9, 1).to(DEVICE)
         else:
             model = models[MODEL_NAME](1, 1).to(DEVICE)
 
