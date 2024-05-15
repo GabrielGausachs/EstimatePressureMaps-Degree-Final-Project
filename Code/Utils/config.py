@@ -6,15 +6,15 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetPDataMSE%PLoss_Type2"
+EXECUTION_NAME = "UNetPDataMSE_Type2"
 MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
-PLOSS = True
+PLOSS = False
 WEIGHTSLOSSES = [1,1]
 METRIC = "PerCS" #PerCS #MSELoss
-EXPERTYPE = 'PdataWithOutGender-NoNormalization'
+EXPERTYPE = 'PdataWithOutGender-YesNormalization'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -42,7 +42,7 @@ BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
 EPOCHS = 100
-LEARNING_RATE = 0.05
+LEARNING_RATE = 0.001
 LAMBDA_VALUE = 10
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

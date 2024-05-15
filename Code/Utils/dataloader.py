@@ -103,7 +103,8 @@ class CustomDataloader:
         scaler = StandardScaler()
 
         # Fit the scaler to the data and transform the data
-        p_data = scaler.fit_transform(p_data)
+        p_data_scaled = scaler.fit_transform(p_data)
+        p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
 
         #p_data['gender_male'] = p_data['gender_male'].astype(int)
         #p_data['gender_female'] = p_data['gender_female'].astype(int)
