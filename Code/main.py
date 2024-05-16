@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
-        #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
+        scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
 
         # Create a criterion object
         criterion = criterion[CRITERION]
@@ -137,7 +137,7 @@ if __name__ == "__main__":
             f"Starting training with model {MODEL_NAME} that has {num_params} parameters")
         logger.info(f"Learning rate: {LEARNING_RATE}")
 
-	# Initialize Variables for EarlyStopping
+	    # Initialize Variables for EarlyStopping
         best_loss = math.inf
         best_model_weights = None
         patience = 10
@@ -167,7 +167,7 @@ if __name__ == "__main__":
                 weightsloss=WEIGHTSLOSSES,
             )
             logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
-            #scheduler.step()
+            scheduler.step()
 
             if WANDB:
                 # wandb.log({"epoch": epoch, "train_loss": epoch_loss})

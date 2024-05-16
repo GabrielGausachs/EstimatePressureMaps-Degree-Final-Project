@@ -17,12 +17,11 @@ class CustomDataset(Dataset):
     # - IR arrays
     # - PR arrays
     # Physical data
-    def __init__(self, ir_paths, pm_paths, p_data, weights, transform=None):
+    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
         self.p_data = p_data
-        self.weights = weights
 
         self.transform = transform
 
@@ -48,7 +47,7 @@ class CustomDataset(Dataset):
                 parts = str(output_path.split("\\")[-4])
             number = int(parts)
             p_vector = self.p_data.iloc[number-1]
-            weight = self.weights.iloc[number-1]
+            weight = p_vector[1]
             tensor_data = torch.tensor(p_vector.values)
 
             # Applying median filter

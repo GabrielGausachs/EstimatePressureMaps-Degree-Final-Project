@@ -100,13 +100,13 @@ class CustomDataloader:
         #p_data = pd.get_dummies(p_data, columns=['gender'])
         p_data = p_data.drop('sub_idx', axis=1)
         p_data = p_data.drop('gender',axis = 1)
-        weights = p_data.iloc[:,1]
+        #weights = p_data.iloc[:,1]
 
-        scaler = StandardScaler()
+        #scaler = StandardScaler()
 
         # Fit the scaler to the data and transform the data
-        p_data_scaled = scaler.fit_transform(p_data)
-        p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
+        #p_data_scaled = scaler.fit_transform(p_data)
+        #p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
 
         #p_data['gender_male'] = p_data['gender_male'].astype(int)
         #p_data['gender_female'] = p_data['gender_female'].astype(int)
@@ -162,10 +162,10 @@ class CustomDataloader:
             'output': transforms.Compose([transforms.ToTensor()])}
 
         train_dataset = CustomDataset(
-            train_arrays['ir'], train_arrays['pm'], p_data, weights, transform=transform)
+            train_arrays['ir'], train_arrays['pm'], p_data, transform=transform)
 
         val_dataset = CustomDataset(
-            val_arrays['ir'], val_arrays['pm'], p_data, weights, transform=transform)
+            val_arrays['ir'], val_arrays['pm'], p_data, transform=transform)
 
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")

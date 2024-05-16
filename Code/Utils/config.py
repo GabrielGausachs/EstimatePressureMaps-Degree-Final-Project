@@ -6,15 +6,15 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetPDataMSE_Type2"
-MODEL_NAME = "UNet_phy" #UNet #UNet_phy
+EXECUTION_NAME = "UNetNoPDataMSE"
+MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = False
-WEIGHTSLOSSES = [1,1]
+WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss
-EXPERTYPE = 'PdataWithOutGender-YesNormalization'
+EXPERTYPE = 'NoPdata with scheduling'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -22,7 +22,7 @@ LAST_RUN_WANDB = ""
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = True
+USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
