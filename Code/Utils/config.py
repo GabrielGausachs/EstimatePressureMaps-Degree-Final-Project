@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNet params"
+EXECUTION_NAME = "UNetWithMSEeff"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -15,13 +15,13 @@ PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss
 EXPERTYPE = 'NoPdata'
-WANDB = True
+WANDB = False
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)

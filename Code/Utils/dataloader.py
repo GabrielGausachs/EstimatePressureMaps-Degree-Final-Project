@@ -211,7 +211,7 @@ class CustomDataloader:
                 f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
         # Function to check how are the arrays that we pass to the model
-        # check_transform(val_loader,self.path_arrays)
+        check_transform(val_loader,self.path_arrays)
 
         return train_loader, val_loader
 
@@ -241,7 +241,7 @@ def check_transform(val_loader, path_arrays):
         plt.title('Target image')
         plt.axis('off')
 
-        plt.savefig(os.path.join(
-            IMG_PATH, f'compare_transforms_{path_arrays}.png'))
+        #plt.savefig(os.path.join(
+        #    IMG_PATH, f'compare_transforms_{path_arrays}.png'))
 
         plt.show()
