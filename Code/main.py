@@ -90,6 +90,7 @@ if __name__ == "__main__":
     logger = logger.get_logger()
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
+    features = [8,16,32,64] #[16,32,64,128] #[8,16,32,64] #[32,64,128] #[8,16,32]
 
     if DO_TRAIN:
         # Initialize wandb
@@ -108,6 +109,7 @@ if __name__ == "__main__":
                         "experiment_type": EXPERTYPE,
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
+                        "features": features,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
 			"Max feature in model": MAX_FEATURE,
 			"weightslosses": WEIGHTSLOSSES,
@@ -118,14 +120,15 @@ if __name__ == "__main__":
             logger.info("Wandb correctly initialized")
 
         # Create a model
+
         if USE_PHYSICAL_DATA:
             model = models[MODEL_NAME](1, 9, 1).to(DEVICE)
         else:
-            model = models[MODEL_NAME](1, 1).to(DEVICE)
+            model = models[MODEL_NAME](1, 1,features).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
-        scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
+        #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
 
         # Create a criterion object
         criterion = criterion[CRITERION]
@@ -167,7 +170,7 @@ if __name__ == "__main__":
                 weightsloss=WEIGHTSLOSSES,
             )
             logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
-            scheduler.step()
+            #scheduler.step()
 
             if WANDB:
                 # wandb.log({"epoch": epoch, "train_loss": epoch_loss})

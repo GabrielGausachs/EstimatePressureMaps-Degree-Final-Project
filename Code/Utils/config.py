@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetNoPDataMSE"
+EXECUTION_NAME = "UNet params"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -14,7 +14,7 @@ CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss
-EXPERTYPE = 'NoPdata with scheduling'
+EXPERTYPE = 'NoPdata'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -22,7 +22,7 @@ LAST_RUN_WANDB = ""
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = True
+USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
@@ -42,7 +42,7 @@ BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
 EPOCHS = 100
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
