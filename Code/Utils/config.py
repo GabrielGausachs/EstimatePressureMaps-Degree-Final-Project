@@ -10,7 +10,7 @@ EXECUTION_NAME = "UNetWithMSEeff"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
+CRITERION = "MSEeff" #UVLoss #HVLoss #MSELoss #MSEeff
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss
@@ -21,7 +21,7 @@ LAST_RUN_WANDB = ""
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 100
+EPOCHS = 2
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

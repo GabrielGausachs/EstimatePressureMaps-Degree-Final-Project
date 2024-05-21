@@ -111,3 +111,14 @@ class PhyLoss(nn.Module):
         loss = loss.mean()
 
         return loss
+
+class MSEeff(nn.Module):
+    def __init__(self):
+        super(MSEeff,self).__init__()
+
+    def forward(self,src,tar):
+        diff = src-tar
+        mask = tar > 0.05
+
+        loss = ((diff[mask])**2).mean()
+        return loss
