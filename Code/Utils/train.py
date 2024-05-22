@@ -47,9 +47,9 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
 
             for i, metric in enumerate(metrics):
 
-                val_loss = metric(outputs, target_images)
+                metric_loss = metric(outputs, target_images)
 
-                total_metric[i] += val_loss
+                total_metric[i] += metric_loss
 
             train_loss.backward()
             optimizer.step()
@@ -81,9 +81,9 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
 
             for i, metric in enumerate(metrics):
 
-                val_loss = metric(outputs, target_images)
+                metric_loss = metric(outputs, target_images)
 
-                total_metric[i] += val_loss
+                total_metric[i] += metric_loss
 
             train_loss.backward()
             optimizer.step()
