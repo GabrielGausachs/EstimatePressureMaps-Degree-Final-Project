@@ -21,7 +21,7 @@ count = torch.sum(diff < max_values_per_image.unsqueeze(1).unsqueeze(2).expand(2
 pcs = count / tar.numel()
 
 print(pcs)
-"""
+
 params = [31055183,7762465,1942289,486409]
 values = [1.585,1.661,1.81,1.831]
 acc = [0.9048,0.8996,0.8955,0.8876]
@@ -37,3 +37,10 @@ plt.title('Model PerCS vs. Number of Parameters')
 
 # Show the plot
 plt.show()
+"""
+src = torch.randn(2, 5)
+tar = torch.randn(2, 5)
+diff = src-tar
+mask = tar > 0.05
+
+loss = ((diff[mask])**2).mean()

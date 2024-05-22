@@ -117,8 +117,6 @@ class MSEeff(nn.Module):
         super(MSEeff,self).__init__()
 
     def forward(self,src,tar):
-        diff = src-tar
         mask = tar > 0.05
-
-        loss = ((diff[mask])**2).mean()
+        loss = ((src[mask]-tar[mask])**2).mean()
         return loss
