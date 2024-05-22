@@ -211,7 +211,7 @@ class CustomDataloader:
                 f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
 
         # Function to check how are the arrays that we pass to the model
-        check_transform(val_loader,self.path_arrays)
+        #check_transform(val_loader,self.path_arrays)
 
         return train_loader, val_loader
 
