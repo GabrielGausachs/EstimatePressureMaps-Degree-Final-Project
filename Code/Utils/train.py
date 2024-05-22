@@ -104,7 +104,8 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
     print(epoch_loss)
 
     epoch_metric = [total_metric[0] /
-                    len(loader), total_metric[1] / len(loader)]
+                    len(loader), total_metric[1] / len(loader),
+                    total_metric[2] / len(loader)]
 
     #result.add_loss("train", epoch_loss)
 

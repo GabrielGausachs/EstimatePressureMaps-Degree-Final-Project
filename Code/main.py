@@ -61,8 +61,7 @@ optimizers = {
 criterion = {
     "MSELoss": torch.nn.MSELoss(),
     "UVLoss": losses.UVLoss(LAMBDA_VALUE),
-    "HVLoss": losses.HVLoss(),
-    "MSEeff": losses.MSEeff()
+    "HVLoss": losses.HVLoss()
 }
 
 ploss = {True: losses.PhyLoss(),
@@ -71,7 +70,8 @@ ploss = {True: losses.PhyLoss(),
 # Metrics
 metrics = [
     torch.nn.MSELoss(),
-    metrics.PerCS()
+    metrics.PerCS(),
+    metrics.MSEeff()
 ]
 
 

@@ -89,7 +89,8 @@ def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsl
                 gc.collect()  # Collect trash to free memory not used
 
     epoch_metric = [total_metric[0] /
-                    len(loader), total_metric[1] / len(loader)]
+                    len(loader), total_metric[1] / len(loader),
+                    total_metric[2] / len(loader)]
 
     epoch_loss = total_loss / len(loader)
 

@@ -6,14 +6,14 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetWithMSEeff"
+EXECUTION_NAME = "UNetWithMSELoss"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "MSEeff" #UVLoss #HVLoss #MSELoss #MSEeff
+CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss 
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
-METRIC = "PerCS" #PerCS #MSELoss
+METRIC = "PerCS" #PerCS #MSELoss #MSEeff
 EXPERTYPE = 'NoPdata'
 WANDB = False
 LAST_RUN_WANDB = ""

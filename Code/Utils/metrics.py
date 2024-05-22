@@ -22,3 +22,13 @@ class PerCS(nn.Module):
         pcs = count / tar.numel()
 
         return pcs
+
+
+class MSEeff(nn.Module):
+    def __init__(self):
+        super(MSEeff,self).__init__()
+
+    def forward(self,src,tar):
+        mask = tar > 0.05
+        loss = ((src[mask]-tar[mask])**2).mean()
+        return loss
