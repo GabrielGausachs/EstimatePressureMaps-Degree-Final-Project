@@ -156,7 +156,7 @@ class CustomDataloader:
         transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
-
+                transforms.Lambda(to_float32_and_scale),
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
@@ -230,6 +230,13 @@ class CustomDataloader:
 
 def crop_array(array):
     return crop(array, 7, 29, 140, 66)
+
+def to_float32_and_scale(array):
+    # Convert the image to float32
+    array = array.astype(np.float32)
+    # Scale the image to the range [0, 1]
+    array = array / 65535.0
+    return array
 
 
 def check_transform(val_loader, path_arrays):
