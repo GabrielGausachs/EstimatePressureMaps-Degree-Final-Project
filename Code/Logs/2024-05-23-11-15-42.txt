@@ -1,0 +1,55 @@
+2024-05-23 11:15:44,036 - root - INFO -> Logger initialized in filename 2024-05-23-11-15-44
+2024-05-23 11:15:44,036 - root - INFO -> --------------------------------------------------
+2024-05-23 11:15:44,036 - root - INFO -> Reading the data from Server...
+2024-05-23 11:15:44,074 - root - INFO -> Number of pacients: 102
+2024-05-23 11:15:44,074 - root - INFO -> Number of categories in a patient: 3
+2024-05-23 11:15:44,079 - root - INFO -> Size of the physical dataset: (102, 9)
+2024-05-23 11:15:44,079 - root - INFO -> --------------------------------------------------
+2024-05-23 11:15:44,079 - root - INFO -> Creating dataset...
+2024-05-23 11:15:44,079 - root - INFO -> Partition --> Patients
+2024-05-23 11:15:44,085 - root - INFO -> Train size: 10098
+2024-05-23 11:15:44,085 - root - INFO -> Val size: 2754
+2024-05-23 11:15:44,085 - root - INFO -> --------------------------------------------------
+2024-05-23 11:15:44,085 - root - INFO -> Creating dataloaders...
+2024-05-23 11:15:44,168 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-23 11:15:44,221 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-23 11:15:44,270 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-23 11:15:44,270 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-23 11:15:44,318 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-23 11:15:44,366 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-23 11:15:45,656 - root - INFO -> --------------------------------------------------
+2024-05-23 11:15:45,656 - root - INFO -> Starting training with model UNet that has 31036481 parameters
+2024-05-23 11:15:45,656 - root - INFO -> Learning rate: 0.002
+2024-05-23 11:15:45,656 - root - INFO -> --- Epoch: 0 ---
+2024-05-23 11:15:45,657 - root - INFO -> Epoch: 0/1, Starting training...
+2024-05-23 11:15:45,657 - root - INFO -> Loader length: 315
+2024-05-23 11:15:45,657 - root - INFO -> Loader batch size: 32
+2024-05-23 11:15:45,657 - root - INFO -> Loader drop last: True
+2024-05-23 11:15:45,657 - root - INFO -> Loader num workers: 0
+2024-05-23 11:15:45,657 - root - INFO -> Criterion: MSELoss()
+2024-05-23 11:15:45,657 - root - INFO -> Physical loss: None
+2024-05-23 11:15:45,775 - root - INFO -> Memory cleaned!
+2024-05-23 11:17:17,062 - root - INFO -> Epoch: 0/1, Train loss = 43.532904
+2024-05-23 11:17:17,062 - root - INFO -> Epoch: 0/1, Train MSELoss() = 43.532902
+2024-05-23 11:17:17,062 - root - INFO -> Epoch: 0/1, Train PerCS() = 0.851609
+2024-05-23 11:17:17,062 - root - INFO -> Epoch: 0/1, Train MSEeff() = 293.999390
+2024-05-23 11:17:17,160 - root - INFO -> Train finished! Memory cleaned!
+2024-05-23 11:17:17,160 - root - INFO -> --------------------------------------------------
+2024-05-23 11:17:17,160 - root - INFO -> Epoch: 0/1, Starting validation...
+2024-05-23 11:17:17,160 - root - INFO -> Loader length: 86
+2024-05-23 11:17:17,161 - root - INFO -> Loader batch size: 32
+2024-05-23 11:17:17,161 - root - INFO -> Loader drop last: True
+2024-05-23 11:17:17,161 - root - INFO -> Loader num workers: 0
+2024-05-23 11:17:17,161 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff()]
+2024-05-23 11:17:17,161 - root - INFO -> Physical loss: None
+2024-05-23 11:17:17,258 - root - INFO -> Memory cleaned!
+2024-05-23 11:17:33,855 - root - INFO -> Epoch: 0/1, Val loss = 39.964401
+2024-05-23 11:17:33,855 - root - INFO -> Epoch: 0/1, Val MSELoss() = 39.964405
+2024-05-23 11:17:33,855 - root - INFO -> Epoch: 0/1, Val PerCS() = 0.880375
+2024-05-23 11:17:33,855 - root - INFO -> Epoch: 0/1, Val MSEeff() = 272.027222
+2024-05-23 11:17:33,951 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-23 11:17:33,952 - root - INFO -> --------------------------------------------------
+2024-05-23 11:17:33,952 - root - INFO -> Learning rate: 0.002
+2024-05-23 11:17:33,960 - root - INFO -> Saving the model
+2024-05-23 11:17:34,182 - root - INFO -> Model saved in /home/ggausachs/TFG/Code/Models/SavedModels
+2024-05-23 11:17:34,182 - root - INFO -> --------------------------------------------------

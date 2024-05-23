@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "UNetWithMSELoss"
+EXECUTION_NAME = "UNet-MSELoss-ScaledNormInput"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -14,8 +14,8 @@ CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
-EXPERTYPE = 'NoPdata-NormInputOutput'
-WANDB = False
+EXPERTYPE = 'NoPdata-NormInput'
+WANDB = True
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 1
+EPOCHS = 100
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

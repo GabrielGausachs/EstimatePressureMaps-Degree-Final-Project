@@ -231,12 +231,12 @@ class CustomDataloader:
 def crop_array(array):
     return crop(array, 7, 29, 140, 66)
 
-def to_float32_and_scale(array):
+def to_float32_and_scale(tensor):
     # Convert the image to float32
-    array = array.astype(np.float32)
+    tensor = tensor.float()
     # Scale the image to the range [0, 1]
-    array = array / 65535.0
-    return array
+    tensor = tensor / 65535.0
+    return tensor
 
 
 def check_transform(val_loader, path_arrays):
