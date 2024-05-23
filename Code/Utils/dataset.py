@@ -53,12 +53,13 @@ class CustomDataset(Dataset):
             # Applying median filter
             median_array = signal.medfilt2d(output_array)
             max_array = np.maximum(output_array, median_array)
+            output_array = self.transform['output'](max_array)
 
-            area_m = 1.03226 / 10000
-            ideal_pressure = weight * 9.81 / (area_m * 1000)
+            #area_m = 1.03226 / 10000
+            #ideal_pressure = weight * 9.81 / (area_m * 1000)
 
-            output_array = (max_array / np.sum(max_array)) * ideal_pressure
-            output_array = self.transform['output'](output_array)
+            #output_array = (max_array / np.sum(max_array)) * ideal_pressure
+            #output_array = self.transform['output'](output_array)
 
             if USE_PHYSICAL_DATA:
                 return input_array, output_array, tensor_data

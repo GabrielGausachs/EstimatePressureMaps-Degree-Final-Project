@@ -14,7 +14,7 @@ CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
-EXPERTYPE = 'NoPdata-dataaugmentation'
+EXPERTYPE = 'NoPdata-NormInputOutput'
 WANDB = True
 LAST_RUN_WANDB = ""
 

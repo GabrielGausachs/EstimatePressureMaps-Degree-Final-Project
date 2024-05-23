@@ -157,12 +157,10 @@ class CustomDataloader:
                 transforms.ToTensor(),
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
-                transforms.RandomHorizontalFlip(),
-                transforms.RandomVerticalFlip(),
-                transforms.RandomRotation(30),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
             ]),
-            'output': transforms.Compose([transforms.ToTensor()])}
+            'output': transforms.Compose([transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5]),])}
 
         train_dataset = CustomDataset(
             train_arrays['ir'], train_arrays['pm'], p_data, transform=transform)
