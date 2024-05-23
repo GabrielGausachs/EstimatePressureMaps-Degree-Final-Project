@@ -149,6 +149,22 @@ class CustomDataloader:
                     test_arrays['ir'].extend(
                         dic_ir_numpy[key][category][val_split_index:])
 
+        global_min = np.inf
+        global_max = -np.inf
+
+        for arrays in [train_arrays, val_arrays, test_arrays]:
+            for ir_array, pm_array in zip(arrays['ir'], arrays['pm']):
+                # Load IR and PM arrays
+                ir_data = np.load(ir_array)
+                pm_data = np.load(pm_array)
+
+                ir_min, ir_max = ir_data.min(), ir_data.max()
+                global_min = min(global_min, ir_min)
+                global_max = max(global_max, ir_max)
+        
+        print(global_min)
+        print(global_max)
+
         with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
             json.dump(test_arrays, outfile)
 
@@ -156,7 +172,7 @@ class CustomDataloader:
         transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
-                transforms.Lambda(to_float32_and_scale),
+                transforms.Lambda(lambda x: to_float32_and_scale(x, global_min, global_max)),
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
@@ -231,11 +247,9 @@ class CustomDataloader:
 def crop_array(array):
     return crop(array, 7, 29, 140, 66)
 
-def to_float32_and_scale(tensor):
-    # Convert the image to float32
+def to_float32_and_scale(tensor,global_min,global_max):
     tensor = tensor.float()
-    # Scale the image to the range [0, 1]
-    tensor = tensor / 65535.0
+    tensor = (tensor - global_min) / (global_max - global_min)
     return tensor
 
 

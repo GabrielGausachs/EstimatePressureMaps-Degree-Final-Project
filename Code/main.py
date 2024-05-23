@@ -92,8 +92,6 @@ if __name__ == "__main__":
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
 
-    features = [32,64,128,256]
-
     if DO_TRAIN:
         # Initialize wandb
         if WANDB:
@@ -111,7 +109,6 @@ if __name__ == "__main__":
                         "experiment_type": EXPERTYPE,
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
-            "features":features,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
 			"Max feature in model": MAX_FEATURE,
 			"weightslosses": WEIGHTSLOSSES,
@@ -126,11 +123,11 @@ if __name__ == "__main__":
         if USE_PHYSICAL_DATA:
             model = models[MODEL_NAME](1, 9, 1).to(DEVICE)
         else:
-            model = models[MODEL_NAME](1, 1,features).to(DEVICE)
+            model = models[MODEL_NAME](1, 1).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
-        #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=90)
+        #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=70)
 
         # Create a criterion object
         criterion = criterion[CRITERION]
@@ -187,17 +184,27 @@ if __name__ == "__main__":
 
             print(f"--- Epoch: {epoch} finished ---")
 
+            min_improvement = 0.01
+
             if epoch_loss_val < best_loss:
-                best_loss = epoch_loss_val
-                best_model_weights = copy.deepcopy(
-                    model.state_dict())  # Deep copy here
-                patience = 10  # Reset patience counter
+                improvement = best_loss - epoch_loss_val
+                if improvement >= min_improvement:
+                    best_loss = epoch_loss_val
+                    best_model_weights = copy.deepcopy(
+                        model.state_dict())  # Deep copy here
+                    patience = 10  # Reset patience counter
+                else:
+                    patience -= 1
+                    if patience == 0:
+                        logger.info("--- Early stopping activated ---")
+                        logger.info(f"Best loss: {best_loss}")
+                        break
             else:
                 patience -= 1
                 if patience == 0:
-                     logger.info("--- Early stopping activated ---")
-                     logger.info(f"Best loss: {best_loss}")
-                     break
+                    logger.info("--- Early stopping activated ---")
+                    logger.info(f"Best loss: {best_loss}")
+                    break
 
         # Save the model pth and the arquitecture
 	    # Load the best model weights

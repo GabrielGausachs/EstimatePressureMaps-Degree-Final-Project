@@ -1,0 +1,69 @@
+wandb_version: 1
+
+model_name:
+  desc: null
+  value: UNet
+optimizer:
+  desc: null
+  value: Adam
+criterion:
+  desc: null
+  value: MSELoss
+learning_rate:
+  desc: null
+  value: 0.002
+epochs:
+  desc: null
+  value: 100
+experiment_type:
+  desc: null
+  value: NoPdata-ScaledNormInput01
+batch_train_size:
+  desc: null
+  value: 32
+batch_test_size:
+  desc: null
+  value: 32
+when:
+  desc: null
+  value: '20240523185957'
+Max feature in model:
+  desc: null
+  value: 1024
+weightslosses:
+  desc: null
+  value:
+  - 1
+  - 4
+_wandb:
+  desc: null
+  value:
+    python_version: 3.8.10
+    cli_version: 0.16.5
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1716483597.0
+    t:
+      1:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      - 61
+      4: 3.8.10
+      5: 0.16.5
+      8:
+      - 5
+      13: linux-x86_64
