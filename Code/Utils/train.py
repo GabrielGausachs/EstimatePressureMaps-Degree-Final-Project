@@ -14,7 +14,7 @@ logger = get_logger()
 
 def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss=None, weightsloss=[0,0]):
     total_loss = 0
-    total_metric = [0, 0]
+    total_metric = [0, 0, 0]
     model.train()
 
     logger.info(f"Epoch: {epoch}/{epochs}, Starting training...")
