@@ -15,7 +15,7 @@ PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
 EXPERTYPE = 'NoPdata-NormInputOutput'
-WANDB = True
+WANDB = False
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
@@ -41,7 +41,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 100
+EPOCHS = 1
 LEARNING_RATE = 0.002
 LAMBDA_VALUE = 10
 

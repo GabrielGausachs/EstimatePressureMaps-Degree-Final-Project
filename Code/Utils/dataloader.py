@@ -5,6 +5,7 @@ import cv2
 import json
 import pandas as pd
 from matplotlib import pyplot as plt
+import torch
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from Utils.logger import initialize_logger, get_logger
@@ -155,12 +156,12 @@ class CustomDataloader:
         transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
+
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
             ]),
-            'output': transforms.Compose([transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5], std=[0.5]),])}
+            'output': transforms.Compose([transforms.ToTensor()])}
 
         train_dataset = CustomDataset(
             train_arrays['ir'], train_arrays['pm'], p_data, transform=transform)
@@ -181,6 +182,14 @@ class CustomDataloader:
         val_loader = DataLoader(
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
+
+        batch = next(iter(train_loader))
+
+        # Assuming your dataset returns a tuple where the first element is the input
+        input_sample = batch[0]
+        print(input_sample)
+        print(torch.max(input_sample))
+        print(torch.min(input_sample))
 
         train_dataset_info = {
             'Number of samples': len(train_loader.dataset),
