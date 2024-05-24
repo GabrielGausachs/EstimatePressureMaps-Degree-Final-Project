@@ -13,7 +13,7 @@ from Utils.dataset import CustomDataset
 from torchvision.transforms.functional import crop
 from scipy import signal
 import datetime
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from Utils.config import (
     BATCH_SIZE_TEST,
@@ -103,11 +103,12 @@ class CustomDataloader:
         p_data = p_data.drop('gender',axis = 1)
         #weights = p_data.iloc[:,1]
 
-        #scaler = StandardScaler()
+        
+        scaler = MinMaxScaler()
 
         # Fit the scaler to the data and transform the data
-        #p_data_scaled = scaler.fit_transform(p_data)
-        #p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
+        p_data_scaled = scaler.fit_transform(p_data)
+        p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
 
         #p_data['gender_male'] = p_data['gender_male'].astype(int)
         #p_data['gender_female'] = p_data['gender_female'].astype(int)
