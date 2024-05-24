@@ -17,11 +17,12 @@ class CustomDataset(Dataset):
     # - IR arrays
     # - PR arrays
     # Physical data
-    def __init__(self, ir_paths, pm_paths, p_data, transform=None):
+    def __init__(self, ir_paths, pm_paths, p_data, weight transform=None):
 
         self.ir_paths = ir_paths
         self.pm_paths = pm_paths
         self.p_data = p_data
+        self.weight = weight
 
         self.transform = transform
 
@@ -47,7 +48,7 @@ class CustomDataset(Dataset):
                 parts = str(output_path.split("\\")[-4])
             number = int(parts)
             p_vector = self.p_data.iloc[number-1]
-            weight = p_vector[1]
+            #weight = p_vector[1]
             tensor_data = torch.tensor(p_vector.values)
 
             # Applying median filter
@@ -56,7 +57,7 @@ class CustomDataset(Dataset):
             #output_array = self.transform['output'](max_array)
 
             area_m = 1.03226 / 10000
-            ideal_pressure = weight * 9.81 / (area_m * 1000)
+            ideal_pressure = self.weight * 9.81 / (area_m * 1000)
 
             output_array = (max_array / np.sum(max_array)) * ideal_pressure
             output_array = self.transform['output'](output_array)

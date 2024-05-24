@@ -101,7 +101,7 @@ class CustomDataloader:
         #p_data = pd.get_dummies(p_data, columns=['gender'])
         p_data = p_data.drop('sub_idx', axis=1)
         p_data = p_data.drop('gender',axis = 1)
-        #weights = p_data.iloc[:,1]
+        weights = p_data.iloc[:,1]
 
         
         scaler = MinMaxScaler()
@@ -181,10 +181,10 @@ class CustomDataloader:
             'output': transforms.Compose([transforms.ToTensor()])}
 
         train_dataset = CustomDataset(
-            train_arrays['ir'], train_arrays['pm'], p_data, transform=transform)
+            train_arrays['ir'], train_arrays['pm'], p_data, weight, transform=transform)
 
         val_dataset = CustomDataset(
-            val_arrays['ir'], val_arrays['pm'], p_data, transform=transform)
+            val_arrays['ir'], val_arrays['pm'], p_data, weight, transform=transform)
 
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
