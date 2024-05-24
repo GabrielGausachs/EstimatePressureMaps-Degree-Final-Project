@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-Params-UNet-MSELoss-ScaledNormInput01-"
+EXECUTION_NAME = "Final-Params-UNet-MSELoss-ScaledNormInput01"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
