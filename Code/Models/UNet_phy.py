@@ -56,7 +56,7 @@ class UNET_phy(nn.Module):
             if first_iteration:
                 self.ups.append(
                     nn.ConvTranspose2d(
-                        1033, feature, kernel_size=2, stride=2,
+                        521, feature, kernel_size=2, stride=2,
                     )
                 )
                 first_iteration = False
