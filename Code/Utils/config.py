@@ -6,11 +6,11 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-UNet-HVLoss-ScaledNormInput01"
+EXECUTION_NAME = "Final-Params-UNet-MSELoss-ScaledNormInput01-"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "HVLoss" #UVLoss #HVLoss #MSELoss 
+CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss 
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff

@@ -92,6 +92,8 @@ if __name__ == "__main__":
     logger = logger.get_logger()
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
+    
+    features= [32,64,128,256]
 
     if DO_TRAIN:
         # Initialize wandb
@@ -110,6 +112,7 @@ if __name__ == "__main__":
                         "experiment_type": EXPERTYPE,
                         "batch_train_size": BATCH_SIZE_TRAIN,
                         "batch_test_size": BATCH_SIZE_TEST,
+            "features":features,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
 			"Max feature in model": MAX_FEATURE,
 			"weightslosses": WEIGHTSLOSSES,
@@ -124,7 +127,7 @@ if __name__ == "__main__":
         if USE_PHYSICAL_DATA:
             model = models[MODEL_NAME](1, 9, 1).to(DEVICE)
         else:
-            model = models[MODEL_NAME](1, 1).to(DEVICE)
+            model = models[MODEL_NAME](1, 1, features).to(DEVICE)
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
