@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-UNetPhy-MSELoss-ScaledNormInput01"
+EXECUTION_NAME = "Final-UNetPhy-MinMax-MSELoss-ScaledNormInput01"
 MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -14,7 +14,7 @@ CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss
 PLOSS = False
 WEIGHTSLOSSES = [1,4]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
-EXPERTYPE = 'NoPdata-ScaledNormInput01-globalmaxmin'
+EXPERTYPE = 'Pdata-MinMax-ScaledNormInput01-globalmaxmin'
 WANDB = True
 LAST_RUN_WANDB = ""
 
