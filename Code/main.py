@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
     
-    features= [8,16,32,64]
+    features= [32,64,128,256]
 
     if DO_TRAIN:
         # Initialize wandb
@@ -125,7 +125,7 @@ if __name__ == "__main__":
         # Create a model
 
         if USE_PHYSICAL_DATA:
-            model = models[MODEL_NAME](1, 9, 1).to(DEVICE)
+            model = models[MODEL_NAME](1, 9, 1,features).to(DEVICE)
         else:
             model = models[MODEL_NAME](1, 1, features).to(DEVICE)
 
