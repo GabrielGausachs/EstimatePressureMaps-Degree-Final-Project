@@ -181,10 +181,10 @@ class CustomDataloader:
             'output': transforms.Compose([transforms.ToTensor()])}
 
         train_dataset = CustomDataset(
-            train_arrays['ir'], train_arrays['pm'], p_data, weight, transform=transform)
+            train_arrays['ir'], train_arrays['pm'], p_data, weights, transform=transform)
 
         val_dataset = CustomDataset(
-            val_arrays['ir'], val_arrays['pm'], p_data, weight, transform=transform)
+            val_arrays['ir'], val_arrays['pm'], p_data, weights, transform=transform)
 
         logger.info(f"Train size: {len(train_dataset)}")
         logger.info(f"Val size: {len(val_dataset)}")
