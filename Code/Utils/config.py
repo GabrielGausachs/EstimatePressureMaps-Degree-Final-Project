@@ -6,15 +6,15 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-UNetPhy-PLoss-MinMax-MSELoss-ScaledNormInput01"
-MODEL_NAME = "UNet_phy" #UNet #UNet_phy
+EXECUTION_NAME = "Final-UNet-batchsize-MSELoss-ScaledNormInput01"
+MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss 
-PLOSS = True
+PLOSS = False
 WEIGHTSLOSSES = [5,5]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
-EXPERTYPE = 'Pdata-MinMax-ScaledNormInput01-globalmaxmin'
+EXPERTYPE = 'NoPdata-MinMax-ScaledNormInput01-globalmaxmin'
 WANDB = True
 LAST_RUN_WANDB = ""
 
@@ -22,7 +22,7 @@ LAST_RUN_WANDB = ""
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = True
+USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
@@ -38,8 +38,8 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 
 
 # Parameters ------------------------------
-BATCH_SIZE_TRAIN = 32
-BATCH_SIZE_TEST = 32
+BATCH_SIZE_TRAIN = 256
+BATCH_SIZE_TEST = 256
 NUM_WORKERS = 2
 EPOCHS = 100
 LEARNING_RATE = 0.002
