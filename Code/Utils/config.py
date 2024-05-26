@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-UNet-batchsize-MSELoss-ScaledNormInput01"
+EXECUTION_NAME = "Final-UNet-augme-MSELoss-ScaledNormInput01"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -38,8 +38,8 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 
 
 # Parameters ------------------------------
-BATCH_SIZE_TRAIN = 256
-BATCH_SIZE_TEST = 256
+BATCH_SIZE_TRAIN = 32
+BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
 EPOCHS = 100
 LEARNING_RATE = 0.002

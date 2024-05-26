@@ -176,6 +176,8 @@ class CustomDataloader:
                 transforms.Lambda(lambda x: to_float32_and_scale(x, global_min, global_max)),
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
+                transforms.RandomHorizontalFlip(p=0.5),
+                transforms.RandomRotation(degrees=30),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
             ]),
             'output': transforms.Compose([transforms.ToTensor()])}
