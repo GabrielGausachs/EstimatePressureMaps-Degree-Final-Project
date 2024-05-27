@@ -15,13 +15,13 @@ PLOSS = False
 WEIGHTSLOSSES = [5,5]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
 EXPERTYPE = 'NoPdata-MinMax-ScaledNormInput01-globalmaxmin'
-WANDB = True
+WANDB = False
 LAST_RUN_WANDB = ""
 
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = True
+DO_TRAIN = False
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)

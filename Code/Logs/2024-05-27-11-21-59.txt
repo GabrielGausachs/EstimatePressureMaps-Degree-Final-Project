@@ -1,0 +1,20 @@
+2024-05-27 11:22:01,532 - root - INFO -> Logger initialized in filename 2024-05-27-11-22-01
+2024-05-27 11:22:01,532 - root - INFO -> --------------------------------------------------
+2024-05-27 11:22:01,532 - root - INFO -> Reading the data from Server...
+2024-05-27 11:22:01,569 - root - INFO -> Number of pacients: 102
+2024-05-27 11:22:01,569 - root - INFO -> Number of categories in a patient: 3
+2024-05-27 11:22:01,576 - root - INFO -> Size of the physical dataset: (102, 9)
+2024-05-27 11:22:01,576 - root - INFO -> --------------------------------------------------
+2024-05-27 11:22:01,576 - root - INFO -> Creating dataset...
+2024-05-27 11:22:01,576 - root - INFO -> Partition --> Patients
+2024-05-27 11:22:06,599 - root - INFO -> Train size: 10098
+2024-05-27 11:22:06,599 - root - INFO -> Val size: 2754
+2024-05-27 11:22:06,599 - root - INFO -> --------------------------------------------------
+2024-05-27 11:22:06,600 - root - INFO -> Creating dataloaders...
+2024-05-27 11:22:06,682 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-27 11:22:06,733 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-27 11:22:06,781 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-27 11:22:06,781 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-27 11:22:06,829 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-27 11:22:06,876 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-27 11:22:06,877 - root - INFO -> --------------------------------------------------
