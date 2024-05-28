@@ -6,11 +6,11 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "TTT-UNettarget01-MSELoss-ScaledNormInput01"
+EXECUTION_NAME = "MSE-UNettarget01-SSIMLoss-ScaledNormInput01"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss 
+CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
 PLOSS = False
 WEIGHTSLOSSES = [5,5]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
@@ -43,7 +43,7 @@ LAST_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Mode
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 100
+EPOCHS = 80
 LEARNING_RATE = 0.0002
 LAMBDA_VALUE = 10
 

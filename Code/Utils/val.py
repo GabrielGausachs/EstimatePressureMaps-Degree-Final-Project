@@ -12,7 +12,7 @@ logger = get_logger()
 
 
 def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsloss=[0,0]):
-    total_metric = [0, 0, 0]
+    total_metric = [0, 0, 0, 0]
     total_loss = 0
     model.eval()
 
@@ -90,7 +90,7 @@ def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsl
 
     epoch_metric = [total_metric[0] /
                     len(loader), total_metric[1] / len(loader),
-                    total_metric[2] / len(loader)]
+                    total_metric[2] / len(loader), total_metric[3] / len(loader)]
 
     epoch_loss = total_loss / len(loader)
 

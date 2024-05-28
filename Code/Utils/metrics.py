@@ -23,6 +23,15 @@ class PerCS(nn.Module):
 
         return pcs
 
+from pytorch_msssim import ssim
+
+class SSIMmetric(nn.Module):
+    def __init__(self, max_val=1.0):
+        super(SSIMmetric, self).__init__()
+        self.max_val = max_val
+
+    def forward(self, y_pred, y_true):
+        return ssim(y_true, y_pred, data_range=self.max_val, size_average=True)
 
 class MSEeff(nn.Module):
     def __init__(self):

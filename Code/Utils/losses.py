@@ -8,7 +8,15 @@ from Utils.config import (
     DEVICE,
 )
 
-# Pixel Wise Resampling Loss
+from pytorch_msssim import ssim
+
+class SSIMLoss(nn.Module):
+    def __init__(self, max_val=1.0):
+        super(SSIMLoss, self).__init__()
+        self.max_val = max_val
+
+    def forward(self, y_pred, y_true):
+        return 1.0 - ssim(y_true, y_pred, data_range=self.max_val, size_average=True)
 
 
 class UVLoss(nn.Module):
