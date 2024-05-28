@@ -44,7 +44,7 @@ BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
 EPOCHS = 100
-LEARNING_RATE = 0.002
+LEARNING_RATE = 0.0002
 LAMBDA_VALUE = 10
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
