@@ -18,6 +18,8 @@ EXPERTYPE = 'NoPdata-MinMax-ScaledNormInput01-globalmaxmin'
 WANDB = False
 LAST_RUN_WANDB = ""
 
+
+
 # -----------------------------------------
 
 # Main steps
