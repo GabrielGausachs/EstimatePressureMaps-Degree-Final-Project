@@ -152,9 +152,11 @@ class CustomDataloader:
 
         global_min = np.inf
         global_max = -np.inf
+        global_p_min = np.inf
+        global_p_max = -np.inf
 
         for arrays in [train_arrays, val_arrays, test_arrays]:
-            for ir_array, pm_array in zip(arrays['ir'], arrays['pm']):
+            for idx, (ir_array, pm_array) in enumerate(zip(arrays['ir'], arrays['pm'])):
                 # Load IR and PM arrays
                 ir_data = np.load(ir_array)
                 pm_data = np.load(pm_array)
@@ -163,11 +165,38 @@ class CustomDataloader:
                 global_min = min(global_min, ir_min)
                 global_max = max(global_max, ir_max)
         
+                #Preprocessing pressure map data
+                if PATH_DATASET == 'Server':
+                    parts = str(pm_array.split("/")[-4])
+                else:
+                    parts = str(pm_array.split("\\")[-4])
+                number = int(parts)
+                #p_vector = self.p_data.iloc[number-1]
+                #weight = p_vector[1]
+                #tensor_data = torch.tensor(p_vector.values)
+
+                # Applying median filter
+                median_array = signal.medfilt2d(pm_data)
+                max_array = np.maximum(pm_data, median_array)
+                #output_array = self.transform['output'](max_array)
+
+                area_m = 1.03226 / 10000
+                ideal_pressure = weights.iloc[number-1] * 9.81 / (area_m * 1000)
+
+                output_array = (max_array / np.sum(max_array)) * ideal_pressure
+                pmin, pmax = output_array.min(), output_array.max()
+                global_p_min = min(global_p_min, pmin)
+                global_p_max = max(global_p_max, pmax)
+                arrays['pm'][idx] = output_array
+
+
         print(global_min)
         print(global_max)
+        print(global_p_min)
+        print(global_p_max)
 
-        with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
-            json.dump(test_arrays, outfile)
+        #with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
+        #    json.dump(test_arrays, outfile)
 
         # Data transformation if needed
         transform = {
@@ -178,7 +207,8 @@ class CustomDataloader:
                 transforms.Resize((192, 84)),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
             ]),
-            'output': transforms.Compose([transforms.ToTensor()])}
+            'output': transforms.Compose([transforms.ToTensor(),
+            transforms.Lambda(lambda x: to_float32_and_scale(x, global_p_min, global_p_max))])}
 
         train_dataset = CustomDataset(
             train_arrays['ir'], train_arrays['pm'], p_data, weights, transform=transform)

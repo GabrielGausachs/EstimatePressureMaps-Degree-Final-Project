@@ -188,21 +188,21 @@ if __name__ == "__main__":
 
             print(f"--- Epoch: {epoch} finished ---")
 
-            min_improvement = 0.01
+            #min_improvement = 0.01
 
             if epoch_loss_val < best_loss:
-                improvement = best_loss - epoch_loss_val
-                if improvement >= min_improvement:
-                    best_loss = epoch_loss_val
-                    best_model_weights = copy.deepcopy(
+                #improvement = best_loss - epoch_loss_val
+                #if improvement >= min_improvement:
+                best_loss = epoch_loss_val
+                best_model_weights = copy.deepcopy(
                         model.state_dict())  # Deep copy here
-                    patience = 10  # Reset patience counter
-                else:
-                    patience -= 1
-                    if patience == 0:
-                        logger.info("--- Early stopping activated ---")
-                        logger.info(f"Best loss: {best_loss}")
-                        break
+                patience = 10  # Reset patience counter
+                #else:
+                #    patience -= 1
+                #    if patience == 0:
+                #        logger.info("--- Early stopping activated ---")
+                #        logger.info(f"Best loss: {best_loss}")
+                #        break
             else:
                 patience -= 1
                 if patience == 0:

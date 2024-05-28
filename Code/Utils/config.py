@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "Final-UNet-augme-MSELoss-ScaledNormInput01"
+EXECUTION_NAME = "TTT-UNettarget01-MSELoss-ScaledNormInput01"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 MAX_FEATURE = 1024
 OPTIMIZER = "Adam"
@@ -15,7 +15,7 @@ PLOSS = False
 WEIGHTSLOSSES = [5,5]
 METRIC = "PerCS" #PerCS #MSELoss #MSEeff
 EXPERTYPE = 'NoPdata-MinMax-ScaledNormInput01-globalmaxmin'
-WANDB = False
+WANDB = True
 LAST_RUN_WANDB = ""
 
 
@@ -23,7 +23,7 @@ LAST_RUN_WANDB = ""
 # -----------------------------------------
 
 # Main steps
-DO_TRAIN = False
+DO_TRAIN = True
 USE_PHYSICAL_DATA = False
 EVALUATION = False
 PARTITION = 1 # (0 - Random, 1- Patients)
