@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "AAA - MSELoss - 512"
+EXECUTION_NAME = "AAAParams - MSELoss"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
