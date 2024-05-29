@@ -54,13 +54,35 @@ class CustomDataloader:
         # - keys: the different category (cover1,cover2,uncover)
         # - values: paths to the images/numpys
 
-        dic_ir_numpy = {}
-        dic_pm_numpy = {}
-
         if self.path_arrays == 'Local':
             path_arrays = LOCAL_SLP_DATASET_PATH
         else:
             path_arrays = SERVER_SLP_DATASET_PATH
+
+
+        # Read the physical data
+        p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
+        p_data = p_data.drop('sub_idx', axis=1)
+        p_data = p_data.drop('gender',axis = 1)
+        weights = p_data.iloc[:,1]
+
+        scaler = MinMaxScaler()
+        
+        # Fit the scaler to the data and transform the data
+        p_data_scaled = scaler.fit_transform(p_data)
+        p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
+        logger.info(f'Size of the physical dataset: {p_data.shape}')
+
+        dic_ir_numpy = {}
+        dic_pm_numpy = {}
+
+        # Get the max and min values of LWIR and PM and save the numpys
+        # For the PM we do preprocessing
+
+        max_ir = -np.inf
+        min_ir = np.inf
+        max_pm = -np.inf
+        min_pm = np.inf
 
         for patient in os.listdir(path_arrays):
             patient_path = os.path.join(path_arrays, patient)
@@ -76,16 +98,39 @@ class CustomDataloader:
 
                 dir_paths = [ir_np_path, pm_np_path]
 
-                for path, dic in zip(dir_paths, dics):
+                for idx, (path, dic) in enumerate(zip(dir_paths, dics)):
                     if os.path.exists(path):
                         for category in os.listdir(path):
                             category_path = os.path.join(path, category)
                             if os.path.isdir(category_path):
                                 dic[patient][category] = []
                                 for file in os.listdir(category_path):
-                                    if file.endswith(('.png', '.npy')):
-                                        dic[patient][category].append(
-                                            os.path.join(category_path, file))
+                                    if file.endswith('.npy'):
+                                        file_name = os.path.join(category_path, file)
+                                        array = np.load(file_name)
+                                        
+                                        # For LWIR arrays
+                                        if idx == 0:
+                                            min_v, max_v = array.min(), array.max()
+                                            max_ir = max(max_ir, max_v)
+                                            min_ir = min(min_ir, min_v)
+                                        
+                                        # For PM arrays
+                                        else:
+                                            #Preprocessing pressure map data
+                                            if self.path_arrays == 'Server':
+                                                parts = str(file_name.split("/")[-4])
+                                            else:
+                                                parts = str(file_name.split("\\")[-4])
+                                            
+                                            number = int(parts)
+
+                                            output_array = preprocessing_pm(array, weights,number)
+                                            pmin, pmax = output_array.min(), output_array.max()
+                                            min_pm = min(min_pm, pmin)
+                                            max_pm = max(max_pm, pmax)
+                                        
+                                        dic[patient][category].append(file_name)
                                     else:
                                         print(patient)
                                         print(category)
@@ -93,27 +138,9 @@ class CustomDataloader:
                         raise FileNotFoundError('Path not found')
 
         logger.info(f'Number of pacients: {len(dic_ir_numpy)}')
-        logger.info(
-            f'Number of categories in a patient: {len(dic_ir_numpy["00001"])}')
-
-        p_data = pd.read_csv(os.path.join(path_arrays, 'physiqueData.csv'))
-        #p_data['gender'] = p_data['gender'].str.strip()
-        #p_data = pd.get_dummies(p_data, columns=['gender'])
-        p_data = p_data.drop('sub_idx', axis=1)
-        p_data = p_data.drop('gender',axis = 1)
-        weights = p_data.iloc[:,1]
-
-        
-        scaler = MinMaxScaler()
-
-        # Fit the scaler to the data and transform the data
-        p_data_scaled = scaler.fit_transform(p_data)
-        p_data = pd.DataFrame(p_data_scaled, columns=p_data.columns)
-
-        #p_data['gender_male'] = p_data['gender_male'].astype(int)
-        #p_data['gender_female'] = p_data['gender_female'].astype(int)
-
-        logger.info(f'Size of the physical dataset: {p_data.shape}')
+        logger.info(f'Number of categories in a patient: {len(dic_ir_numpy["00001"])}')
+        logger.info(f'Max values: {max_ir} , {max_pm}')
+        logger.info(f'Min values: {min_ir} , {min_pm}')
 
         # Create dataset
         logger.info("-" * 50)
@@ -150,65 +177,20 @@ class CustomDataloader:
                     test_arrays['ir'].extend(
                         dic_ir_numpy[key][category][val_split_index:])
 
-        global_min = np.inf
-        global_max = -np.inf
-        global_p_min = np.inf
-        global_p_max = -np.inf
+        with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
+            json.dump(test_arrays, outfile)
 
-        for arrays in [train_arrays, val_arrays, test_arrays]:
-            for idx, (ir_array, pm_array) in enumerate(zip(arrays['ir'], arrays['pm'])):
-                # Load IR and PM arrays
-                ir_data = np.load(ir_array)
-                pm_data = np.load(pm_array)
-
-                ir_min, ir_max = ir_data.min(), ir_data.max()
-                global_min = min(global_min, ir_min)
-                global_max = max(global_max, ir_max)
-        
-                #Preprocessing pressure map data
-                if PATH_DATASET == 'Server':
-                    parts = str(pm_array.split("/")[-4])
-                else:
-                    parts = str(pm_array.split("\\")[-4])
-                number = int(parts)
-                #p_vector = self.p_data.iloc[number-1]
-                #weight = p_vector[1]
-                #tensor_data = torch.tensor(p_vector.values)
-
-                # Applying median filter
-                median_array = signal.medfilt2d(pm_data)
-                max_array = np.maximum(pm_data, median_array)
-                #output_array = self.transform['output'](max_array)
-
-                area_m = 1.03226 / 10000
-                ideal_pressure = weights.iloc[number-1] * 9.81 / (area_m * 1000)
-
-                output_array = (max_array / np.sum(max_array)) * ideal_pressure
-                pmin, pmax = output_array.min(), output_array.max()
-                global_p_min = min(global_p_min, pmin)
-                global_p_max = max(global_p_max, pmax)
-                arrays['pm'][idx] = output_array
-
-
-        print(global_min)
-        print(global_max)
-        print(global_p_min)
-        print(global_p_max)
-
-        #with open(f"Models/TestJson/test_paths_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
-        #    json.dump(test_arrays, outfile)
-
-        # Data transformation if needed
+        # Data transformation
         transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
-                transforms.Lambda(lambda x: to_float32_and_scale(x, global_min, global_max)),
+                transforms.Lambda(lambda x: to_float32_and_scale(x, min_ir, max_ir)),
                 transforms.Lambda(crop_array),
                 transforms.Resize((192, 84)),
                 transforms.Normalize(mean=[0.5], std=[0.5]),
             ]),
             'output': transforms.Compose([transforms.ToTensor(),
-            transforms.Lambda(lambda x: to_float32_and_scale(x, global_p_min, global_p_max))])}
+                transforms.Lambda(lambda x: to_float32_and_scale(x, min_pm, max_pm))])}
 
         train_dataset = CustomDataset(
             train_arrays['ir'], train_arrays['pm'], p_data, weights, transform=transform)
@@ -255,14 +237,17 @@ class CustomDataloader:
             f"Array input size of the train loader: {next(iter(train_loader))[0].shape}")
         logger.info(
             f"Array output size of the train loader: {next(iter(train_loader))[1].shape}")
+
         if USE_PHYSICAL_DATA:
             logger.info(
                 f"Size of the data of train loader:{next(iter(train_loader))[2].shape}")
+
         logger.info(f"Val loader info: {val_dataset_info}")
         logger.info(
             f"Array input size of the val loader: {next(iter(val_loader))[0].shape}")
         logger.info(
             f"Array output size of the val loader: {next(iter(val_loader))[1].shape}")
+
         if USE_PHYSICAL_DATA:
             logger.info(
                 f"Size of the data of the val loader:{next(iter(val_loader))[2].shape}")
@@ -307,3 +292,17 @@ def check_transform(val_loader, path_arrays):
         #    IMG_PATH, f'compare_transforms_{path_arrays}.png'))
 
         plt.show()
+
+# Function to normalize by the weight of the pacient
+
+def preprocessing_pm(pm_data,weights,number):
+
+    median_array = signal.medfilt2d(pm_data)
+    max_array = np.maximum(pm_data, median_array)
+
+    area_m = 1.03226 / 10000
+    ideal_pressure = weights.iloc[number-1] * 9.81 / (area_m * 1000)
+
+    output_array = (max_array / np.sum(max_array)) * ideal_pressure
+
+    return output_array

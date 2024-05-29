@@ -1,14 +1,3 @@
-from Utils import (
-    logger,
-    dataloader,
-    train,
-    savemodel,
-    evaluation,
-    losses,
-    val,
-    metrics,
-)
-
 import wandb
 import datetime
 import torch
@@ -17,6 +6,21 @@ import os
 import math
 import copy
 import torch.optim.lr_scheduler as lr_scheduler
+
+from Utils import (
+    logger,
+    dataloader,
+    train,
+    savemodel,
+    losses,
+    val,
+    metrics
+    )
+
+from Models import (
+    UNet,
+    UNet_phy
+    )
 
 
 from Utils.config import (
@@ -31,63 +35,43 @@ from Utils.config import (
     DO_TRAIN,
     EVALUATION,
     EXPERTYPE,
-    LAMBDA_VALUE,
     USE_PHYSICAL_DATA,
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
     MAX_FEATURE,
     PLOSS,
-    WEIGHTSLOSSES,
-)
-
-
-from Models import (
-    UNet,
-    Simple_net,
-    UNet_phy
-)
-
-# os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+    WEIGHTSLOSSES
+    )
 
 # Models
-models = {"Simple_net": Simple_net.Simple_net,
-          "UNet": UNet.UNET, "UNet_phy": UNet_phy.UNET_phy}
+models = {"UNet": UNet.UNET, "UNet_phy": UNet_phy.UNET_phy}
 
 # Optimizers
 optimizers = {
-    "Adam": torch.optim.Adam,
-}
+    "Adam": torch.optim.Adam
+    }
 
 # Criterion
 criterion = {
     "MSELoss": torch.nn.MSELoss(),
-    "UVLoss": losses.UVLoss(LAMBDA_VALUE),
     "HVLoss": losses.HVLoss(),
-    "SSIMLoss": losses.SSIMLoss()
-}
+    "PLoss": losses.PhyLoss()
+    }
 
-ploss = {True: losses.PhyLoss(),
-         False: None}
+# Extra loss to combine
+extra_loss = {True: losses.PhyLoss(),
+            False: None}
 
 # Metrics
 metrics = [
     torch.nn.MSELoss(),
     metrics.PerCS(),
     metrics.MSEeff(),
-    metrics.SSIMmetric()
-]
-
-
-def force_cudnn_initialization():
-    s = 32
-    dev = torch.device('cuda')
-    torch.nn.functional.conv2d(torch.zeros(
-        s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
+    metrics.SSIM()
+    ]
 
 
 if __name__ == "__main__":
-
-    #force_cudnn_initialization()
 
     # Initialize logger
     logger.initialize_logger()

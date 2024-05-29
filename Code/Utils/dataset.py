@@ -32,15 +32,27 @@ class CustomDataset(Dataset):
     def __getitem__(self, index):
 
         input_path = self.ir_paths[index]
-        #output_path = self.pm_paths[index]
+        output_path = self.pm_paths[index]
 
         input_array = self.load_array(input_path)
-        output_array = self.pm_paths[index]
+        output_array = self.load_array(output_path)
         input_array = input_array.astype(np.float32)
         output_array = output_array.astype(np.float32)
 
         if self.transform:
             input_array = self.transform['input'](input_array)
+
+            if PATH_DATASET == 'Server':
+                parts = str(output_path.split("/")[-4])
+            else:
+                parts = str(output_path.split("\\")[-4])
+
+            number = int(parts)
+
+            p_vector = self.p_data.iloc[number-1]
+            tensor_data = torch.tensor(p_vector.values)
+
+            output_array = self.preprocessing_pm(output_array, number)
             output_array = self.transform['output'](output_array)
 
             if USE_PHYSICAL_DATA:
@@ -52,3 +64,15 @@ class CustomDataset(Dataset):
         # Load the array
         array = np.load(path)
         return array
+    
+    def preprocessing_pm(self, output_array, number):
+
+        median_array = signal.medfilt2d(output_array)
+        max_array = np.maximum(output_array, median_array)
+
+        area_m = 1.03226 / 10000
+        ideal_pressure = self.weights.iloc[number-1] * 9.81 / (area_m * 1000)
+
+        output_array = (max_array / np.sum(max_array)) * ideal_pressure
+
+        return output_array
