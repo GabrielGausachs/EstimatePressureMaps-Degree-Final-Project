@@ -25,9 +25,9 @@ class PerCS(nn.Module):
         return pcs
 
 
-class SSIM(nn.Module):
+class SSIMMetric(nn.Module):
     def __init__(self, max_val=1.0):
-        super(SSIM, self).__init__()
+        super(SSIMMetric, self).__init__()
         self.max_val = max_val
 
     def forward(self, y_pred, y_true):

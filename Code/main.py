@@ -33,12 +33,10 @@ from Utils.config import (
     EPOCHS,
     DEVICE,
     DO_TRAIN,
-    EVALUATION,
     EXPERTYPE,
     USE_PHYSICAL_DATA,
     BATCH_SIZE_TEST,
     BATCH_SIZE_TRAIN,
-    MAX_FEATURE,
     PLOSS,
     WEIGHTSLOSSES
     )
@@ -55,7 +53,8 @@ optimizers = {
 criterion = {
     "MSELoss": torch.nn.MSELoss(),
     "HVLoss": losses.HVLoss(),
-    "PLoss": losses.PhyLoss()
+    "PLoss": losses.PhyLoss(),
+    "SSIMLoss": losses.SSIMLoss()
     }
 
 # Extra loss to combine
@@ -67,7 +66,7 @@ metrics = [
     torch.nn.MSELoss(),
     metrics.PerCS(),
     metrics.MSEeff(),
-    metrics.SSIM()
+    metrics.SSIMMetric()
     ]
 
 
@@ -79,7 +78,7 @@ if __name__ == "__main__":
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
     
-    features= [32,64,128,256]
+    features= [64,128,256,512]
 
     if DO_TRAIN:
         # Initialize wandb
@@ -100,7 +99,6 @@ if __name__ == "__main__":
                         "batch_test_size": BATCH_SIZE_TEST,
             "features":features,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-			"Max feature in model": MAX_FEATURE,
 			"weightslosses": WEIGHTSLOSSES,
                 },
                 save_code=False,
@@ -145,7 +143,7 @@ if __name__ == "__main__":
                 metrics=metrics,
                 epoch=epoch,
                 epochs=EPOCHS,
-                ploss=ploss[PLOSS],
+                ploss=extra_loss[PLOSS],
                 weightsloss=WEIGHTSLOSSES,
             )
             epoch_loss_val, epoch_metric_val = val.val(
@@ -155,7 +153,7 @@ if __name__ == "__main__":
                 criterion=criterion,
                 epoch=epoch,
                 epochs=EPOCHS,
-                ploss=ploss[PLOSS],
+                ploss=extra_loss[PLOSS],
                 weightsloss=WEIGHTSLOSSES,
             )
             logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
@@ -174,21 +172,24 @@ if __name__ == "__main__":
 
             print(f"--- Epoch: {epoch} finished ---")
 
-            #min_improvement = 0.01
+            if CRITERION == 'SSIMLoss':
+                min_improvement = 0.001
+            else:
+                min_improvement = 0.000002
 
             if epoch_loss_val < best_loss:
-                #improvement = best_loss - epoch_loss_val
-                #if improvement >= min_improvement:
-                best_loss = epoch_loss_val
-                best_model_weights = copy.deepcopy(
+                improvement = best_loss - epoch_loss_val
+                if improvement >= min_improvement:
+                    best_loss = epoch_loss_val
+                    best_model_weights = copy.deepcopy(
                         model.state_dict())  # Deep copy here
-                patience = 10  # Reset patience counter
-                #else:
-                #    patience -= 1
-                #    if patience == 0:
-                #        logger.info("--- Early stopping activated ---")
-                #        logger.info(f"Best loss: {best_loss}")
-                #        break
+                    patience = 10  # Reset patience counter
+                else:
+                    patience -= 1
+                    if patience == 0:
+                        logger.info("--- Early stopping activated ---")
+                        logger.info(f"Best loss: {best_loss}")
+                        break
             else:
                 patience -= 1
                 if patience == 0:
@@ -202,17 +203,3 @@ if __name__ == "__main__":
         savemodel.save_model(model)
 
     logger.info("-" * 50)
-
-
-    if EVALUATION:
-        if DO_TRAIN:
-            # The train has just been done and we want to evaluate
-            logger.info("The train is done and is starting the evaluation")
-            evaluation.evaluation(model, criterion[CRITERION], val_loader)
-        else:
-            # The train is not done and we want to evaluate another model
-            logger.info("Starting evaluation of a past model")
-            model=models[MODEL_NAME](1, 1).to(DEVICE)
-            evaluation.evaluation(model, criterion[CRITERION], val_loader)
-        logger.info("Evaluation Completed!")
-        logger.info("-" * 50)

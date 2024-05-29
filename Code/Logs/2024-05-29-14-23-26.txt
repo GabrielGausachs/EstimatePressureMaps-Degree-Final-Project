@@ -1,0 +1,1279 @@
+2024-05-29 14:23:26,929 - root - INFO -> Logger initialized in filename 2024-05-29-14-23-26
+2024-05-29 14:23:26,929 - root - INFO -> --------------------------------------------------
+2024-05-29 14:23:26,929 - root - INFO -> Reading the data from Server...
+2024-05-29 14:23:26,935 - root - INFO -> Size of the physical dataset: (102, 9)
+2024-05-29 14:23:41,881 - root - INFO -> Number of pacients: 102
+2024-05-29 14:23:41,881 - root - INFO -> Number of categories in a patient: 3
+2024-05-29 14:23:41,881 - root - INFO -> Max values: 31141 , 102.13626459206489
+2024-05-29 14:23:41,881 - root - INFO -> Min values: 27195 , 0.0
+2024-05-29 14:23:41,881 - root - INFO -> --------------------------------------------------
+2024-05-29 14:23:41,881 - root - INFO -> Creating dataset...
+2024-05-29 14:23:41,881 - root - INFO -> Partition --> Patients
+2024-05-29 14:23:41,889 - root - INFO -> Train size: 10098
+2024-05-29 14:23:41,889 - root - INFO -> Val size: 2754
+2024-05-29 14:23:41,889 - root - INFO -> --------------------------------------------------
+2024-05-29 14:23:41,889 - root - INFO -> Creating dataloaders...
+2024-05-29 14:23:41,889 - root - INFO -> Train loader info: {'Number of samples': 10098, 'Batch size': 32, 'Number of batches': 315}
+2024-05-29 14:23:41,968 - root - INFO -> Array input size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-29 14:23:42,020 - root - INFO -> Array output size of the train loader: torch.Size([32, 1, 192, 84])
+2024-05-29 14:23:42,020 - root - INFO -> Val loader info: {'Number of samples': 2754, 'Batch size': 32, 'Number of batches': 86}
+2024-05-29 14:23:42,070 - root - INFO -> Array input size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-29 14:23:42,121 - root - INFO -> Array output size of the val loader: torch.Size([32, 1, 192, 84])
+2024-05-29 14:23:44,654 - root - INFO -> --------------------------------------------------
+2024-05-29 14:23:44,654 - root - INFO -> Wandb correctly initialized
+2024-05-29 14:23:45,973 - root - INFO -> --------------------------------------------------
+2024-05-29 14:23:45,973 - root - INFO -> Starting training with model UNet that has 31036481 parameters
+2024-05-29 14:23:45,973 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:23:45,973 - root - INFO -> --- Epoch: 0 ---
+2024-05-29 14:23:45,974 - root - INFO -> Epoch: 0/100, Starting training...
+2024-05-29 14:23:45,974 - root - INFO -> Loader length: 315
+2024-05-29 14:23:45,974 - root - INFO -> Loader batch size: 32
+2024-05-29 14:23:45,974 - root - INFO -> Loader drop last: True
+2024-05-29 14:23:45,974 - root - INFO -> Loader num workers: 0
+2024-05-29 14:23:45,974 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:23:45,974 - root - INFO -> Physical loss: None
+2024-05-29 14:23:46,099 - root - INFO -> Memory cleaned!
+2024-05-29 14:25:21,185 - root - INFO -> Epoch: 0/100, Train loss = 0.001833
+2024-05-29 14:25:21,185 - root - INFO -> Epoch: 0/100, Train MSELoss() = 0.001833
+2024-05-29 14:25:21,185 - root - INFO -> Epoch: 0/100, Train PerCS() = 0.530905
+2024-05-29 14:25:21,185 - root - INFO -> Epoch: 0/100, Train MSEeff() = 0.011192
+2024-05-29 14:25:21,185 - root - INFO -> Epoch: 0/100, Train SSIMMetric() = 0.582044
+2024-05-29 14:25:21,289 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:25:21,289 - root - INFO -> --------------------------------------------------
+2024-05-29 14:25:21,289 - root - INFO -> Epoch: 0/100, Starting validation...
+2024-05-29 14:25:21,289 - root - INFO -> Loader length: 86
+2024-05-29 14:25:21,289 - root - INFO -> Loader batch size: 32
+2024-05-29 14:25:21,289 - root - INFO -> Loader drop last: True
+2024-05-29 14:25:21,289 - root - INFO -> Loader num workers: 0
+2024-05-29 14:25:21,289 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:25:21,289 - root - INFO -> Physical loss: None
+2024-05-29 14:25:21,390 - root - INFO -> Memory cleaned!
+2024-05-29 14:25:38,941 - root - INFO -> Epoch: 0/100, Val loss = 0.000368
+2024-05-29 14:25:38,941 - root - INFO -> Epoch: 0/100, Val MSELoss() = 0.000368
+2024-05-29 14:25:38,941 - root - INFO -> Epoch: 0/100, Val PerCS() = 0.714784
+2024-05-29 14:25:38,941 - root - INFO -> Epoch: 0/100, Val MSEeff() = 0.010606
+2024-05-29 14:25:38,941 - root - INFO -> Epoch: 0/100, Val SSIMMetric() = 0.728882
+2024-05-29 14:25:39,042 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:25:39,042 - root - INFO -> --------------------------------------------------
+2024-05-29 14:25:39,042 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:25:39,050 - root - INFO -> --- Epoch: 1 ---
+2024-05-29 14:25:39,050 - root - INFO -> Epoch: 1/100, Starting training...
+2024-05-29 14:25:39,050 - root - INFO -> Loader length: 315
+2024-05-29 14:25:39,050 - root - INFO -> Loader batch size: 32
+2024-05-29 14:25:39,050 - root - INFO -> Loader drop last: True
+2024-05-29 14:25:39,050 - root - INFO -> Loader num workers: 0
+2024-05-29 14:25:39,050 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:25:39,050 - root - INFO -> Physical loss: None
+2024-05-29 14:25:39,154 - root - INFO -> Memory cleaned!
+2024-05-29 14:27:10,899 - root - INFO -> Epoch: 1/100, Train loss = 0.000295
+2024-05-29 14:27:10,899 - root - INFO -> Epoch: 1/100, Train MSELoss() = 0.000295
+2024-05-29 14:27:10,899 - root - INFO -> Epoch: 1/100, Train PerCS() = 0.726219
+2024-05-29 14:27:10,899 - root - INFO -> Epoch: 1/100, Train MSEeff() = 0.008592
+2024-05-29 14:27:10,899 - root - INFO -> Epoch: 1/100, Train SSIMMetric() = 0.758563
+2024-05-29 14:27:11,004 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:27:11,004 - root - INFO -> --------------------------------------------------
+2024-05-29 14:27:11,038 - root - INFO -> Epoch: 1/100, Starting validation...
+2024-05-29 14:27:11,038 - root - INFO -> Loader length: 86
+2024-05-29 14:27:11,038 - root - INFO -> Loader batch size: 32
+2024-05-29 14:27:11,038 - root - INFO -> Loader drop last: True
+2024-05-29 14:27:11,038 - root - INFO -> Loader num workers: 0
+2024-05-29 14:27:11,038 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:27:11,038 - root - INFO -> Physical loss: None
+2024-05-29 14:27:11,266 - root - INFO -> Memory cleaned!
+2024-05-29 14:27:28,953 - root - INFO -> Epoch: 1/100, Val loss = 0.000277
+2024-05-29 14:27:28,953 - root - INFO -> Epoch: 1/100, Val MSELoss() = 0.000277
+2024-05-29 14:27:28,953 - root - INFO -> Epoch: 1/100, Val PerCS() = 0.762221
+2024-05-29 14:27:28,953 - root - INFO -> Epoch: 1/100, Val MSEeff() = 0.008973
+2024-05-29 14:27:28,953 - root - INFO -> Epoch: 1/100, Val SSIMMetric() = 0.774775
+2024-05-29 14:27:29,053 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:27:29,053 - root - INFO -> --------------------------------------------------
+2024-05-29 14:27:29,054 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:27:29,061 - root - INFO -> --- Epoch: 2 ---
+2024-05-29 14:27:29,061 - root - INFO -> Epoch: 2/100, Starting training...
+2024-05-29 14:27:29,062 - root - INFO -> Loader length: 315
+2024-05-29 14:27:29,062 - root - INFO -> Loader batch size: 32
+2024-05-29 14:27:29,062 - root - INFO -> Loader drop last: True
+2024-05-29 14:27:29,062 - root - INFO -> Loader num workers: 0
+2024-05-29 14:27:29,062 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:27:29,062 - root - INFO -> Physical loss: None
+2024-05-29 14:27:29,173 - root - INFO -> Memory cleaned!
+2024-05-29 14:29:01,216 - root - INFO -> Epoch: 2/100, Train loss = 0.000236
+2024-05-29 14:29:01,216 - root - INFO -> Epoch: 2/100, Train MSELoss() = 0.000236
+2024-05-29 14:29:01,216 - root - INFO -> Epoch: 2/100, Train PerCS() = 0.782946
+2024-05-29 14:29:01,216 - root - INFO -> Epoch: 2/100, Train MSEeff() = 0.007856
+2024-05-29 14:29:01,216 - root - INFO -> Epoch: 2/100, Train SSIMMetric() = 0.806993
+2024-05-29 14:29:01,321 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:29:01,321 - root - INFO -> --------------------------------------------------
+2024-05-29 14:29:01,353 - root - INFO -> Epoch: 2/100, Starting validation...
+2024-05-29 14:29:01,353 - root - INFO -> Loader length: 86
+2024-05-29 14:29:01,354 - root - INFO -> Loader batch size: 32
+2024-05-29 14:29:01,354 - root - INFO -> Loader drop last: True
+2024-05-29 14:29:01,354 - root - INFO -> Loader num workers: 0
+2024-05-29 14:29:01,354 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:29:01,354 - root - INFO -> Physical loss: None
+2024-05-29 14:29:01,560 - root - INFO -> Memory cleaned!
+2024-05-29 14:29:19,176 - root - INFO -> Epoch: 2/100, Val loss = 0.000234
+2024-05-29 14:29:19,176 - root - INFO -> Epoch: 2/100, Val MSELoss() = 0.000234
+2024-05-29 14:29:19,176 - root - INFO -> Epoch: 2/100, Val PerCS() = 0.818753
+2024-05-29 14:29:19,176 - root - INFO -> Epoch: 2/100, Val MSEeff() = 0.009107
+2024-05-29 14:29:19,176 - root - INFO -> Epoch: 2/100, Val SSIMMetric() = 0.827121
+2024-05-29 14:29:19,279 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:29:19,279 - root - INFO -> --------------------------------------------------
+2024-05-29 14:29:19,279 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:29:19,286 - root - INFO -> --- Epoch: 3 ---
+2024-05-29 14:29:19,287 - root - INFO -> Epoch: 3/100, Starting training...
+2024-05-29 14:29:19,287 - root - INFO -> Loader length: 315
+2024-05-29 14:29:19,287 - root - INFO -> Loader batch size: 32
+2024-05-29 14:29:19,287 - root - INFO -> Loader drop last: True
+2024-05-29 14:29:19,287 - root - INFO -> Loader num workers: 0
+2024-05-29 14:29:19,287 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:29:19,287 - root - INFO -> Physical loss: None
+2024-05-29 14:29:19,395 - root - INFO -> Memory cleaned!
+2024-05-29 14:30:51,457 - root - INFO -> Epoch: 3/100, Train loss = 0.000209
+2024-05-29 14:30:51,457 - root - INFO -> Epoch: 3/100, Train MSELoss() = 0.000209
+2024-05-29 14:30:51,457 - root - INFO -> Epoch: 3/100, Train PerCS() = 0.812037
+2024-05-29 14:30:51,457 - root - INFO -> Epoch: 3/100, Train MSEeff() = 0.007307
+2024-05-29 14:30:51,457 - root - INFO -> Epoch: 3/100, Train SSIMMetric() = 0.831646
+2024-05-29 14:30:51,562 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:30:51,562 - root - INFO -> --------------------------------------------------
+2024-05-29 14:30:51,598 - root - INFO -> Epoch: 3/100, Starting validation...
+2024-05-29 14:30:51,599 - root - INFO -> Loader length: 86
+2024-05-29 14:30:51,599 - root - INFO -> Loader batch size: 32
+2024-05-29 14:30:51,599 - root - INFO -> Loader drop last: True
+2024-05-29 14:30:51,599 - root - INFO -> Loader num workers: 0
+2024-05-29 14:30:51,599 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:30:51,599 - root - INFO -> Physical loss: None
+2024-05-29 14:30:51,811 - root - INFO -> Memory cleaned!
+2024-05-29 14:31:09,337 - root - INFO -> Epoch: 3/100, Val loss = 0.000217
+2024-05-29 14:31:09,337 - root - INFO -> Epoch: 3/100, Val MSELoss() = 0.000217
+2024-05-29 14:31:09,337 - root - INFO -> Epoch: 3/100, Val PerCS() = 0.836857
+2024-05-29 14:31:09,337 - root - INFO -> Epoch: 3/100, Val MSEeff() = 0.008594
+2024-05-29 14:31:09,337 - root - INFO -> Epoch: 3/100, Val SSIMMetric() = 0.843846
+2024-05-29 14:31:09,439 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:31:09,439 - root - INFO -> --------------------------------------------------
+2024-05-29 14:31:09,440 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:31:09,447 - root - INFO -> --- Epoch: 4 ---
+2024-05-29 14:31:09,447 - root - INFO -> Epoch: 4/100, Starting training...
+2024-05-29 14:31:09,447 - root - INFO -> Loader length: 315
+2024-05-29 14:31:09,447 - root - INFO -> Loader batch size: 32
+2024-05-29 14:31:09,447 - root - INFO -> Loader drop last: True
+2024-05-29 14:31:09,448 - root - INFO -> Loader num workers: 0
+2024-05-29 14:31:09,448 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:31:09,448 - root - INFO -> Physical loss: None
+2024-05-29 14:31:09,552 - root - INFO -> Memory cleaned!
+2024-05-29 14:32:42,270 - root - INFO -> Epoch: 4/100, Train loss = 0.000193
+2024-05-29 14:32:42,270 - root - INFO -> Epoch: 4/100, Train MSELoss() = 0.000193
+2024-05-29 14:32:42,270 - root - INFO -> Epoch: 4/100, Train PerCS() = 0.830394
+2024-05-29 14:32:42,270 - root - INFO -> Epoch: 4/100, Train MSEeff() = 0.006891
+2024-05-29 14:32:42,270 - root - INFO -> Epoch: 4/100, Train SSIMMetric() = 0.848237
+2024-05-29 14:32:42,379 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:32:42,380 - root - INFO -> --------------------------------------------------
+2024-05-29 14:32:42,413 - root - INFO -> Epoch: 4/100, Starting validation...
+2024-05-29 14:32:42,414 - root - INFO -> Loader length: 86
+2024-05-29 14:32:42,414 - root - INFO -> Loader batch size: 32
+2024-05-29 14:32:42,414 - root - INFO -> Loader drop last: True
+2024-05-29 14:32:42,414 - root - INFO -> Loader num workers: 0
+2024-05-29 14:32:42,414 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:32:42,414 - root - INFO -> Physical loss: None
+2024-05-29 14:32:42,616 - root - INFO -> Memory cleaned!
+2024-05-29 14:33:00,308 - root - INFO -> Epoch: 4/100, Val loss = 0.000210
+2024-05-29 14:33:00,309 - root - INFO -> Epoch: 4/100, Val MSELoss() = 0.000210
+2024-05-29 14:33:00,309 - root - INFO -> Epoch: 4/100, Val PerCS() = 0.839763
+2024-05-29 14:33:00,309 - root - INFO -> Epoch: 4/100, Val MSEeff() = 0.008302
+2024-05-29 14:33:00,309 - root - INFO -> Epoch: 4/100, Val SSIMMetric() = 0.841653
+2024-05-29 14:33:00,485 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:33:00,485 - root - INFO -> --------------------------------------------------
+2024-05-29 14:33:00,486 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:33:00,509 - root - INFO -> --- Epoch: 5 ---
+2024-05-29 14:33:00,511 - root - INFO -> Epoch: 5/100, Starting training...
+2024-05-29 14:33:00,511 - root - INFO -> Loader length: 315
+2024-05-29 14:33:00,512 - root - INFO -> Loader batch size: 32
+2024-05-29 14:33:00,512 - root - INFO -> Loader drop last: True
+2024-05-29 14:33:00,512 - root - INFO -> Loader num workers: 0
+2024-05-29 14:33:00,513 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:33:00,513 - root - INFO -> Physical loss: None
+2024-05-29 14:33:00,688 - root - INFO -> Memory cleaned!
+2024-05-29 14:34:33,403 - root - INFO -> Epoch: 5/100, Train loss = 0.000180
+2024-05-29 14:34:33,404 - root - INFO -> Epoch: 5/100, Train MSELoss() = 0.000180
+2024-05-29 14:34:33,404 - root - INFO -> Epoch: 5/100, Train PerCS() = 0.844067
+2024-05-29 14:34:33,404 - root - INFO -> Epoch: 5/100, Train MSEeff() = 0.006527
+2024-05-29 14:34:33,404 - root - INFO -> Epoch: 5/100, Train SSIMMetric() = 0.860417
+2024-05-29 14:34:33,507 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:34:33,507 - root - INFO -> --------------------------------------------------
+2024-05-29 14:34:33,542 - root - INFO -> Epoch: 5/100, Starting validation...
+2024-05-29 14:34:33,542 - root - INFO -> Loader length: 86
+2024-05-29 14:34:33,542 - root - INFO -> Loader batch size: 32
+2024-05-29 14:34:33,542 - root - INFO -> Loader drop last: True
+2024-05-29 14:34:33,542 - root - INFO -> Loader num workers: 0
+2024-05-29 14:34:33,542 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:34:33,542 - root - INFO -> Physical loss: None
+2024-05-29 14:34:33,745 - root - INFO -> Memory cleaned!
+2024-05-29 14:34:51,454 - root - INFO -> Epoch: 5/100, Val loss = 0.000203
+2024-05-29 14:34:51,454 - root - INFO -> Epoch: 5/100, Val MSELoss() = 0.000203
+2024-05-29 14:34:51,454 - root - INFO -> Epoch: 5/100, Val PerCS() = 0.841644
+2024-05-29 14:34:51,454 - root - INFO -> Epoch: 5/100, Val MSEeff() = 0.007767
+2024-05-29 14:34:51,454 - root - INFO -> Epoch: 5/100, Val SSIMMetric() = 0.846058
+2024-05-29 14:34:51,556 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:34:51,556 - root - INFO -> --------------------------------------------------
+2024-05-29 14:34:51,556 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:34:51,563 - root - INFO -> --- Epoch: 6 ---
+2024-05-29 14:34:51,564 - root - INFO -> Epoch: 6/100, Starting training...
+2024-05-29 14:34:51,564 - root - INFO -> Loader length: 315
+2024-05-29 14:34:51,564 - root - INFO -> Loader batch size: 32
+2024-05-29 14:34:51,564 - root - INFO -> Loader drop last: True
+2024-05-29 14:34:51,564 - root - INFO -> Loader num workers: 0
+2024-05-29 14:34:51,564 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:34:51,564 - root - INFO -> Physical loss: None
+2024-05-29 14:34:51,674 - root - INFO -> Memory cleaned!
+2024-05-29 14:36:24,779 - root - INFO -> Epoch: 6/100, Train loss = 0.000170
+2024-05-29 14:36:24,779 - root - INFO -> Epoch: 6/100, Train MSELoss() = 0.000170
+2024-05-29 14:36:24,779 - root - INFO -> Epoch: 6/100, Train PerCS() = 0.853676
+2024-05-29 14:36:24,779 - root - INFO -> Epoch: 6/100, Train MSEeff() = 0.006175
+2024-05-29 14:36:24,779 - root - INFO -> Epoch: 6/100, Train SSIMMetric() = 0.869412
+2024-05-29 14:36:24,885 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:36:24,886 - root - INFO -> --------------------------------------------------
+2024-05-29 14:36:24,920 - root - INFO -> Epoch: 6/100, Starting validation...
+2024-05-29 14:36:24,921 - root - INFO -> Loader length: 86
+2024-05-29 14:36:24,921 - root - INFO -> Loader batch size: 32
+2024-05-29 14:36:24,921 - root - INFO -> Loader drop last: True
+2024-05-29 14:36:24,921 - root - INFO -> Loader num workers: 0
+2024-05-29 14:36:24,921 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:36:24,921 - root - INFO -> Physical loss: None
+2024-05-29 14:36:25,119 - root - INFO -> Memory cleaned!
+2024-05-29 14:36:42,786 - root - INFO -> Epoch: 6/100, Val loss = 0.000200
+2024-05-29 14:36:42,787 - root - INFO -> Epoch: 6/100, Val MSELoss() = 0.000200
+2024-05-29 14:36:42,787 - root - INFO -> Epoch: 6/100, Val PerCS() = 0.853309
+2024-05-29 14:36:42,787 - root - INFO -> Epoch: 6/100, Val MSEeff() = 0.007716
+2024-05-29 14:36:42,787 - root - INFO -> Epoch: 6/100, Val SSIMMetric() = 0.861640
+2024-05-29 14:36:42,891 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:36:42,891 - root - INFO -> --------------------------------------------------
+2024-05-29 14:36:42,892 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:36:42,893 - root - INFO -> --- Epoch: 7 ---
+2024-05-29 14:36:42,893 - root - INFO -> Epoch: 7/100, Starting training...
+2024-05-29 14:36:42,893 - root - INFO -> Loader length: 315
+2024-05-29 14:36:42,893 - root - INFO -> Loader batch size: 32
+2024-05-29 14:36:42,893 - root - INFO -> Loader drop last: True
+2024-05-29 14:36:42,893 - root - INFO -> Loader num workers: 0
+2024-05-29 14:36:42,893 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:36:42,893 - root - INFO -> Physical loss: None
+2024-05-29 14:36:42,998 - root - INFO -> Memory cleaned!
+2024-05-29 14:38:15,710 - root - INFO -> Epoch: 7/100, Train loss = 0.000161
+2024-05-29 14:38:15,710 - root - INFO -> Epoch: 7/100, Train MSELoss() = 0.000161
+2024-05-29 14:38:15,710 - root - INFO -> Epoch: 7/100, Train PerCS() = 0.860944
+2024-05-29 14:38:15,710 - root - INFO -> Epoch: 7/100, Train MSEeff() = 0.005828
+2024-05-29 14:38:15,710 - root - INFO -> Epoch: 7/100, Train SSIMMetric() = 0.877283
+2024-05-29 14:38:15,816 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:38:15,816 - root - INFO -> --------------------------------------------------
+2024-05-29 14:38:15,854 - root - INFO -> Epoch: 7/100, Starting validation...
+2024-05-29 14:38:15,855 - root - INFO -> Loader length: 86
+2024-05-29 14:38:15,855 - root - INFO -> Loader batch size: 32
+2024-05-29 14:38:15,855 - root - INFO -> Loader drop last: True
+2024-05-29 14:38:15,856 - root - INFO -> Loader num workers: 0
+2024-05-29 14:38:15,856 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:38:15,856 - root - INFO -> Physical loss: None
+2024-05-29 14:38:16,046 - root - INFO -> Memory cleaned!
+2024-05-29 14:38:33,567 - root - INFO -> Epoch: 7/100, Val loss = 0.000190
+2024-05-29 14:38:33,567 - root - INFO -> Epoch: 7/100, Val MSELoss() = 0.000190
+2024-05-29 14:38:33,567 - root - INFO -> Epoch: 7/100, Val PerCS() = 0.856475
+2024-05-29 14:38:33,567 - root - INFO -> Epoch: 7/100, Val MSEeff() = 0.007332
+2024-05-29 14:38:33,567 - root - INFO -> Epoch: 7/100, Val SSIMMetric() = 0.861166
+2024-05-29 14:38:33,669 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:38:33,669 - root - INFO -> --------------------------------------------------
+2024-05-29 14:38:33,669 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:38:33,677 - root - INFO -> --- Epoch: 8 ---
+2024-05-29 14:38:33,677 - root - INFO -> Epoch: 8/100, Starting training...
+2024-05-29 14:38:33,677 - root - INFO -> Loader length: 315
+2024-05-29 14:38:33,677 - root - INFO -> Loader batch size: 32
+2024-05-29 14:38:33,677 - root - INFO -> Loader drop last: True
+2024-05-29 14:38:33,677 - root - INFO -> Loader num workers: 0
+2024-05-29 14:38:33,677 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:38:33,677 - root - INFO -> Physical loss: None
+2024-05-29 14:38:33,780 - root - INFO -> Memory cleaned!
+2024-05-29 14:40:06,080 - root - INFO -> Epoch: 8/100, Train loss = 0.000152
+2024-05-29 14:40:06,080 - root - INFO -> Epoch: 8/100, Train MSELoss() = 0.000152
+2024-05-29 14:40:06,080 - root - INFO -> Epoch: 8/100, Train PerCS() = 0.868220
+2024-05-29 14:40:06,081 - root - INFO -> Epoch: 8/100, Train MSEeff() = 0.005483
+2024-05-29 14:40:06,081 - root - INFO -> Epoch: 8/100, Train SSIMMetric() = 0.883700
+2024-05-29 14:40:06,186 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:40:06,187 - root - INFO -> --------------------------------------------------
+2024-05-29 14:40:06,222 - root - INFO -> Epoch: 8/100, Starting validation...
+2024-05-29 14:40:06,222 - root - INFO -> Loader length: 86
+2024-05-29 14:40:06,222 - root - INFO -> Loader batch size: 32
+2024-05-29 14:40:06,223 - root - INFO -> Loader drop last: True
+2024-05-29 14:40:06,223 - root - INFO -> Loader num workers: 0
+2024-05-29 14:40:06,223 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:40:06,223 - root - INFO -> Physical loss: None
+2024-05-29 14:40:06,394 - root - INFO -> Memory cleaned!
+2024-05-29 14:40:23,892 - root - INFO -> Epoch: 8/100, Val loss = 0.000184
+2024-05-29 14:40:23,893 - root - INFO -> Epoch: 8/100, Val MSELoss() = 0.000184
+2024-05-29 14:40:23,893 - root - INFO -> Epoch: 8/100, Val PerCS() = 0.874183
+2024-05-29 14:40:23,893 - root - INFO -> Epoch: 8/100, Val MSEeff() = 0.007534
+2024-05-29 14:40:23,893 - root - INFO -> Epoch: 8/100, Val SSIMMetric() = 0.877941
+2024-05-29 14:40:23,996 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:40:23,996 - root - INFO -> --------------------------------------------------
+2024-05-29 14:40:23,996 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:40:24,003 - root - INFO -> --- Epoch: 9 ---
+2024-05-29 14:40:24,004 - root - INFO -> Epoch: 9/100, Starting training...
+2024-05-29 14:40:24,004 - root - INFO -> Loader length: 315
+2024-05-29 14:40:24,004 - root - INFO -> Loader batch size: 32
+2024-05-29 14:40:24,004 - root - INFO -> Loader drop last: True
+2024-05-29 14:40:24,004 - root - INFO -> Loader num workers: 0
+2024-05-29 14:40:24,004 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:40:24,004 - root - INFO -> Physical loss: None
+2024-05-29 14:40:24,107 - root - INFO -> Memory cleaned!
+2024-05-29 14:41:56,657 - root - INFO -> Epoch: 9/100, Train loss = 0.000144
+2024-05-29 14:41:56,657 - root - INFO -> Epoch: 9/100, Train MSELoss() = 0.000144
+2024-05-29 14:41:56,657 - root - INFO -> Epoch: 9/100, Train PerCS() = 0.872425
+2024-05-29 14:41:56,657 - root - INFO -> Epoch: 9/100, Train MSEeff() = 0.005171
+2024-05-29 14:41:56,657 - root - INFO -> Epoch: 9/100, Train SSIMMetric() = 0.889060
+2024-05-29 14:41:56,761 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:41:56,761 - root - INFO -> --------------------------------------------------
+2024-05-29 14:41:56,796 - root - INFO -> Epoch: 9/100, Starting validation...
+2024-05-29 14:41:56,797 - root - INFO -> Loader length: 86
+2024-05-29 14:41:56,797 - root - INFO -> Loader batch size: 32
+2024-05-29 14:41:56,797 - root - INFO -> Loader drop last: True
+2024-05-29 14:41:56,797 - root - INFO -> Loader num workers: 0
+2024-05-29 14:41:56,797 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:41:56,797 - root - INFO -> Physical loss: None
+2024-05-29 14:41:56,976 - root - INFO -> Memory cleaned!
+2024-05-29 14:42:14,486 - root - INFO -> Epoch: 9/100, Val loss = 0.000183
+2024-05-29 14:42:14,486 - root - INFO -> Epoch: 9/100, Val MSELoss() = 0.000183
+2024-05-29 14:42:14,487 - root - INFO -> Epoch: 9/100, Val PerCS() = 0.878568
+2024-05-29 14:42:14,487 - root - INFO -> Epoch: 9/100, Val MSEeff() = 0.007521
+2024-05-29 14:42:14,487 - root - INFO -> Epoch: 9/100, Val SSIMMetric() = 0.881419
+2024-05-29 14:42:14,587 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:42:14,587 - root - INFO -> --------------------------------------------------
+2024-05-29 14:42:14,587 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:42:14,589 - root - INFO -> --- Epoch: 10 ---
+2024-05-29 14:42:14,589 - root - INFO -> Epoch: 10/100, Starting training...
+2024-05-29 14:42:14,589 - root - INFO -> Loader length: 315
+2024-05-29 14:42:14,589 - root - INFO -> Loader batch size: 32
+2024-05-29 14:42:14,589 - root - INFO -> Loader drop last: True
+2024-05-29 14:42:14,589 - root - INFO -> Loader num workers: 0
+2024-05-29 14:42:14,589 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:42:14,589 - root - INFO -> Physical loss: None
+2024-05-29 14:42:14,693 - root - INFO -> Memory cleaned!
+2024-05-29 14:43:46,987 - root - INFO -> Epoch: 10/100, Train loss = 0.000135
+2024-05-29 14:43:46,987 - root - INFO -> Epoch: 10/100, Train MSELoss() = 0.000135
+2024-05-29 14:43:46,987 - root - INFO -> Epoch: 10/100, Train PerCS() = 0.879024
+2024-05-29 14:43:46,987 - root - INFO -> Epoch: 10/100, Train MSEeff() = 0.004852
+2024-05-29 14:43:46,987 - root - INFO -> Epoch: 10/100, Train SSIMMetric() = 0.895785
+2024-05-29 14:43:47,094 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:43:47,094 - root - INFO -> --------------------------------------------------
+2024-05-29 14:43:47,129 - root - INFO -> Epoch: 10/100, Starting validation...
+2024-05-29 14:43:47,130 - root - INFO -> Loader length: 86
+2024-05-29 14:43:47,130 - root - INFO -> Loader batch size: 32
+2024-05-29 14:43:47,130 - root - INFO -> Loader drop last: True
+2024-05-29 14:43:47,130 - root - INFO -> Loader num workers: 0
+2024-05-29 14:43:47,130 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:43:47,130 - root - INFO -> Physical loss: None
+2024-05-29 14:43:47,264 - root - INFO -> Memory cleaned!
+2024-05-29 14:44:04,966 - root - INFO -> Epoch: 10/100, Val loss = 0.000180
+2024-05-29 14:44:04,966 - root - INFO -> Epoch: 10/100, Val MSELoss() = 0.000180
+2024-05-29 14:44:04,966 - root - INFO -> Epoch: 10/100, Val PerCS() = 0.876608
+2024-05-29 14:44:04,966 - root - INFO -> Epoch: 10/100, Val MSEeff() = 0.007373
+2024-05-29 14:44:04,966 - root - INFO -> Epoch: 10/100, Val SSIMMetric() = 0.879867
+2024-05-29 14:44:05,071 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:44:05,071 - root - INFO -> --------------------------------------------------
+2024-05-29 14:44:05,071 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:44:05,072 - root - INFO -> --- Epoch: 11 ---
+2024-05-29 14:44:05,073 - root - INFO -> Epoch: 11/100, Starting training...
+2024-05-29 14:44:05,073 - root - INFO -> Loader length: 315
+2024-05-29 14:44:05,073 - root - INFO -> Loader batch size: 32
+2024-05-29 14:44:05,073 - root - INFO -> Loader drop last: True
+2024-05-29 14:44:05,073 - root - INFO -> Loader num workers: 0
+2024-05-29 14:44:05,073 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:44:05,073 - root - INFO -> Physical loss: None
+2024-05-29 14:44:05,178 - root - INFO -> Memory cleaned!
+2024-05-29 14:45:38,526 - root - INFO -> Epoch: 11/100, Train loss = 0.000130
+2024-05-29 14:45:38,526 - root - INFO -> Epoch: 11/100, Train MSELoss() = 0.000130
+2024-05-29 14:45:38,526 - root - INFO -> Epoch: 11/100, Train PerCS() = 0.881964
+2024-05-29 14:45:38,526 - root - INFO -> Epoch: 11/100, Train MSEeff() = 0.004583
+2024-05-29 14:45:38,526 - root - INFO -> Epoch: 11/100, Train SSIMMetric() = 0.899075
+2024-05-29 14:45:38,635 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:45:38,636 - root - INFO -> --------------------------------------------------
+2024-05-29 14:45:38,671 - root - INFO -> Epoch: 11/100, Starting validation...
+2024-05-29 14:45:38,671 - root - INFO -> Loader length: 86
+2024-05-29 14:45:38,671 - root - INFO -> Loader batch size: 32
+2024-05-29 14:45:38,671 - root - INFO -> Loader drop last: True
+2024-05-29 14:45:38,672 - root - INFO -> Loader num workers: 0
+2024-05-29 14:45:38,672 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:45:38,672 - root - INFO -> Physical loss: None
+2024-05-29 14:45:38,818 - root - INFO -> Memory cleaned!
+2024-05-29 14:45:56,435 - root - INFO -> Epoch: 11/100, Val loss = 0.000180
+2024-05-29 14:45:56,436 - root - INFO -> Epoch: 11/100, Val MSELoss() = 0.000180
+2024-05-29 14:45:56,436 - root - INFO -> Epoch: 11/100, Val PerCS() = 0.863480
+2024-05-29 14:45:56,436 - root - INFO -> Epoch: 11/100, Val MSEeff() = 0.006940
+2024-05-29 14:45:56,436 - root - INFO -> Epoch: 11/100, Val SSIMMetric() = 0.858946
+2024-05-29 14:45:56,539 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:45:56,539 - root - INFO -> --------------------------------------------------
+2024-05-29 14:45:56,539 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:45:56,540 - root - INFO -> --- Epoch: 12 ---
+2024-05-29 14:45:56,541 - root - INFO -> Epoch: 12/100, Starting training...
+2024-05-29 14:45:56,541 - root - INFO -> Loader length: 315
+2024-05-29 14:45:56,541 - root - INFO -> Loader batch size: 32
+2024-05-29 14:45:56,541 - root - INFO -> Loader drop last: True
+2024-05-29 14:45:56,541 - root - INFO -> Loader num workers: 0
+2024-05-29 14:45:56,541 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:45:56,541 - root - INFO -> Physical loss: None
+2024-05-29 14:45:56,645 - root - INFO -> Memory cleaned!
+2024-05-29 14:47:29,194 - root - INFO -> Epoch: 12/100, Train loss = 0.000125
+2024-05-29 14:47:29,194 - root - INFO -> Epoch: 12/100, Train MSELoss() = 0.000125
+2024-05-29 14:47:29,194 - root - INFO -> Epoch: 12/100, Train PerCS() = 0.883150
+2024-05-29 14:47:29,194 - root - INFO -> Epoch: 12/100, Train MSEeff() = 0.004339
+2024-05-29 14:47:29,194 - root - INFO -> Epoch: 12/100, Train SSIMMetric() = 0.902412
+2024-05-29 14:47:29,297 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:47:29,297 - root - INFO -> --------------------------------------------------
+2024-05-29 14:47:29,334 - root - INFO -> Epoch: 12/100, Starting validation...
+2024-05-29 14:47:29,334 - root - INFO -> Loader length: 86
+2024-05-29 14:47:29,335 - root - INFO -> Loader batch size: 32
+2024-05-29 14:47:29,335 - root - INFO -> Loader drop last: True
+2024-05-29 14:47:29,335 - root - INFO -> Loader num workers: 0
+2024-05-29 14:47:29,335 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:47:29,335 - root - INFO -> Physical loss: None
+2024-05-29 14:47:29,446 - root - INFO -> Memory cleaned!
+2024-05-29 14:47:47,001 - root - INFO -> Epoch: 12/100, Val loss = 0.000180
+2024-05-29 14:47:47,001 - root - INFO -> Epoch: 12/100, Val MSELoss() = 0.000180
+2024-05-29 14:47:47,002 - root - INFO -> Epoch: 12/100, Val PerCS() = 0.874498
+2024-05-29 14:47:47,002 - root - INFO -> Epoch: 12/100, Val MSEeff() = 0.007010
+2024-05-29 14:47:47,002 - root - INFO -> Epoch: 12/100, Val SSIMMetric() = 0.877096
+2024-05-29 14:47:47,102 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:47:47,102 - root - INFO -> --------------------------------------------------
+2024-05-29 14:47:47,102 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:47:47,104 - root - INFO -> --- Epoch: 13 ---
+2024-05-29 14:47:47,104 - root - INFO -> Epoch: 13/100, Starting training...
+2024-05-29 14:47:47,104 - root - INFO -> Loader length: 315
+2024-05-29 14:47:47,104 - root - INFO -> Loader batch size: 32
+2024-05-29 14:47:47,104 - root - INFO -> Loader drop last: True
+2024-05-29 14:47:47,104 - root - INFO -> Loader num workers: 0
+2024-05-29 14:47:47,104 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:47:47,104 - root - INFO -> Physical loss: None
+2024-05-29 14:47:47,208 - root - INFO -> Memory cleaned!
+2024-05-29 14:49:20,092 - root - INFO -> Epoch: 13/100, Train loss = 0.000118
+2024-05-29 14:49:20,092 - root - INFO -> Epoch: 13/100, Train MSELoss() = 0.000118
+2024-05-29 14:49:20,093 - root - INFO -> Epoch: 13/100, Train PerCS() = 0.888624
+2024-05-29 14:49:20,093 - root - INFO -> Epoch: 13/100, Train MSEeff() = 0.004091
+2024-05-29 14:49:20,093 - root - INFO -> Epoch: 13/100, Train SSIMMetric() = 0.906906
+2024-05-29 14:49:20,196 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:49:20,196 - root - INFO -> --------------------------------------------------
+2024-05-29 14:49:20,234 - root - INFO -> Epoch: 13/100, Starting validation...
+2024-05-29 14:49:20,235 - root - INFO -> Loader length: 86
+2024-05-29 14:49:20,235 - root - INFO -> Loader batch size: 32
+2024-05-29 14:49:20,235 - root - INFO -> Loader drop last: True
+2024-05-29 14:49:20,235 - root - INFO -> Loader num workers: 0
+2024-05-29 14:49:20,235 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:49:20,235 - root - INFO -> Physical loss: None
+2024-05-29 14:49:20,383 - root - INFO -> Memory cleaned!
+2024-05-29 14:49:38,072 - root - INFO -> Epoch: 13/100, Val loss = 0.000176
+2024-05-29 14:49:38,073 - root - INFO -> Epoch: 13/100, Val MSELoss() = 0.000176
+2024-05-29 14:49:38,073 - root - INFO -> Epoch: 13/100, Val PerCS() = 0.878992
+2024-05-29 14:49:38,073 - root - INFO -> Epoch: 13/100, Val MSEeff() = 0.007041
+2024-05-29 14:49:38,073 - root - INFO -> Epoch: 13/100, Val SSIMMetric() = 0.886165
+2024-05-29 14:49:38,176 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:49:38,176 - root - INFO -> --------------------------------------------------
+2024-05-29 14:49:38,176 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:49:38,184 - root - INFO -> --- Epoch: 14 ---
+2024-05-29 14:49:38,184 - root - INFO -> Epoch: 14/100, Starting training...
+2024-05-29 14:49:38,184 - root - INFO -> Loader length: 315
+2024-05-29 14:49:38,184 - root - INFO -> Loader batch size: 32
+2024-05-29 14:49:38,184 - root - INFO -> Loader drop last: True
+2024-05-29 14:49:38,184 - root - INFO -> Loader num workers: 0
+2024-05-29 14:49:38,184 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:49:38,184 - root - INFO -> Physical loss: None
+2024-05-29 14:49:38,287 - root - INFO -> Memory cleaned!
+2024-05-29 14:51:10,613 - root - INFO -> Epoch: 14/100, Train loss = 0.000111
+2024-05-29 14:51:10,613 - root - INFO -> Epoch: 14/100, Train MSELoss() = 0.000111
+2024-05-29 14:51:10,613 - root - INFO -> Epoch: 14/100, Train PerCS() = 0.892953
+2024-05-29 14:51:10,613 - root - INFO -> Epoch: 14/100, Train MSEeff() = 0.003872
+2024-05-29 14:51:10,613 - root - INFO -> Epoch: 14/100, Train SSIMMetric() = 0.912149
+2024-05-29 14:51:10,719 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:51:10,719 - root - INFO -> --------------------------------------------------
+2024-05-29 14:51:10,754 - root - INFO -> Epoch: 14/100, Starting validation...
+2024-05-29 14:51:10,755 - root - INFO -> Loader length: 86
+2024-05-29 14:51:10,755 - root - INFO -> Loader batch size: 32
+2024-05-29 14:51:10,756 - root - INFO -> Loader drop last: True
+2024-05-29 14:51:10,756 - root - INFO -> Loader num workers: 0
+2024-05-29 14:51:10,756 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:51:10,756 - root - INFO -> Physical loss: None
+2024-05-29 14:51:10,874 - root - INFO -> Memory cleaned!
+2024-05-29 14:51:28,373 - root - INFO -> Epoch: 14/100, Val loss = 0.000172
+2024-05-29 14:51:28,373 - root - INFO -> Epoch: 14/100, Val MSELoss() = 0.000172
+2024-05-29 14:51:28,373 - root - INFO -> Epoch: 14/100, Val PerCS() = 0.887651
+2024-05-29 14:51:28,373 - root - INFO -> Epoch: 14/100, Val MSEeff() = 0.006975
+2024-05-29 14:51:28,373 - root - INFO -> Epoch: 14/100, Val SSIMMetric() = 0.882176
+2024-05-29 14:51:28,477 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:51:28,477 - root - INFO -> --------------------------------------------------
+2024-05-29 14:51:28,477 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:51:28,478 - root - INFO -> --- Epoch: 15 ---
+2024-05-29 14:51:28,479 - root - INFO -> Epoch: 15/100, Starting training...
+2024-05-29 14:51:28,479 - root - INFO -> Loader length: 315
+2024-05-29 14:51:28,479 - root - INFO -> Loader batch size: 32
+2024-05-29 14:51:28,479 - root - INFO -> Loader drop last: True
+2024-05-29 14:51:28,479 - root - INFO -> Loader num workers: 0
+2024-05-29 14:51:28,479 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:51:28,479 - root - INFO -> Physical loss: None
+2024-05-29 14:51:28,583 - root - INFO -> Memory cleaned!
+2024-05-29 14:53:00,820 - root - INFO -> Epoch: 15/100, Train loss = 0.000106
+2024-05-29 14:53:00,820 - root - INFO -> Epoch: 15/100, Train MSELoss() = 0.000106
+2024-05-29 14:53:00,820 - root - INFO -> Epoch: 15/100, Train PerCS() = 0.895824
+2024-05-29 14:53:00,820 - root - INFO -> Epoch: 15/100, Train MSEeff() = 0.003667
+2024-05-29 14:53:00,820 - root - INFO -> Epoch: 15/100, Train SSIMMetric() = 0.915716
+2024-05-29 14:53:00,928 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:53:00,928 - root - INFO -> --------------------------------------------------
+2024-05-29 14:53:00,964 - root - INFO -> Epoch: 15/100, Starting validation...
+2024-05-29 14:53:00,964 - root - INFO -> Loader length: 86
+2024-05-29 14:53:00,965 - root - INFO -> Loader batch size: 32
+2024-05-29 14:53:00,965 - root - INFO -> Loader drop last: True
+2024-05-29 14:53:00,965 - root - INFO -> Loader num workers: 0
+2024-05-29 14:53:00,965 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:53:00,965 - root - INFO -> Physical loss: None
+2024-05-29 14:53:01,095 - root - INFO -> Memory cleaned!
+2024-05-29 14:53:18,595 - root - INFO -> Epoch: 15/100, Val loss = 0.000170
+2024-05-29 14:53:18,595 - root - INFO -> Epoch: 15/100, Val MSELoss() = 0.000170
+2024-05-29 14:53:18,595 - root - INFO -> Epoch: 15/100, Val PerCS() = 0.886496
+2024-05-29 14:53:18,595 - root - INFO -> Epoch: 15/100, Val MSEeff() = 0.006803
+2024-05-29 14:53:18,595 - root - INFO -> Epoch: 15/100, Val SSIMMetric() = 0.890236
+2024-05-29 14:53:18,698 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:53:18,698 - root - INFO -> --------------------------------------------------
+2024-05-29 14:53:18,698 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:53:18,705 - root - INFO -> --- Epoch: 16 ---
+2024-05-29 14:53:18,706 - root - INFO -> Epoch: 16/100, Starting training...
+2024-05-29 14:53:18,706 - root - INFO -> Loader length: 315
+2024-05-29 14:53:18,706 - root - INFO -> Loader batch size: 32
+2024-05-29 14:53:18,706 - root - INFO -> Loader drop last: True
+2024-05-29 14:53:18,706 - root - INFO -> Loader num workers: 0
+2024-05-29 14:53:18,706 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:53:18,706 - root - INFO -> Physical loss: None
+2024-05-29 14:53:18,811 - root - INFO -> Memory cleaned!
+2024-05-29 14:54:51,291 - root - INFO -> Epoch: 16/100, Train loss = 0.000102
+2024-05-29 14:54:51,291 - root - INFO -> Epoch: 16/100, Train MSELoss() = 0.000102
+2024-05-29 14:54:51,291 - root - INFO -> Epoch: 16/100, Train PerCS() = 0.897201
+2024-05-29 14:54:51,291 - root - INFO -> Epoch: 16/100, Train MSEeff() = 0.003484
+2024-05-29 14:54:51,291 - root - INFO -> Epoch: 16/100, Train SSIMMetric() = 0.918470
+2024-05-29 14:54:51,396 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:54:51,397 - root - INFO -> --------------------------------------------------
+2024-05-29 14:54:51,437 - root - INFO -> Epoch: 16/100, Starting validation...
+2024-05-29 14:54:51,438 - root - INFO -> Loader length: 86
+2024-05-29 14:54:51,438 - root - INFO -> Loader batch size: 32
+2024-05-29 14:54:51,438 - root - INFO -> Loader drop last: True
+2024-05-29 14:54:51,438 - root - INFO -> Loader num workers: 0
+2024-05-29 14:54:51,438 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:54:51,438 - root - INFO -> Physical loss: None
+2024-05-29 14:54:51,546 - root - INFO -> Memory cleaned!
+2024-05-29 14:55:09,079 - root - INFO -> Epoch: 16/100, Val loss = 0.000170
+2024-05-29 14:55:09,079 - root - INFO -> Epoch: 16/100, Val MSELoss() = 0.000170
+2024-05-29 14:55:09,079 - root - INFO -> Epoch: 16/100, Val PerCS() = 0.896101
+2024-05-29 14:55:09,079 - root - INFO -> Epoch: 16/100, Val MSEeff() = 0.007131
+2024-05-29 14:55:09,079 - root - INFO -> Epoch: 16/100, Val SSIMMetric() = 0.895103
+2024-05-29 14:55:09,179 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:55:09,179 - root - INFO -> --------------------------------------------------
+2024-05-29 14:55:09,179 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:55:09,219 - root - INFO -> --- Epoch: 17 ---
+2024-05-29 14:55:09,220 - root - INFO -> Epoch: 17/100, Starting training...
+2024-05-29 14:55:09,220 - root - INFO -> Loader length: 315
+2024-05-29 14:55:09,220 - root - INFO -> Loader batch size: 32
+2024-05-29 14:55:09,220 - root - INFO -> Loader drop last: True
+2024-05-29 14:55:09,220 - root - INFO -> Loader num workers: 0
+2024-05-29 14:55:09,220 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:55:09,220 - root - INFO -> Physical loss: None
+2024-05-29 14:55:09,324 - root - INFO -> Memory cleaned!
+2024-05-29 14:56:48,624 - root - INFO -> Epoch: 17/100, Train loss = 0.000098
+2024-05-29 14:56:48,624 - root - INFO -> Epoch: 17/100, Train MSELoss() = 0.000098
+2024-05-29 14:56:48,624 - root - INFO -> Epoch: 17/100, Train PerCS() = 0.900229
+2024-05-29 14:56:48,624 - root - INFO -> Epoch: 17/100, Train MSEeff() = 0.003312
+2024-05-29 14:56:48,624 - root - INFO -> Epoch: 17/100, Train SSIMMetric() = 0.922424
+2024-05-29 14:56:48,729 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:56:48,729 - root - INFO -> --------------------------------------------------
+2024-05-29 14:56:48,766 - root - INFO -> Epoch: 17/100, Starting validation...
+2024-05-29 14:56:48,767 - root - INFO -> Loader length: 86
+2024-05-29 14:56:48,767 - root - INFO -> Loader batch size: 32
+2024-05-29 14:56:48,768 - root - INFO -> Loader drop last: True
+2024-05-29 14:56:48,768 - root - INFO -> Loader num workers: 0
+2024-05-29 14:56:48,768 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:56:48,768 - root - INFO -> Physical loss: None
+2024-05-29 14:56:48,897 - root - INFO -> Memory cleaned!
+2024-05-29 14:57:06,458 - root - INFO -> Epoch: 17/100, Val loss = 0.000169
+2024-05-29 14:57:06,458 - root - INFO -> Epoch: 17/100, Val MSELoss() = 0.000169
+2024-05-29 14:57:06,458 - root - INFO -> Epoch: 17/100, Val PerCS() = 0.892569
+2024-05-29 14:57:06,458 - root - INFO -> Epoch: 17/100, Val MSEeff() = 0.007021
+2024-05-29 14:57:06,458 - root - INFO -> Epoch: 17/100, Val SSIMMetric() = 0.896035
+2024-05-29 14:57:06,561 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:57:06,561 - root - INFO -> --------------------------------------------------
+2024-05-29 14:57:06,562 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:57:06,563 - root - INFO -> --- Epoch: 18 ---
+2024-05-29 14:57:06,563 - root - INFO -> Epoch: 18/100, Starting training...
+2024-05-29 14:57:06,563 - root - INFO -> Loader length: 315
+2024-05-29 14:57:06,563 - root - INFO -> Loader batch size: 32
+2024-05-29 14:57:06,563 - root - INFO -> Loader drop last: True
+2024-05-29 14:57:06,563 - root - INFO -> Loader num workers: 0
+2024-05-29 14:57:06,563 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:57:06,563 - root - INFO -> Physical loss: None
+2024-05-29 14:57:06,663 - root - INFO -> Memory cleaned!
+2024-05-29 14:58:39,351 - root - INFO -> Epoch: 18/100, Train loss = 0.000094
+2024-05-29 14:58:39,351 - root - INFO -> Epoch: 18/100, Train MSELoss() = 0.000094
+2024-05-29 14:58:39,351 - root - INFO -> Epoch: 18/100, Train PerCS() = 0.901492
+2024-05-29 14:58:39,351 - root - INFO -> Epoch: 18/100, Train MSEeff() = 0.003161
+2024-05-29 14:58:39,351 - root - INFO -> Epoch: 18/100, Train SSIMMetric() = 0.924399
+2024-05-29 14:58:39,456 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 14:58:39,456 - root - INFO -> --------------------------------------------------
+2024-05-29 14:58:39,494 - root - INFO -> Epoch: 18/100, Starting validation...
+2024-05-29 14:58:39,495 - root - INFO -> Loader length: 86
+2024-05-29 14:58:39,495 - root - INFO -> Loader batch size: 32
+2024-05-29 14:58:39,495 - root - INFO -> Loader drop last: True
+2024-05-29 14:58:39,495 - root - INFO -> Loader num workers: 0
+2024-05-29 14:58:39,495 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 14:58:39,495 - root - INFO -> Physical loss: None
+2024-05-29 14:58:39,606 - root - INFO -> Memory cleaned!
+2024-05-29 14:58:57,159 - root - INFO -> Epoch: 18/100, Val loss = 0.000169
+2024-05-29 14:58:57,159 - root - INFO -> Epoch: 18/100, Val MSELoss() = 0.000169
+2024-05-29 14:58:57,159 - root - INFO -> Epoch: 18/100, Val PerCS() = 0.878815
+2024-05-29 14:58:57,159 - root - INFO -> Epoch: 18/100, Val MSEeff() = 0.006405
+2024-05-29 14:58:57,159 - root - INFO -> Epoch: 18/100, Val SSIMMetric() = 0.884256
+2024-05-29 14:58:57,260 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 14:58:57,260 - root - INFO -> --------------------------------------------------
+2024-05-29 14:58:57,260 - root - INFO -> Learning rate: 0.0002
+2024-05-29 14:58:57,261 - root - INFO -> --- Epoch: 19 ---
+2024-05-29 14:58:57,262 - root - INFO -> Epoch: 19/100, Starting training...
+2024-05-29 14:58:57,262 - root - INFO -> Loader length: 315
+2024-05-29 14:58:57,262 - root - INFO -> Loader batch size: 32
+2024-05-29 14:58:57,262 - root - INFO -> Loader drop last: True
+2024-05-29 14:58:57,262 - root - INFO -> Loader num workers: 0
+2024-05-29 14:58:57,262 - root - INFO -> Criterion: MSELoss()
+2024-05-29 14:58:57,262 - root - INFO -> Physical loss: None
+2024-05-29 14:58:57,366 - root - INFO -> Memory cleaned!
+2024-05-29 15:00:36,712 - root - INFO -> Epoch: 19/100, Train loss = 0.000090
+2024-05-29 15:00:36,712 - root - INFO -> Epoch: 19/100, Train MSELoss() = 0.000090
+2024-05-29 15:00:36,712 - root - INFO -> Epoch: 19/100, Train PerCS() = 0.903689
+2024-05-29 15:00:36,712 - root - INFO -> Epoch: 19/100, Train MSEeff() = 0.003013
+2024-05-29 15:00:36,712 - root - INFO -> Epoch: 19/100, Train SSIMMetric() = 0.926983
+2024-05-29 15:00:36,818 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:00:36,819 - root - INFO -> --------------------------------------------------
+2024-05-29 15:00:36,856 - root - INFO -> Epoch: 19/100, Starting validation...
+2024-05-29 15:00:36,857 - root - INFO -> Loader length: 86
+2024-05-29 15:00:36,857 - root - INFO -> Loader batch size: 32
+2024-05-29 15:00:36,857 - root - INFO -> Loader drop last: True
+2024-05-29 15:00:36,857 - root - INFO -> Loader num workers: 0
+2024-05-29 15:00:36,857 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:00:36,857 - root - INFO -> Physical loss: None
+2024-05-29 15:00:36,986 - root - INFO -> Memory cleaned!
+2024-05-29 15:00:54,690 - root - INFO -> Epoch: 19/100, Val loss = 0.000169
+2024-05-29 15:00:54,690 - root - INFO -> Epoch: 19/100, Val MSELoss() = 0.000169
+2024-05-29 15:00:54,690 - root - INFO -> Epoch: 19/100, Val PerCS() = 0.887555
+2024-05-29 15:00:54,690 - root - INFO -> Epoch: 19/100, Val MSEeff() = 0.006648
+2024-05-29 15:00:54,690 - root - INFO -> Epoch: 19/100, Val SSIMMetric() = 0.884966
+2024-05-29 15:00:54,794 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:00:54,794 - root - INFO -> --------------------------------------------------
+2024-05-29 15:00:54,794 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:00:54,795 - root - INFO -> --- Epoch: 20 ---
+2024-05-29 15:00:54,796 - root - INFO -> Epoch: 20/100, Starting training...
+2024-05-29 15:00:54,796 - root - INFO -> Loader length: 315
+2024-05-29 15:00:54,796 - root - INFO -> Loader batch size: 32
+2024-05-29 15:00:54,796 - root - INFO -> Loader drop last: True
+2024-05-29 15:00:54,796 - root - INFO -> Loader num workers: 0
+2024-05-29 15:00:54,796 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:00:54,796 - root - INFO -> Physical loss: None
+2024-05-29 15:00:54,899 - root - INFO -> Memory cleaned!
+2024-05-29 15:02:27,714 - root - INFO -> Epoch: 20/100, Train loss = 0.000086
+2024-05-29 15:02:27,715 - root - INFO -> Epoch: 20/100, Train MSELoss() = 0.000086
+2024-05-29 15:02:27,715 - root - INFO -> Epoch: 20/100, Train PerCS() = 0.906373
+2024-05-29 15:02:27,715 - root - INFO -> Epoch: 20/100, Train MSEeff() = 0.002857
+2024-05-29 15:02:27,715 - root - INFO -> Epoch: 20/100, Train SSIMMetric() = 0.930636
+2024-05-29 15:02:27,817 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:02:27,817 - root - INFO -> --------------------------------------------------
+2024-05-29 15:02:27,858 - root - INFO -> Epoch: 20/100, Starting validation...
+2024-05-29 15:02:27,859 - root - INFO -> Loader length: 86
+2024-05-29 15:02:27,859 - root - INFO -> Loader batch size: 32
+2024-05-29 15:02:27,859 - root - INFO -> Loader drop last: True
+2024-05-29 15:02:27,859 - root - INFO -> Loader num workers: 0
+2024-05-29 15:02:27,859 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:02:27,859 - root - INFO -> Physical loss: None
+2024-05-29 15:02:27,975 - root - INFO -> Memory cleaned!
+2024-05-29 15:02:45,541 - root - INFO -> Epoch: 20/100, Val loss = 0.000164
+2024-05-29 15:02:45,542 - root - INFO -> Epoch: 20/100, Val MSELoss() = 0.000164
+2024-05-29 15:02:45,542 - root - INFO -> Epoch: 20/100, Val PerCS() = 0.885902
+2024-05-29 15:02:45,542 - root - INFO -> Epoch: 20/100, Val MSEeff() = 0.006470
+2024-05-29 15:02:45,542 - root - INFO -> Epoch: 20/100, Val SSIMMetric() = 0.891682
+2024-05-29 15:02:45,645 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:02:45,645 - root - INFO -> --------------------------------------------------
+2024-05-29 15:02:45,645 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:02:45,653 - root - INFO -> --- Epoch: 21 ---
+2024-05-29 15:02:45,653 - root - INFO -> Epoch: 21/100, Starting training...
+2024-05-29 15:02:45,653 - root - INFO -> Loader length: 315
+2024-05-29 15:02:45,653 - root - INFO -> Loader batch size: 32
+2024-05-29 15:02:45,653 - root - INFO -> Loader drop last: True
+2024-05-29 15:02:45,653 - root - INFO -> Loader num workers: 0
+2024-05-29 15:02:45,653 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:02:45,653 - root - INFO -> Physical loss: None
+2024-05-29 15:02:45,757 - root - INFO -> Memory cleaned!
+2024-05-29 15:04:25,078 - root - INFO -> Epoch: 21/100, Train loss = 0.000083
+2024-05-29 15:04:25,078 - root - INFO -> Epoch: 21/100, Train MSELoss() = 0.000083
+2024-05-29 15:04:25,078 - root - INFO -> Epoch: 21/100, Train PerCS() = 0.908000
+2024-05-29 15:04:25,078 - root - INFO -> Epoch: 21/100, Train MSEeff() = 0.002719
+2024-05-29 15:04:25,078 - root - INFO -> Epoch: 21/100, Train SSIMMetric() = 0.932595
+2024-05-29 15:04:25,184 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:04:25,184 - root - INFO -> --------------------------------------------------
+2024-05-29 15:04:25,222 - root - INFO -> Epoch: 21/100, Starting validation...
+2024-05-29 15:04:25,223 - root - INFO -> Loader length: 86
+2024-05-29 15:04:25,223 - root - INFO -> Loader batch size: 32
+2024-05-29 15:04:25,223 - root - INFO -> Loader drop last: True
+2024-05-29 15:04:25,223 - root - INFO -> Loader num workers: 0
+2024-05-29 15:04:25,223 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:04:25,223 - root - INFO -> Physical loss: None
+2024-05-29 15:04:25,350 - root - INFO -> Memory cleaned!
+2024-05-29 15:04:42,977 - root - INFO -> Epoch: 21/100, Val loss = 0.000170
+2024-05-29 15:04:42,977 - root - INFO -> Epoch: 21/100, Val MSELoss() = 0.000170
+2024-05-29 15:04:42,977 - root - INFO -> Epoch: 21/100, Val PerCS() = 0.894552
+2024-05-29 15:04:42,977 - root - INFO -> Epoch: 21/100, Val MSEeff() = 0.007067
+2024-05-29 15:04:42,977 - root - INFO -> Epoch: 21/100, Val SSIMMetric() = 0.880255
+2024-05-29 15:04:43,078 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:04:43,078 - root - INFO -> --------------------------------------------------
+2024-05-29 15:04:43,078 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:04:43,079 - root - INFO -> --- Epoch: 22 ---
+2024-05-29 15:04:43,080 - root - INFO -> Epoch: 22/100, Starting training...
+2024-05-29 15:04:43,080 - root - INFO -> Loader length: 315
+2024-05-29 15:04:43,080 - root - INFO -> Loader batch size: 32
+2024-05-29 15:04:43,080 - root - INFO -> Loader drop last: True
+2024-05-29 15:04:43,080 - root - INFO -> Loader num workers: 0
+2024-05-29 15:04:43,080 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:04:43,080 - root - INFO -> Physical loss: None
+2024-05-29 15:04:43,183 - root - INFO -> Memory cleaned!
+2024-05-29 15:06:16,200 - root - INFO -> Epoch: 22/100, Train loss = 0.000079
+2024-05-29 15:06:16,200 - root - INFO -> Epoch: 22/100, Train MSELoss() = 0.000079
+2024-05-29 15:06:16,200 - root - INFO -> Epoch: 22/100, Train PerCS() = 0.909209
+2024-05-29 15:06:16,200 - root - INFO -> Epoch: 22/100, Train MSEeff() = 0.002581
+2024-05-29 15:06:16,200 - root - INFO -> Epoch: 22/100, Train SSIMMetric() = 0.934434
+2024-05-29 15:06:16,309 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:06:16,309 - root - INFO -> --------------------------------------------------
+2024-05-29 15:06:16,348 - root - INFO -> Epoch: 22/100, Starting validation...
+2024-05-29 15:06:16,348 - root - INFO -> Loader length: 86
+2024-05-29 15:06:16,349 - root - INFO -> Loader batch size: 32
+2024-05-29 15:06:16,349 - root - INFO -> Loader drop last: True
+2024-05-29 15:06:16,349 - root - INFO -> Loader num workers: 0
+2024-05-29 15:06:16,349 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:06:16,349 - root - INFO -> Physical loss: None
+2024-05-29 15:06:16,460 - root - INFO -> Memory cleaned!
+2024-05-29 15:06:34,216 - root - INFO -> Epoch: 22/100, Val loss = 0.000167
+2024-05-29 15:06:34,216 - root - INFO -> Epoch: 22/100, Val MSELoss() = 0.000167
+2024-05-29 15:06:34,216 - root - INFO -> Epoch: 22/100, Val PerCS() = 0.877044
+2024-05-29 15:06:34,216 - root - INFO -> Epoch: 22/100, Val MSEeff() = 0.006275
+2024-05-29 15:06:34,216 - root - INFO -> Epoch: 22/100, Val SSIMMetric() = 0.878241
+2024-05-29 15:06:34,318 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:06:34,318 - root - INFO -> --------------------------------------------------
+2024-05-29 15:06:34,318 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:06:34,319 - root - INFO -> --- Epoch: 23 ---
+2024-05-29 15:06:34,320 - root - INFO -> Epoch: 23/100, Starting training...
+2024-05-29 15:06:34,320 - root - INFO -> Loader length: 315
+2024-05-29 15:06:34,320 - root - INFO -> Loader batch size: 32
+2024-05-29 15:06:34,320 - root - INFO -> Loader drop last: True
+2024-05-29 15:06:34,320 - root - INFO -> Loader num workers: 0
+2024-05-29 15:06:34,320 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:06:34,320 - root - INFO -> Physical loss: None
+2024-05-29 15:06:34,424 - root - INFO -> Memory cleaned!
+2024-05-29 15:08:14,363 - root - INFO -> Epoch: 23/100, Train loss = 0.000076
+2024-05-29 15:08:14,363 - root - INFO -> Epoch: 23/100, Train MSELoss() = 0.000076
+2024-05-29 15:08:14,363 - root - INFO -> Epoch: 23/100, Train PerCS() = 0.910885
+2024-05-29 15:08:14,363 - root - INFO -> Epoch: 23/100, Train MSEeff() = 0.002454
+2024-05-29 15:08:14,363 - root - INFO -> Epoch: 23/100, Train SSIMMetric() = 0.937523
+2024-05-29 15:08:14,467 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:08:14,467 - root - INFO -> --------------------------------------------------
+2024-05-29 15:08:14,506 - root - INFO -> Epoch: 23/100, Starting validation...
+2024-05-29 15:08:14,506 - root - INFO -> Loader length: 86
+2024-05-29 15:08:14,507 - root - INFO -> Loader batch size: 32
+2024-05-29 15:08:14,507 - root - INFO -> Loader drop last: True
+2024-05-29 15:08:14,507 - root - INFO -> Loader num workers: 0
+2024-05-29 15:08:14,507 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:08:14,507 - root - INFO -> Physical loss: None
+2024-05-29 15:08:14,640 - root - INFO -> Memory cleaned!
+2024-05-29 15:08:32,373 - root - INFO -> Epoch: 23/100, Val loss = 0.000162
+2024-05-29 15:08:32,373 - root - INFO -> Epoch: 23/100, Val MSELoss() = 0.000162
+2024-05-29 15:08:32,373 - root - INFO -> Epoch: 23/100, Val PerCS() = 0.896380
+2024-05-29 15:08:32,373 - root - INFO -> Epoch: 23/100, Val MSEeff() = 0.006471
+2024-05-29 15:08:32,373 - root - INFO -> Epoch: 23/100, Val SSIMMetric() = 0.902943
+2024-05-29 15:08:32,477 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:08:32,477 - root - INFO -> --------------------------------------------------
+2024-05-29 15:08:32,477 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:08:32,478 - root - INFO -> --- Epoch: 24 ---
+2024-05-29 15:08:32,478 - root - INFO -> Epoch: 24/100, Starting training...
+2024-05-29 15:08:32,478 - root - INFO -> Loader length: 315
+2024-05-29 15:08:32,478 - root - INFO -> Loader batch size: 32
+2024-05-29 15:08:32,478 - root - INFO -> Loader drop last: True
+2024-05-29 15:08:32,479 - root - INFO -> Loader num workers: 0
+2024-05-29 15:08:32,479 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:08:32,479 - root - INFO -> Physical loss: None
+2024-05-29 15:08:32,582 - root - INFO -> Memory cleaned!
+2024-05-29 15:10:05,573 - root - INFO -> Epoch: 24/100, Train loss = 0.000073
+2024-05-29 15:10:05,573 - root - INFO -> Epoch: 24/100, Train MSELoss() = 0.000073
+2024-05-29 15:10:05,573 - root - INFO -> Epoch: 24/100, Train PerCS() = 0.913041
+2024-05-29 15:10:05,573 - root - INFO -> Epoch: 24/100, Train MSEeff() = 0.002341
+2024-05-29 15:10:05,573 - root - INFO -> Epoch: 24/100, Train SSIMMetric() = 0.939479
+2024-05-29 15:10:05,679 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:10:05,679 - root - INFO -> --------------------------------------------------
+2024-05-29 15:10:05,718 - root - INFO -> Epoch: 24/100, Starting validation...
+2024-05-29 15:10:05,719 - root - INFO -> Loader length: 86
+2024-05-29 15:10:05,719 - root - INFO -> Loader batch size: 32
+2024-05-29 15:10:05,719 - root - INFO -> Loader drop last: True
+2024-05-29 15:10:05,719 - root - INFO -> Loader num workers: 0
+2024-05-29 15:10:05,719 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:10:05,719 - root - INFO -> Physical loss: None
+2024-05-29 15:10:05,829 - root - INFO -> Memory cleaned!
+2024-05-29 15:10:23,553 - root - INFO -> Epoch: 24/100, Val loss = 0.000164
+2024-05-29 15:10:23,553 - root - INFO -> Epoch: 24/100, Val MSELoss() = 0.000164
+2024-05-29 15:10:23,553 - root - INFO -> Epoch: 24/100, Val PerCS() = 0.886104
+2024-05-29 15:10:23,553 - root - INFO -> Epoch: 24/100, Val MSEeff() = 0.006404
+2024-05-29 15:10:23,553 - root - INFO -> Epoch: 24/100, Val SSIMMetric() = 0.886977
+2024-05-29 15:10:23,654 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:10:23,654 - root - INFO -> --------------------------------------------------
+2024-05-29 15:10:23,654 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:10:23,655 - root - INFO -> --- Epoch: 25 ---
+2024-05-29 15:10:23,656 - root - INFO -> Epoch: 25/100, Starting training...
+2024-05-29 15:10:23,656 - root - INFO -> Loader length: 315
+2024-05-29 15:10:23,656 - root - INFO -> Loader batch size: 32
+2024-05-29 15:10:23,656 - root - INFO -> Loader drop last: True
+2024-05-29 15:10:23,656 - root - INFO -> Loader num workers: 0
+2024-05-29 15:10:23,656 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:10:23,656 - root - INFO -> Physical loss: None
+2024-05-29 15:10:23,763 - root - INFO -> Memory cleaned!
+2024-05-29 15:12:03,527 - root - INFO -> Epoch: 25/100, Train loss = 0.000070
+2024-05-29 15:12:03,527 - root - INFO -> Epoch: 25/100, Train MSELoss() = 0.000070
+2024-05-29 15:12:03,527 - root - INFO -> Epoch: 25/100, Train PerCS() = 0.915022
+2024-05-29 15:12:03,527 - root - INFO -> Epoch: 25/100, Train MSEeff() = 0.002207
+2024-05-29 15:12:03,527 - root - INFO -> Epoch: 25/100, Train SSIMMetric() = 0.941882
+2024-05-29 15:12:03,634 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:12:03,634 - root - INFO -> --------------------------------------------------
+2024-05-29 15:12:03,672 - root - INFO -> Epoch: 25/100, Starting validation...
+2024-05-29 15:12:03,673 - root - INFO -> Loader length: 86
+2024-05-29 15:12:03,673 - root - INFO -> Loader batch size: 32
+2024-05-29 15:12:03,673 - root - INFO -> Loader drop last: True
+2024-05-29 15:12:03,673 - root - INFO -> Loader num workers: 0
+2024-05-29 15:12:03,673 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:12:03,673 - root - INFO -> Physical loss: None
+2024-05-29 15:12:03,803 - root - INFO -> Memory cleaned!
+2024-05-29 15:12:21,915 - root - INFO -> Epoch: 25/100, Val loss = 0.000159
+2024-05-29 15:12:21,915 - root - INFO -> Epoch: 25/100, Val MSELoss() = 0.000159
+2024-05-29 15:12:21,915 - root - INFO -> Epoch: 25/100, Val PerCS() = 0.901962
+2024-05-29 15:12:21,915 - root - INFO -> Epoch: 25/100, Val MSEeff() = 0.006666
+2024-05-29 15:12:21,915 - root - INFO -> Epoch: 25/100, Val SSIMMetric() = 0.905090
+2024-05-29 15:12:22,028 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:12:22,028 - root - INFO -> --------------------------------------------------
+2024-05-29 15:12:22,028 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:12:22,029 - root - INFO -> --- Epoch: 26 ---
+2024-05-29 15:12:22,029 - root - INFO -> Epoch: 26/100, Starting training...
+2024-05-29 15:12:22,029 - root - INFO -> Loader length: 315
+2024-05-29 15:12:22,029 - root - INFO -> Loader batch size: 32
+2024-05-29 15:12:22,029 - root - INFO -> Loader drop last: True
+2024-05-29 15:12:22,029 - root - INFO -> Loader num workers: 0
+2024-05-29 15:12:22,029 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:12:22,030 - root - INFO -> Physical loss: None
+2024-05-29 15:12:22,143 - root - INFO -> Memory cleaned!
+2024-05-29 15:13:55,107 - root - INFO -> Epoch: 26/100, Train loss = 0.000067
+2024-05-29 15:13:55,108 - root - INFO -> Epoch: 26/100, Train MSELoss() = 0.000067
+2024-05-29 15:13:55,108 - root - INFO -> Epoch: 26/100, Train PerCS() = 0.915875
+2024-05-29 15:13:55,108 - root - INFO -> Epoch: 26/100, Train MSEeff() = 0.002097
+2024-05-29 15:13:55,108 - root - INFO -> Epoch: 26/100, Train SSIMMetric() = 0.943344
+2024-05-29 15:13:55,212 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:13:55,212 - root - INFO -> --------------------------------------------------
+2024-05-29 15:13:55,255 - root - INFO -> Epoch: 26/100, Starting validation...
+2024-05-29 15:13:55,256 - root - INFO -> Loader length: 86
+2024-05-29 15:13:55,256 - root - INFO -> Loader batch size: 32
+2024-05-29 15:13:55,257 - root - INFO -> Loader drop last: True
+2024-05-29 15:13:55,257 - root - INFO -> Loader num workers: 0
+2024-05-29 15:13:55,257 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:13:55,257 - root - INFO -> Physical loss: None
+2024-05-29 15:13:55,366 - root - INFO -> Memory cleaned!
+2024-05-29 15:14:13,184 - root - INFO -> Epoch: 26/100, Val loss = 0.000159
+2024-05-29 15:14:13,184 - root - INFO -> Epoch: 26/100, Val MSELoss() = 0.000159
+2024-05-29 15:14:13,184 - root - INFO -> Epoch: 26/100, Val PerCS() = 0.898643
+2024-05-29 15:14:13,184 - root - INFO -> Epoch: 26/100, Val MSEeff() = 0.006418
+2024-05-29 15:14:13,184 - root - INFO -> Epoch: 26/100, Val SSIMMetric() = 0.902757
+2024-05-29 15:14:13,289 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:14:13,289 - root - INFO -> --------------------------------------------------
+2024-05-29 15:14:13,289 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:14:13,291 - root - INFO -> --- Epoch: 27 ---
+2024-05-29 15:14:13,291 - root - INFO -> Epoch: 27/100, Starting training...
+2024-05-29 15:14:13,291 - root - INFO -> Loader length: 315
+2024-05-29 15:14:13,291 - root - INFO -> Loader batch size: 32
+2024-05-29 15:14:13,291 - root - INFO -> Loader drop last: True
+2024-05-29 15:14:13,291 - root - INFO -> Loader num workers: 0
+2024-05-29 15:14:13,291 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:14:13,291 - root - INFO -> Physical loss: None
+2024-05-29 15:14:13,399 - root - INFO -> Memory cleaned!
+2024-05-29 15:15:52,797 - root - INFO -> Epoch: 27/100, Train loss = 0.000065
+2024-05-29 15:15:52,797 - root - INFO -> Epoch: 27/100, Train MSELoss() = 0.000065
+2024-05-29 15:15:52,797 - root - INFO -> Epoch: 27/100, Train PerCS() = 0.917635
+2024-05-29 15:15:52,797 - root - INFO -> Epoch: 27/100, Train MSEeff() = 0.001993
+2024-05-29 15:15:52,797 - root - INFO -> Epoch: 27/100, Train SSIMMetric() = 0.945687
+2024-05-29 15:15:52,903 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:15:52,903 - root - INFO -> --------------------------------------------------
+2024-05-29 15:15:52,942 - root - INFO -> Epoch: 27/100, Starting validation...
+2024-05-29 15:15:52,943 - root - INFO -> Loader length: 86
+2024-05-29 15:15:52,943 - root - INFO -> Loader batch size: 32
+2024-05-29 15:15:52,943 - root - INFO -> Loader drop last: True
+2024-05-29 15:15:52,943 - root - INFO -> Loader num workers: 0
+2024-05-29 15:15:52,943 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:15:52,944 - root - INFO -> Physical loss: None
+2024-05-29 15:15:53,082 - root - INFO -> Memory cleaned!
+2024-05-29 15:16:10,870 - root - INFO -> Epoch: 27/100, Val loss = 0.000171
+2024-05-29 15:16:10,870 - root - INFO -> Epoch: 27/100, Val MSELoss() = 0.000171
+2024-05-29 15:16:10,870 - root - INFO -> Epoch: 27/100, Val PerCS() = 0.887788
+2024-05-29 15:16:10,870 - root - INFO -> Epoch: 27/100, Val MSEeff() = 0.006750
+2024-05-29 15:16:10,870 - root - INFO -> Epoch: 27/100, Val SSIMMetric() = 0.868219
+2024-05-29 15:16:10,973 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:16:10,973 - root - INFO -> --------------------------------------------------
+2024-05-29 15:16:10,973 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:16:10,974 - root - INFO -> --- Epoch: 28 ---
+2024-05-29 15:16:10,975 - root - INFO -> Epoch: 28/100, Starting training...
+2024-05-29 15:16:10,975 - root - INFO -> Loader length: 315
+2024-05-29 15:16:10,975 - root - INFO -> Loader batch size: 32
+2024-05-29 15:16:10,975 - root - INFO -> Loader drop last: True
+2024-05-29 15:16:10,975 - root - INFO -> Loader num workers: 0
+2024-05-29 15:16:10,975 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:16:10,975 - root - INFO -> Physical loss: None
+2024-05-29 15:16:11,079 - root - INFO -> Memory cleaned!
+2024-05-29 15:17:43,755 - root - INFO -> Epoch: 28/100, Train loss = 0.000062
+2024-05-29 15:17:43,755 - root - INFO -> Epoch: 28/100, Train MSELoss() = 0.000062
+2024-05-29 15:17:43,755 - root - INFO -> Epoch: 28/100, Train PerCS() = 0.918464
+2024-05-29 15:17:43,755 - root - INFO -> Epoch: 28/100, Train MSEeff() = 0.001888
+2024-05-29 15:17:43,755 - root - INFO -> Epoch: 28/100, Train SSIMMetric() = 0.946402
+2024-05-29 15:17:43,862 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:17:43,863 - root - INFO -> --------------------------------------------------
+2024-05-29 15:17:43,902 - root - INFO -> Epoch: 28/100, Starting validation...
+2024-05-29 15:17:43,903 - root - INFO -> Loader length: 86
+2024-05-29 15:17:43,903 - root - INFO -> Loader batch size: 32
+2024-05-29 15:17:43,903 - root - INFO -> Loader drop last: True
+2024-05-29 15:17:43,904 - root - INFO -> Loader num workers: 0
+2024-05-29 15:17:43,904 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:17:43,905 - root - INFO -> Physical loss: None
+2024-05-29 15:17:44,016 - root - INFO -> Memory cleaned!
+2024-05-29 15:18:01,648 - root - INFO -> Epoch: 28/100, Val loss = 0.000157
+2024-05-29 15:18:01,648 - root - INFO -> Epoch: 28/100, Val MSELoss() = 0.000157
+2024-05-29 15:18:01,648 - root - INFO -> Epoch: 28/100, Val PerCS() = 0.900304
+2024-05-29 15:18:01,648 - root - INFO -> Epoch: 28/100, Val MSEeff() = 0.006352
+2024-05-29 15:18:01,648 - root - INFO -> Epoch: 28/100, Val SSIMMetric() = 0.907769
+2024-05-29 15:18:01,753 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:18:01,753 - root - INFO -> --------------------------------------------------
+2024-05-29 15:18:01,753 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:18:01,760 - root - INFO -> --- Epoch: 29 ---
+2024-05-29 15:18:01,761 - root - INFO -> Epoch: 29/100, Starting training...
+2024-05-29 15:18:01,761 - root - INFO -> Loader length: 315
+2024-05-29 15:18:01,761 - root - INFO -> Loader batch size: 32
+2024-05-29 15:18:01,761 - root - INFO -> Loader drop last: True
+2024-05-29 15:18:01,761 - root - INFO -> Loader num workers: 0
+2024-05-29 15:18:01,761 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:18:01,761 - root - INFO -> Physical loss: None
+2024-05-29 15:18:01,865 - root - INFO -> Memory cleaned!
+2024-05-29 15:19:41,197 - root - INFO -> Epoch: 29/100, Train loss = 0.000060
+2024-05-29 15:19:41,197 - root - INFO -> Epoch: 29/100, Train MSELoss() = 0.000060
+2024-05-29 15:19:41,197 - root - INFO -> Epoch: 29/100, Train PerCS() = 0.919650
+2024-05-29 15:19:41,197 - root - INFO -> Epoch: 29/100, Train MSEeff() = 0.001787
+2024-05-29 15:19:41,197 - root - INFO -> Epoch: 29/100, Train SSIMMetric() = 0.948722
+2024-05-29 15:19:41,303 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:19:41,303 - root - INFO -> --------------------------------------------------
+2024-05-29 15:19:41,342 - root - INFO -> Epoch: 29/100, Starting validation...
+2024-05-29 15:19:41,343 - root - INFO -> Loader length: 86
+2024-05-29 15:19:41,343 - root - INFO -> Loader batch size: 32
+2024-05-29 15:19:41,344 - root - INFO -> Loader drop last: True
+2024-05-29 15:19:41,344 - root - INFO -> Loader num workers: 0
+2024-05-29 15:19:41,345 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:19:41,346 - root - INFO -> Physical loss: None
+2024-05-29 15:19:41,481 - root - INFO -> Memory cleaned!
+2024-05-29 15:19:59,198 - root - INFO -> Epoch: 29/100, Val loss = 0.000157
+2024-05-29 15:19:59,199 - root - INFO -> Epoch: 29/100, Val MSELoss() = 0.000157
+2024-05-29 15:19:59,199 - root - INFO -> Epoch: 29/100, Val PerCS() = 0.901817
+2024-05-29 15:19:59,199 - root - INFO -> Epoch: 29/100, Val MSEeff() = 0.006416
+2024-05-29 15:19:59,199 - root - INFO -> Epoch: 29/100, Val SSIMMetric() = 0.895270
+2024-05-29 15:19:59,301 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:19:59,301 - root - INFO -> --------------------------------------------------
+2024-05-29 15:19:59,301 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:19:59,302 - root - INFO -> --- Epoch: 30 ---
+2024-05-29 15:19:59,303 - root - INFO -> Epoch: 30/100, Starting training...
+2024-05-29 15:19:59,303 - root - INFO -> Loader length: 315
+2024-05-29 15:19:59,303 - root - INFO -> Loader batch size: 32
+2024-05-29 15:19:59,303 - root - INFO -> Loader drop last: True
+2024-05-29 15:19:59,303 - root - INFO -> Loader num workers: 0
+2024-05-29 15:19:59,303 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:19:59,303 - root - INFO -> Physical loss: None
+2024-05-29 15:19:59,406 - root - INFO -> Memory cleaned!
+2024-05-29 15:21:32,486 - root - INFO -> Epoch: 30/100, Train loss = 0.000057
+2024-05-29 15:21:32,486 - root - INFO -> Epoch: 30/100, Train MSELoss() = 0.000057
+2024-05-29 15:21:32,486 - root - INFO -> Epoch: 30/100, Train PerCS() = 0.921041
+2024-05-29 15:21:32,486 - root - INFO -> Epoch: 30/100, Train MSEeff() = 0.001691
+2024-05-29 15:21:32,486 - root - INFO -> Epoch: 30/100, Train SSIMMetric() = 0.950371
+2024-05-29 15:21:32,591 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:21:32,591 - root - INFO -> --------------------------------------------------
+2024-05-29 15:21:32,631 - root - INFO -> Epoch: 30/100, Starting validation...
+2024-05-29 15:21:32,632 - root - INFO -> Loader length: 86
+2024-05-29 15:21:32,633 - root - INFO -> Loader batch size: 32
+2024-05-29 15:21:32,634 - root - INFO -> Loader drop last: True
+2024-05-29 15:21:32,634 - root - INFO -> Loader num workers: 0
+2024-05-29 15:21:32,635 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:21:32,636 - root - INFO -> Physical loss: None
+2024-05-29 15:21:32,744 - root - INFO -> Memory cleaned!
+2024-05-29 15:21:50,534 - root - INFO -> Epoch: 30/100, Val loss = 0.000156
+2024-05-29 15:21:50,534 - root - INFO -> Epoch: 30/100, Val MSELoss() = 0.000156
+2024-05-29 15:21:50,534 - root - INFO -> Epoch: 30/100, Val PerCS() = 0.899112
+2024-05-29 15:21:50,534 - root - INFO -> Epoch: 30/100, Val MSEeff() = 0.006281
+2024-05-29 15:21:50,534 - root - INFO -> Epoch: 30/100, Val SSIMMetric() = 0.905870
+2024-05-29 15:21:50,638 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:21:50,638 - root - INFO -> --------------------------------------------------
+2024-05-29 15:21:50,638 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:21:50,639 - root - INFO -> --- Epoch: 31 ---
+2024-05-29 15:21:50,639 - root - INFO -> Epoch: 31/100, Starting training...
+2024-05-29 15:21:50,639 - root - INFO -> Loader length: 315
+2024-05-29 15:21:50,639 - root - INFO -> Loader batch size: 32
+2024-05-29 15:21:50,639 - root - INFO -> Loader drop last: True
+2024-05-29 15:21:50,639 - root - INFO -> Loader num workers: 0
+2024-05-29 15:21:50,639 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:21:50,639 - root - INFO -> Physical loss: None
+2024-05-29 15:21:50,745 - root - INFO -> Memory cleaned!
+2024-05-29 15:23:30,216 - root - INFO -> Epoch: 31/100, Train loss = 0.000055
+2024-05-29 15:23:30,217 - root - INFO -> Epoch: 31/100, Train MSELoss() = 0.000055
+2024-05-29 15:23:30,217 - root - INFO -> Epoch: 31/100, Train PerCS() = 0.922032
+2024-05-29 15:23:30,217 - root - INFO -> Epoch: 31/100, Train MSEeff() = 0.001589
+2024-05-29 15:23:30,217 - root - INFO -> Epoch: 31/100, Train SSIMMetric() = 0.951850
+2024-05-29 15:23:30,324 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:23:30,324 - root - INFO -> --------------------------------------------------
+2024-05-29 15:23:30,364 - root - INFO -> Epoch: 31/100, Starting validation...
+2024-05-29 15:23:30,365 - root - INFO -> Loader length: 86
+2024-05-29 15:23:30,365 - root - INFO -> Loader batch size: 32
+2024-05-29 15:23:30,366 - root - INFO -> Loader drop last: True
+2024-05-29 15:23:30,367 - root - INFO -> Loader num workers: 0
+2024-05-29 15:23:30,367 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:23:30,368 - root - INFO -> Physical loss: None
+2024-05-29 15:23:30,500 - root - INFO -> Memory cleaned!
+2024-05-29 15:23:48,486 - root - INFO -> Epoch: 31/100, Val loss = 0.000157
+2024-05-29 15:23:48,486 - root - INFO -> Epoch: 31/100, Val MSELoss() = 0.000157
+2024-05-29 15:23:48,486 - root - INFO -> Epoch: 31/100, Val PerCS() = 0.900104
+2024-05-29 15:23:48,486 - root - INFO -> Epoch: 31/100, Val MSEeff() = 0.006385
+2024-05-29 15:23:48,486 - root - INFO -> Epoch: 31/100, Val SSIMMetric() = 0.899040
+2024-05-29 15:23:48,589 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:23:48,589 - root - INFO -> --------------------------------------------------
+2024-05-29 15:23:48,589 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:23:48,590 - root - INFO -> --- Epoch: 32 ---
+2024-05-29 15:23:48,591 - root - INFO -> Epoch: 32/100, Starting training...
+2024-05-29 15:23:48,591 - root - INFO -> Loader length: 315
+2024-05-29 15:23:48,591 - root - INFO -> Loader batch size: 32
+2024-05-29 15:23:48,591 - root - INFO -> Loader drop last: True
+2024-05-29 15:23:48,591 - root - INFO -> Loader num workers: 0
+2024-05-29 15:23:48,591 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:23:48,591 - root - INFO -> Physical loss: None
+2024-05-29 15:23:48,696 - root - INFO -> Memory cleaned!
+2024-05-29 15:25:21,677 - root - INFO -> Epoch: 32/100, Train loss = 0.000053
+2024-05-29 15:25:21,677 - root - INFO -> Epoch: 32/100, Train MSELoss() = 0.000053
+2024-05-29 15:25:21,677 - root - INFO -> Epoch: 32/100, Train PerCS() = 0.922761
+2024-05-29 15:25:21,677 - root - INFO -> Epoch: 32/100, Train MSEeff() = 0.001504
+2024-05-29 15:25:21,677 - root - INFO -> Epoch: 32/100, Train SSIMMetric() = 0.953350
+2024-05-29 15:25:21,783 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:25:21,783 - root - INFO -> --------------------------------------------------
+2024-05-29 15:25:21,823 - root - INFO -> Epoch: 32/100, Starting validation...
+2024-05-29 15:25:21,825 - root - INFO -> Loader length: 86
+2024-05-29 15:25:21,825 - root - INFO -> Loader batch size: 32
+2024-05-29 15:25:21,826 - root - INFO -> Loader drop last: True
+2024-05-29 15:25:21,827 - root - INFO -> Loader num workers: 0
+2024-05-29 15:25:21,828 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:25:21,828 - root - INFO -> Physical loss: None
+2024-05-29 15:25:21,941 - root - INFO -> Memory cleaned!
+2024-05-29 15:25:39,636 - root - INFO -> Epoch: 32/100, Val loss = 0.000158
+2024-05-29 15:25:39,636 - root - INFO -> Epoch: 32/100, Val MSELoss() = 0.000158
+2024-05-29 15:25:39,636 - root - INFO -> Epoch: 32/100, Val PerCS() = 0.903235
+2024-05-29 15:25:39,636 - root - INFO -> Epoch: 32/100, Val MSEeff() = 0.006400
+2024-05-29 15:25:39,636 - root - INFO -> Epoch: 32/100, Val SSIMMetric() = 0.899121
+2024-05-29 15:25:39,740 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:25:39,740 - root - INFO -> --------------------------------------------------
+2024-05-29 15:25:39,740 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:25:39,741 - root - INFO -> --- Epoch: 33 ---
+2024-05-29 15:25:39,742 - root - INFO -> Epoch: 33/100, Starting training...
+2024-05-29 15:25:39,742 - root - INFO -> Loader length: 315
+2024-05-29 15:25:39,742 - root - INFO -> Loader batch size: 32
+2024-05-29 15:25:39,742 - root - INFO -> Loader drop last: True
+2024-05-29 15:25:39,742 - root - INFO -> Loader num workers: 0
+2024-05-29 15:25:39,742 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:25:39,742 - root - INFO -> Physical loss: None
+2024-05-29 15:25:39,844 - root - INFO -> Memory cleaned!
+2024-05-29 15:27:19,940 - root - INFO -> Epoch: 33/100, Train loss = 0.000051
+2024-05-29 15:27:19,940 - root - INFO -> Epoch: 33/100, Train MSELoss() = 0.000051
+2024-05-29 15:27:19,940 - root - INFO -> Epoch: 33/100, Train PerCS() = 0.923922
+2024-05-29 15:27:19,940 - root - INFO -> Epoch: 33/100, Train MSEeff() = 0.001423
+2024-05-29 15:27:19,941 - root - INFO -> Epoch: 33/100, Train SSIMMetric() = 0.954359
+2024-05-29 15:27:20,046 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:27:20,046 - root - INFO -> --------------------------------------------------
+2024-05-29 15:27:20,086 - root - INFO -> Epoch: 33/100, Starting validation...
+2024-05-29 15:27:20,087 - root - INFO -> Loader length: 86
+2024-05-29 15:27:20,087 - root - INFO -> Loader batch size: 32
+2024-05-29 15:27:20,088 - root - INFO -> Loader drop last: True
+2024-05-29 15:27:20,088 - root - INFO -> Loader num workers: 0
+2024-05-29 15:27:20,089 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:27:20,090 - root - INFO -> Physical loss: None
+2024-05-29 15:27:20,224 - root - INFO -> Memory cleaned!
+2024-05-29 15:27:37,907 - root - INFO -> Epoch: 33/100, Val loss = 0.000156
+2024-05-29 15:27:37,908 - root - INFO -> Epoch: 33/100, Val MSELoss() = 0.000156
+2024-05-29 15:27:37,908 - root - INFO -> Epoch: 33/100, Val PerCS() = 0.902377
+2024-05-29 15:27:37,908 - root - INFO -> Epoch: 33/100, Val MSEeff() = 0.006376
+2024-05-29 15:27:37,908 - root - INFO -> Epoch: 33/100, Val SSIMMetric() = 0.902016
+2024-05-29 15:27:38,010 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:27:38,010 - root - INFO -> --------------------------------------------------
+2024-05-29 15:27:38,010 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:27:38,057 - root - INFO -> --- Epoch: 34 ---
+2024-05-29 15:27:38,057 - root - INFO -> Epoch: 34/100, Starting training...
+2024-05-29 15:27:38,057 - root - INFO -> Loader length: 315
+2024-05-29 15:27:38,057 - root - INFO -> Loader batch size: 32
+2024-05-29 15:27:38,057 - root - INFO -> Loader drop last: True
+2024-05-29 15:27:38,057 - root - INFO -> Loader num workers: 0
+2024-05-29 15:27:38,057 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:27:38,057 - root - INFO -> Physical loss: None
+2024-05-29 15:27:38,164 - root - INFO -> Memory cleaned!
+2024-05-29 15:29:10,861 - root - INFO -> Epoch: 34/100, Train loss = 0.000049
+2024-05-29 15:29:10,861 - root - INFO -> Epoch: 34/100, Train MSELoss() = 0.000049
+2024-05-29 15:29:10,861 - root - INFO -> Epoch: 34/100, Train PerCS() = 0.924162
+2024-05-29 15:29:10,861 - root - INFO -> Epoch: 34/100, Train MSEeff() = 0.001347
+2024-05-29 15:29:10,861 - root - INFO -> Epoch: 34/100, Train SSIMMetric() = 0.955450
+2024-05-29 15:29:10,969 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:29:10,969 - root - INFO -> --------------------------------------------------
+2024-05-29 15:29:11,010 - root - INFO -> Epoch: 34/100, Starting validation...
+2024-05-29 15:29:11,011 - root - INFO -> Loader length: 86
+2024-05-29 15:29:11,012 - root - INFO -> Loader batch size: 32
+2024-05-29 15:29:11,013 - root - INFO -> Loader drop last: True
+2024-05-29 15:29:11,014 - root - INFO -> Loader num workers: 0
+2024-05-29 15:29:11,014 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:29:11,015 - root - INFO -> Physical loss: None
+2024-05-29 15:29:11,131 - root - INFO -> Memory cleaned!
+2024-05-29 15:29:29,133 - root - INFO -> Epoch: 34/100, Val loss = 0.000157
+2024-05-29 15:29:29,133 - root - INFO -> Epoch: 34/100, Val MSELoss() = 0.000157
+2024-05-29 15:29:29,133 - root - INFO -> Epoch: 34/100, Val PerCS() = 0.900348
+2024-05-29 15:29:29,133 - root - INFO -> Epoch: 34/100, Val MSEeff() = 0.006407
+2024-05-29 15:29:29,133 - root - INFO -> Epoch: 34/100, Val SSIMMetric() = 0.901096
+2024-05-29 15:29:29,244 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:29:29,244 - root - INFO -> --------------------------------------------------
+2024-05-29 15:29:29,244 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:29:29,245 - root - INFO -> --- Epoch: 35 ---
+2024-05-29 15:29:29,246 - root - INFO -> Epoch: 35/100, Starting training...
+2024-05-29 15:29:29,246 - root - INFO -> Loader length: 315
+2024-05-29 15:29:29,246 - root - INFO -> Loader batch size: 32
+2024-05-29 15:29:29,246 - root - INFO -> Loader drop last: True
+2024-05-29 15:29:29,246 - root - INFO -> Loader num workers: 0
+2024-05-29 15:29:29,246 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:29:29,246 - root - INFO -> Physical loss: None
+2024-05-29 15:29:29,358 - root - INFO -> Memory cleaned!
+2024-05-29 15:31:03,051 - root - INFO -> Epoch: 35/100, Train loss = 0.000047
+2024-05-29 15:31:03,051 - root - INFO -> Epoch: 35/100, Train MSELoss() = 0.000047
+2024-05-29 15:31:03,051 - root - INFO -> Epoch: 35/100, Train PerCS() = 0.926673
+2024-05-29 15:31:03,051 - root - INFO -> Epoch: 35/100, Train MSEeff() = 0.001270
+2024-05-29 15:31:03,051 - root - INFO -> Epoch: 35/100, Train SSIMMetric() = 0.958367
+2024-05-29 15:31:03,154 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:31:03,154 - root - INFO -> --------------------------------------------------
+2024-05-29 15:31:03,195 - root - INFO -> Epoch: 35/100, Starting validation...
+2024-05-29 15:31:03,196 - root - INFO -> Loader length: 86
+2024-05-29 15:31:03,196 - root - INFO -> Loader batch size: 32
+2024-05-29 15:31:03,197 - root - INFO -> Loader drop last: True
+2024-05-29 15:31:03,198 - root - INFO -> Loader num workers: 0
+2024-05-29 15:31:03,199 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:31:03,200 - root - INFO -> Physical loss: None
+2024-05-29 15:31:03,334 - root - INFO -> Memory cleaned!
+2024-05-29 15:31:21,133 - root - INFO -> Epoch: 35/100, Val loss = 0.000155
+2024-05-29 15:31:21,133 - root - INFO -> Epoch: 35/100, Val MSELoss() = 0.000155
+2024-05-29 15:31:21,133 - root - INFO -> Epoch: 35/100, Val PerCS() = 0.902853
+2024-05-29 15:31:21,133 - root - INFO -> Epoch: 35/100, Val MSEeff() = 0.006281
+2024-05-29 15:31:21,133 - root - INFO -> Epoch: 35/100, Val SSIMMetric() = 0.908699
+2024-05-29 15:31:21,247 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:31:21,247 - root - INFO -> --------------------------------------------------
+2024-05-29 15:31:21,247 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:31:21,248 - root - INFO -> --- Epoch: 36 ---
+2024-05-29 15:31:21,249 - root - INFO -> Epoch: 36/100, Starting training...
+2024-05-29 15:31:21,249 - root - INFO -> Loader length: 315
+2024-05-29 15:31:21,249 - root - INFO -> Loader batch size: 32
+2024-05-29 15:31:21,249 - root - INFO -> Loader drop last: True
+2024-05-29 15:31:21,249 - root - INFO -> Loader num workers: 0
+2024-05-29 15:31:21,249 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:31:21,249 - root - INFO -> Physical loss: None
+2024-05-29 15:31:21,363 - root - INFO -> Memory cleaned!
+2024-05-29 15:32:54,478 - root - INFO -> Epoch: 36/100, Train loss = 0.000045
+2024-05-29 15:32:54,478 - root - INFO -> Epoch: 36/100, Train MSELoss() = 0.000045
+2024-05-29 15:32:54,478 - root - INFO -> Epoch: 36/100, Train PerCS() = 0.927497
+2024-05-29 15:32:54,478 - root - INFO -> Epoch: 36/100, Train MSEeff() = 0.001199
+2024-05-29 15:32:54,478 - root - INFO -> Epoch: 36/100, Train SSIMMetric() = 0.959599
+2024-05-29 15:32:54,584 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:32:54,584 - root - INFO -> --------------------------------------------------
+2024-05-29 15:32:54,624 - root - INFO -> Epoch: 36/100, Starting validation...
+2024-05-29 15:32:54,625 - root - INFO -> Loader length: 86
+2024-05-29 15:32:54,626 - root - INFO -> Loader batch size: 32
+2024-05-29 15:32:54,626 - root - INFO -> Loader drop last: True
+2024-05-29 15:32:54,627 - root - INFO -> Loader num workers: 0
+2024-05-29 15:32:54,627 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:32:54,628 - root - INFO -> Physical loss: None
+2024-05-29 15:32:54,745 - root - INFO -> Memory cleaned!
+2024-05-29 15:33:12,408 - root - INFO -> Epoch: 36/100, Val loss = 0.000154
+2024-05-29 15:33:12,408 - root - INFO -> Epoch: 36/100, Val MSELoss() = 0.000154
+2024-05-29 15:33:12,408 - root - INFO -> Epoch: 36/100, Val PerCS() = 0.904941
+2024-05-29 15:33:12,408 - root - INFO -> Epoch: 36/100, Val MSEeff() = 0.006276
+2024-05-29 15:33:12,408 - root - INFO -> Epoch: 36/100, Val SSIMMetric() = 0.906271
+2024-05-29 15:33:12,511 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:33:12,511 - root - INFO -> --------------------------------------------------
+2024-05-29 15:33:12,511 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:33:12,513 - root - INFO -> --- Epoch: 37 ---
+2024-05-29 15:33:12,513 - root - INFO -> Epoch: 37/100, Starting training...
+2024-05-29 15:33:12,513 - root - INFO -> Loader length: 315
+2024-05-29 15:33:12,513 - root - INFO -> Loader batch size: 32
+2024-05-29 15:33:12,513 - root - INFO -> Loader drop last: True
+2024-05-29 15:33:12,513 - root - INFO -> Loader num workers: 0
+2024-05-29 15:33:12,513 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:33:12,513 - root - INFO -> Physical loss: None
+2024-05-29 15:33:12,619 - root - INFO -> Memory cleaned!
+2024-05-29 15:34:46,078 - root - INFO -> Epoch: 37/100, Train loss = 0.000043
+2024-05-29 15:34:46,078 - root - INFO -> Epoch: 37/100, Train MSELoss() = 0.000043
+2024-05-29 15:34:46,078 - root - INFO -> Epoch: 37/100, Train PerCS() = 0.928134
+2024-05-29 15:34:46,078 - root - INFO -> Epoch: 37/100, Train MSEeff() = 0.001137
+2024-05-29 15:34:46,078 - root - INFO -> Epoch: 37/100, Train SSIMMetric() = 0.960151
+2024-05-29 15:34:46,183 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:34:46,184 - root - INFO -> --------------------------------------------------
+2024-05-29 15:34:46,224 - root - INFO -> Epoch: 37/100, Starting validation...
+2024-05-29 15:34:46,225 - root - INFO -> Loader length: 86
+2024-05-29 15:34:46,226 - root - INFO -> Loader batch size: 32
+2024-05-29 15:34:46,226 - root - INFO -> Loader drop last: True
+2024-05-29 15:34:46,227 - root - INFO -> Loader num workers: 0
+2024-05-29 15:34:46,228 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:34:46,228 - root - INFO -> Physical loss: None
+2024-05-29 15:34:46,353 - root - INFO -> Memory cleaned!
+2024-05-29 15:35:03,967 - root - INFO -> Epoch: 37/100, Val loss = 0.000156
+2024-05-29 15:35:03,967 - root - INFO -> Epoch: 37/100, Val MSELoss() = 0.000156
+2024-05-29 15:35:03,967 - root - INFO -> Epoch: 37/100, Val PerCS() = 0.894064
+2024-05-29 15:35:03,967 - root - INFO -> Epoch: 37/100, Val MSEeff() = 0.006078
+2024-05-29 15:35:03,967 - root - INFO -> Epoch: 37/100, Val SSIMMetric() = 0.900087
+2024-05-29 15:35:04,071 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:35:04,072 - root - INFO -> --------------------------------------------------
+2024-05-29 15:35:04,072 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:35:04,073 - root - INFO -> --- Epoch: 38 ---
+2024-05-29 15:35:04,073 - root - INFO -> Epoch: 38/100, Starting training...
+2024-05-29 15:35:04,073 - root - INFO -> Loader length: 315
+2024-05-29 15:35:04,073 - root - INFO -> Loader batch size: 32
+2024-05-29 15:35:04,073 - root - INFO -> Loader drop last: True
+2024-05-29 15:35:04,073 - root - INFO -> Loader num workers: 0
+2024-05-29 15:35:04,073 - root - INFO -> Criterion: MSELoss()
+2024-05-29 15:35:04,073 - root - INFO -> Physical loss: None
+2024-05-29 15:35:04,177 - root - INFO -> Memory cleaned!
+2024-05-29 15:36:37,203 - root - INFO -> Epoch: 38/100, Train loss = 0.000042
+2024-05-29 15:36:37,204 - root - INFO -> Epoch: 38/100, Train MSELoss() = 0.000042
+2024-05-29 15:36:37,204 - root - INFO -> Epoch: 38/100, Train PerCS() = 0.928952
+2024-05-29 15:36:37,204 - root - INFO -> Epoch: 38/100, Train MSEeff() = 0.001081
+2024-05-29 15:36:37,204 - root - INFO -> Epoch: 38/100, Train SSIMMetric() = 0.961143
+2024-05-29 15:36:37,318 - root - INFO -> Train finished! Memory cleaned!
+2024-05-29 15:36:37,318 - root - INFO -> --------------------------------------------------
+2024-05-29 15:36:37,360 - root - INFO -> Epoch: 38/100, Starting validation...
+2024-05-29 15:36:37,362 - root - INFO -> Loader length: 86
+2024-05-29 15:36:37,362 - root - INFO -> Loader batch size: 32
+2024-05-29 15:36:37,363 - root - INFO -> Loader drop last: True
+2024-05-29 15:36:37,364 - root - INFO -> Loader num workers: 0
+2024-05-29 15:36:37,365 - root - INFO -> Metrics: [MSELoss(), PerCS(), MSEeff(), SSIMMetric()]
+2024-05-29 15:36:37,365 - root - INFO -> Physical loss: None
+2024-05-29 15:36:37,486 - root - INFO -> Memory cleaned!
+2024-05-29 15:36:55,199 - root - INFO -> Epoch: 38/100, Val loss = 0.000153
+2024-05-29 15:36:55,199 - root - INFO -> Epoch: 38/100, Val MSELoss() = 0.000153
+2024-05-29 15:36:55,200 - root - INFO -> Epoch: 38/100, Val PerCS() = 0.901709
+2024-05-29 15:36:55,200 - root - INFO -> Epoch: 38/100, Val MSEeff() = 0.006146
+2024-05-29 15:36:55,200 - root - INFO -> Epoch: 38/100, Val SSIMMetric() = 0.907503
+2024-05-29 15:36:55,304 - root - INFO -> Validation finished! Memory cleaned!
+2024-05-29 15:36:55,305 - root - INFO -> --------------------------------------------------
+2024-05-29 15:36:55,305 - root - INFO -> Learning rate: 0.0002
+2024-05-29 15:36:55,306 - root - INFO -> --- Early stopping activated ---
+2024-05-29 15:36:55,306 - root - INFO -> Best loss: 0.00015693446614530458
+2024-05-29 15:36:55,308 - root - INFO -> Saving the model
+2024-05-29 15:36:55,435 - root - INFO -> Model saved in /home/ggausachs/TFG/Code/Models/SavedModels
+2024-05-29 15:36:55,435 - root - INFO -> --------------------------------------------------
