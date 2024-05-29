@@ -212,14 +212,6 @@ class CustomDataloader:
             val_dataset, batch_size=BATCH_SIZE_TEST, shuffle=False, num_workers=0, drop_last=True
         )
 
-        batch = next(iter(train_loader))
-
-        # Assuming your dataset returns a tuple where the first element is the input
-        input_sample = batch[0]
-        print(input_sample)
-        print(torch.max(input_sample))
-        print(torch.min(input_sample))
-
         train_dataset_info = {
             'Number of samples': len(train_loader.dataset),
             'Batch size': train_loader.batch_size,
@@ -267,31 +259,6 @@ def to_float32_and_scale(tensor,global_min,global_max):
     tensor = tensor.float()
     tensor = (tensor - global_min) / (global_max - global_min)
     return tensor
-
-
-def check_transform(val_loader, path_arrays):
-    for i in range(1):
-        batch = next(iter(val_loader))
-
-        input_img = batch[0][0].squeeze().cpu().numpy()
-        target_img = batch[1][0].squeeze().cpu().numpy()
-
-        plt.figure(figsize=(10, 5))
-
-        plt.subplot(1, 2, 1)
-        plt.imshow(input_img)
-        plt.title('Input image')
-        plt.axis('off')
-
-        plt.subplot(1, 2, 2)
-        plt.imshow(target_img)
-        plt.title('Target image')
-        plt.axis('off')
-
-        #plt.savefig(os.path.join(
-        #    IMG_PATH, f'compare_transforms_{path_arrays}.png'))
-
-        plt.show()
 
 # Function to normalize by the weight of the pacient
 

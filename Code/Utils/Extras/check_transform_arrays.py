@@ -18,36 +18,31 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 category_ir_path = os.path.join(ir_np_path,category_ir)
                 filenames_ir = os.listdir(category_ir_path)
                 filenames_pm = os.listdir(category_pm_path)
+                for file in filenames_ir:
+                    file_ir = os.path.join(category_ir_path,file)
 
-                random_index = random.randint(0, len(filenames_ir) - 1)
-                file_ir = os.path.join(category_ir_path,filenames_ir[random_index])
-                print(file_ir)
-                if file_ir == 'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab\00001\IRraw\cover1\000029.npy':
-                    file_pm = os.path.join(category_pm_path,filenames_pm[random_index])
-                    print('ir array:',file_ir)
-                    print('pm array:',file_pm)
-                    array_ir = np.load(file_ir)
-                    array_pm = np.load(file_pm)
+                    if '00001\IRraw\cover1' in file_ir and '000001' in file:
+                        print('ir array:',file_ir)
+                        array_ir = np.load(file_ir)
 
-                    #transform array_ir
-                    x = 29
-                    y = 7
-                    ancho = 66
-                    altura = 140
+                        #transform array_ir
+                        x = 29
+                        y = 7
+                        ancho = 66
+                        altura = 140
 
-                    new_array = array_ir[y:y+altura, x:x+ancho]
-                    new_array = cv2.resize(new_array, (84, 192))
+                        new_array = array_ir[y:y+altura, x:x+ancho]
+                        new_array = cv2.resize(new_array, (84, 192))
 
-                    fig, axs = plt.subplots(1, 2)
+                        fig, axs = plt.subplots(1, 2)
 
-                    # Plot before transform
-                    axs[0].imshow(array_ir)
-                    axs[0].set_title('Inicial LWIR')
+                        # Plot before transform
+                        axs[0].imshow(array_ir)
+                        axs[0].set_title('Inicial LWIR')
 
-                    # Plot after transform
-                    axs[1].imshow(new_array)
-                    axs[1].set_title('LWIR corrected')
+                        # Plot after transform
+                        axs[1].imshow(new_array)
+                        axs[1].set_title('LWIR corrected')
 
-                    # Show the plot
-                    plt.show()
-    break
+                        # Show the plot
+                        plt.show()
