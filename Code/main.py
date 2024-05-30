@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
     
-    features= [16,32,64,128]
+    features= [32,64,128,256]
 
     if DO_TRAIN:
         # Initialize wandb
