@@ -6,10 +6,10 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "AAAParams - MSELoss"
-MODEL_NAME = "UNet" #UNet #UNet_phy
+EXECUTION_NAME = "AAAPhysical - SSIMLoss"
+MODEL_NAME = "UNet_phy" #UNet #UNet_phy
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
+CRITERION = "SSIMLoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
 PLOSS = False
 WEIGHTSLOSSES = [1,1]
 EXPERTYPE = 'Not fisical data, all scaled 0-1.'
@@ -22,7 +22,7 @@ LAST_RUN_WANDB = ""
 
 # Main steps
 DO_TRAIN = True
-USE_PHYSICAL_DATA = False
+USE_PHYSICAL_DATA = True
 PARTITION = 1 # (0 - Random, 1- Patients)
 
 # Paths -----------------------------------
