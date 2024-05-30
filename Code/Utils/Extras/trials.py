@@ -45,6 +45,8 @@ plt.show()
 """
 import wandb
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.ticker import ScalarFormatter
 
 # Initialize the wandb API
 api = wandb.Api()
@@ -52,52 +54,60 @@ api = wandb.Api()
 # Replace with your actual project details
 entity = "1604373"  # Your username or team name
 project = "TFG"  # Your project name
-run_id = "wlyl9uvz"  # The specific run ID
 
+run_id = "2w4l4ccz"  # The specific run ID
 # Access the run
 run = api.run(f"{entity}/{project}/{run_id}")
-
 # Fetch the logged data
-history = run.history(keys=["Train PerCS()","Val PerCS()", "Train MSELoss()", "Val MSELoss()"])
-
+history = run.history(keys=["Train SSIMMetric()","Val SSIMMetric()", "Train MSELoss()", "Val MSELoss()"])
 # Convert the history to a pandas DataFrame
 history_df = pd.DataFrame(history)
-
 # Display the first few rows to check the data
 print(history_df.head())
 
-run_id = "wmgsj1sw"  # The specific run ID
-
+run_id = "wa0fkkul"  # The specific run ID
 # Access the run
 run_2 = api.run(f"{entity}/{project}/{run_id}")
-
 # Fetch the logged data
-history_2 = run_2.history(keys=["Train PerCS()","Val PerCS()", "Train MSELoss()", "Val MSELoss()"])
-
+history_2 = run_2.history(keys=["Train SSIMMetric()","Val SSIMMetric()", "Train MSELoss()", "Val MSELoss()"])
 # Convert the history to a pandas DataFrame
 history_df_2 = pd.DataFrame(history_2)
-
 print(history_df_2.head())
 
-import matplotlib.pyplot as plt
+
+run_id = "faz6krvy"  # The specific run ID
+# Access the run
+run_3 = api.run(f"{entity}/{project}/{run_id}")
+# Fetch the logged data
+history_3 = run_3.history(keys=["Train SSIMMetric()","Val SSIMMetric()", "Train MSELoss()", "Val MSELoss()"])
+# Convert the history to a pandas DataFrame
+history_df_3 = pd.DataFrame(history_3)
+print(history_df_3.head())
+
 
 # Plotting
 plt.figure(figsize=(10, 6))
 
-plt.plot(history_df['_step'], history_df['Train PerCS()'], label='Model-with-MSE train', color='blue')
-plt.plot(history_df['_step'],history_df['Val PerCS()'], label='Model-with-MSE validation', color='blue', linestyle='--')
-plt.plot(history_df_2['_step'],history_df_2['Train PerCS()'], label='Model-Combined train', color='red')
-plt.plot(history_df_2['_step'],history_df_2['Val PerCS()'], label='Model-Combined validation', color='red', linestyle='--')
 
+
+plt.plot(history_df['_step'], history_df['Train SSIMMetric()'], label='Model-MSE train', color='blue')
+plt.plot(history_df['_step'],history_df['Val SSIMMetric()'], label='Model-MSE validation', color='blue', linestyle='--')
+plt.plot(history_df_2['_step'],history_df_2['Train SSIMMetric()'], label='Model-HV train', color='red')
+plt.plot(history_df_2['_step'],history_df_2['Val SSIMMetric()'], label='Model-HV validation', color='red', linestyle='--')
+plt.plot(history_df_3['_step'],history_df_3['Train SSIMMetric()'], label='Model-SSIM train', color='green')
+plt.plot(history_df_3['_step'],history_df_3['Val SSIMMetric()'], label='Model-SSIM validation', color='green', linestyle='--')
 # Adding labels and title
 
-plt.ylim(0.75, 1)
+plt.ylim(0.4, 1)
 plt.xlabel('Epochs', fontsize=18)
-plt.ylabel('PerCS', fontsize=18)
-plt.title('Training and Validation PerCS for these 2 models', fontsize=20)
+plt.ylabel('SSIm', fontsize=18)
+plt.title('Training and Validation SSIM for these 3 models', fontsize=20)
 
 # Adding legend
 plt.legend(fontsize=16)
+
+#plt.gca().yaxis.set_major_formatter(ScalarFormatter(useMathText=True))
+#plt.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
 
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
