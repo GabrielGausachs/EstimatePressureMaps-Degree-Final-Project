@@ -12,9 +12,10 @@ def crop_array(array):
     
     return crop(array, 20, 28, 85, 36)
 
-path_data = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))),'Data')
+path_data = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))),'DadesUAB/Data')
 
 print(path_data)
+
 
 transform = {
             'input': transforms.Compose([
@@ -41,9 +42,9 @@ for folder in os.listdir(path_data):
         array_2 = np.copy(array)
         tensor_final = transform['input'](array_2)
         ir_array = tensor_final.squeeze().numpy()
+        print(ir_array)
 
         plt.imshow(ir_array)
-        plt.axis('off')
         #    plt.savefig(os.path.join(IMG_PATH, f"Final_Comparing_output_model-{cover}-{title}.png"))
         plt.show()
         #pm = pd.read_csv(pm)
