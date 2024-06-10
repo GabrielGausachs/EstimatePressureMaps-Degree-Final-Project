@@ -6,7 +6,7 @@ import torch
 # Paths
 # -----------------------------------------
 
-EXECUTION_NAME = "AAAPhysical - SSIMLoss"
+EXECUTION_NAME = "FE_100epochs_dadesUAB"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
@@ -38,7 +38,7 @@ IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2
-EPOCHS = 250
+EPOCHS = 100
 LEARNING_RATE = 0.02
 LAMBDA_VALUE = 10
 

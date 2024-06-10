@@ -15,6 +15,7 @@ from glob import glob
 import matplotlib.image as mpimg
 import numpy as np
 import pandas as pd
+import json
 
 from Utils import (
     logger,
@@ -96,7 +97,8 @@ transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Lambda(crop_array),
-                transforms.Resize((192, 84))]),
+                transforms.Resize((192, 84)),
+                transforms.Normalize(mean=[0.5], std=[0.5])]),
             'output': transforms.Compose([
                 transforms.ToTensor(),
                 transforms.RandomHorizontalFlip(1),
@@ -169,6 +171,10 @@ split_idx = int(0.8 * num_samples)
 # Split the indices
 train_indices = indices[:split_idx]
 test_indices = indices[split_idx:]
+
+with open(f"Models/TestJson/test_uab_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.json", "w+") as outfile:
+            json.dump(test_indices, outfile)
+
 print(train_indices)
 print(test_indices)
 
@@ -248,9 +254,12 @@ for epoch in range(EPOCHS):
                 weightsloss=WEIGHTSLOSSES,
             )
     print('Train loss:', epoch_loss_train)
-    print('Train metrci:', epoch_metric_train)
+    print('Train metric:', epoch_metric_train)
     print('Val loss:', epoch_loss_val)
     print('Val metric:', epoch_metric_val)
+
+
+savemodel.save_model(model)
 
 
 
