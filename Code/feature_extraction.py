@@ -97,8 +97,7 @@ transform = {
             'input': transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Lambda(crop_array),
-                transforms.Resize((192, 84)),
-                transforms.Normalize(mean=[0.5], std=[0.5])]),
+                transforms.Resize((192, 84))]),
             'output': transforms.Compose([
                 transforms.ToTensor(),
                 transforms.RandomHorizontalFlip(1),
