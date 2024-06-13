@@ -3,29 +3,29 @@ import os
 import torch
 
 # -----------------------------------------
-# Paths
+# Training configuration
 # -----------------------------------------
 
 EXECUTION_NAME = "FE_100epochs_dadesUAB"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 OPTIMIZER = "Adam"
 CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
-PLOSS = False
-WEIGHTSLOSSES = [1,1]
 EXPERTYPE = 'Not fisical data, all scaled 0-1.'
 WANDB = False
 LAST_RUN_WANDB = ""
 
 
-
+# -----------------------------------------
+# Main steps
 # -----------------------------------------
 
-# Main steps
 DO_TRAIN = True
 USE_PHYSICAL_DATA = False
 PARTITION = 1 # (0 - Random, 1- Patients)
 
-# Paths -----------------------------------
+# -----------------------------------------
+# Paths 
+# -----------------------------------------
 
 PATH_DATASET = 'Server'
 LOCAL_SLP_DATASET_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),'SLP/danaLab')
@@ -34,7 +34,10 @@ MODELS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Models/S
 LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Logs")
 IMG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"img")
 
-# Parameters ------------------------------
+# -----------------------------------------
+# Parameters 
+# -----------------------------------------
+
 BATCH_SIZE_TRAIN = 32
 BATCH_SIZE_TEST = 32
 NUM_WORKERS = 2

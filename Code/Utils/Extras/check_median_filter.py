@@ -6,20 +6,25 @@ from scipy import signal
 import pandas as pd
 import cv2
 
+import sys
+sys.path.append(os.path.dirname(os.getcwd()))
+
+from config import (
+    LOCAL_SLP_DATASET_PATH,
+    SERVER_SLP_DATASET_PATH
+)
+
 # File to apply the transforms in the PM values, show the arrays
 # Also the histogram fo LWIR and PM arrays
 
-path_data = os.path.join(
-    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))), 'SLP/danaLab/physiqueData.csv')
-
+path_data = os.path.join(SERVER_SLP_DATASET_PATH,'physiqueData.csv')
 p_data = pd.read_csv(path_data)
-
 mass = p_data['weight (kg)']
 
-for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')):
-    if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab',patient)):
+for i, patient in enumerate(os.listdir(SERVER_SLP_DATASET_PATH)[:1]):
+    if os.path.isdir(os.path.join(SERVER_SLP_DATASET_PATH,patient)):
         print('Patient:', patient)
-        patient_path = os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab',patient)
+        patient_path = os.path.join(SERVER_SLP_DATASET_PATH,patient)
         if os.path.isdir(patient_path):
             pm_np_path = os.path.join(patient_path,'PMarray')
             ir_np_path = os.path.join(patient_path,'IRraw')
@@ -32,66 +37,56 @@ for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t 
                 for file in filenames_pm:
                     file_pm = os.path.join(category_pm_path,file)
                     file_ir = os.path.join(category_ir_path,file)
-                    if '00001\PMarray\cover1' in file_pm and '000001' in file:
 
-                        # Read both LWIR and PM array
-                        array_pm = np.load(file_pm)
-                        array_ir = np.load(file_ir)
+                    # Read both LWIR and PM array
+                    array_pm = np.load(file_pm)
+                    array_ir = np.load(file_ir)
 
-                        # Apply median filter
-                        median = signal.medfilt2d(array_pm)
+                    # Apply median filter
+                    median = signal.medfilt2d(array_pm)
 
-                        # Get the maximum values
-                        maximum = np.maximum(array_pm,median)
+                    # Get the maximum values
+                    maximum = np.maximum(array_pm,median)
 
-                        # Normalize the values so the sum is the total corrected pressure
-                        area_m = 1.03226 / 10000
-                        ideal_pressure = mass[i] * 9.81 / (area_m * 1000)
+                    # Normalize the values so the sum is the total corrected pressure
+                    area_m = 1.03226 / 10000
+                    ideal_pressure = mass[i] * 9.81 / (area_m * 1000)
 
-                        output_array = (maximum / np.sum(maximum)) * ideal_pressure
+                    output_array = (maximum / np.sum(maximum)) * ideal_pressure
 
-                        output_array = (output_array - 0) / (102.36 - 0)
-
-
-                        #transform array_ir
-                        x = 29
-                        y = 7
-                        ancho = 66
-                        altura = 140
-
-                        new_array = array_ir[y:y+altura, x:x+ancho]
-                        new_array = cv2.resize(new_array, (84, 192))
-
-                        new_array = (new_array - 27195) / (31141 - 27195)
-
-                        # Show histogram of LWIR and PM values
-                        fig, axs = plt.subplots(1, 2, figsize=(14, 7))
-
-                        axs[0].hist(new_array.flatten(), bins=100, color='royalblue')
-                        axs[0].set_title("Histogram of LWIR array")
-                        axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
-                        axs[1].set_title("Histogram of PM array")
-                        plt.tight_layout()
-                        #plt.savefig('Histogram_LWIR_PM.png')
-                        plt.show()
+                    output_array = (output_array - 0) / (102.36 - 0)
 
 
+                    #transform array_ir
+                    x = 29
+                    y = 7
+                    w = 66
+                    h = 140
 
+                    new_array = array_ir[y:y+h, x:x+w]
+                    new_array = cv2.resize(new_array, (84, 192))
 
+                    new_array = (new_array - 27195) / (31141 - 27195)
 
-                        
+                    # Show histogram of LWIR and PM values
+                    fig, axs = plt.subplots(1, 2, figsize=(14, 7))
 
+                    axs[0].hist(new_array.flatten(), bins=100, color='royalblue')
+                    axs[0].set_title("Histogram of LWIR array")
+                    axs[1].hist(output_array.flatten(), bins=100, color='royalblue')
+                    axs[1].set_title("Histogram of PM array")
+                    plt.tight_layout()
+                    #plt.savefig('Histogram_LWIR_PM.png')
+                    plt.show()
 
-                        """
-                        # Show PM inicial
-                        plt.imshow(array_pm)
-                        plt.title(f'\nPM inicial\nMin and Max value: ({round(min_value_array,2)},{round(maximum_value_array,2)})')
-                        #plt.savefig('PM_inicial.png')
-                        plt.show()
+                    # Show PM inicial
+                    plt.imshow(array_pm)
+                    plt.title('\nPM inicial')
+                    #plt.savefig('PM_inicial.png')
+                    plt.show()
 
-                        # Show PM corrected
-                        plt.imshow(output_array)
-                        plt.title(f'\nPM corrected\nMin and Max value: ({round(min_value_output,2)},{round(maximum_value_output,2)})')
-                        #plt.savefig('Median_filter_applied.png')
-                        plt.show()
-                        """
+                    # Show PM corrected
+                    plt.imshow(output_array)
+                    plt.title('\nPM corrected')
+                    #plt.savefig('Median_filter_applied.png')
+                    plt.show()

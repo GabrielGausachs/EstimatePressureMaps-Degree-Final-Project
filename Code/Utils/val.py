@@ -11,7 +11,7 @@ from Utils.config import (
 logger = get_logger()
 
 
-def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsloss=[0,0]):
+def val(model, loader, metrics, criterion, epoch=0, epochs=0):
     total_metric = [0, 0, 0, 0]
     total_loss = 0
     model.eval()
@@ -45,10 +45,6 @@ def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsl
                     total_metric[i] += val_metric
 
                 val_loss = criterion(outputs, target_images)
-
-                if ploss is not None:
-                    loss_physical = ploss(outputs,target_images)
-                    val_loss = val_loss * weightsloss[0] + loss_physical * weightsloss[1]
                     
                 total_loss += val_loss.item()
 
@@ -73,10 +69,6 @@ def val(model, loader, metrics, criterion, epoch=0, epochs=0,ploss=None,weightsl
                     total_metric[i] += val_metric
 
                 val_loss = criterion(outputs, target_images)
-
-                if ploss is not None:
-                    loss_physical = ploss(outputs,target_images)
-                    val_loss = val_loss * weightsloss[0] + loss_physical * weightsloss[1]
                     
                 total_loss += val_loss.item()
 

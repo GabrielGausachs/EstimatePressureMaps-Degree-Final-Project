@@ -33,6 +33,7 @@ class SSIMMetric(nn.Module):
     def forward(self, y_pred, y_true):
         return ssim(y_true, y_pred, data_range=self.max_val, size_average=True)
 
+
 class MSEeff(nn.Module):
     def __init__(self):
         super(MSEeff,self).__init__()

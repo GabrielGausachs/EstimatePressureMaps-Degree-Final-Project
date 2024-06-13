@@ -3,6 +3,7 @@ from Utils.logger import initialize_logger, get_logger
 import numpy as np
 import torch
 from scipy import signal
+
 from Utils.config import (
     USE_PHYSICAL_DATA,
     PATH_DATASET,
@@ -61,6 +62,7 @@ class CustomDataset(Dataset):
                 return input_array, output_array
 
     def load_array(self, path):
+        
         # Load the array
         array = np.load(path)
         return array

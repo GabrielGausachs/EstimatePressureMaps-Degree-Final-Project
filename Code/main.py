@@ -36,9 +36,7 @@ from Utils.config import (
     EXPERTYPE,
     USE_PHYSICAL_DATA,
     BATCH_SIZE_TEST,
-    BATCH_SIZE_TRAIN,
-    PLOSS,
-    WEIGHTSLOSSES
+    BATCH_SIZE_TRAIN
     )
 
 # Models
@@ -56,10 +54,6 @@ criterion = {
     "PLoss": losses.PhyLoss(),
     "SSIMLoss": losses.SSIMLoss()
     }
-
-# Extra loss to combine
-extra_loss = {True: losses.PhyLoss(),
-            False: None}
 
 # Metrics
 metrics = [
@@ -99,7 +93,6 @@ if __name__ == "__main__":
                         "batch_test_size": BATCH_SIZE_TEST,
             "features":features,
 			"when": datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-			"weightslosses": WEIGHTSLOSSES,
                 },
                 save_code=False,
             )
@@ -142,9 +135,7 @@ if __name__ == "__main__":
                 criterion=criterion,
                 metrics=metrics,
                 epoch=epoch,
-                epochs=EPOCHS,
-                ploss=extra_loss[PLOSS],
-                weightsloss=WEIGHTSLOSSES,
+                epochs=EPOCHS
             )
             epoch_loss_val, epoch_metric_val = val.val(
                 model=model,
@@ -153,8 +144,6 @@ if __name__ == "__main__":
                 criterion=criterion,
                 epoch=epoch,
                 epochs=EPOCHS,
-                ploss=extra_loss[PLOSS],
-                weightsloss=WEIGHTSLOSSES,
             )
             logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
             #scheduler.step()
