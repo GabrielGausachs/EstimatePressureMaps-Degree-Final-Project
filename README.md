@@ -16,8 +16,8 @@ To train a model, execute:
 
 In the `config.py` file you will find the training configuration, paths and parameters.
 
-## Extra dades UAB
-Explicar tema training uab i els arxius creats
+## Extra testing with UAB data
+In the `testing_uab.ipynb` file you will find how we load the UAB data and test a model with it
 
 ## Comparison
 <img src="img/uncover.png" alt="Uncover" width="700" height="500">
@@ -25,7 +25,6 @@ Explicar tema training uab i els arxius creats
 <img src="img/cover2.png" alt="Cover2" width="700" height="500">
 
 ## Citation
-My paper
 
 ## Acknowledgement
 - https://github.com/ostadabbas/SLP-Dataset-and-Code
