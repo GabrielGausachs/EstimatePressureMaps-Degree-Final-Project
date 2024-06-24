@@ -20,9 +20,9 @@ In the `config.py` file you will find the training configuration, paths and para
 Explicar tema training uab i els arxius creats
 
 ## Comparison
-![alt text](img/uncover.png)
-![alt text](img/cover1.png)
-![alt text](img/cover2.png)
+<img src="img/uncover.png" alt="Uncover" width="700" height="500">
+<img src="img/cover1.png" alt="Cover1" width="700" height="500">
+<img src="img/cover2.png" alt="Cover2" width="700" height="500">
 
 ## Citation
 My paper
