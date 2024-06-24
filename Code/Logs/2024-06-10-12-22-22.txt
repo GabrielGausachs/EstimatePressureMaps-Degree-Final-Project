@@ -1,9 +1,0 @@
-2024-06-10 12:22:23,198 - root - INFO -> Logger initialized in filename 2024-06-10-12-22-23
-2024-06-10 12:22:28,080 - root - INFO -> Epoch: 0/10, Starting training...
-2024-06-10 12:22:28,081 - root - INFO -> Loader length: 15
-2024-06-10 12:22:28,081 - root - INFO -> Loader batch size: 32
-2024-06-10 12:22:28,081 - root - INFO -> Loader drop last: True
-2024-06-10 12:22:28,081 - root - INFO -> Loader num workers: 0
-2024-06-10 12:22:28,081 - root - INFO -> Criterion: MSELoss()
-2024-06-10 12:22:28,081 - root - INFO -> Physical loss: None
-2024-06-10 12:22:28,182 - root - INFO -> Memory cleaned!

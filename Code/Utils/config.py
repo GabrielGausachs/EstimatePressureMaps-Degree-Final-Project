@@ -6,11 +6,11 @@ import torch
 # Training configuration
 # -----------------------------------------
 
-EXECUTION_NAME = "FE_100epochs_dadesUAB"
+EXECUTION_NAME = "Execution Name"
 MODEL_NAME = "UNet" #UNet #UNet_phy
 OPTIMIZER = "Adam"
-CRITERION = "MSELoss" #UVLoss #HVLoss #MSELoss #SSIMLoss
-EXPERTYPE = 'Not fisical data, all scaled 0-1.'
+CRITERION = "MSELoss" #HVLoss #MSELoss #SSIMLoss
+EXPERTYPE = 'Description'
 WANDB = False
 LAST_RUN_WANDB = ""
 

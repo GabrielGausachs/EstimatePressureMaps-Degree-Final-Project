@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.pth
+*.json
 
 __pycache__/
 *.py[cod]

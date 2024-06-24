@@ -51,7 +51,6 @@ optimizers = {
 criterion = {
     "MSELoss": torch.nn.MSELoss(),
     "HVLoss": losses.HVLoss(),
-    "PLoss": losses.PhyLoss(),
     "SSIMLoss": losses.SSIMLoss()
     }
 
@@ -70,6 +69,7 @@ if __name__ == "__main__":
     logger.initialize_logger()
     logger = logger.get_logger()
 
+    # Create dataloaders
     train_loader, val_loader = dataloader.CustomDataloader().prepare_dataloaders()
     
     features= [32,64,128,256]
@@ -79,8 +79,8 @@ if __name__ == "__main__":
         if WANDB:
             wandb.login()
             wandb.init(
-                project="TFG",
-                entity='1604373',
+                project="PROJECTNAME",
+                entity='ENTITYNAME',
                 name=f"{EXECUTION_NAME}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}",
                 config={
                         "model_name": MODEL_NAME,
@@ -100,7 +100,6 @@ if __name__ == "__main__":
             logger.info("Wandb correctly initialized")
 
         # Create a model
-
         if USE_PHYSICAL_DATA:
             model = models[MODEL_NAME](1, 9, 1,features).to(DEVICE)
         else:
@@ -108,7 +107,6 @@ if __name__ == "__main__":
 
         # Create an optimizer object
         optimizer = optimizers[OPTIMIZER](model.parameters(), lr=LEARNING_RATE)
-        #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.1, total_iters=70)
 
         # Create a criterion object
         criterion = criterion[CRITERION]
@@ -146,10 +144,8 @@ if __name__ == "__main__":
                 epochs=EPOCHS,
             )
             logger.info(f"Learning rate: {optimizer.param_groups[0]['lr']}")
-            #scheduler.step()
 
             if WANDB:
-                # wandb.log({"epoch": epoch, "train_loss": epoch_loss})
                 wandb.log({'train_loss': epoch_loss_train}, step=epoch)
                 wandb.log({'val_loss': epoch_loss_val}, step=epoch)
 
@@ -171,8 +167,8 @@ if __name__ == "__main__":
                 if improvement >= min_improvement:
                     best_loss = epoch_loss_val
                     best_model_weights = copy.deepcopy(
-                        model.state_dict())  # Deep copy here
-                    patience = 10  # Reset patience counter
+                        model.state_dict())  
+                    patience = 10
                 else:
                     patience -= 1
                     if patience == 0:
