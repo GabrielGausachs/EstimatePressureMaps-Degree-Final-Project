@@ -21,7 +21,7 @@ Incloure imatges
 ## Citation
 
 ## Acknowledgement
-https://github.com/ostadabbas/SLP-Dataset-and-Code
-https://github.com/ostadabbas/PressureEye
+- https://github.com/ostadabbas/SLP-Dataset-and-Code
+- https://github.com/ostadabbas/PressureEye
 
-Also, special thanks to Vanessa Moreno Font, David Castells Rufas and Ganyong Mo for the help and collaboration in this project
+Also, special thanks to Vanessa Moreno Font, David Castells Rufas and Ganyong Mo for the help and collaboration in this project.
