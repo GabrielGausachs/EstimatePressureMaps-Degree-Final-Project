@@ -19,10 +19,13 @@ In the `config.py` file you will find the training configuration, paths and para
 ## Extra dades UAB
 Explicar tema training uab i els arxius creats
 
-## Resultats amb imatges
-Incloure imatges
+## Comparison
+![alt text](img/uncover.png)
+![alt text](img/cover1.png)
+![alt text](img/cover2.png)
 
 ## Citation
+My paper
 
 ## Acknowledgement
 - https://github.com/ostadabbas/SLP-Dataset-and-Code
