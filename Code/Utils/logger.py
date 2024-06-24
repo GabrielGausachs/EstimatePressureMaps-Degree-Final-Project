@@ -2,7 +2,7 @@ import logging
 import os
 from datetime import datetime
 
-from Utils.config import (LOG_PATH,)
+from Utils.config import (LOG_PATH)
 
 
 

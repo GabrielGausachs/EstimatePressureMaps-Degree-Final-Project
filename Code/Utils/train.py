@@ -12,9 +12,9 @@ from Utils.config import (
 logger = get_logger()
 
 
-def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss=None, weightsloss=[0,0]):
+def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0):
     total_loss = 0
-    total_metric = [0, 0, 0]
+    total_metric = [0, 0, 0, 0]
     model.train()
 
     logger.info(f"Epoch: {epoch}/{epochs}, Starting training...")
@@ -40,10 +40,6 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
             optimizer.zero_grad()
             outputs = model(input_images)
             train_loss = criterion(outputs, target_images)
-
-            if ploss is not None:
-                loss_physical = ploss(outputs,target_images)
-                train_loss = train_loss * weightsloss[0] + loss_physical * weightsloss[1]
 
             for i, metric in enumerate(metrics):
 
@@ -75,10 +71,6 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
             outputs = model(input_images, tensor_data)
             train_loss = criterion(outputs, target_images)
 
-            if ploss is not None:
-                loss_physical = ploss(outputs,target_images)
-                train_loss = train_loss * weightsloss[0] + loss_physical * weightsloss[1]
-
             for i, metric in enumerate(metrics):
 
                 metric_loss = metric(outputs, target_images)
@@ -89,7 +81,6 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
             optimizer.step()
 
             total_loss += train_loss.item()
-            # print('loss:',train_loss.item())
 
             # Free memory in each iteration
             del input_images
@@ -105,9 +96,7 @@ def train(model, loader, optimizer, criterion, metrics, epoch=0, epochs=0, ploss
 
     epoch_metric = [total_metric[0] /
                     len(loader), total_metric[1] / len(loader),
-                    total_metric[2] / len(loader)]
-
-    #result.add_loss("train", epoch_loss)
+                    total_metric[2] / len(loader), total_metric[3] / len(loader)]
 
     logger.info(f"Epoch: {epoch}/{epochs}, Train loss = {epoch_loss:.6f}")
 

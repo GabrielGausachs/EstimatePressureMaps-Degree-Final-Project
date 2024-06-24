@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from pytorch_msssim import ssim
 
 
 class PerCS(nn.Module):
@@ -22,6 +23,15 @@ class PerCS(nn.Module):
         pcs = count / tar.numel()
 
         return pcs
+
+
+class SSIMMetric(nn.Module):
+    def __init__(self, max_val=1.0):
+        super(SSIMMetric, self).__init__()
+        self.max_val = max_val
+
+    def forward(self, y_pred, y_true):
+        return ssim(y_true, y_pred, data_range=self.max_val, size_average=True)
 
 
 class MSEeff(nn.Module):

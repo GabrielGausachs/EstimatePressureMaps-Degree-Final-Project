@@ -65,6 +65,12 @@ class UNET(nn.Module):
             x = self.ups[idx+1](concat_skip)
 
         return self.final_conv(x)
+    
+    def freeze_except_final(self):
+        for param in self.parameters():
+            param.requires_grad = False
+        for param in self.final_conv.parameters():
+            param.requires_grad = True
 
 
 # A U-Net with 4 blocks of 2 convolutional layers each block and with skip connections

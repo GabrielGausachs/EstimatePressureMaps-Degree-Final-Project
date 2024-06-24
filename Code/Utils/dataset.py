@@ -3,6 +3,7 @@ from Utils.logger import initialize_logger, get_logger
 import numpy as np
 import torch
 from scipy import signal
+
 from Utils.config import (
     USE_PHYSICAL_DATA,
     PATH_DATASET,
@@ -46,20 +47,13 @@ class CustomDataset(Dataset):
                 parts = str(output_path.split("/")[-4])
             else:
                 parts = str(output_path.split("\\")[-4])
+
             number = int(parts)
+
             p_vector = self.p_data.iloc[number-1]
-            #weight = p_vector[1]
             tensor_data = torch.tensor(p_vector.values)
 
-            # Applying median filter
-            median_array = signal.medfilt2d(output_array)
-            max_array = np.maximum(output_array, median_array)
-            #output_array = self.transform['output'](max_array)
-
-            area_m = 1.03226 / 10000
-            ideal_pressure = self.weights.iloc[number-1] * 9.81 / (area_m * 1000)
-
-            output_array = (max_array / np.sum(max_array)) * ideal_pressure
+            output_array = self.preprocessing_pm(output_array, number)
             output_array = self.transform['output'](output_array)
 
             if USE_PHYSICAL_DATA:
@@ -68,6 +62,19 @@ class CustomDataset(Dataset):
                 return input_array, output_array
 
     def load_array(self, path):
+        
         # Load the array
         array = np.load(path)
         return array
+    
+    def preprocessing_pm(self, output_array, number):
+
+        median_array = signal.medfilt2d(output_array)
+        max_array = np.maximum(output_array, median_array)
+
+        area_m = 1.03226 / 10000
+        ideal_pressure = self.weights.iloc[number-1] * 9.81 / (area_m * 1000)
+
+        output_array = (max_array / np.sum(max_array)) * ideal_pressure
+
+        return output_array

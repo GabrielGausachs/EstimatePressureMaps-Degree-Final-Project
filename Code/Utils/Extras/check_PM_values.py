@@ -2,28 +2,31 @@ import cv2
 import numpy as np
 import os
 import pandas as pd
+import sys
+sys.path.append(os.path.dirname(os.getcwd()))
 
+from config import (
+    LOCAL_SLP_DATASET_PATH,
+    SERVER_SLP_DATASET_PATH
+)
 
 # File to check the obtained weight after applying the respected 
 # calibration value in each of the PM arrays
 
 # Uncover first row, cover1 second row, cover2 third row.
 
-path_data = os.path.join(
-    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))), 'SLP/danaLab/physiqueData.csv')
-
+path_data = os.path.join(SERVER_SLP_DATASET_PATH,'physiqueData.csv')
 p_data = pd.read_csv(path_data)
-
 mass = p_data['weight (kg)']
 
 dic = {}
 
-for i, patient in enumerate(os.listdir('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab')):
-    if os.path.isdir(os.path.join('C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)):
+for i, patient in enumerate(os.listdir(SERVER_SLP_DATASET_PATH)):
+    if os.path.isdir(os.path.join(SERVER_SLP_DATASET_PATH, patient)):
         print(f'patient: {i}, mass: {mass[i]}')
 
         patient_path = os.path.join(
-            'C:/Users/Gabriel/OneDrive/Escritorio/4t any uni/tfg/SLP/danaLab', patient)
+            SERVER_SLP_DATASET_PATH, patient)
         cal_indiv = np.load(os.path.join(patient_path, 'PMcali.npy'))
         if i==0:
             print(cal_indiv.shape)
