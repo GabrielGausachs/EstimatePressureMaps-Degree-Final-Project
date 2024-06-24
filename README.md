@@ -11,9 +11,10 @@ https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose
 
 ## Getting started
 To train a model, execute:
-'python3 main.py'
 
-In the config file you will find the training configuration, paths and parameters.
+`python3 main.py`
+
+In the `config.py` file you will find the training configuration, paths and parameters.
 
 ## Extra dades UAB
 Explicar tema training uab i els arxius creats
