@@ -10,7 +10,10 @@ Apply to get access to the dataset
 https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose-estimation-3/ 
 
 ## Getting started
-Explicar com executar el main i on canviar les configuracions (config.py)
+To train a model, execute:
+'python3 main.py'
+
+In the config file you will find the training configuration, paths and parameters.
 
 ## Extra dades UAB
 Explicar tema training uab i els arxius creats
